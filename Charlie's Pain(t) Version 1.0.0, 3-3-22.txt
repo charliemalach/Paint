@@ -1,0 +1,17 @@
+Charlie's Pain(t) Version 1.0.0, 9/3/22
+
+New Features: 
+	- Ability to open an image and display it on the screen 
+	- Ability to close, minimize, and maxamize the program 
+	- Ability to save image 
+	- Ability to save image as 
+	- A functional menu bar with holding multiple options (File, Help, Edit, Tool)
+
+Known Issues: 
+	- ... 
+
+Expected Next Sprint: 
+	- Ability to open multiple pictures
+	- Ability to open multiple windows 
+	- Ability to draw on screen 
+	- Ability to erase from screen 

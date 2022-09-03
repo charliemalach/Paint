@@ -5,6 +5,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView id="picture" fitHeight="243.0" fitWidth="404.0" layoutX="98.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView id="picture" fitHeight="363.0" fitWidth="575.0" layoutX="15.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

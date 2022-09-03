@@ -58,8 +58,8 @@ public class Painters extends Application {
 
         for (int p = 0; p < 7; p++) {
             multiple[p] = new Canvas();
-            multiple[p].setHeight(650);
-            multiple[p].setWidth(650);
+            multiple[p].setHeight(canvas.getHeight());
+            multiple[p].setWidth(canvas.getWidth());
         }
 
         canvas = multiple[0];
@@ -68,12 +68,6 @@ public class Painters extends Application {
 
         TabPane tabpane = new TabPane();
         Tab tab1 = new Tab("Image 1");
-        Tab tab2 = new Tab("Image 2");
-        Tab tab3 = new Tab("Image 3");
-        Tab tab4 = new Tab("Image 4");
-        Tab tab5 = new Tab("Image 5");
-        Tab tab6 = new Tab("Image 6");
-        Tab tab7 = new Tab("Image 7");
 
         tabpane.getTabs().add(tab1);
 
@@ -91,7 +85,6 @@ public class Painters extends Application {
                                                sp.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
                                                sp.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
                                                maincanvas.add(sp, 2, 2);
-                                               System.out.println("hi");
                                            }
                                        }
                                    }
@@ -116,7 +109,7 @@ public class Painters extends Application {
         Open.setAccelerator(
                 new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN));
         Open.setOnAction(new EventHandler<ActionEvent>() {
-                             public void handle(ActionEvent event) {
+                             public void handle(ActionEvent event) { //Open File
                                  FileChooser fc = new FileChooser();
                                  fc.setTitle("Open File");
                                  fc.getExtensionFilters().addAll(
@@ -125,11 +118,11 @@ public class Painters extends Application {
                                  );
                                  File file = fc.showOpenDialog(stage);
                                  if (file != null) {
-                                     try { // resize iamge on canvas
+                                     try { // resize image on canvas
                                          Image pic = new Image(file.toURI().toString());
                                          picture.setImage(pic);
                                          picture.setPreserveRatio(true);
-                                         picture.setFitWidth(50);
+                                         picture.setFitWidth(canvas.getWidth());
                                          picture.setSmooth(true);
                                          picture.setCache(true);
 
@@ -139,7 +132,7 @@ public class Painters extends Application {
                                          gc.drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight());
                                      } catch (Exception ex) {
                                          System.out.println("Error");
-//                      System.Logger.getLogger(Painters.class.getName()).log(System.Logger.Level.SEVERE, null, ex);
+                                         //System.Logger.getLogger(Painters.class.getName()).log(System.Logger.Level.SEVERE, null, ex);
                                      }
                                      Saving = false;
                                  }
@@ -162,7 +155,7 @@ public class Painters extends Application {
                         RenderedImage ri = SwingFXUtils.fromFXImage(wi, null);
                         ImageIO.write(ri, "png", file);
                     } catch (IOException ex) {
-//                        System.Logger.getLogger(Painters.class.getName()).log(System.Logger.Level.SEVERE, null, ex);
+                        //System.Logger.getLogger(Painters.class.getName()).log(System.Logger.Level.SEVERE, null, ex);
                     }
                     Saving = true;
                 }
@@ -195,7 +188,7 @@ public class Painters extends Application {
                                            file = save;
                                            saved_file = save;
                                        } catch (IOException ex) {
-//                    Logger.getLogger(Painters.class.getName()).log(Level.SEVERE, null, ex);
+                                        //Logger.getLogger(Painters.class.getName()).log(Level.SEVERE, null, ex);
                                        }
                                        Saving = true;
                                    }
@@ -214,7 +207,7 @@ public class Painters extends Application {
         Exit.setAccelerator(
                 new KeyCodeCombination(KeyCode.ESCAPE));
         Exit.setOnAction(e -> {
-            if (Saving == true) {
+            if (Saving) {
                 Platform.exit();
                 System.exit(0);
             } else {
@@ -233,7 +226,7 @@ public class Painters extends Application {
                         RenderedImage ri = SwingFXUtils.fromFXImage(wi, null);
                         ImageIO.write(ri, "png", saved_file);
                     } catch (IOException ex) {
-//                        Logger.getLogger(Painters.class.getName()).log(Level.SEVERE, null, ex);
+                    //Logger.getLogger(Painters.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
                     //exits program
@@ -261,8 +254,8 @@ public class Painters extends Application {
         main.setHgap(0);
         main.setVgap(-5);
         main.addRow(1, menuBar);
-        main.addRow(4, maincanvas);
-        main.addRow(4, mainpicture);
+        main.addRow(2, maincanvas);
+        main.addRow(3, mainpicture);
 
         maincanvas.setHgap(100);
         maincanvas.setVgap(20);
@@ -270,7 +263,11 @@ public class Painters extends Application {
 
         mainpicture.setHgap(100);
         mainpicture.setVgap(20);
-        mainpicture.add(picture, 2, 2);
+        mainpicture.add(picture, 0, 1);
+        mainpicture.minHeight(400);
+        mainpicture.minWidth(400);
+
+
 
     }
 
