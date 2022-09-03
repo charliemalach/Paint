@@ -2,6 +2,7 @@
   <library name="Maven: org.apiguardian:apiguardian-api:1.1.2">
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/openjfx-18.0.2_windows-x64_bin-sdk.zip!/javafx-sdk-18.0.2/lib" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$MAVEN_REPOSITORY$/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2-javadoc.jar!/" />
