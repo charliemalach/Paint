@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox alignment="CENTER" prefHeight="660.0" prefWidth="840.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="com.example.paint.HelloController">
+   <ImageView fx:id="myImageView" fitHeight="533.0" fitWidth="690.0" pickOnBounds="true" preserveRatio="true" />
+
+
+</VBox>
