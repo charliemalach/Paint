@@ -29,29 +29,38 @@ import java.io.IOException;
 import java.util.Optional;
 import javax.imageio.ImageIO;
 
+/**
+ *  Malachinski Pain(t) Application
+ *  The Pain(t) application is a program that allows users to upload images.
+ *
+ * @author Charlie Malachinski
+ * @version 1.0.0
+ * @since 2022-09-02
+ *
+ **/
+
 public class Painters extends Application {
 
-    ImageView picture = new ImageView();
-    File file;
-    File saved_file;
-    Boolean Saving = true;
+    ImageView picture = new ImageView(); //Creates a new ImageView object
+    File file; //Creates a local variable called 'file' for file management
+    File saved_file; //Creates a local variable called 'saved_file' for edited files
+    Boolean Saving = true; //Boolean to determine if file is saved
+    Canvas canvas = new Canvas(); //Creates new Canvas object
+
     public static File filepath;
 
-    WritableImage wit = new WritableImage(200, 200);
-    Canvas canvas = new Canvas();
+    WritableImage wit = new WritableImage(200, 200); //Creates a new WritableImage object to construct images
 
-    GraphicsContext gc = canvas.getGraphicsContext2D();
+    GraphicsContext gc = canvas.getGraphicsContext2D(); //Creates a GraphicsContext to draw calls to a Canvas using a buffer
+
     public static WritableImage tmpSnap;
-    public static WritableImage selImg;
-    Canvas[] multiple = new Canvas[7];
 
-    ScrollPane sp = new ScrollPane();
+    public static WritableImage selImg;
+    Canvas[] multiple = new Canvas[7]; //Creates multiple Canvas objects for multiple environments to be hosted.
+    ScrollPane sp = new ScrollPane(); //Creates a ScrollPane for horizontal and vertical positioning
 
     @Override
     public void start(Stage stage) throws IOException {
-
-
-
         GridPane main = new GridPane();
         GridPane maincanvas = new GridPane();
         GridPane mainpicture = new GridPane();
@@ -141,10 +150,9 @@ public class Painters extends Application {
                          }
         );
 
-        MenuItem Save = new MenuItem("Save");
 
+        MenuItem Save = new MenuItem("Save"); //Creates menu option to save current user project
         Save.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN));
-
         Save.setMnemonicParsing(true);
         Save.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
@@ -155,7 +163,7 @@ public class Painters extends Application {
                         RenderedImage ri = SwingFXUtils.fromFXImage(wi, null);
                         ImageIO.write(ri, "png", file);
                     } catch (IOException ex) {
-                        //System.Logger.getLogger(Painters.class.getName()).log(System.Logger.Level.SEVERE, null, ex);
+//                        System.Logger.getLogger(Painters.class.getName()).log(System.Logger.Level.SEVERE, null, ex);
                     }
                     Saving = true;
                 }
@@ -198,7 +206,6 @@ public class Painters extends Application {
         );
 
         SeparatorMenuItem separator = new SeparatorMenuItem();
-
         MenuItem Exit = new MenuItem("Exit", null);
 
         Exit.setMnemonicParsing(
@@ -266,9 +273,6 @@ public class Painters extends Application {
         mainpicture.add(picture, 0, 1);
         mainpicture.minHeight(400);
         mainpicture.minWidth(400);
-
-
-
     }
 
 
