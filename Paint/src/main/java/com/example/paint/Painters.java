@@ -59,8 +59,8 @@ public class Painters extends Application {
         //This section creates the Pain(t) scene
         Scene scene = new Scene(main, 1000, 900);
         stage.setTitle("Malachinski - Pain(t)");
-        Image icon = new Image("../src/icons/icon.png");
-        stage.getIcons().add(icon);
+//        Image icon = new Image("../src/icons/icon.png");          icon is not working
+//        stage.getIcons().add(icon);
         stage.setScene(scene);
         stage.show();
 
