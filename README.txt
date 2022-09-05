@@ -8,9 +8,7 @@ New Features:
 	- A functional menu bar with holding multiple options (File, Help, Edit, Tool)
 
 Known Issues: 
-	- Unable to 'Save as' 
-	- Unable to 'Save'
-	- Unable to 'Exit'
+	- ... 
 
 Expected Next Sprint: 
 	- Ability to open multiple pictures
