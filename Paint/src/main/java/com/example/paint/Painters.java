@@ -47,17 +47,9 @@ public class Painters extends Application {
     Boolean Saving = true; //Boolean to determine if file is saved
     Canvas canvas = new Canvas(); //Creates new Canvas object
 
-    public static File filepath;
-
     WritableImage wit = new WritableImage(200, 200); //Creates a new WritableImage object to construct images
 
     GraphicsContext gc = canvas.getGraphicsContext2D(); //Creates a GraphicsContext to draw calls to a Canvas using a buffer
-
-    public static WritableImage tmpSnap;
-
-    public static WritableImage selImg;
-    Canvas[] multiple = new Canvas[7]; //Creates multiple Canvas objects for multiple environments to be hosted.
-    ScrollPane sp = new ScrollPane(); //Creates a ScrollPane for horizontal and vertical positioning
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -94,7 +86,7 @@ public class Painters extends Application {
                 );
                 File file = fc.showOpenDialog(stage);
                 if (file != null) {
-                    try { // resize image on canvas
+                    try { // Presents and resizes the selected image on the canvas
                         Image pic = new Image(file.toURI().toString());
                         picture.setImage(pic);
                         picture.setPreserveRatio(true);
@@ -108,7 +100,6 @@ public class Painters extends Application {
                         gc.drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight());
                     } catch (Exception ex) {
                         System.out.println("Error");
-                        //System.Logger.getLogger(Painters.class.getName()).log(System.Logger.Level.SEVERE, null, ex);
                     }
                     Saving = false;
                 }
@@ -125,18 +116,18 @@ public class Painters extends Application {
             public void handle(ActionEvent event) {
                 if (file != null) {
                     try {
-                        WritableImage wi = new WritableImage((int) picture.getFitWidth(), (int) picture.getFitHeight());
-                        canvas.snapshot(null, wi);
-                        RenderedImage ri = SwingFXUtils.fromFXImage(wi, null);
-                        ImageIO.write(ri, "png", file);
+                        WritableImage writableImage = new WritableImage((int) picture.getFitWidth(), (int) picture.getFitHeight()); //this code has errors
+                        canvas.snapshot(null, writableImage);
+                        RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
+                        ImageIO.write(renderedImage, "png", file);
+                        System.out.println("File successfully saved");
                     } catch (IOException ex) {
-//                        System.Logger.getLogger(Painters.class.getName()).log(System.Logger.Level.SEVERE, null, ex);
+                        System.out.println("Error has occurred.");
                     }
                     Saving = true;
                 }
             }
         });
-
 
         MenuItem SaveAs = new MenuItem("Save as..."); //Creates menu option to save current user project as different file
         // File Chooser to Save as button to work
@@ -154,14 +145,14 @@ public class Painters extends Application {
                 File save = fc.showSaveDialog(stage);
                 if (save != null) {
                     try {
-                        WritableImage wi = new WritableImage((int) picture.getFitWidth(), (int) picture.getFitHeight());
-                        canvas.snapshot(null, wi);
-                        RenderedImage ri = SwingFXUtils.fromFXImage(wi, null);
-                        ImageIO.write(ri, "png", save);
+                        WritableImage writableImage = new WritableImage((int) picture.getFitWidth(), (int) picture.getFitHeight()); //this code has errors
+                        canvas.snapshot(null, writableImage);
+                        RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
+                        ImageIO.write(renderedImage, "png", save);
                         file = save;
                         saved_file = save;
                     } catch (IOException ex) {
-                        //Logger.getLogger(Painters.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("Error has occurred.");
                     }
                     Saving = true;
                 }
@@ -191,12 +182,12 @@ public class Painters extends Application {
                 if ((show.isPresent()) && (show.get() == ButtonType.OK)) {
                     //for some reason file is null
                     try {
-                        WritableImage wi = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
-                        canvas.snapshot(null, wi);
-                        RenderedImage ri = SwingFXUtils.fromFXImage(wi, null);
-                        ImageIO.write(ri, "png", saved_file);
+                        WritableImage writableImage = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight()); //this code has errors
+                        canvas.snapshot(null, writableImage);
+                        RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
+                        ImageIO.write(renderedImage, "png", saved_file);
                     } catch (IOException ex) {
-                    //Logger.getLogger(Painters.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("Error has occurred.");
                     }
 
                     //exits program
@@ -223,9 +214,6 @@ public class Painters extends Application {
         menuBar.getMenus().add(Edit);
         menuBar.getMenus().add(Tool);
 
-
-
-
         main.setHgap(0);
         main.setVgap(-5);
         main.addRow(1, menuBar);
@@ -235,13 +223,13 @@ public class Painters extends Application {
         maincanvas.setHgap(100);
         maincanvas.setVgap(20);
 
-
         mainpicture.setHgap(100);
         mainpicture.setVgap(20);
         mainpicture.add(picture, 0, 1);
         mainpicture.minHeight(400);
         mainpicture.minWidth(400);
     }
+
 
 
     public static void main(String[] args) {
