@@ -21,7 +21,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
-
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
@@ -60,6 +59,8 @@ public class Painters extends Application {
         //This section creates the Pain(t) scene
         Scene scene = new Scene(main, 1000, 900);
         stage.setTitle("Malachinski - Pain(t)");
+        Image icon = new Image("../src/icons/icon.png");
+        stage.getIcons().add(icon);
         stage.setScene(scene);
         stage.show();
 
@@ -103,7 +104,6 @@ public class Painters extends Application {
                     }
                     Saving = false;
                 }
-
             }
         }
         );
@@ -140,7 +140,6 @@ public class Painters extends Application {
                         new FileChooser.ExtensionFilter("PNG Files", "*.png"),
                         new FileChooser.ExtensionFilter("ICON Files", "*.png"),
                         new FileChooser.ExtensionFilter("JPG Files", ".jpg")
-
                 );
                 File save = fc.showSaveDialog(stage);
                 if (save != null) {
@@ -157,7 +156,6 @@ public class Painters extends Application {
                     Saving = true;
                 }
             }
-
         }
         );
 
