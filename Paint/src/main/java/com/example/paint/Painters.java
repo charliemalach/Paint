@@ -65,89 +65,56 @@ public class Painters extends Application {
         GridPane maincanvas = new GridPane();
         GridPane mainpicture = new GridPane();
 
-        for (int p = 0; p < 7; p++) {
-            multiple[p] = new Canvas();
-            multiple[p].setHeight(canvas.getHeight());
-            multiple[p].setWidth(canvas.getWidth());
-        }
-
-        canvas = multiple[0];
-
-        gc = canvas.getGraphicsContext2D();
-
-        TabPane tabpane = new TabPane();
-        Tab tab1 = new Tab("Image 1");
-
-        tabpane.getTabs().add(tab1);
-
-        tab1.setOnSelectionChanged(new EventHandler<Event>() {
-                                       @Override
-                                       public void handle(Event t) {
-                                           if (tab1.isSelected()) {
-                                               canvas = multiple[0];
-                                               gc = canvas.getGraphicsContext2D();
-                                               sp = new ScrollPane(canvas);
-                                               sp.setPrefSize(650, 650);
-                                               sp.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-                                               sp.setFitToWidth(true);
-                                               sp.setFitToHeight(true);
-                                               sp.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
-                                               sp.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
-                                               maincanvas.add(sp, 2, 2);
-                                           }
-                                       }
-                                   }
-        );
-
-
-
+        //This section creates the Pain(t) scene
         Scene scene = new Scene(main, 1000, 900);
         stage.setTitle("Malachinski - Pain(t)");
         stage.setScene(scene);
         stage.show();
 
+        //This section creates the MenuBar that hosts File, Help, Edit, Tools
         MenuBar menuBar = new MenuBar();
+        menuBar.prefWidthProperty().bind(stage.widthProperty()); //extends width of entire program
         Menu File = new Menu("File");
         Menu Help = new Menu("Help");
         Menu Edit = new Menu("Edit");
         Menu Tool = new Menu("Tool");
 
-        MenuItem Open = new MenuItem("Open");
+        MenuItem Open = new MenuItem("Open"); //Creates menu option to open an image on user project
         Open.setMnemonicParsing(
                 true);
         Open.setAccelerator(
                 new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN));
         Open.setOnAction(new EventHandler<ActionEvent>() {
-                             public void handle(ActionEvent event) { //Open File
-                                 FileChooser fc = new FileChooser();
-                                 fc.setTitle("Open File");
-                                 fc.getExtensionFilters().addAll(
-                                         new ExtensionFilter("All Images", "*.*"),
-                                         new ExtensionFilter("PNG Files", "*.png")
-                                 );
-                                 File file = fc.showOpenDialog(stage);
-                                 if (file != null) {
-                                     try { // resize image on canvas
-                                         Image pic = new Image(file.toURI().toString());
-                                         picture.setImage(pic);
-                                         picture.setPreserveRatio(true);
-                                         picture.setFitWidth(canvas.getWidth());
-                                         picture.setSmooth(true);
-                                         picture.setCache(true);
+            public void handle(ActionEvent event) { //Open File
+                FileChooser fc = new FileChooser();
+                fc.setTitle("Open File");
+                fc.getExtensionFilters().addAll(
+                        new ExtensionFilter("All Images", "*.*"),
+                        new ExtensionFilter("PNG Files", "*.png")
+                );
+                File file = fc.showOpenDialog(stage);
+                if (file != null) {
+                    try { // resize image on canvas
+                        Image pic = new Image(file.toURI().toString());
+                        picture.setImage(pic);
+                        picture.setPreserveRatio(true);
+                        picture.setFitWidth(canvas.getWidth());
+                        picture.setFitHeight(canvas.getHeight());
+                        picture.setSmooth(true);
+                        picture.setCache(true);
+                        BufferedImage img = ImageIO.read(file);
+                        WritableImage image = SwingFXUtils.toFXImage(img, null);
+                        GraphicsContext gc = canvas.getGraphicsContext2D();
+                        gc.drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight());
+                    } catch (Exception ex) {
+                        System.out.println("Error");
+                        //System.Logger.getLogger(Painters.class.getName()).log(System.Logger.Level.SEVERE, null, ex);
+                    }
+                    Saving = false;
+                }
 
-                                         BufferedImage img = ImageIO.read(file);
-                                         WritableImage image = SwingFXUtils.toFXImage(img, null);
-                                         GraphicsContext gc = canvas.getGraphicsContext2D();
-                                         gc.drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight());
-                                     } catch (Exception ex) {
-                                         System.out.println("Error");
-                                         //System.Logger.getLogger(Painters.class.getName()).log(System.Logger.Level.SEVERE, null, ex);
-                                     }
-                                     Saving = false;
-                                 }
-
-                             }
-                         }
+            }
+        }
         );
 
 
@@ -158,7 +125,7 @@ public class Painters extends Application {
             public void handle(ActionEvent event) {
                 if (file != null) {
                     try {
-                        WritableImage wi = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
+                        WritableImage wi = new WritableImage((int) picture.getFitWidth(), (int) picture.getFitHeight());
                         canvas.snapshot(null, wi);
                         RenderedImage ri = SwingFXUtils.fromFXImage(wi, null);
                         ImageIO.write(ri, "png", file);
@@ -171,43 +138,40 @@ public class Painters extends Application {
         });
 
 
-        MenuItem SaveAs = new MenuItem("Save As...");
+        MenuItem SaveAs = new MenuItem("Save as..."); //Creates menu option to save current user project as different file
         // File Chooser to Save as button to work
         SaveAs.setOnAction(new EventHandler<ActionEvent>() {
-                               public void handle(ActionEvent event) {
-                                   FileChooser fc = new FileChooser();
-                                   fc.setTitle("Save As...");
-                                   fc.getExtensionFilters().addAll(
-                                           new FileChooser.ExtensionFilter("All Images", "*.*"),
-                                           new FileChooser.ExtensionFilter("PNG Files", "*.png"),
-                                           new FileChooser.ExtensionFilter("ICON Files", "*.png"),
-                                           new FileChooser.ExtensionFilter("JPG Files", ".jpg"),
-                                           new FileChooser.ExtensionFilter("Documents", "*.*"),
-                                           new FileChooser.ExtensionFilter("Desktop", "*.*"),
-                                           new FileChooser.ExtensionFilter("Download", "*.*")
-                                   );
-                                   File save = fc.showSaveDialog(stage);
-                                   if (save != null) {
-                                       try {
-                                           WritableImage wi = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
-                                           canvas.snapshot(null, wi);
-                                           RenderedImage ri = SwingFXUtils.fromFXImage(wi, null);
-                                           ImageIO.write(ri, "png", save);
-                                           file = save;
-                                           saved_file = save;
-                                       } catch (IOException ex) {
-                                        //Logger.getLogger(Painters.class.getName()).log(Level.SEVERE, null, ex);
-                                       }
-                                       Saving = true;
-                                   }
-                               }
+            public void handle(ActionEvent event) {
+                FileChooser fc = new FileChooser();
+                fc.setTitle("Save As...");
+                fc.getExtensionFilters().addAll( //allows user to save image as any of the following extensions
+                        new FileChooser.ExtensionFilter("All Images", "*.*"),
+                        new FileChooser.ExtensionFilter("PNG Files", "*.png"),
+                        new FileChooser.ExtensionFilter("ICON Files", "*.png"),
+                        new FileChooser.ExtensionFilter("JPG Files", ".jpg")
 
-                           }
+                );
+                File save = fc.showSaveDialog(stage);
+                if (save != null) {
+                    try {
+                        WritableImage wi = new WritableImage((int) picture.getFitWidth(), (int) picture.getFitHeight());
+                        canvas.snapshot(null, wi);
+                        RenderedImage ri = SwingFXUtils.fromFXImage(wi, null);
+                        ImageIO.write(ri, "png", save);
+                        file = save;
+                        saved_file = save;
+                    } catch (IOException ex) {
+                        //Logger.getLogger(Painters.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Saving = true;
+                }
+            }
+
+        }
         );
 
         SeparatorMenuItem separator = new SeparatorMenuItem();
         MenuItem Exit = new MenuItem("Exit", null);
-
         Exit.setMnemonicParsing(
                 true);
         // Ctrl + X
@@ -222,7 +186,6 @@ public class Painters extends Application {
                 exit.setTitle("File has not been Saved");
                 String text = "Would you like to save?";
                 exit.setContentText(text);
-
                 Optional<ButtonType> show = exit.showAndWait();
 
                 if ((show.isPresent()) && (show.get() == ButtonType.OK)) {
@@ -247,16 +210,21 @@ public class Painters extends Application {
             }
         });
 
+        //This section adds all the File options to the menu bar
         menuBar.getMenus().add(File);
-        menuBar.getMenus().add(Help);
-        menuBar.getMenus().add(Edit);
-        menuBar.getMenus().add(Tool);
-
         File.getItems().add(Open);
         File.getItems().add(Save);
         File.getItems().add(SaveAs);
         File.getItems().add(separator);
         File.getItems().add(Exit);
+
+        //This section adds the other main options to the menu bar
+        menuBar.getMenus().add(Help);
+        menuBar.getMenus().add(Edit);
+        menuBar.getMenus().add(Tool);
+
+
+
 
         main.setHgap(0);
         main.setVgap(-5);
