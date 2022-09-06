@@ -118,6 +118,14 @@ public class Painters extends Application {
 
         Save.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
+                FileChooser fc = new FileChooser();
+                fc.setTitle("Open File");
+                fc.getExtensionFilters().addAll(
+                        new ExtensionFilter("All Images", "*.*"),
+                        new ExtensionFilter("PNG Files", "*.png")
+                );
+                File file = fc.showOpenDialog(stage);
+                System.out.println(file.getAbsolutePath());
                 if (file != null) { //this loop is broken, file is not currently set at the time of the loop running. it should be though.
                     try {
                         System.out.println("looking for path...");
