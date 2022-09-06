@@ -118,7 +118,7 @@ public class Painters extends Application {
 
         Save.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                if (file != null) { //this loop is broken, file is not currently set at the time of the loop running. it should be though. 
+                if (file != null) { //this loop is broken, file is not currently set at the time of the loop running. it should be though.
                     try {
                         System.out.println("looking for path...");
                         System.out.println(file.getAbsolutePath());
