@@ -72,7 +72,8 @@ public class Painters extends Application {
         Menu Edit = new Menu("Edit");
         Menu Tool = new Menu("Tool");
 
-        MenuItem Open = new MenuItem("Open"); //Creates menu option to open an image on user project
+        //Creates menu option to open an image on user project
+        MenuItem Open = new MenuItem("Open");
         Open.setMnemonicParsing(
                 true);
         Open.setAccelerator(
@@ -99,6 +100,9 @@ public class Painters extends Application {
                         WritableImage image = SwingFXUtils.toFXImage(img, null);
                         GraphicsContext gc = canvas.getGraphicsContext2D();
                         gc.drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight());
+                        int imageHeight = (int) image.getHeight();
+                        int imageWidth = (int) image.getWidth();
+                        System.out.println(file.getAbsolutePath());
                     } catch (Exception ex) {
                         System.out.println("Error");
                     }
@@ -108,18 +112,21 @@ public class Painters extends Application {
         }
         );
 
-
         MenuItem Save = new MenuItem("Save"); //Creates menu option to save current user project
-        Save.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN));
+        Save.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN)); //sets hotkey CTRL + S --> Save
         Save.setMnemonicParsing(true);
+
         Save.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                if (file != null) {
+                if (file != null) { //this loop is broken, file is not currently set at the time of the loop running. it should be though. 
                     try {
-                        WritableImage writableImage = new WritableImage((int) picture.getFitWidth(), (int) picture.getFitHeight()); //this code has errors
-                        canvas.snapshot(null, writableImage);
+                        System.out.println("looking for path...");
+                        System.out.println(file.getAbsolutePath());
+                        WritableImage writableImage = new WritableImage((int) mainpicture.getWidth(), (int) mainpicture.getHeight()); //this code has errors
+                        mainpicture.snapshot(null, writableImage);
                         RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
                         ImageIO.write(renderedImage, "png", file);
+                        System.out.println(file.getAbsolutePath());
                         System.out.println("File successfully saved");
                     } catch (IOException ex) {
                         System.out.println("Error has occurred.");
@@ -130,7 +137,7 @@ public class Painters extends Application {
         });
 
         MenuItem SaveAs = new MenuItem("Save as..."); //Creates menu option to save current user project as different file
-        // File Chooser to Save as button to work
+        SaveAs.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN,KeyCombination.SHIFT_DOWN)); //sets hotkey CTRL + Shift + S --> Save
         SaveAs.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 FileChooser fc = new FileChooser();
@@ -144,8 +151,10 @@ public class Painters extends Application {
                 File save = fc.showSaveDialog(stage);
                 if (save != null) {
                     try {
-                        WritableImage writableImage = new WritableImage((int) picture.getFitWidth(), (int) picture.getFitHeight()); //this code has errors
-                        canvas.snapshot(null, writableImage);
+                        System.out.println(mainpicture.getWidth() + mainpicture.getHeight());
+                        WritableImage writableImage = new WritableImage((int) mainpicture.getWidth(), (int) mainpicture.getHeight()); //this code has errors
+                        System.out.println(canvas.getWidth() + canvas.getHeight());
+                        mainpicture.snapshot(null, writableImage);
                         RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
                         ImageIO.write(renderedImage, "png", save);
                         file = save;
@@ -173,17 +182,16 @@ public class Painters extends Application {
             } else {
                 Alert exit = new Alert(Alert.AlertType.CONFIRMATION);
                 exit.setTitle("File has not been Saved");
-                String text = "Would you like to save?";
+                String text = "Would you like to save? (Click Cancel to close project.)";
                 exit.setContentText(text);
                 Optional<ButtonType> show = exit.showAndWait();
 
                 if ((show.isPresent()) && (show.get() == ButtonType.OK)) {
-                    //for some reason file is null
                     try {
-                        WritableImage writableImage = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight()); //this code has errors
-                        canvas.snapshot(null, writableImage);
+                        WritableImage writableImage = new WritableImage((int) mainpicture.getWidth(), (int) mainpicture.getHeight()); //this code has errors
+                        mainpicture.snapshot(null, writableImage);
                         RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
-                        ImageIO.write(renderedImage, "png", saved_file);
+                        ImageIO.write(renderedImage, "png", saved_file); //this sometimes breaks?
                     } catch (IOException ex) {
                         System.out.println("Error has occurred.");
                     }
