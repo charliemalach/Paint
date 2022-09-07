@@ -20,7 +20,7 @@ import java.io.IOException;
  *
  **/
 
-public class Painters extends Application {
+public class Paint extends Application {
     private final static String TITLE = "Malachinski - Pain(t)"; //Name of the application
     private final static int windowLength = 1280; //Dictates the initial length of the application window
     private final static int windowHeight = 720; //Dictates the initial width of the application window
@@ -37,7 +37,7 @@ public class Painters extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Painters.mainStage = stage; //creates the new stage for the application
+        Paint.mainStage = stage; //creates the new stage for the application
         Scene scene = new Scene(main, windowLength, windowHeight); //creates a new scene with the main Grid Pane and the desired application window size.
         menuBar = new PaintMenuBar(); //Creates a new menu bar
         menuBar.prefWidthProperty().bind(stage.widthProperty()); //extends width of entire program

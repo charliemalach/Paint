@@ -24,7 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
-import static com.example.paint.Painters.*;
+import static com.example.paint.Paint.*;
 
 public class PaintMenuBar extends MenuBar {
 
