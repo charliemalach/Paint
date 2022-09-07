@@ -22,6 +22,7 @@ import java.io.IOException;
 
 public class Paint extends Application {
     private final static String TITLE = "Malachinski - Pain(t)"; //Name of the application
+    private final static String VERSION = "1.0.0";
     private final static int windowLength = 1280; //Dictates the initial length of the application window
     private final static int windowHeight = 720; //Dictates the initial width of the application window
     public static ImageView picture = new ImageView(); //Creates a new ImageView object
@@ -51,7 +52,7 @@ public class Paint extends Application {
         main.addRow(3, mainPicture); //adds the main picture to the scene
 
         //organizes stage
-        stage.setTitle(TITLE); //sets the title
+        stage.setTitle(TITLE + VERSION); //sets the title
         stage.setScene(scene); //sets the scene
         stage.show(); //shows the scene on screen
     }
