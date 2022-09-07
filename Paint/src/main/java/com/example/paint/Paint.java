@@ -52,7 +52,7 @@ public class Paint extends Application {
         main.addRow(3, mainPicture); //adds the main picture to the scene
 
         //organizes stage
-        stage.setTitle(TITLE + VERSION); //sets the title
+        stage.setTitle(TITLE + " - " + VERSION); //sets the title
         stage.setScene(scene); //sets the scene
         stage.show(); //shows the scene on screen
     }
