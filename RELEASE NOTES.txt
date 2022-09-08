@@ -6,14 +6,14 @@ New Features:
 	- Ability to save image 
 	- Ability to save image as 
 	- A functional menu bar with holding multiple options (File, Help, Edit, Tool)
+	- Has a real icon 
 
 Known Issues: 
-	- Unable to 'Save as' 
-	- Unable to 'Save'
-	- Unable to 'Exit'
+	- 'Save' needs to select the file before saving (can't just hit save)
+	
 
 Expected Next Sprint: 
 	- Ability to open multiple pictures
-	- Ability to open multiple windows 
+	- Ability to open multiple windows (tabs) 
 	- Ability to draw on screen 
 	- Ability to erase from screen 
