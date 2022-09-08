@@ -94,7 +94,7 @@ public class PaintMenuBar extends MenuBar {
                 fc.getExtensionFilters().addAll(
                         new FileChooser.ExtensionFilter("All Images", "*.*")
                 );
-                File file = fc.showOpenDialog(mainStage);
+                File file = fc.showSaveDialog(mainStage);
                 System.out.println("Testing " + file.getAbsolutePath());
                 if (file.getPath() != null) { //this loop is broken, file is not currently set at the time of the loop running. it should be though.
                     try {
