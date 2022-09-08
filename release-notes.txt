@@ -10,7 +10,8 @@ New Features:
 
 Known Issues: 
 	- 'Save' needs to select the file before saving (can't just hit save)
-	
+	- Image isn't centered when opened on the canvas 
+	- Canvas doesn't resize when opening a new image (should it?)
 
 Expected Next Sprint: 
 	- Ability to open multiple pictures
