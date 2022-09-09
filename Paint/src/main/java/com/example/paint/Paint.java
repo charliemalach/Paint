@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-
 /**
  *  Malachinski Pain(t) Application
  *  The Pain(t) application is a program that currently allows users to upload, save and save as images. More features will come with future updates.
@@ -37,12 +36,11 @@ public class Paint extends Application {
     public static GridPane mainPicture = new GridPane(); //Creates Grid Pane for the Picture
     public static PaintMenuBar menuBar; //Creates a MenuBar
     public static Stage mainStage; //Creates the main Stage
-
     @Override
     public void start(Stage stage) throws IOException {
         Paint.mainStage = stage; //creates the new stage for the application
         Scene scene = new Scene(main, windowLength, windowHeight); //creates a new scene with the main Grid Pane and the desired application window size.
-        Image icon = new Image("C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\icons\\icon.png");
+        Image icon = new Image("C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\icons\\icon.png");//relative path instead of hard coded 
         stage.getIcons().add(icon);
         menuBar = new PaintMenuBar(); //Creates a new menu bar
         menuBar.prefWidthProperty().bind(stage.widthProperty()); //extends width of entire program
@@ -59,7 +57,6 @@ public class Paint extends Application {
         stage.setScene(scene); //sets the scene
         stage.show(); //shows the scene on screen
     }
-
     public static void main(String[] args) {
         launch();
     }

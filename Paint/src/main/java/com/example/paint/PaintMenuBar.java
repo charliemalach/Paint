@@ -18,8 +18,6 @@ import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
-
-
 import static com.example.paint.Paint.*;
 
 public class PaintMenuBar extends MenuBar {
@@ -39,7 +37,6 @@ public class PaintMenuBar extends MenuBar {
         getMenus().add(Edit); //TODO: add actual features under this menu item
         getMenus().add(Options); //TODO: add actual features under this menu item
 
-
         //'Open' menu item. Allows users to open a picture to the current project.
         MenuItem Open = new MenuItem("Open");
         Open.setMnemonicParsing(
@@ -58,7 +55,6 @@ public class PaintMenuBar extends MenuBar {
                 if (file != null) {
                     try { // Presents and resizes the selected image on the canvas
                         Image pic = new Image(file.toURI().toString());
-
                         picture.setImage(pic);
                         picture.setPreserveRatio(true);
                         picture.setSmooth(true);
@@ -95,7 +91,7 @@ public class PaintMenuBar extends MenuBar {
                 System.out.println("Testing " + file.getAbsolutePath());
                 if (file.getPath() != null) { //this loop is broken, file is not currently set at the time of the loop running. it should be though.
                     try {
-                        WritableImage writableImage = new WritableImage((int) mainPicture.getWidth(), (int) mainPicture.getHeight()); //this code has errors
+                        WritableImage writableImage = new WritableImage((int) mainPicture.getWidth(), (int) mainPicture.getHeight());
                         mainPicture.snapshot(null, writableImage);
                         RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
                         ImageIO.write(renderedImage, "png", file);
@@ -157,7 +153,6 @@ public class PaintMenuBar extends MenuBar {
                 String text = "Would you like to save? (Click Cancel to close without saving.)";
                 exit.setContentText(text);
                 Optional<ButtonType> show = exit.showAndWait();
-
                 if ((show.isPresent()) && (show.get() == ButtonType.OK)) {
                     try {
                         FileChooser fc = new FileChooser();
@@ -174,7 +169,6 @@ public class PaintMenuBar extends MenuBar {
                     } catch (IOException ex) {
                         System.out.println("Error has occurred.");
                     }
-
                     //After project is saved, program will exit.
                     Platform.exit();
                     System.exit(0);
