@@ -2,7 +2,7 @@ Charlie's Pain(t) Version 1.0.0, 9/3/22
 
 New Features: 
 	- Ability to open an image and display it on the screen 
-	- Ability to close, minimize, and maxamize the program 
+	- Ability to close, minimize, and maximize the program
 	- Ability to save image 
 	- Ability to save image as 
 	- A functional menu bar with holding multiple options (File, Help, Edit, Tool)
