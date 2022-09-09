@@ -5,24 +5,20 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.FileChooser;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
+
 
 import static com.example.paint.Paint.*;
 
@@ -62,6 +58,7 @@ public class PaintMenuBar extends MenuBar {
                 if (file != null) {
                     try { // Presents and resizes the selected image on the canvas
                         Image pic = new Image(file.toURI().toString());
+
                         picture.setImage(pic);
                         picture.setPreserveRatio(true);
                         picture.setSmooth(true);

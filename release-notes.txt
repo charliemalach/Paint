@@ -6,12 +6,12 @@ New Features:
 	- Ability to save image 
 	- Ability to save image as 
 	- A functional menu bar with holding multiple options (File, Help, Edit, Tool)
-	- Has a real icon 
+	- Has a real icon (yay!) 
 
 Known Issues: 
-	- 'Save' needs to select the file before saving (can't just hit save)
-	- Image isn't centered when opened on the canvas 
-	- Canvas doesn't resize when opening a new image (should it?)
+	- Image isn't centered when opened on the canvas. It's placed in the top left. 
+	- Canvas doesn't resize when opening a new image, might just add a scroll pane for this
+	- Help, Edit, Tool have no options, just there for show 
 
 Expected Next Sprint: 
 	- Ability to open multiple pictures

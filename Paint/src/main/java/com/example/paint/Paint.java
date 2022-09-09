@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
+
 /**
  *  Malachinski Pain(t) Application
  *  The Pain(t) application is a program that currently allows users to upload, save and save as images. More features will come with future updates.
@@ -47,7 +48,6 @@ public class Paint extends Application {
         menuBar.prefWidthProperty().bind(stage.widthProperty()); //extends width of entire program
         mainPicture.add(picture, 0, 0); //Adds the image to the canvas at the row 0, column 0.
         mainPicture.setAlignment(Pos.CENTER); //Aligns the picture to the center of the canvas
-
 
         //organizes canvas layout
         main.addRow(1, menuBar); //adds the menu bar to the scene
