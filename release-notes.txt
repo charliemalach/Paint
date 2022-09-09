@@ -1,4 +1,4 @@
-Charlie's Pain(t) Version 1.0.0, 9/3/22
+Charlie's Pain(t) Version 1.0.0, 9/9/22
 
 New Features: 
 	- Ability to open an image and display it on the screen 
@@ -9,12 +9,14 @@ New Features:
 	- Has a real icon (yay!) 
 
 Known Issues: 
-	- Image isn't centered when opened on the canvas. It's placed in the top left. 
-	- Canvas doesn't resize when opening a new image, might just add a scroll pane for this
-	- Help, Edit, Tool have no options, just there for show 
+	- Canvas doesn't resize when opening a new image. 
+	- Edit, Tool have no options, just there for show (for now). 
 
 Expected Next Sprint: 
 	- Ability to open multiple pictures
 	- Ability to open multiple windows (tabs) 
 	- Ability to draw on screen 
 	- Ability to erase from screen 
+
+Links: 
+	- GitHub Repository: https://github.com/charliemalach/Paint

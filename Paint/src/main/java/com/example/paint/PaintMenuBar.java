@@ -24,18 +24,19 @@ public class PaintMenuBar extends MenuBar {
 
     public PaintMenuBar() {
         super();
-        //This section creates the MenuBar that hosts File, Help, Edit, Tools
+        //This section creates the MenuBar that hosts File, Edit, Tools
         System.out.println("Menu successfully launched.");
         Menu File = new Menu("File");
-        Menu Help = new Menu("Help");
         Menu Edit = new Menu("Edit");
         Menu Options = new Menu("Options");
 
+        Menu Help = new Menu("Help");
+
         //This section adds the other main options to the menu bar
         getMenus().add(File);
-        getMenus().add(Help); //TODO: add actual features under this menu item
         getMenus().add(Edit); //TODO: add actual features under this menu item
         getMenus().add(Options); //TODO: add actual features under this menu item
+        getMenus().add(Help);
 
         //'Open' menu item. Allows users to open a picture to the current project.
         MenuItem Open = new MenuItem("Open");
@@ -44,7 +45,7 @@ public class PaintMenuBar extends MenuBar {
         Open.setAccelerator(
                 new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN)); //sets hotkey CTRL + O --> Open Program
         Open.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) { //Open File
+            public void handle(ActionEvent event) {
                 FileChooser fc = new FileChooser();
                 fc.setTitle("Open File");
                 fc.getExtensionFilters().addAll(
@@ -82,14 +83,7 @@ public class PaintMenuBar extends MenuBar {
         Save.setMnemonicParsing(true);
         Save.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                FileChooser fc = new FileChooser();
-                fc.setTitle("Save File");
-                fc.getExtensionFilters().addAll(
-                        new FileChooser.ExtensionFilter("All Images", "*.*")
-                );
-                File file = fc.showSaveDialog(mainStage);
-                System.out.println("Testing " + file.getAbsolutePath());
-                if (file.getPath() != null) { //this loop is broken, file is not currently set at the time of the loop running. it should be though.
+                if (file != null) {
                     try {
                         WritableImage writableImage = new WritableImage((int) mainPicture.getWidth(), (int) mainPicture.getHeight());
                         mainPicture.snapshot(null, writableImage);
@@ -112,9 +106,9 @@ public class PaintMenuBar extends MenuBar {
                 FileChooser fc = new FileChooser();
                 fc.setTitle("Save As...");
                 fc.getExtensionFilters().addAll( //allows user to save image as any of the following extensions
-                        new FileChooser.ExtensionFilter("All Images", "*.*"),
+                        new FileChooser.ExtensionFilter("All Files", "*.*"),
                         new FileChooser.ExtensionFilter("PNG Files", "*.png"),
-                        new FileChooser.ExtensionFilter("ICON Files", "*.png"),
+                        new FileChooser.ExtensionFilter("ICON Files", "*.ico"),
                         new FileChooser.ExtensionFilter("JPG Files", ".jpg")
                 );
                 File save = fc.showSaveDialog(mainStage);
@@ -179,11 +173,27 @@ public class PaintMenuBar extends MenuBar {
                 }
             }
         });
+
+        //Creates the About section in the Help menu
+        MenuItem About = new Menu("Help");
+        About.setOnAction(e -> {
+                    About.setMnemonicParsing(
+                            true);
+                    Alert aboutPaint = new Alert(Alert.AlertType.INFORMATION);
+                    aboutPaint.setTitle("About Pain(t)");
+                    String text = "Pain(t) is a JavaFX image handling project created for CS 250 by Charlie Malachinski.";
+                    aboutPaint.setContentText(text);
+                    Optional<ButtonType> show = aboutPaint.showAndWait();
+        });
+
         //This section adds all the File options to the menu bar
         File.getItems().add(Open);
         File.getItems().add(Save);
         File.getItems().add(SaveAs);
         File.getItems().add(separator);
         File.getItems().add(Exit);
+        //This section adds the About option under Help
+        Help.getItems().add(About);
     }
+
 }
