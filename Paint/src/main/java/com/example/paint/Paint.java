@@ -8,6 +8,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.scene.control.ScrollPane;
+
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -46,6 +49,8 @@ public class Paint extends Application {
         menuBar.prefWidthProperty().bind(stage.widthProperty()); //extends width of entire program
         mainPicture.add(picture, 0, 0); //Adds the image to the canvas at the row 0, column 0.
         mainPicture.setAlignment(Pos.CENTER); //Aligns the picture to the center of the canvas
+
+
 
         //organizes canvas layout
         main.addRow(1, menuBar); //adds the menu bar to the scene

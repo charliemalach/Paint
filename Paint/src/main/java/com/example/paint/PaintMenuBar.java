@@ -67,6 +67,11 @@ public class PaintMenuBar extends MenuBar {
                         GraphicsContext gc = canvas.getGraphicsContext2D();
                         gc.drawImage(image, picture.getFitWidth(), picture.getFitHeight());
                         canvas.setWidth(picture.getFitWidth());
+
+                        ScrollPane scrollPane = new ScrollPane(); //why dis not work 
+                        scrollPane.setContent(picture);
+                        scrollPane.setPannable(true);
+                        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
                         System.out.println(file.getAbsolutePath() + " has been loaded.");
                     } catch (Exception ex) {
                         System.out.println("Error");
@@ -194,6 +199,8 @@ public class PaintMenuBar extends MenuBar {
         File.getItems().add(Exit);
         //This section adds the About option under Help
         Help.getItems().add(About);
+
+
     }
 
 }
