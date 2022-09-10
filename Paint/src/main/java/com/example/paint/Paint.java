@@ -2,6 +2,7 @@ package com.example.paint;
 
 import javafx.application.Application;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
@@ -50,12 +51,15 @@ public class Paint extends Application {
         mainPicture.add(picture, 0, 0); //Adds the image to the canvas at the row 0, column 0.
         mainPicture.setAlignment(Pos.CENTER); //Aligns the picture to the center of the canvas
 
-
-
         //organizes canvas layout
         main.addRow(1, menuBar); //adds the menu bar to the scene
         main.addRow(2, mainCanvas); //adds the main canvas to the scene
         main.addRow(3, mainPicture); //adds the main picture to the scene
+
+
+
+
+
 
         //organizes stage
         stage.setTitle(TITLE + " - " + VERSION); //sets the title

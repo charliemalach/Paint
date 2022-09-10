@@ -66,12 +66,17 @@ public class PaintMenuBar extends MenuBar {
                         WritableImage image = SwingFXUtils.toFXImage(img, null);
                         GraphicsContext gc = canvas.getGraphicsContext2D();
                         gc.drawImage(image, picture.getFitWidth(), picture.getFitHeight());
-                        canvas.setWidth(picture.getFitWidth());
+                        //resizes canvas
+                        mainStage.setWidth(pic.getWidth());
+                        mainStage.setHeight(pic.getHeight());
 
-                        ScrollPane scrollPane = new ScrollPane(); //why dis not work
-                        scrollPane.setContent(picture);
-                        scrollPane.setPannable(true);
-                        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+                        ScrollPane scrollPane = new ScrollPane();
+                        scrollPane.setContent(main);
+                        scrollPane.fitToHeightProperty().set(true);
+                        scrollPane.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.NEVER);
+                        scrollPane.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.NEVER);
+
+
                         System.out.println(file.getAbsolutePath() + " has been loaded.");
                     } catch (Exception ex) {
                         System.out.println("Error");
