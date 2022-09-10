@@ -68,7 +68,7 @@ public class PaintMenuBar extends MenuBar {
                         gc.drawImage(image, picture.getFitWidth(), picture.getFitHeight());
                         canvas.setWidth(picture.getFitWidth());
 
-                        ScrollPane scrollPane = new ScrollPane(); //why dis not work 
+                        ScrollPane scrollPane = new ScrollPane(); //why dis not work
                         scrollPane.setContent(picture);
                         scrollPane.setPannable(true);
                         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
