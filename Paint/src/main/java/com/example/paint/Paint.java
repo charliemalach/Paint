@@ -71,10 +71,10 @@ public class Paint extends Application {
         main.add(menuBar, 0, 0); //adds the menu bar to the scene (this is weird)
         main.add(sp, 0, 1);
 
+
         mainPicture.add(picture, 0, 1);
         mainCanvas.add(mainPicture, 0, 1);
-
-        main.add(toolbar, 3, 0); //this is funky
+        mainCanvas.add(toolbar, 0, 2); //this is funky
 
         main.setVgap(1);
         mainCanvas.setHgap(10);
