@@ -71,9 +71,6 @@ public class PaintMenuBar extends MenuBar {
                         mainStage.setWidth(pic.getWidth());
                         mainStage.setHeight(pic.getHeight());
 
-
-
-
                         System.out.println(file.getAbsolutePath() + " has been loaded.");
                     } catch (Exception ex) {
                         System.out.println("Error");
