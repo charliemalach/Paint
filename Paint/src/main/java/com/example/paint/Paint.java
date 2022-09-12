@@ -64,15 +64,15 @@ public class Paint extends Application {
         //organizes canvas layout
         main.setHgap(0);
         main.setVgap(-5);
-        main.add(menuBar, 0, 0); //adds the menu bar to the scene
+        main.add(menuBar, 0, 0); //adds the menu bar to the scene (this is weird)
         main.add(sp, 0, 1);
         mainPicture.add(picture, 0, 1);
         mainCanvas.add(mainPicture, 0, 1);
 
-        main.setVgap(10);
+        main.setVgap(1);
         mainCanvas.setHgap(10);
-        mainCanvas.setVgap(10);
-        mainPicture.setVgap(10);
+        mainCanvas.setVgap(1);  //not sure which part causes big pictures to open weird at the bottom, but whateva
+        mainPicture.setVgap(1);
 
         //organizes stage
         stage.setTitle(TITLE + " - " + VERSION); //sets the title
