@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -70,11 +71,7 @@ public class PaintMenuBar extends MenuBar {
                         mainStage.setWidth(pic.getWidth());
                         mainStage.setHeight(pic.getHeight());
 
-                        ScrollPane scrollPane = new ScrollPane();
-                        scrollPane.setContent(main);
-                        scrollPane.fitToHeightProperty().set(true);
-                        scrollPane.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.NEVER);
-                        scrollPane.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.NEVER);
+
 
 
                         System.out.println(file.getAbsolutePath() + " has been loaded.");

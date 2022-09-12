@@ -34,7 +34,7 @@ public class Paint extends Application {
     public static File file; //Creates a local variable called 'file' for file management
     public static File saved_file; //Creates a variable called 'saved_file' for edited files
     public static  Boolean Saving = true; //Boolean to determine if file is saved
-    public static  Canvas canvas = new Canvas(); //Creates new Canvas object
+    public static Canvas canvas = new Canvas(); //Creates new Canvas object
     public static GridPane main = new GridPane(); //Creates a new Grid Pane for the main application
     public static GridPane mainCanvas = new GridPane(); //Creates Grid Pane for the Canvas
     public static GridPane mainPicture = new GridPane(); //Creates Grid Pane for the Picture
@@ -48,18 +48,31 @@ public class Paint extends Application {
         stage.getIcons().add(icon);
         menuBar = new PaintMenuBar(); //Creates a new menu bar
         menuBar.prefWidthProperty().bind(stage.widthProperty()); //extends width of entire program
-        mainPicture.add(picture, 0, 0); //Adds the image to the canvas at the row 0, column 0.
         mainPicture.setAlignment(Pos.CENTER); //Aligns the picture to the center of the canvas
 
+        Group root = new Group();
+        ScrollPane sp = new ScrollPane(mainCanvas);
+        sp.setPannable(true);
+        sp.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        sp.setPrefSize(1280, 720);
+        sp.setFitToWidth(true);
+        sp.setFitToHeight(true);
+        sp.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
+        sp.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
+        root.getChildren().add(sp);
+
         //organizes canvas layout
-        main.addRow(1, menuBar); //adds the menu bar to the scene
-        main.addRow(2, mainCanvas); //adds the main canvas to the scene
-        main.addRow(3, mainPicture); //adds the main picture to the scene
+        main.setHgap(0);
+        main.setVgap(-5);
+        main.add(menuBar, 0, 0); //adds the menu bar to the scene
+        main.add(sp, 0, 1);
+        mainPicture.add(picture, 0, 1);
+        mainCanvas.add(mainPicture, 0, 1);
 
-
-
-
-
+        main.setVgap(10);
+        mainCanvas.setHgap(10);
+        mainCanvas.setVgap(10);
+        mainPicture.setVgap(10);
 
         //organizes stage
         stage.setTitle(TITLE + " - " + VERSION); //sets the title
