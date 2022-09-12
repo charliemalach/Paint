@@ -30,14 +30,10 @@ public class PaintMenuBar extends MenuBar {
         Menu File = new Menu("File");
         Menu Edit = new Menu("Edit");
         Menu Options = new Menu("Options");
-
         Menu Help = new Menu("Help");
 
         //This section adds the other main options to the menu bar
-        getMenus().add(File);
-        getMenus().add(Edit); //TODO: add actual features under this menu item
-        getMenus().add(Options); //TODO: add actual features under this menu item
-        getMenus().add(Help);
+        getMenus().addAll(File, Edit, Options, Help);
 
         //'Open' menu item. Allows users to open a picture to the current project.
         MenuItem Open = new MenuItem("Open");
@@ -70,6 +66,7 @@ public class PaintMenuBar extends MenuBar {
                         //resizes canvas
                         mainStage.setWidth(pic.getWidth());
                         mainStage.setHeight(pic.getHeight());
+
 
                         System.out.println(file.getAbsolutePath() + " has been loaded.");
                     } catch (Exception ex) {
@@ -191,15 +188,9 @@ public class PaintMenuBar extends MenuBar {
         });
 
         //This section adds all the File options to the menu bar
-        File.getItems().add(Open);
-        File.getItems().add(Save);
-        File.getItems().add(SaveAs);
-        File.getItems().add(separator);
-        File.getItems().add(Exit);
+        File.getItems().addAll(Open, Save, SaveAs, separator, Exit);
         //This section adds the About option under Help
         Help.getItems().add(About);
-
-
     }
 
 }

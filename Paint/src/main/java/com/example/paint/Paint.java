@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -32,6 +33,9 @@ public class Paint extends Application {
     private final static int windowHeight = 720; //Dictates the initial width of the application window
     public static ImageView picture = new ImageView(); //Creates a new ImageView object
     public static File file; //Creates a local variable called 'file' for file management
+
+    public static Group root = new Group();
+    public static ToolBar toolbar = new ToolBar();
     public static File saved_file; //Creates a variable called 'saved_file' for edited files
     public static  Boolean Saving = true; //Boolean to determine if file is saved
     public static Canvas canvas = new Canvas(); //Creates new Canvas object
@@ -50,7 +54,7 @@ public class Paint extends Application {
         menuBar.prefWidthProperty().bind(stage.widthProperty()); //extends width of entire program
         mainPicture.setAlignment(Pos.CENTER); //Aligns the picture to the center of the canvas
 
-        Group root = new Group();
+
         ScrollPane sp = new ScrollPane(mainCanvas);
         sp.setPannable(true);
         sp.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
@@ -59,15 +63,18 @@ public class Paint extends Application {
         sp.setFitToHeight(true);
         sp.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
         sp.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
-        root.getChildren().add(sp);
+        root.getChildren().addAll(sp, toolbar);
 
         //organizes canvas layout
         main.setHgap(0);
         main.setVgap(-5);
         main.add(menuBar, 0, 0); //adds the menu bar to the scene (this is weird)
         main.add(sp, 0, 1);
+
         mainPicture.add(picture, 0, 1);
         mainCanvas.add(mainPicture, 0, 1);
+
+        main.add(toolbar, 3, 0); //this is funky
 
         main.setVgap(1);
         mainCanvas.setHgap(10);
