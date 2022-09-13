@@ -182,9 +182,10 @@ public class PaintMenuBar extends MenuBar {
                             true);
                     Alert aboutPaint = new Alert(Alert.AlertType.INFORMATION);
                     aboutPaint.setTitle("About Pain(t)");
+                    aboutPaint.setHeaderText("Using Paint");
                     String text = "Pain(t) is a JavaFX image handling project created for CS 250 by Charlie Malachinski.";
                     aboutPaint.setContentText(text);
-                    Optional<ButtonType> show = aboutPaint.showAndWait();
+                    aboutPaint.showAndWait();
         });
 
         //This section adds all the File options to the menu bar

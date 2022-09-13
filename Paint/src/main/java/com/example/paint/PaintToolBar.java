@@ -33,8 +33,6 @@ public class PaintToolBar extends ToolBar {
         toolbar.setOrientation(Orientation.HORIZONTAL);
 
         getItems().addAll(new Label("Tools: "), toolBox, new Separator());
-
-
     }
 
     public static int getLineWidth()

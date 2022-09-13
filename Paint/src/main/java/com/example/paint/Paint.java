@@ -50,6 +50,7 @@ public class Paint extends Application {
         Scene scene = new Scene(main, windowLength, windowHeight); //creates a new scene with the main Grid Pane and the desired application window size.
         Image icon = new Image("C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\icons\\icon.png");//relative path instead of hard coded
         stage.getIcons().add(icon);
+        toolbar = new PaintToolBar();
         menuBar = new PaintMenuBar(); //Creates a new menu bar
         menuBar.prefWidthProperty().bind(stage.widthProperty()); //extends width of entire program
         mainPicture.setAlignment(Pos.CENTER); //Aligns the picture to the center of the canvas
@@ -68,13 +69,14 @@ public class Paint extends Application {
         //organizes canvas layout
         main.setHgap(0);
         main.setVgap(-5);
-        main.add(menuBar, 0, 0); //adds the menu bar to the scene (this is weird)
-        main.add(sp, 0, 1);
+        main.add(menuBar, 0, 0);
+        main.add(toolbar, 0, 1);
+        main.add(sp, 0, 2);
 
+        //picture to canvas
+        mainPicture.add(picture, 0, 2);
+        mainCanvas.add(mainPicture, 0, 2);
 
-        mainPicture.add(picture, 0, 1);
-        mainCanvas.add(mainPicture, 0, 1);
-        mainCanvas.add(toolbar, 0, 2); //this is funky
 
         main.setVgap(1);
         mainCanvas.setHgap(10);
