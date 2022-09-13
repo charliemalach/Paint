@@ -81,6 +81,7 @@ public class Paint extends Application {
         mainCanvas.setVgap(1);  //not sure which part causes big pictures to open weird at the bottom, but whateva
         mainPicture.setVgap(1);
 
+
         //organizes stage
         stage.setTitle(TITLE + " - " + VERSION); //sets the title
         stage.setScene(scene); //sets the scene
