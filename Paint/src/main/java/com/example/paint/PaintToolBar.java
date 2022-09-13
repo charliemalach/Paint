@@ -21,18 +21,19 @@ public class PaintToolBar extends ToolBar {
 
     public PaintToolBar() {
         super();
-
         usingWidth = 1;
         usingTool = 0;
 
         toolBox = new ComboBox<>(FXCollections.observableArrayList(TOOLS));
         widthBox = new ComboBox<>(FXCollections.observableArrayList(LINE_WIDTH));
 
-        Button line = new Button("Line Tool");
-        toolbar.getItems().addAll(line, new Separator());
-        toolbar.setOrientation(Orientation.HORIZONTAL);
+        getItems().addAll(new Label("Tools: "), toolBox, new Separator(),
+                        new Label("Line Width: "), widthBox, new Separator()
+        );
 
-        getItems().addAll(new Label("Tools: "), toolBox, new Separator());
+        widthBox.setEditable(true);
+        widthBox.setPrefWidth(90);
+        widthBox.setValue(1);
     }
 
     public static int getLineWidth()

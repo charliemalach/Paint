@@ -57,7 +57,7 @@ public class Paint extends Application {
 
 
         ScrollPane sp = new ScrollPane(mainCanvas);
-        sp.setPannable(true);
+//        sp.setPannable(true);
         sp.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         sp.setPrefSize(1280, 720);
         sp.setFitToWidth(true);
