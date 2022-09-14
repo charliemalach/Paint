@@ -26,7 +26,7 @@ public class PaintCanvas extends PaintDraw {
            {
                case("Line"):
                    System.out.println("Line tool selected");
-                   drawLine(x, y, x, y);
+                   this.drawLine(x, y, x, y);
                    break;
                case("None"):
                    break;
