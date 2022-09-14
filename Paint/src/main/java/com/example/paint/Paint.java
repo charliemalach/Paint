@@ -38,7 +38,7 @@ public class Paint extends Application {
     public static PaintToolBar toolbar = new PaintToolBar();
     public static File saved_file; //Creates a variable called 'saved_file' for edited files
     public static Boolean Saving = true; //Boolean to determine if file is saved
-    public static Canvas canvas = new PaintCanvas(); //Creates new Canvas object
+    public static PaintCanvas canvas = new PaintCanvas(); //Creates new Canvas object
     public static GridPane main = new GridPane(); //Creates a new Grid Pane for the main application
     public static GridPane mainCanvas = new GridPane(); //Creates Grid Pane for the Canvas
     public static GridPane mainPicture = new GridPane(); //Creates Grid Pane for the Picture

@@ -17,6 +17,7 @@ public class PaintToolBar extends ToolBar {
     private static ColorPicker lineColorPicker;
     private static int usingTool;
     private static int usingWidth;
+    private static CheckBox setFill;
 
     public PaintToolBar() {
         super();
@@ -25,11 +26,12 @@ public class PaintToolBar extends ToolBar {
 
         toolBox = new ComboBox<>(FXCollections.observableArrayList(TOOLS));
         widthBox = new ComboBox<>(FXCollections.observableArrayList(LINE_WIDTH));
+        setFill = new CheckBox();
 
         lineColorPicker = new ColorPicker();
 
         getItems().addAll(new Label("Tools: "), toolBox, new Separator(),
-                        new Label("Line Width: "), widthBox, new Separator(),
+                        new Label("Line Width: "), widthBox, new Label("Fill "), setFill, new Separator(),
                         new Label("Color: "), lineColorPicker
         );
 
@@ -51,9 +53,9 @@ public class PaintToolBar extends ToolBar {
             }
         });
 
-        widthBox.setOnAction((ActionEvent e) -> {   //changes the value of usingWidth when the ComboBox is used/value changes
-            usingWidth = widthBox.getValue();
-        });
+//        widthBox.setOnAction((ActionEvent e) -> {   //changes the value of usingWidth when the ComboBox is used/value changes
+//            usingWidth = widthBox.getValue();
+//        });
     }
 
     public static String getTool()
