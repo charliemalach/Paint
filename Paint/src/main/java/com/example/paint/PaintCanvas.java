@@ -4,7 +4,7 @@ import javafx.scene.paint.Color;
 
 import static com.example.paint.Paint.*;
 
-public class PaintCanvas extends PaintDraw {
+public class PaintCanvas extends PaintDraw { //TODO: Fix this entire class
 
     private double x, y;
 
