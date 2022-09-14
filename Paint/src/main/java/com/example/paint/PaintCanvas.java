@@ -16,7 +16,7 @@ public class PaintCanvas extends PaintDraw {
         this.setWidth(1280);
         this.setHeight(720);
         this.setLineColor(Color.BLACK);
-        this.setLineWidth(5);
+        this.setLineWidth(1);
 
         this.setOnMousePressed(e -> {
            x = e.getX();

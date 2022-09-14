@@ -175,14 +175,15 @@ public class PaintMenuBar extends MenuBar {
         });
 
         //Creates the About section in the Help menu
-        MenuItem About = new Menu("Help");
+        MenuItem About = new Menu("About");
         About.setOnAction(e -> {
                     About.setMnemonicParsing(
                             true);
                     Alert aboutPaint = new Alert(Alert.AlertType.INFORMATION);
-                    aboutPaint.setTitle("About Pain(t)");
-                    aboutPaint.setHeaderText("Using Paint");
-                    String text = "Pain(t) is a JavaFX image handling project created for CS 250 by Charlie Malachinski.";
+                    aboutPaint.setTitle("About");
+                    aboutPaint.setHeaderText("About Pain(t) v1.0.1");
+                    String text = "Pain(t) - v1.0.1 is a JavaFX image handling project created for CS 250 by Charlie Malachinski. " +
+                                    "This program currently allows users to upload, save and save as images. These images can be drawn upon and saved as new files. More features will come in the future.   ";
                     aboutPaint.setContentText(text);
                     aboutPaint.showAndWait();
         });

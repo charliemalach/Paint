@@ -21,11 +21,13 @@ public class PaintDraw extends Canvas {
     public void drawLine(double x1, double y1, double x2, double y2)
     {
         gc.strokeLine(x1, y1, x2, y2);
+        System.out.println("A new line has been drawn.");
     }
 
     public void setLineWidth(double width)
     {
         this.gc.setLineWidth(width);
+        System.out.println("The line's width is now " + width);
     }
 
     public double getLineWidth()
@@ -59,6 +61,4 @@ public class PaintDraw extends Canvas {
     {
         gc.setStroke(color);
     }
-
-
 }
