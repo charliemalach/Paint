@@ -19,17 +19,17 @@ import java.io.IOException;
 
 /**
  *  Malachinski Pain(t) Application
- *  The Pain(t) application is a program that currently allows users to upload, save and save as images. More features will come with future updates.
+ *  The Pain(t) application is a program that currently allows users to upload, save and save as images. These images can be drawn upon and saved as new files. More features will come in the future.
  *
  * @author Charlie Malachinski
- * @version 1.0.0
- * @since 2022-09-03
+ * @version 1.0.1
+ * @since 2022-09-14
  *
  **/
 
 public class Paint extends Application {
     private final static String TITLE = "Malachinski - Pain(t)"; //Name of the application
-    private final static String VERSION = "v1.0.0";
+    private final static String VERSION = "v1.0.1";
     private final static int windowLength = 1280; //Dictates the initial length of the application window
     private final static int windowHeight = 720; //Dictates the initial width of the application window
     public static ImageView picture = new ImageView(); //Creates a new ImageView object
