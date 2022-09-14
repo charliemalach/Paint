@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -45,18 +46,22 @@ public class Paint extends Application {
     public static PaintMenuBar menuBar; //Creates a MenuBar
     public static Stage mainStage; //Creates the main Stage
     public static ScrollPane sp = new ScrollPane(mainPicture);
+    public static GraphicsContext gc = canvas.getGraphicsContext2D();
+
     @Override
     public void start(Stage stage) throws IOException {
         Paint.mainStage = stage; //creates the new stage for the application
         Scene scene = new Scene(main, windowLength, windowHeight); //creates a new scene with the main Grid Pane and the desired application window size.
         Image icon = new Image("C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\icons\\icon.png");//relative path instead of hard coded
         stage.getIcons().add(icon);
+        gc = canvas.getGraphicsContext2D();
+        canvas = new PaintCanvas();
         toolbar = new PaintToolBar();
         menuBar = new PaintMenuBar(); //Creates a new menu bar
         menuBar.prefWidthProperty().bind(stage.widthProperty()); //extends width of entire program
         mainPicture.setAlignment(Pos.CENTER); //Aligns the picture to the center of the canvas
 
-//        sp.setPannable(true);
+//      sp.setPannable(true);
         sp.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         sp.setPrefSize(main.getWidth(), main.getHeight());
         sp.setFitToWidth(true);

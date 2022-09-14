@@ -19,6 +19,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 import static com.example.paint.Paint.*;
+import static com.example.paint.Paint.gc;
+import static com.example.paint.PaintToolBar.getTool;
 
 public class PaintMenuBar extends MenuBar {
 
@@ -34,6 +36,16 @@ public class PaintMenuBar extends MenuBar {
         //This section adds the other main options to the menu bar
         getMenus().addAll(File, Edit, Options, Help);
 
+
+        MenuItem tool = new MenuItem("Tool");
+        tool.setMnemonicParsing(
+                true);
+        tool.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                getTool();
+            }
+        });
         //'Open' menu item. Allows users to open a picture to the current project.
         MenuItem Open = new MenuItem("Open");
         Open.setMnemonicParsing(
@@ -60,7 +72,6 @@ public class PaintMenuBar extends MenuBar {
                         mainPicture.setMaxHeight(picture.getFitHeight());
                         BufferedImage img = ImageIO.read(file);
                         WritableImage image = SwingFXUtils.toFXImage(img, null);
-                        GraphicsContext gc = canvas.getGraphicsContext2D();
                         gc.drawImage(image, picture.getFitWidth(), picture.getFitHeight());
                         //resizes canvas
                         mainStage.setWidth(pic.getWidth());
@@ -192,6 +203,8 @@ public class PaintMenuBar extends MenuBar {
         File.getItems().addAll(Open, Save, SaveAs, separator, Exit);
         //This section adds the About option under Help
         Help.getItems().add(About);
+
+        Edit.getItems().add(tool);
     }
 
 }

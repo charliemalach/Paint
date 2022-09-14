@@ -1,26 +1,31 @@
 package com.example.paint;
 
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 
 
 public class PaintToolBar extends ToolBar {
 
-    private final static String[] TOOLS = {"None", "Line"};
+    public final static String[] TOOLS = {"None", "Line"};
     private static final Integer[] LINE_WIDTH = {1, 2, 3, 5, 10, 15, 20, 25, 50, 100};
     private static ComboBox<String> toolBox;
     private static ComboBox<Integer> widthBox;
     private static ColorPicker lineColorPicker;
     private static int usingTool;
+    private static TextField numSides;
     private static int usingWidth;
+    private static int usingNumSides;
     private static CheckBox setFill;
 
     public PaintToolBar() {
         super();
         usingWidth = 1;
-        usingTool = 0;
+        usingTool = 1;
+        usingNumSides = 3;
 
+        numSides = new TextField("3");
         toolBox = new ComboBox<>(FXCollections.observableArrayList(TOOLS));
         widthBox = new ComboBox<>(FXCollections.observableArrayList(LINE_WIDTH));
         setFill = new CheckBox();
@@ -33,11 +38,19 @@ public class PaintToolBar extends ToolBar {
         );
 
         lineColorPicker.setValue(Color.BLACK);
-        toolBox.setValue("None");
-        toolBox.setEditable(true);
-        widthBox.setEditable(true);
+        toolBox.setValue(TOOLS[usingTool]);
         widthBox.setPrefWidth(90);
         widthBox.setValue(1);
+
+        numSides.setVisible(false);
+        numSides.setPrefWidth(55);
+
+
+        //listeners
+        toolBox.getSelectionModel().selectedIndexProperty().addListener((observable, value, newValue) -> {
+            usingTool = newValue.intValue();
+            System.out.println("Tool Selected: " + TOOLS[usingTool]);
+        });
 
         widthBox.getEditor().focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
             if(!isNowFocused){
@@ -50,13 +63,22 @@ public class PaintToolBar extends ToolBar {
             }
         });
 
-//        widthBox.setOnAction((ActionEvent e) -> {   //changes the value of usingWidth when the ComboBox is used/value changes
-//            usingWidth = widthBox.getValue();
-//        });
+        numSides.textProperty().addListener((observable, value, newValue) -> {
+            if(Integer.parseInt(newValue) >= 3)
+                usingNumSides = Integer.parseInt(newValue);
+            else{
+                numSides.setText("3");
+            }
+        });
+
+        widthBox.setOnAction((ActionEvent e) -> {   //changes the value of usingWidth when the ComboBox is used/value changes
+            usingWidth = widthBox.getValue();
+        });
     }
 
     public static String getTool()
     {
+        System.out.println("Tool Selected: " + TOOLS[usingTool]);
         return TOOLS[usingTool];
     }
 

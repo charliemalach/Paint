@@ -1,55 +1,48 @@
 package com.example.paint;
 
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 
 import static com.example.paint.Paint.*;
 
 public class PaintCanvas extends PaintDraw { //TODO: Fix this entire class
 
-    private double x, y;
+    private double x, y, x1, y1;
+    public Line line = new Line();
 
     public PaintCanvas()
     {
         super();
-        x = 0;
-        y = 0;
-//        this.setWidth(1280);
-//        this.setHeight(720);
-        this.setLineColor(Color.BLACK);
-        this.setLineWidth(1);
+        setLineColor(Color.BLACK);
+        setLineWidth(1);
 
-        this.setOnMousePressed(e -> {
-           x = e.getX();
-           y = e.getY();
-           this.setLineWidth(PaintToolBar.getLineWidth());
+        setOnMousePressed(e -> {
            switch(PaintToolBar.getTool())
            {
                case("Line"):
-                   System.out.println("Line tool selected");
-                   this.drawLine(x, y, x, y);
-                   break;
+                   this.x = e.getX();
+                   this.y = e.getY();
                case("None"):
                    break;
            }
        });
 
-        this.setOnMouseDragged(e -> {
+        setOnMouseDragged(e -> {
            switch(PaintToolBar.getTool()){
                case("Line"):
-                   System.out.println("Line tool selected");
-                   this.drawLine(x, y, e.getX(), e.getY());
-                   break;
+                   this.x1 = e.getX();
+                   this.y1 = e.getY();
+                    break;
                case("None"):
                    break;
            }
        });
 
-        this.setOnMouseReleased(e -> {
+        setOnMouseReleased(e -> {
            switch(PaintToolBar.getTool())
            {
                case("Line"):
-                   System.out.println("Line tool selected");
-                   this.drawLine(x, y, e.getX(), e.getY());
+                   this.drawLine(x, y, x1, y1);
                    break;
                case("None"):
                    break;
