@@ -33,8 +33,8 @@ public class PaintToolBar extends ToolBar {
         );
 
         lineColorPicker.setValue(Color.BLACK);
-
         toolBox.setValue("None");
+        toolBox.setEditable(true);
         widthBox.setEditable(true);
         widthBox.setPrefWidth(90);
         widthBox.setValue(1);

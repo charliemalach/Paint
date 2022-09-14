@@ -13,8 +13,8 @@ public class PaintCanvas extends PaintDraw {
         super();
         x = 0;
         y = 0;
-        this.setWidth(1280);
-        this.setHeight(720);
+//        this.setWidth(1280);
+//        this.setHeight(720);
         this.setLineColor(Color.BLACK);
         this.setLineWidth(1);
 
