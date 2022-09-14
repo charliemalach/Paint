@@ -9,6 +9,7 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.ScrollPane;
 
@@ -33,17 +34,17 @@ public class Paint extends Application {
     private final static int windowHeight = 720; //Dictates the initial width of the application window
     public static ImageView picture = new ImageView(); //Creates a new ImageView object
     public static File file; //Creates a local variable called 'file' for file management
-
     public static Group root = new Group();
-    public static ToolBar toolbar = new ToolBar();
+    public static PaintToolBar toolbar = new PaintToolBar();
     public static File saved_file; //Creates a variable called 'saved_file' for edited files
-    public static  Boolean Saving = true; //Boolean to determine if file is saved
-    public static Canvas canvas = new Canvas(); //Creates new Canvas object
+    public static Boolean Saving = true; //Boolean to determine if file is saved
+    public static Canvas canvas = new PaintCanvas(); //Creates new Canvas object
     public static GridPane main = new GridPane(); //Creates a new Grid Pane for the main application
     public static GridPane mainCanvas = new GridPane(); //Creates Grid Pane for the Canvas
     public static GridPane mainPicture = new GridPane(); //Creates Grid Pane for the Picture
     public static PaintMenuBar menuBar; //Creates a MenuBar
     public static Stage mainStage; //Creates the main Stage
+    public static ScrollPane sp = new ScrollPane(mainPicture);
     @Override
     public void start(Stage stage) throws IOException {
         Paint.mainStage = stage; //creates the new stage for the application
@@ -55,16 +56,15 @@ public class Paint extends Application {
         menuBar.prefWidthProperty().bind(stage.widthProperty()); //extends width of entire program
         mainPicture.setAlignment(Pos.CENTER); //Aligns the picture to the center of the canvas
 
-
-        ScrollPane sp = new ScrollPane(mainCanvas);
 //        sp.setPannable(true);
         sp.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        sp.setPrefSize(1280, 720);
+        sp.setPrefSize(main.getWidth(), main.getHeight());
         sp.setFitToWidth(true);
         sp.setFitToHeight(true);
         sp.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
         sp.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
-        root.getChildren().addAll(sp, toolbar);
+        sp.setStyle("-fx-focus-color: transparent");
+        root.getChildren().addAll(sp, toolbar, mainPicture, mainCanvas);
 
         //organizes canvas layout
         main.setHgap(0);
@@ -72,17 +72,16 @@ public class Paint extends Application {
         main.add(menuBar, 0, 0);
         main.add(toolbar, 0, 1);
         main.add(sp, 0, 2);
+        main.add(mainPicture, 0 , 2);
 
         //picture to canvas
         mainPicture.add(picture, 0, 2);
         mainCanvas.add(mainPicture, 0, 2);
 
-
         main.setVgap(1);
         mainCanvas.setHgap(10);
         mainCanvas.setVgap(1);  //not sure which part causes big pictures to open weird at the bottom, but whateva
         mainPicture.setVgap(1);
-
 
         //organizes stage
         stage.setTitle(TITLE + " - " + VERSION); //sets the title
