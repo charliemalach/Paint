@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import javafx.scene.control.ScrollPane;
 
@@ -36,6 +37,7 @@ public class Paint extends Application {
     public static ImageView picture = new ImageView(); //Creates a new ImageView object
     public static File file; //Creates a local variable called 'file' for file management
     public static Group root = new Group();
+    public static Canvas canvas = new Canvas(); //this is broken  //todo: fix
     public static PaintToolBar toolbar = new PaintToolBar();
     public static File saved_file; //Creates a variable called 'saved_file' for edited files
     public static Boolean Saving = true; //Boolean to determine if file is saved
@@ -45,8 +47,9 @@ public class Paint extends Application {
     public static PaintMenuBar menuBar; //Creates a MenuBar
     public static Stage mainStage; //Creates the main Stage
     public static ScrollPane sp = new ScrollPane(mainPicture);
-    public static PaintCanvas canvas = new PaintCanvas(); //Creates new Canvas object
     public static GraphicsContext gc = canvas.getGraphicsContext2D();
+
+    public static Line line = new Line();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -54,8 +57,8 @@ public class Paint extends Application {
         Scene scene = new Scene(main, windowLength, windowHeight); //creates a new scene with the main Grid Pane and the desired application window size.
         Image icon = new Image("C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\icons\\icon.png");//relative path instead of hard coded
         stage.getIcons().add(icon);
+        canvas = new PaintCanvas();  //broken
         gc = canvas.getGraphicsContext2D();
-        canvas = new PaintCanvas();
         toolbar = new PaintToolBar();
         menuBar = new PaintMenuBar(); //Creates a new menu bar
         menuBar.prefWidthProperty().bind(stage.widthProperty()); //extends width of entire program
@@ -69,7 +72,7 @@ public class Paint extends Application {
         sp.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
         sp.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
         sp.setStyle("-fx-focus-color: transparent");
-        root.getChildren().addAll(sp, toolbar, mainPicture, mainCanvas);
+        root.getChildren().addAll(sp, toolbar, mainPicture, mainCanvas, canvas);
 
         //organizes canvas layout
         main.setHgap(0);

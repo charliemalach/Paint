@@ -46,6 +46,7 @@ public class PaintMenuBar extends MenuBar {
                 getTool();
             }
         });
+
         //'Open' menu item. Allows users to open a picture to the current project.
         MenuItem Open = new MenuItem("Open");
         Open.setMnemonicParsing(

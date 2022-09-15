@@ -16,16 +16,18 @@ public class PaintDraw extends Canvas {
         super();
         gc = getGraphicsContext2D();
         gc.setLineCap(StrokeLineCap.ROUND);
+
     }
 
 
     public void drawLine(double x1, double y1, double x2, double y2)
     {
+        setLineColor(Color.BLACK);
         gc.strokeLine(x1, y1, x2, y2);
-        System.out.println(x1);
-        System.out.println(y1);
-        System.out.println(x2);
-        System.out.println(y2);
+        System.out.println(x1 + " starting point x");
+        System.out.println(y1 + " starting point y");
+        System.out.println(x2 + " ending point x");
+        System.out.println(y2 + " ending point y");
         System.out.println("A new line has been drawn.");
     }
 

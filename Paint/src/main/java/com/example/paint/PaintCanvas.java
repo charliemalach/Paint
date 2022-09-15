@@ -8,7 +8,6 @@ import static com.example.paint.Paint.*;
 public class PaintCanvas extends PaintDraw { //TODO: make the fucking line draw
 
     private double x, y, x1, y1;
-    public Line line = new Line();
 
     public PaintCanvas()
     {
@@ -16,13 +15,15 @@ public class PaintCanvas extends PaintDraw { //TODO: make the fucking line draw
         setLineColor(Color.BLACK);
         setLineWidth(1);
 
-        mainPicture.setOnMouseClicked(e -> {
+        mainPicture.setOnMousePressed(e -> {
            switch(PaintToolBar.getTool())
            {
                case("Line"):
-                   this.x = e.getX();
-                   this.y = e.getY();
                    System.out.println("onclick");
+                   x = e.getX();
+                   y = e.getY();
+                   line.setStartX(x);
+                   line.setStartY(y);
                case("None"):
                    break;
            }
@@ -31,10 +32,12 @@ public class PaintCanvas extends PaintDraw { //TODO: make the fucking line draw
         mainPicture.setOnMouseDragged(e -> {
            switch(PaintToolBar.getTool()){
                case("Line"):
-                   this.x1 = e.getX();
-                   this.y1 = e.getY();
                    System.out.println("ondrag");
-                    break;
+                   x1 = e.getX();
+                   y1 = e.getY();
+                   line.setEndX(x1);
+                   line.setEndY(y1);
+                   break;
                case("None"):
                    break;
            }
@@ -44,8 +47,9 @@ public class PaintCanvas extends PaintDraw { //TODO: make the fucking line draw
            switch(PaintToolBar.getTool())
            {
                case("Line"):
-                   gc.strokeLine(x, y, x1, y1);
                    System.out.println("onrelease");
+                   gc.strokeLine(line.getStartX(), line.getStartY(), line.getEndX(), line.getEndY());
+
                    break;
                case("None"):
                    break;
