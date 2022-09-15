@@ -199,5 +199,4 @@ public class PaintMenuBar extends MenuBar {
         //This section adds the About option under Help
         Help.getItems().add(About);
     }
-
 }

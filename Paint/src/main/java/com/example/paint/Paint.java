@@ -39,11 +39,8 @@ public class Paint extends Application {
     private final static int windowHeight = 720; //Dictates the initial width of the application window
     public static Stage mainStage; //Creates the main Stage
     public static BorderPane pane = new BorderPane();
-
-    public static ImageView picture = new ImageView(); //Creates a new ImageView object
     public static File file; //Creates a local variable called 'file' for file management
     public static Image white = new Image("C:\\Users\\Charlie\\Desktop\\CS 250\\Paint\\Paint\\src\\icons\\white.jpg");;
-    public static Group root = new Group();
     public static Canvas canvas = new Canvas(); //this is broken  //todo: fix
     public static GraphicsContext gc = canvas.getGraphicsContext2D();
     public static File saved_file; //Creates a variable called 'saved_file' for edited files
@@ -51,18 +48,17 @@ public class Paint extends Application {
     public static PaintToolBar toolbar = new PaintToolBar();
     public static PaintMenuBar menuBar = new PaintMenuBar(); //Creates a MenuBar
     public static ScrollPane sp = new ScrollPane();
-
-//    public static PaintCanvas test = new PaintCanvas();
     public static Line line = new Line();
+
+    // public static Group root = new Group();
 
     @Override
     public void start(Stage stage) throws IOException {
-        Paint.mainStage = stage; //creates the new stage for the application
-        Image icon = new Image("C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\icons\\icon.png");//relative path instead of hard coded
-        menuBar.prefWidthProperty().bind(stage.widthProperty()); //extends width of entire program
-//        test = new PaintCanvas();
+        Paint.mainStage = stage;
+        Image icon = new Image("C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\icons\\icon.png"); //change to relative path instead of hard coded
 
-//      sp.setPannable(true);
+        //scroll pane setup
+        sp.setPannable(true);
         sp.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         sp.setPrefSize(canvas.getWidth(), canvas.getHeight());
         sp.setFitToWidth(true);
@@ -72,24 +68,22 @@ public class Paint extends Application {
         sp.setStyle("-fx-focus-color: transparent");
         sp.setContent(canvas);
 
-
+        //layout setup
         pane.setCenter(canvas);
         pane.setCenter(sp);
         pane.setTop(menuBar);
         pane.setBottom(toolbar);
-
         pane.getChildren().add(canvas);
+        menuBar.prefWidthProperty().bind(stage.widthProperty()); //extends width of entire program
 
-//        root.getChildren().addAll(sp, toolbar, menuBar, canvas, pane);
+//      root.getChildren().addAll(sp, toolbar, menuBar, canvas, pane);
 
         //picture to canvas
-
         canvas.setWidth(white.getWidth());
         canvas.setHeight(white.getHeight());
         gc.drawImage(white, 0, 0, canvas.getWidth(), canvas.getHeight());
 
-
-
+        //starts scene
         Scene scene = new Scene(pane, windowLength, windowHeight); //creates a new scene with the main Grid Pane and the desired application window size.
         stage.setTitle(TITLE + " - " + VERSION); //sets the title
         stage.getIcons().add(icon);
