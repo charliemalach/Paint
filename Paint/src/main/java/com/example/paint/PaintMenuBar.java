@@ -16,7 +16,9 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Optional;
 import static com.example.paint.Paint.*;
 import static com.example.paint.Paint.gc;
@@ -35,17 +37,7 @@ public class PaintMenuBar extends MenuBar {
 
         //This section adds the other main options to the menu bar
         getMenus().addAll(File, Edit, Options, Help);
-
-
-        MenuItem tool = new MenuItem("Tool");
-        tool.setMnemonicParsing(
-                true);
-        tool.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                getTool();
-            }
-        });
+        gc = canvas.getGraphicsContext2D();
 
         //'Open' menu item. Allows users to open a picture to the current project.
         MenuItem Open = new MenuItem("Open");
@@ -64,22 +56,15 @@ public class PaintMenuBar extends MenuBar {
                 File file = fc.showOpenDialog(mainStage);
                 if (file != null) {
                     try { // Presents and resizes the selected image on the canvas
-                        Image pic = new Image(file.toURI().toString());
-                        picture.setImage(pic);
-                        picture.setPreserveRatio(true);
-                        picture.setSmooth(true);
-                        picture.setCache(true);
-                        mainPicture.setMaxWidth(picture.getFitWidth());
-                        mainPicture.setMaxHeight(picture.getFitHeight());
-                        BufferedImage img = ImageIO.read(file);
-                        WritableImage image = SwingFXUtils.toFXImage(img, null);
-                        gc.drawImage(image, picture.getFitWidth(), picture.getFitHeight());
-                        //resizes canvas
-                        mainStage.setWidth(pic.getWidth());
-                        mainStage.setHeight(pic.getHeight());
+                        InputStream io = new FileInputStream(file);
+                        Image pic = new Image(io);
+                        canvas.setWidth(pic.getWidth());
+                        canvas.setHeight(pic.getHeight());
+                        mainStage.setHeight(canvas.getHeight());
+                        mainStage.setWidth(canvas.getWidth());
+                        gc.drawImage(pic, 0, 0, canvas.getWidth(), canvas.getHeight());
 
 
-                        System.out.println(file.getAbsolutePath() + " has been loaded.");
                     } catch (Exception ex) {
                         System.out.println("Error");
                     }
@@ -95,10 +80,19 @@ public class PaintMenuBar extends MenuBar {
         Save.setMnemonicParsing(true);
         Save.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
+                FileChooser fc = new FileChooser();
+                fc.setTitle("Save");
+                fc.getExtensionFilters().addAll(
+                        new FileChooser.ExtensionFilter("All Files", "*.*"),
+                        new FileChooser.ExtensionFilter("PNG Files", "*.png"),
+                        new FileChooser.ExtensionFilter("ICON Files", "*.ico"),
+                        new FileChooser.ExtensionFilter("JPG Files", ".jpg")
+                );
+                File file = fc.showSaveDialog(mainStage);
                 if (file != null) {
                     try {
-                        WritableImage writableImage = new WritableImage((int) mainPicture.getWidth(), (int) mainPicture.getHeight());
-                        mainPicture.snapshot(null, writableImage);
+                        WritableImage writableImage = new WritableImage((int) mainStage.getWidth(), (int) mainStage.getHeight());
+                        canvas.snapshot(null, writableImage);
                         RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
                         ImageIO.write(renderedImage, "png", file);
                         System.out.println("File successfully saved to " + file.getAbsolutePath());
@@ -126,8 +120,8 @@ public class PaintMenuBar extends MenuBar {
                 File save = fc.showSaveDialog(mainStage);
                 if (save != null) {
                     try {
-                        WritableImage writableImage = new WritableImage((int) mainPicture.getWidth(), (int) mainPicture.getHeight()); //this code has errors
-                        mainPicture.snapshot(null, writableImage);
+                        WritableImage writableImage = new WritableImage((int) mainStage.getWidth(), (int) mainStage.getHeight()); //this code has errors
+                        canvas.snapshot(null, writableImage);
                         RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
                         ImageIO.write(renderedImage, "png", save);
                         file = save;
@@ -167,8 +161,8 @@ public class PaintMenuBar extends MenuBar {
                                 new FileChooser.ExtensionFilter("All Images", "*.*")
                         );
                         File file = fc.showOpenDialog(mainStage);
-                        WritableImage writableImage = new WritableImage((int) mainPicture.getWidth(), (int) mainPicture.getHeight());
-                        mainPicture.snapshot(null, writableImage);
+                        WritableImage writableImage = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
+                        canvas.snapshot(null, writableImage);
                         RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
                         ImageIO.write(renderedImage, "png", file);
                         System.out.println("File successfully saved to " + file.getAbsolutePath());
@@ -204,8 +198,6 @@ public class PaintMenuBar extends MenuBar {
         File.getItems().addAll(Open, Save, SaveAs, separator, Exit);
         //This section adds the About option under Help
         Help.getItems().add(About);
-
-        Edit.getItems().add(tool);
     }
 
 }
