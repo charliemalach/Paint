@@ -8,15 +8,16 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeLineCap;
 
+import static com.example.paint.Paint.canvas;
 import static com.example.paint.Paint.gc;
 
 public class PaintDraw extends Canvas {
 
     public PaintDraw(){
         super();
-        gc = getGraphicsContext2D();
+        gc = canvas.getGraphicsContext2D(); //canvas is broken
         gc.setLineCap(StrokeLineCap.ROUND);
-
+        setLineColor(Color.BLACK);
     }
 
 

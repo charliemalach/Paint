@@ -2,8 +2,8 @@ package com.example.paint;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-
 import static com.example.paint.Paint.*;
+import static com.example.paint.Paint.gc;
 
 public class PaintCanvas extends PaintDraw { //TODO: make the fucking line draw
 
@@ -14,6 +14,7 @@ public class PaintCanvas extends PaintDraw { //TODO: make the fucking line draw
         super();
         setLineColor(Color.BLACK);
         setLineWidth(1);
+        gc = canvas.getGraphicsContext2D();
 
         mainPicture.setOnMousePressed(e -> {
            switch(PaintToolBar.getTool())
@@ -48,8 +49,8 @@ public class PaintCanvas extends PaintDraw { //TODO: make the fucking line draw
            {
                case("Line"):
                    System.out.println("onrelease");
+                   drawLine(x, y, x1, y1);
                    gc.strokeLine(line.getStartX(), line.getStartY(), line.getEndX(), line.getEndY());
-
                    break;
                case("None"):
                    break;
