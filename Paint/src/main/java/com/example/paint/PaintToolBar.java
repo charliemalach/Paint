@@ -81,7 +81,7 @@ public class PaintToolBar extends ToolBar {
         });
 
 
-        mainPicture.setOnMousePressed(e -> {
+        canvas.setOnMousePressed(e -> {
             switch(PaintToolBar.getTool())
             {
                 case("Line"):
@@ -91,13 +91,14 @@ public class PaintToolBar extends ToolBar {
                     y = e.getY();
                     line.setStartX(x);
                     line.setStartY(y);
+                    gc.strokeLine(x, y, x, y);
                 case("None"):
                     System.out.println("Nothing done");
                     break;
             }
         });
 
-        mainPicture.setOnMouseDragged(e -> {
+        canvas.setOnMouseDragged(e -> {
             switch(PaintToolBar.getTool()){
                 case("Line"):
                     gc = canvas.getGraphicsContext2D();
@@ -113,7 +114,7 @@ public class PaintToolBar extends ToolBar {
             }
         });
 
-        mainPicture.setOnMouseReleased(e -> {
+        canvas.setOnMouseReleased(e -> {
             switch(PaintToolBar.getTool())
             {
                 case("Line"):
@@ -132,7 +133,6 @@ public class PaintToolBar extends ToolBar {
         });
     }
 
-
     public static String getTool()
     {
         return TOOLS[usingTool];
@@ -142,8 +142,4 @@ public class PaintToolBar extends ToolBar {
     {
         return usingWidth;
     }
-
-
-
-
 }
