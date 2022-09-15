@@ -38,7 +38,7 @@ public class PaintToolBar extends ToolBar {
         );
 
         lineColorPicker.setValue(Color.BLACK);
-        toolBox.setValue(TOOLS[usingTool]);
+        toolBox.setValue("None");
         widthBox.setPrefWidth(90);
         widthBox.setValue(1);
 
@@ -73,12 +73,12 @@ public class PaintToolBar extends ToolBar {
 
         widthBox.setOnAction((ActionEvent e) -> {   //changes the value of usingWidth when the ComboBox is used/value changes
             usingWidth = widthBox.getValue();
+            System.out.println("Width Selected: " + usingWidth);
         });
     }
 
     public static String getTool()
     {
-        System.out.println("Tool Selected: " + TOOLS[usingTool]);
         return TOOLS[usingTool];
     }
 

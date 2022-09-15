@@ -3,7 +3,6 @@ package com.example.paint;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
@@ -19,9 +18,14 @@ public class PaintDraw extends Canvas {
         gc.setLineCap(StrokeLineCap.ROUND);
     }
 
+
     public void drawLine(double x1, double y1, double x2, double y2)
     {
         gc.strokeLine(x1, y1, x2, y2);
+        System.out.println(x1);
+        System.out.println(y1);
+        System.out.println(x2);
+        System.out.println(y2);
         System.out.println("A new line has been drawn.");
     }
 

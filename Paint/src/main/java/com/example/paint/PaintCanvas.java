@@ -16,33 +16,36 @@ public class PaintCanvas extends PaintDraw { //TODO: Fix this entire class
         setLineColor(Color.BLACK);
         setLineWidth(1);
 
-        setOnMousePressed(e -> {
+        mainPicture.setOnMouseClicked(e -> {
            switch(PaintToolBar.getTool())
            {
                case("Line"):
                    this.x = e.getX();
                    this.y = e.getY();
+                   System.out.println("onclick");
                case("None"):
                    break;
            }
        });
 
-        setOnMouseDragged(e -> {
+        mainPicture.setOnMouseDragged(e -> {
            switch(PaintToolBar.getTool()){
                case("Line"):
                    this.x1 = e.getX();
                    this.y1 = e.getY();
+                   System.out.println("ondrag");
                     break;
                case("None"):
                    break;
            }
        });
 
-        setOnMouseReleased(e -> {
+        mainPicture.setOnMouseReleased(e -> {
            switch(PaintToolBar.getTool())
            {
                case("Line"):
-                   this.drawLine(x, y, x1, y1);
+                   gc.strokeLine(x, y, x1, y1);
+                   System.out.println("onrelease");
                    break;
                case("None"):
                    break;

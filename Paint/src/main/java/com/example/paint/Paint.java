@@ -39,13 +39,13 @@ public class Paint extends Application {
     public static PaintToolBar toolbar = new PaintToolBar();
     public static File saved_file; //Creates a variable called 'saved_file' for edited files
     public static Boolean Saving = true; //Boolean to determine if file is saved
-    public static PaintCanvas canvas = new PaintCanvas(); //Creates new Canvas object
     public static GridPane main = new GridPane(); //Creates a new Grid Pane for the main application
     public static GridPane mainCanvas = new GridPane(); //Creates Grid Pane for the Canvas
     public static GridPane mainPicture = new GridPane(); //Creates Grid Pane for the Picture
     public static PaintMenuBar menuBar; //Creates a MenuBar
     public static Stage mainStage; //Creates the main Stage
     public static ScrollPane sp = new ScrollPane(mainPicture);
+    public static PaintCanvas canvas = new PaintCanvas(); //Creates new Canvas object
     public static GraphicsContext gc = canvas.getGraphicsContext2D();
 
     @Override
