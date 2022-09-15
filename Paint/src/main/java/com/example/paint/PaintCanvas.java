@@ -5,7 +5,7 @@ import javafx.scene.shape.Line;
 
 import static com.example.paint.Paint.*;
 
-public class PaintCanvas extends PaintDraw { //TODO: Fix this entire class
+public class PaintCanvas extends PaintDraw { //TODO: make the fucking line draw
 
     private double x, y, x1, y1;
     public Line line = new Line();
