@@ -15,7 +15,6 @@ public class PaintDraw extends Canvas {
 
     public PaintDraw(){
         super();
-        gc = canvas.getGraphicsContext2D(); //canvas is broken
         gc.setLineCap(StrokeLineCap.ROUND);
         setLineColor(Color.BLACK);
     }
