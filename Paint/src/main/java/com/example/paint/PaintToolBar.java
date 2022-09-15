@@ -5,6 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 
+import static com.example.paint.Paint.*;
+import static com.example.paint.Paint.line;
+
 
 public class PaintToolBar extends ToolBar {
 
@@ -13,16 +16,17 @@ public class PaintToolBar extends ToolBar {
     private static ComboBox<String> toolBox;
     private static ComboBox<Integer> widthBox;
     private static ColorPicker lineColorPicker;
-    private static int usingTool;
+    public static int usingTool;
     private static TextField numSides;
     private static int usingWidth;
     private static int usingNumSides;
     private static CheckBox setFill;
+    private double x, y, x1, y1;
 
     public PaintToolBar() {
         super();
         usingWidth = 1;
-        usingTool = 1;
+        usingTool = 0;
         usingNumSides = 3;
 
         numSides = new TextField("3");
@@ -75,7 +79,59 @@ public class PaintToolBar extends ToolBar {
             usingWidth = widthBox.getValue();
             System.out.println("Width Selected: " + usingWidth);
         });
+
+
+        mainPicture.setOnMousePressed(e -> {
+            switch(PaintToolBar.getTool())
+            {
+                case("Line"):
+                    gc = canvas.getGraphicsContext2D();
+                    System.out.println("onclick");
+                    x = e.getX();
+                    y = e.getY();
+                    line.setStartX(x);
+                    line.setStartY(y);
+                case("None"):
+                    System.out.println("Nothing done");
+                    break;
+            }
+        });
+
+        mainPicture.setOnMouseDragged(e -> {
+            switch(PaintToolBar.getTool()){
+                case("Line"):
+                    gc = canvas.getGraphicsContext2D();
+                    System.out.println("ondrag");
+                    x1 = e.getX();
+                    y1 = e.getY();
+                    line.setEndX(x1);
+                    line.setEndY(y1);
+                    gc.strokeLine(line.getStartX(), line.getStartY(), line.getEndX(), line.getEndY());
+                    break;
+                case("None"):
+                    break;
+            }
+        });
+
+        mainPicture.setOnMouseReleased(e -> {
+            switch(PaintToolBar.getTool())
+            {
+                case("Line"):
+                    gc = canvas.getGraphicsContext2D();
+                    line.setEndX(e.getX());
+                    System.out.println(e.getX());
+                    line.setEndY(e.getY());
+                    System.out.println(e.getY());
+                    System.out.println("onrelease");
+                    System.out.println();
+                    gc.strokeLine(line.getStartX(), line.getStartY(), line.getEndX(), line.getEndY());
+                    break;
+                case("None"):
+                    break;
+            }
+        });
     }
+
 
     public static String getTool()
     {
@@ -86,5 +142,8 @@ public class PaintToolBar extends ToolBar {
     {
         return usingWidth;
     }
+
+
+
 
 }

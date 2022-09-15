@@ -38,18 +38,17 @@ public class Paint extends Application {
     public static File file; //Creates a local variable called 'file' for file management
     public static Group root = new Group();
     public static Canvas canvas = new Canvas(); //this is broken  //todo: fix
-    public static PaintToolBar toolbar = new PaintToolBar();
     public static File saved_file; //Creates a variable called 'saved_file' for edited files
     public static Boolean Saving = true; //Boolean to determine if file is saved
     public static GridPane main = new GridPane(); //Creates a new Grid Pane for the main application
     public static GridPane mainCanvas = new GridPane(); //Creates Grid Pane for the Canvas
     public static GridPane mainPicture = new GridPane(); //Creates Grid Pane for the Picture
+    public static PaintToolBar toolbar = new PaintToolBar();
     public static PaintMenuBar menuBar; //Creates a MenuBar
     public static Stage mainStage; //Creates the main Stage
     public static ScrollPane sp = new ScrollPane(mainPicture);
     public static GraphicsContext gc = canvas.getGraphicsContext2D();
-    public static PaintCanvas test = new PaintCanvas();
-    public static PaintDraw test2 = new PaintDraw();
+//    public static PaintCanvas test = new PaintCanvas();
     public static Line line = new Line();
 
     @Override
@@ -64,8 +63,7 @@ public class Paint extends Application {
         menuBar = new PaintMenuBar(); //Creates a new menu bar
         menuBar.prefWidthProperty().bind(stage.widthProperty()); //extends width of entire program
         mainPicture.setAlignment(Pos.CENTER); //Aligns the picture to the center of the canvas
-        test = new PaintCanvas();
-        test2 = new PaintDraw();
+//        test = new PaintCanvas();
 
 //      sp.setPannable(true);
         sp.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
@@ -75,7 +73,7 @@ public class Paint extends Application {
         sp.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
         sp.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
         sp.setStyle("-fx-focus-color: transparent");
-        root.getChildren().addAll(sp, toolbar, mainPicture, mainCanvas, canvas, test, test2);
+        root.getChildren().addAll(sp, toolbar, mainPicture, mainCanvas, canvas);
 
         //organizes canvas layout
         main.setHgap(0);
@@ -85,25 +83,21 @@ public class Paint extends Application {
         main.add(canvas, 0 ,2);
         main.add(sp, 0, 2);
         main.add(mainPicture, 0 , 2);
-        main.add(test, 0, 2);
-        main.add(test2, 0 ,2);
-
-
+//        main.add(test, 0, 2);
+        main.setVgap(1);
 
         //picture to canvas
         mainPicture.add(picture, 0, 2);
+//        mainPicture.add(test, 0 , 2);
+        mainPicture.add(canvas, 0, 2);
+//        mainPicture.add(gc.getCanvas(), 0, 2);
+        mainPicture.setVgap(1);
 
-        mainPicture.add(test, 0 , 2);
-        mainPicture.add(test2, 0, 2);
         mainCanvas.add(mainPicture, 0, 2);
-
-        mainCanvas.add(test, 0 ,2);
-        mainCanvas.add(test2, 0, 2);
-
-        main.setVgap(1);
+        mainCanvas.add(canvas, 0, 2);
+//        mainCanvas.add(test, 0 ,2);
         mainCanvas.setHgap(10);
         mainCanvas.setVgap(1);  //not sure which part causes big pictures to open weird at the bottom, but whateva
-        mainPicture.setVgap(1);
 
         //organizes stage
         stage.setTitle(TITLE + " - " + VERSION); //sets the title
