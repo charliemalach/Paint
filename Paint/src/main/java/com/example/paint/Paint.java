@@ -48,11 +48,8 @@ public class Paint extends Application {
     public static Stage mainStage; //Creates the main Stage
     public static ScrollPane sp = new ScrollPane(mainPicture);
     public static GraphicsContext gc = canvas.getGraphicsContext2D();
-
     public static PaintCanvas test = new PaintCanvas();
-
     public static PaintDraw test2 = new PaintDraw();
-
     public static Line line = new Line();
 
     @Override
@@ -85,24 +82,23 @@ public class Paint extends Application {
         main.setVgap(-5);
         main.add(menuBar, 0, 0);
         main.add(toolbar, 0, 1);
+        main.add(canvas, 0 ,2);
         main.add(sp, 0, 2);
         main.add(mainPicture, 0 , 2);
-        main.add(gc.getCanvas(), 0, 2);
         main.add(test, 0, 2);
         main.add(test2, 0 ,2);
 
 
+
         //picture to canvas
         mainPicture.add(picture, 0, 2);
-        mainPicture.add(gc.getCanvas(), 0, 2);
+
         mainPicture.add(test, 0 , 2);
         mainPicture.add(test2, 0, 2);
         mainCanvas.add(mainPicture, 0, 2);
-        mainCanvas.add(gc.getCanvas(), 0 , 2);
+
         mainCanvas.add(test, 0 ,2);
         mainCanvas.add(test2, 0, 2);
-
-
 
         main.setVgap(1);
         mainCanvas.setHgap(10);
