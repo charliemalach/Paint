@@ -9,7 +9,6 @@ import static com.example.paint.Paint.*;
 
 
 public class PaintToolBar extends ToolBar {
-
     public final static String[] TOOLS = {"None", "Line"};
     private static final Integer[] LINE_WIDTH = {1, 2, 3, 5, 10, 15, 20, 25, 50, 100};
     private static ComboBox<String> toolBox;
@@ -17,7 +16,6 @@ public class PaintToolBar extends ToolBar {
     private static ColorPicker lineColorPicker;
     public static int usingTool;
     private static int usingWidth;
-
 
     public PaintToolBar() {
         super();

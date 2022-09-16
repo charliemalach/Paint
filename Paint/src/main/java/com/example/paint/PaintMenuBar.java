@@ -4,7 +4,6 @@ import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
@@ -13,7 +12,6 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,7 +20,6 @@ import java.io.InputStream;
 import java.util.Optional;
 import static com.example.paint.Paint.*;
 import static com.example.paint.Paint.gc;
-import static com.example.paint.PaintToolBar.getTool;
 
 public class PaintMenuBar extends MenuBar {
 
@@ -221,7 +218,6 @@ public class PaintMenuBar extends MenuBar {
             helpPaint.setContentText(text);
             helpPaint.showAndWait();
        });
-
 
         //This section adds all the File options to the menu bar
         File.getItems().addAll(Open, Save, SaveAs, separator, Exit);

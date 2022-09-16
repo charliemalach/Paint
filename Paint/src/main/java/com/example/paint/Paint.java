@@ -1,26 +1,16 @@
 package com.example.paint;
 
 import javafx.application.Application;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
-import javafx.scene.control.ScrollPane;
-
-import java.awt.*;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
+
 
 /**
  *  Malachinski Pain(t) Application
@@ -53,7 +43,7 @@ public class Paint extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Paint.mainStage = stage;
-        Image icon = new Image("C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\icons\\icon.png"); //change to relative path instead of hard coded
+        Image icon = new Image("file:images/icon.png"); //change to relative path instead of hard coded
 
         //picture to canvas
         VBox topMenu = new VBox(menuBar, toolbar);

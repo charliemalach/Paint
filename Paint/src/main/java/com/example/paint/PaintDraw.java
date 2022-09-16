@@ -1,7 +1,6 @@
 package com.example.paint;
 
 import javafx.scene.canvas.Canvas;
-
 import static com.example.paint.Paint.*;
 import static com.example.paint.Paint.line;
 
