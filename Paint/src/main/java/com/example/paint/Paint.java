@@ -18,7 +18,7 @@ import java.io.IOException;
  *
  * @author Charlie Malachinski
  * @version 1.0.1
- * @since 2022-09-14
+ * @since 2022-09-16
  *
  **/
 
@@ -30,7 +30,7 @@ public class Paint extends Application {
     public static Stage mainStage; //Creates the main Stage
     public static BorderPane pane = new BorderPane();
     public static File file; //Creates a local variable called 'file' for file management
-    public static Image white = new Image("C:\\Users\\Charlie\\Desktop\\CS 250\\Paint\\Paint\\src\\icons\\white.jpg");;
+    public static Image white = new Image("C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\main\\resources\\images\\white.jpg");;
     public static PaintDraw canvas = new PaintDraw(); //this is broken  //todo: fix
     public static GraphicsContext gc = canvas.getGraphicsContext2D();
     public static File saved_file; //Creates a variable called 'saved_file' for edited files
@@ -43,7 +43,7 @@ public class Paint extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Paint.mainStage = stage;
-        Image icon = new Image("file:images/icon.png"); //change to relative path instead of hard coded
+        Image icon = new Image("C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\main\\resources\\images\\icon.png"); //change to relative path instead of hard coded
 
         //picture to canvas
         VBox topMenu = new VBox(menuBar, toolbar);
