@@ -57,8 +57,8 @@ public class PaintMenuBar extends MenuBar {
                         Image pic = new Image(io);
                         canvas.setWidth(pic.getWidth());
                         canvas.setHeight(pic.getHeight());
-                        mainStage.setHeight(canvas.getHeight());
-                        mainStage.setWidth(canvas.getWidth());
+//                        mainStage.setHeight(canvas.getHeight());
+//                        mainStage.setWidth(canvas.getWidth());
                         gc.drawImage(pic, 0, 0, canvas.getWidth(), canvas.getHeight());
                     } catch (Exception ex) {
                         System.out.println("Error");
@@ -81,13 +81,12 @@ public class PaintMenuBar extends MenuBar {
                 fc.getExtensionFilters().addAll(
                         new FileChooser.ExtensionFilter("All Files", "*.*"),
                         new FileChooser.ExtensionFilter("PNG Files", "*.png"),
-                        new FileChooser.ExtensionFilter("ICON Files", "*.ico"),
                         new FileChooser.ExtensionFilter("JPG Files", ".jpg")
                 );
                 File file = fc.showSaveDialog(mainStage);
                 if (file != null) {
                     try {
-                        WritableImage writableImage = new WritableImage((int) mainStage.getWidth(), (int) mainStage.getHeight());
+                        WritableImage writableImage = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
                         canvas.snapshot(null, writableImage);
                         RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
                         ImageIO.write(renderedImage, "png", file);
@@ -112,12 +111,15 @@ public class PaintMenuBar extends MenuBar {
                         new FileChooser.ExtensionFilter("All Files", "*.*"),
                         new FileChooser.ExtensionFilter("PNG Files", "*.png"),
                         new FileChooser.ExtensionFilter("ICON Files", "*.ico"),
-                        new FileChooser.ExtensionFilter("JPG Files", ".jpg")
+                        new FileChooser.ExtensionFilter("JPG Files", ".jpg"),
+                        new FileChooser.ExtensionFilter("BMP Files", ".bmp")
+
+
                 );
                 File save = fc.showSaveDialog(mainStage);
                 if (save != null) {
                     try {
-                        WritableImage writableImage = new WritableImage((int) mainStage.getWidth(), (int) mainStage.getHeight()); //this code has errors
+                        WritableImage writableImage = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight()); //this code has errors
                         canvas.snapshot(null, writableImage);
                         RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
                         ImageIO.write(renderedImage, "png", save);
@@ -181,9 +183,11 @@ public class PaintMenuBar extends MenuBar {
 
         //Creates the About section in the Help menu
         MenuItem About = new Menu("About");
+        About.setMnemonicParsing(
+                true);
+        About.setAccelerator(
+                new KeyCodeCombination(KeyCode.F1, KeyCombination.SHIFT_DOWN)); //sets hotkey Shift + F1 --> opens about tab
         About.setOnAction(e -> {
-                    About.setMnemonicParsing(
-                            true);
                     Alert aboutPaint = new Alert(Alert.AlertType.INFORMATION);
                     aboutPaint.setTitle("About");
                     aboutPaint.setHeaderText("About Pain(t) v1.0.1");
@@ -196,9 +200,11 @@ public class PaintMenuBar extends MenuBar {
         });
 
         MenuItem helpOption = new Menu("Help");
+        helpOption.setMnemonicParsing(
+                true);
+        helpOption.setAccelerator(
+                new KeyCodeCombination(KeyCode.H, KeyCombination.SHIFT_DOWN)); //sets hotkey Shift + H --> opens help tab
         helpOption.setOnAction(e -> {
-            helpOption.setMnemonicParsing(
-                    true);
             Alert helpPaint = new Alert(Alert.AlertType.INFORMATION);
             helpPaint.setTitle("Help");
             helpPaint.setHeaderText("Q&A - Help for Pain(t)");

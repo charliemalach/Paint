@@ -9,7 +9,7 @@ import static com.example.paint.Paint.*;
 
 
 public class PaintToolBar extends ToolBar {
-    public final static String[] TOOLS = {"None", "Line"};
+    public final static String[] TOOLS = {"None", "Line", "Pencil"};
     private static final Integer[] LINE_WIDTH = {1, 2, 3, 5, 10, 15, 20, 25, 50, 100};
     private static ComboBox<String> toolBox;
     private static ComboBox<Integer> widthBox;
@@ -34,8 +34,8 @@ public class PaintToolBar extends ToolBar {
         toolBox.setValue("None");
         widthBox.setValue(1);
 
-
-        getItems().addAll(new Label("Tools: "), toolBox, new Separator(), //adds items to toolbox
+        //adds items to toolbox
+        getItems().addAll(new Label("Tools: "), toolBox, new Separator(),
                         new Label("Line Width: "), widthBox,
                         new Label("Color: "), lineColorPicker
         );

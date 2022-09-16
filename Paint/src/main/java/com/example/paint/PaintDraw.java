@@ -23,6 +23,12 @@ public class PaintDraw extends Canvas {
                     line.setStartX(x);
                     line.setStartY(y);
                     gc.strokeLine(line.getStartX(), line.getStartY(), line.getStartX(), line.getStartY());
+                case("Pencil"):
+                    gc.beginPath();
+                    gc.moveTo(e.getX(), e.getY());
+                    gc.stroke();
+
+                    break;
                 case("None"):
                     System.out.println("Nothing done");
                     break;
@@ -40,6 +46,10 @@ public class PaintDraw extends Canvas {
                     line.setEndX(x1);
                     line.setEndY(y1);
                     break;
+                case("Pencil"):
+                    gc.lineTo(e.getX(), e.getY());
+                    gc.stroke();
+
                 case("None"):
                     break;
             }
@@ -54,6 +64,9 @@ public class PaintDraw extends Canvas {
                     line.setEndY(e.getY());
                     gc.strokeLine(line.getStartX(), line.getStartY(), line.getEndX(), line.getEndY());
                     break;
+                case("Pencil"):
+
+
                 case("None"):
                     System.out.println("Nothing done");
                     break;
