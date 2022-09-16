@@ -6,7 +6,6 @@ import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 
 import static com.example.paint.Paint.*;
-import static com.example.paint.Paint.line;
 
 
 public class PaintToolBar extends ToolBar {
@@ -17,122 +16,50 @@ public class PaintToolBar extends ToolBar {
     private static ComboBox<Integer> widthBox;
     private static ColorPicker lineColorPicker;
     public static int usingTool;
-    private static TextField numSides;
     private static int usingWidth;
-//    private static CheckBox setFill;
-    private double x, y, x1, y1;
+
 
     public PaintToolBar() {
         super();
-        usingWidth = 1;
-        usingTool = 0;
 
-        numSides = new TextField("3");
+        //setting all defaults:
+
+        usingWidth = 1; //default line width
+        usingTool = 0; //default tool = "none"
+
         toolBox = new ComboBox<>(FXCollections.observableArrayList(TOOLS));
         widthBox = new ComboBox<>(FXCollections.observableArrayList(LINE_WIDTH));
+
         lineColorPicker = new ColorPicker();
-//        setFill = new CheckBox();
+        lineColorPicker.setValue(Color.BLACK); //default color = black
+
+        toolBox.setValue("None");
+        widthBox.setValue(1);
 
 
-        getItems().addAll(new Label("Tools: "), toolBox, new Separator(),
+        getItems().addAll(new Label("Tools: "), toolBox, new Separator(), //adds items to toolbox
                         new Label("Line Width: "), widthBox,
                         new Label("Color: "), lineColorPicker
         );
 
-        lineColorPicker.setValue(Color.BLACK);
-        toolBox.setValue("None");
-        widthBox.setPrefWidth(90);
-        widthBox.setValue(1);
+        // Listeners!
 
-        numSides.setVisible(false);
-        numSides.setPrefWidth(55);
-
-
-        //listeners
-
-        //set new tool
-        toolBox.getSelectionModel().selectedIndexProperty().addListener((observable, value, newValue) -> {
+        toolBox.getSelectionModel().selectedIndexProperty().addListener((observable, value, newValue) -> { //set new tool as selected tool
             usingTool = newValue.intValue();
             System.out.println("Tool Selected: " + TOOLS[usingTool]);
         });
 
-//        //set new line width
-//        widthBox.getEditor().focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
-//            if(!isNowFocused){
-//                if(Integer.parseInt(widthBox.getEditor().getText()) >= 1){
-//                    widthBox.setValue(Integer.parseInt(widthBox.getEditor().getText()));
-//                }
-//                else{
-//                    widthBox.setValue(1);
-//                }
-//            }
-//        });
-
-        //set new color
-        lineColorPicker.setOnAction((ActionEvent e) -> {
+        lineColorPicker.setOnAction((ActionEvent e) -> { //set new color as selected color
             gc.setStroke(lineColorPicker.getValue());
         });
 
-        //sets new line width
-        widthBox.setOnAction((ActionEvent e) -> {
+        widthBox.setOnAction((ActionEvent e) -> { //sets new line width as selected width
             usingWidth = widthBox.getValue();
             gc.setLineWidth(usingWidth);
             System.out.println("Width Selected: " + usingWidth);
         });
-
-
-        //draws the beginning of line
-        canvas.setOnMousePressed(e -> {
-            switch(PaintToolBar.getTool())
-            {
-                case("Line"):
-                    System.out.println("onclick");
-                    x = e.getX();
-                    y = e.getY();
-                    line.setStartX(x);
-                    line.setStartY(y);
-                    gc.strokeLine(line.getStartX(), line.getStartY(), line.getStartX(), line.getStartY());
-                case("None"):
-                    System.out.println("Nothing done");
-                    break;
-            }
-        });
-
-        //follows the line being drawn
-        canvas.setOnMouseDragged(e -> {
-            switch(PaintToolBar.getTool()){
-                case("Line"):
-                    System.out.println("ondrag");
-                    x1 = e.getX();
-                    y1 = e.getY();
-                    line.setEndX(x1);
-                    line.setEndY(y1);
-//                    gc.strokeLine(line.getEndX(), line.getEndY(), line.getEndX(), line.getEndY());
-                    break;
-                case("None"):
-                    break;
-            }
-        });
-
-        //draws complete line
-        canvas.setOnMouseReleased(e -> {
-            switch(PaintToolBar.getTool())
-            {
-                case("Line"):
-                    line.setEndX(e.getX());
-                    System.out.println(e.getX());
-                    line.setEndY(e.getY());
-                    System.out.println(e.getY());
-                    System.out.println("onrelease");
-                    System.out.println();
-                    gc.strokeLine(line.getStartX(), line.getStartY(), line.getEndX(), line.getEndY());
-                    break;
-                case("None"):
-                    break;
-            }
-        });
     }
-    public static String getTool()
+    public static String getTool() //returns current tool
     {
         return TOOLS[usingTool];
     }
