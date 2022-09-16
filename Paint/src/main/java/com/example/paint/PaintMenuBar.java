@@ -63,8 +63,6 @@ public class PaintMenuBar extends MenuBar {
                         mainStage.setHeight(canvas.getHeight());
                         mainStage.setWidth(canvas.getWidth());
                         gc.drawImage(pic, 0, 0, canvas.getWidth(), canvas.getHeight());
-
-
                     } catch (Exception ex) {
                         System.out.println("Error");
                     }
@@ -73,6 +71,7 @@ public class PaintMenuBar extends MenuBar {
             }
         }
         );
+
 
         //'Save' menu item. Allows users to save current project.
         MenuItem Save = new MenuItem("Save"); //Creates menu option to save current user project
@@ -103,6 +102,7 @@ public class PaintMenuBar extends MenuBar {
                 }
             }
         });
+
 
         //'Save as' menu item. Allows users to save current project as a different file.
         MenuItem SaveAs = new MenuItem("Save as..."); //Creates menu option to save current user project as different file
@@ -135,6 +135,7 @@ public class PaintMenuBar extends MenuBar {
             }
         }
         );
+
 
         //'Exit' menu item. Allows users to exit current project after prompting them to save.
         SeparatorMenuItem separator = new SeparatorMenuItem();
@@ -180,6 +181,7 @@ public class PaintMenuBar extends MenuBar {
             }
         });
 
+
         //Creates the About section in the Help menu
         MenuItem About = new Menu("About");
         About.setOnAction(e -> {
@@ -188,15 +190,42 @@ public class PaintMenuBar extends MenuBar {
                     Alert aboutPaint = new Alert(Alert.AlertType.INFORMATION);
                     aboutPaint.setTitle("About");
                     aboutPaint.setHeaderText("About Pain(t) v1.0.1");
-                    String text = "Pain(t) - v1.0.1 is a JavaFX image handling project created for CS 250 by Charlie Malachinski. " +
-                                    "This program currently allows users to upload, save and save as images. These images can be drawn upon and saved as new files. More features will come in the future.   ";
+                    String text = "Pain(t) - v1.0.1 is a JavaFX image handling project created by Charlie Malachinski. " +
+                                    "This program currently allows users to upload, save and save as images. These images can be drawn upon and saved with the new markings. " +
+                                    "\n" + "\n" +
+                                    "More features will come in the future.";
                     aboutPaint.setContentText(text);
                     aboutPaint.showAndWait();
         });
 
+        MenuItem helpOption = new Menu("Help");
+        helpOption.setOnAction(e -> {
+            helpOption.setMnemonicParsing(
+                    true);
+            Alert helpPaint = new Alert(Alert.AlertType.INFORMATION);
+            helpPaint.setTitle("Help");
+            helpPaint.setHeaderText("Q&A - Help for Pain(t)");
+            String text =
+                            "Q: How do I open an image?\n" +
+                            "A: File -> Open -> Select desired image.\n" +
+                                    "\n" +
+                            "Q: How do I change the size of the line?\n" +
+                            "A: Select desired width from the 'Line Width' drop down.\n" +
+                                    "\n" +
+                            "Q: What are the keyboard shortcuts for the application?\n" +
+                            "A: The following are the shortcuts used by the application: \n" +
+                            "   'Ctrl + O' is used to open an image\n" +
+                            "   'Ctrl + S is used to save an image\n" +
+                            "   'Ctrl + Shift + S is used to save image as\n" +
+                            "   'Esc' is used to exit the program.\n" ;
+            helpPaint.setContentText(text);
+            helpPaint.showAndWait();
+       });
+
+
         //This section adds all the File options to the menu bar
         File.getItems().addAll(Open, Save, SaveAs, separator, Exit);
         //This section adds the About option under Help
-        Help.getItems().add(About);
+        Help.getItems().addAll(About, helpOption);
     }
 }

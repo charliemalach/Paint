@@ -1,3 +1,28 @@
+Charlie's Pain(t) Version 1.0.1, 9/16/22
+
+New Features: 
+	- Ability to draw a line on the canvas & pictures   
+	- Ability to choose color 
+	- Ability to change line size & color 
+	- Ability to save image with graphical changes 
+	- Ability to resize canvas upon opening new picture 
+	- Added scroll bar 
+	- Added 'Help' menu item with 'Help' and 'About' options  
+
+Known Issues: 
+	- N/A 
+
+Expected Next Sprint: 
+	- Ability to open multiple pictures
+	- Ability to open multiple windows (tabs) 
+	- Ability to draw shapes 
+	- Ability to erase from screen 
+
+Links: 
+	- GitHub Repository: https://github.com/charliemalach/Paint
+
+#----------------------------------------------------------------------------------------------------#
+
 Charlie's Pain(t) Version 1.0.0, 9/9/22
 
 New Features: 
