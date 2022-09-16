@@ -10,8 +10,8 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import javafx.scene.control.ScrollPane;
@@ -68,20 +68,22 @@ public class Paint extends Application {
         sp.setStyle("-fx-focus-color: transparent");
         sp.setContent(canvas);
 
-        //layout setup
-        pane.setCenter(canvas);
-        pane.setCenter(sp);
-        pane.setTop(menuBar);
-        pane.setBottom(toolbar);
-        pane.getChildren().add(canvas);
-        menuBar.prefWidthProperty().bind(stage.widthProperty()); //extends width of entire program
+
+//        menuBar.prefWidthProperty().bind(stage.widthProperty()); //extends width of entire program
 
 //      root.getChildren().addAll(sp, toolbar, menuBar, canvas, pane);
 
         //picture to canvas
+        VBox topMenu = new VBox(menuBar, toolbar);
         canvas.setWidth(white.getWidth());
         canvas.setHeight(white.getHeight());
         gc.drawImage(white, 0, 0, canvas.getWidth(), canvas.getHeight());
+
+        //layout setup
+        pane.setCenter(canvas);
+        pane.setCenter(sp);
+        pane.setTop(topMenu);
+        pane.getChildren().add(canvas);
 
         //starts scene
         Scene scene = new Scene(pane, windowLength, windowHeight); //creates a new scene with the main Grid Pane and the desired application window size.
