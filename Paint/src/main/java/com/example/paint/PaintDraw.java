@@ -5,13 +5,11 @@ import static com.example.paint.Paint.*;
 import static com.example.paint.Paint.line;
 
 public class PaintDraw extends Canvas {
-
     private double x, y, x1, y1; //variables used for line coordinates
 
     public PaintDraw()
     {
         super();
-
         //draws the beginning of line
         setOnMousePressed(e -> {
             switch(PaintToolBar.getTool())
