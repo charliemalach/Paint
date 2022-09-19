@@ -32,13 +32,10 @@ public class Paint extends Application {
     public static BorderPane pane = new BorderPane();
     public static File file; //Creates a local variable called 'file' for file management
     public static Image white = new Image("C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\main\\resources\\images\\white.jpg");;
-    public static PaintDraw canvas = new PaintDraw(); //this is broken  //todo: fix
-    public static GraphicsContext gc = canvas.getGraphicsContext2D();
     public static File saved_file; //Creates a variable called 'saved_file' for edited files
     public static Boolean Saving = true; //Boolean to determine if file is saved
     public static PaintToolBar toolbar = new PaintToolBar();
     public static PaintMenuBar menuBar = new PaintMenuBar(); //Creates a MenuBar
-    public static PaintScrollBar sp = new PaintScrollBar(); //Creates global scrollpane
     public static Line line = new Line();
     public static TabPane tabpane;
 
@@ -50,15 +47,11 @@ public class Paint extends Application {
         tabpane = new TabPane();
         //picture to canvas
         VBox topMenu = new VBox(menuBar, toolbar);
-        canvas.setWidth(white.getWidth());
-        canvas.setHeight(white.getHeight());
-        gc.drawImage(white, 0, 0, canvas.getWidth(), canvas.getHeight());
 
         //layout setup
-        pane.setCenter(canvas);
-        pane.setCenter(sp);
+
+        pane.setCenter(tabpane);
         pane.setTop(topMenu);
-        pane.getChildren().add(canvas);
 
         tabpane.getTabs().add(new PaintTabs());
         tabpane.getSelectionModel().selectFirst();

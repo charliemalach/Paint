@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Optional;
 import static com.example.paint.Paint.*;
-import static com.example.paint.Paint.gc;
 
 public class PaintMenuBar extends MenuBar {
 
@@ -34,7 +33,6 @@ public class PaintMenuBar extends MenuBar {
 
         //This section adds the other main options to the menu bar
         getMenus().addAll(File, Edit, Options, Help);
-        gc = canvas.getGraphicsContext2D();
 
         //'Open' menu item. Allows users to open a picture to the current project.
         MenuItem Open = new MenuItem("Open");
@@ -50,67 +48,23 @@ public class PaintMenuBar extends MenuBar {
         MenuItem Save = new MenuItem("Save"); //Creates menu option to save current user project
         Save.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN)); //sets hotkey CTRL + S --> Save
         Save.setMnemonicParsing(true);
-        Save.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) {
-                FileChooser fc = new FileChooser();
-                fc.setTitle("Save");
-                fc.getExtensionFilters().addAll(
-                        new FileChooser.ExtensionFilter("All Files", "*.*"),
-                        new FileChooser.ExtensionFilter("PNG Files", "*.png"),
-                        new FileChooser.ExtensionFilter("JPG Files", ".jpg")
-                );
-                File file = fc.showSaveDialog(mainStage);
-                if (file != null) {
-                    try {
-                        WritableImage writableImage = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
-                        canvas.snapshot(null, writableImage);
-                        RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
-                        ImageIO.write(renderedImage, "png", file);
-                        System.out.println("File successfully saved to " + file.getAbsolutePath());
-                    } catch (IOException ex) {
-                        System.out.println("Error has occurred.");
-                    }
-                    Saving = true;
-                }
-            }
+        Save.setOnAction((ActionEvent event) -> {
+            if(Paint.getCurrentTab().getFilePath() == null)
+                Paint.getCurrentTab().saveImageAs();
+            else
+                Paint.getCurrentTab().saveImage();
         });
-
 
         //'Save as' menu item. Allows users to save current project as a different file.
         MenuItem SaveAs = new MenuItem("Save as..."); //Creates menu option to save current user project as different file
         SaveAs.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN, KeyCombination.SHIFT_DOWN)); //sets hotkey CTRL + Shift + S --> Save
-        SaveAs.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) {
-                FileChooser fc = new FileChooser();
-                fc.setTitle("Save As...");
-                fc.getExtensionFilters().addAll( //allows user to save image as any of the following extensions
-                        new FileChooser.ExtensionFilter("All Files", "*.*"),
-                        new FileChooser.ExtensionFilter("PNG Files", "*.png"),
-                        new FileChooser.ExtensionFilter("ICON Files", "*.ico"),
-                        new FileChooser.ExtensionFilter("JPG Files", ".jpg"),
-                        new FileChooser.ExtensionFilter("BMP Files", ".bmp")
-
-
-                );
-                File save = fc.showSaveDialog(mainStage);
-                if (save != null) {
-                    try {
-                        WritableImage writableImage = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight()); //this code has errors
-                        canvas.snapshot(null, writableImage);
-                        RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
-                        ImageIO.write(renderedImage, "png", save);
-                        file = save;
-                        saved_file = save;
-                        System.out.println("File successfully saved to " + file.getAbsolutePath());
-                    } catch (IOException ex) {
-                        System.out.println("Error has occurred.");
-                    }
-                    Saving = true;
-                }
+        SaveAs.setOnAction((ActionEvent event) -> {
+            try {
+                Paint.getCurrentTab().saveImageAs();
+            } catch (Exception exception) {
+                System.out.println(exception);
             }
-        }
-        );
-
+        });
 
         //'Exit' menu item. Allows users to exit current project after prompting them to save.
         SeparatorMenuItem separator = new SeparatorMenuItem();
@@ -131,19 +85,9 @@ public class PaintMenuBar extends MenuBar {
                 Optional<ButtonType> show = exit.showAndWait();
                 if ((show.isPresent()) && (show.get() == ButtonType.OK)) {
                     try {
-                        FileChooser fc = new FileChooser();
-                        fc.setTitle("Save File");
-                        fc.getExtensionFilters().addAll(
-                                new FileChooser.ExtensionFilter("All Images", "*.*")
-                        );
-                        File file = fc.showOpenDialog(mainStage);
-                        WritableImage writableImage = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
-                        canvas.snapshot(null, writableImage);
-                        RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
-                        ImageIO.write(renderedImage, "png", file);
-                        System.out.println("File successfully saved to " + file.getAbsolutePath());
-                    } catch (IOException ex) {
-                        System.out.println("Error has occurred.");
+                        Paint.getCurrentTab().saveImageAs();
+                    } catch (Exception ex) {
+                        System.out.println(ex);
                     }
                     //After project is saved, program will exit.
                     Platform.exit();

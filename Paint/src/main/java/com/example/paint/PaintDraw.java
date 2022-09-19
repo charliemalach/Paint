@@ -3,79 +3,67 @@ package com.example.paint;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
+import javafx.scene.shape.StrokeLineCap;
+
 import java.io.File;
-import static com.example.paint.Paint.*;
-import static com.example.paint.Paint.gc;
 
 public class PaintDraw extends Canvas {
-    private double x, y, x1, y1; //variables used for line coordinates
 
+    private GraphicsContext gc;
+    private boolean fillShape;
 
     public PaintDraw()
     {
         super();
-        //draws the beginning of line
-        setOnMousePressed(e -> {
-            switch(PaintToolBar.getTool())
-            {
-                case("Line"):
-                    System.out.println("onclick");
-                    x = e.getX();
-                    y = e.getY();
-                    line.setStartX(x);
-                    line.setStartY(y);
-                    gc.strokeLine(line.getStartX(), line.getStartY(), line.getStartX(), line.getStartY());
-                case("Pencil"):
-                    gc.beginPath();
-                    gc.moveTo(e.getX(), e.getY());
-                    gc.stroke();
+        this.fillShape = false;
+        this.gc = this.getGraphicsContext2D();
+        this.gc.setLineCap(StrokeLineCap.ROUND);
+    }
 
-                    break;
-                case("None"):
-                    System.out.println("Nothing done");
-                    break;
-            }
-        });
+    public void drawRect(double x1, double y1, double x2, double y2){
+        double x = (x1 < x2 ? x1 : x2); //set x to the smaller of the two values to map to bottom left
+        double y = (y1 < y2 ? y1 : y2); //
+        double w = Math.abs(x1 - x2);   //abs val of the two x's = length of x
+        double h = Math.abs(y1 - y2);
+        if(this.getFillShape())
+            this.gc.fillRect(x,y,w,h);
+        this.gc.strokeRect(x,y,w,h);
+    }
 
-        //follows the line being drawn
-        setOnMouseDragged(e -> {
-            switch(PaintToolBar.getTool())
-            {
-                case("Line"):
-                    System.out.println("ondrag");
-                    x1 = e.getX();
-                    y1 = e.getY();
-                    line.setEndX(x1);
-                    line.setEndY(y1);
-                    break;
-                case("Pencil"):
-                    gc.lineTo(e.getX(), e.getY());
-                    gc.stroke();
+    public void drawSquare(double x1, double y1, double x2, double y2){
+        final double ANGLE_45 = Math.PI/4.0;    //pi/4 is a 45 degree angle, which makes it square instead of a diamond
+        final int SIDES = 4;
+        double[] xPoints = new double[SIDES];   //4 is the number of sides a square has
+        double[] yPoints = new double[SIDES];
+        double radius = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
+        //try and figure out how to fix later
+        for(int i = 0; i < SIDES; i++){
+            xPoints[i] = x1 + (radius * Math.cos(((2*Math.PI*i)/4) + ANGLE_45));
+            yPoints[i] = y1 + (radius * Math.sin(((2*Math.PI*i)/4) + ANGLE_45));
+        }
+        if(this.getFillShape())
+            this.gc.fillPolygon(xPoints, yPoints, SIDES);
+        this.gc.strokePolygon(xPoints, yPoints, SIDES);
+    }
 
-                case("None"):
-                    break;
-            }
-        });
+    public void drawEllipse(double x1, double y1, double x2, double y2){
+        double x = (x1 < x2 ? x1 : x2);
+        double y = (y1 < y2 ? y1 : y2);
+        double w = Math.abs(x1 - x2);
+        double h = Math.abs(y1 - y2);
+        if(this.getFillShape())
+            this.gc.fillOval(x,y,w,h);
+        this.gc.strokeOval(x,y,w,h);
+    }
 
-        //draws complete line
-        setOnMouseReleased(e -> {
-            switch(PaintToolBar.getTool())
-            {
-                case("Line"):
-                    line.setEndX(e.getX());
-                    line.setEndY(e.getY());
-                    gc.strokeLine(line.getStartX(), line.getStartY(), line.getEndX(), line.getEndY());
-                    break;
-                case("Pencil"):
+    public void drawLine(double x1, double y1, double x2, double y2){gc.strokeLine(x1, y1, x2, y2);}
 
+    public void drawPencil(double x1, double y1, double x2, double y2)
+    {
 
-                case("None"):
-                    System.out.println("Nothing done");
-                    break;
-            }
-        });
     }
 
     public Image getRegion(double x1, double y1, double x2, double y2)
@@ -108,6 +96,11 @@ public class PaintDraw extends Canvas {
             Image img = new Image(file.toURI().toString());
             this.drawImage(img);
         }
+    }
+
+    public boolean getFillShape()
+    {
+        return this.fillShape;
     }
 
     public void drawImageAt(Image im, double x, double y)

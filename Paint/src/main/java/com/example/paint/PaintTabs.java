@@ -1,5 +1,6 @@
 package com.example.paint;
 
+
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
@@ -12,7 +13,6 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
-
 public class PaintTabs extends Tab {
 
     public Pane CanvasPane;
@@ -22,7 +22,7 @@ public class PaintTabs extends Tab {
 
     private String title;
     private File path;
-    private PaintDraw canvas;
+    private PaintCanvas canvas;
     private ScrollPane sp;
     private StackPane canvasStack;
 
@@ -30,7 +30,7 @@ public class PaintTabs extends Tab {
     public PaintTabs(){
         super();
         this.title= "Title";
-        this.canvas = new PaintDraw();
+        this.canvas = new PaintCanvas();
         setUp();
     }
 
@@ -38,7 +38,7 @@ public class PaintTabs extends Tab {
         super();
         this.path = file;
         this.title = path.getName();
-        this.canvas = new PaintDraw();
+        this.canvas = new PaintCanvas();
         setUp();
     }
 
@@ -104,7 +104,7 @@ public class PaintTabs extends Tab {
         this.saveImage();
     }
 
-    public PaintDraw getCanvas()
+    public PaintCanvas getCanvas()
     {
         return this.canvas;
     }

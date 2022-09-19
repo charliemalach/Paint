@@ -50,13 +50,12 @@ public class PaintToolBar extends ToolBar {
             System.out.println("Tool Selected: " + TOOLS[usingTool]);
         });
 
-        lineColorPicker.setOnAction((ActionEvent e) -> { //set new color as selected color
-            gc.setStroke(lineColorPicker.getValue());
-        });
+//        lineColorPicker.setOnAction((ActionEvent e) -> { //set new color as selected color
+//            gc.setStroke(lineColorPicker.getValue());
+//        });
 
         widthBox.setOnAction((ActionEvent e) -> { //sets new line width as selected width
             usingWidth = widthBox.getValue();
-            gc.setLineWidth(usingWidth);
             System.out.println("Width Selected: " + usingWidth);
         });
     }
