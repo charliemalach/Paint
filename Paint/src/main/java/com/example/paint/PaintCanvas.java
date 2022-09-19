@@ -1,5 +1,7 @@
 package com.example.paint;
 
+import javafx.scene.Cursor;
+
 public class PaintCanvas extends PaintDraw {
     private double x, y, x1, y1; //variables used for line coordinates
 
@@ -7,6 +9,27 @@ public class PaintCanvas extends PaintDraw {
     public PaintCanvas()
     {
         super();
+
+        setOnMouseMoved(e -> {
+            switch(PaintToolBar.getTool())
+            {
+                case("Line"):
+                case("Dotted Line"):
+                case("Rectangle"):
+                case("Pencil"):
+                case("Ellipse"):
+                case("Square"):
+                case("Circle"):
+                    setCursor(Cursor.DEFAULT);
+                    break;
+                case("Color Dropper"):
+                    setCursor(Cursor.CROSSHAIR);
+                    break;
+                case("None"):
+            }
+        });
+
+
         //when mouse is initially held down
         setOnMousePressed(e -> {
             x = e.getX();
@@ -41,6 +64,10 @@ public class PaintCanvas extends PaintDraw {
 
                 case("Circle"):
 
+                    break;
+
+                case("Color Dropper"):
+                    PaintToolBar.setLineColor(this.eyeDropper(x,y));
                     break;
 
                 case("None"):
@@ -78,6 +105,11 @@ public class PaintCanvas extends PaintDraw {
 
                     break;
 
+                case("Color Dropper"):
+                    setCursor(Cursor.CROSSHAIR);
+                    PaintToolBar.setLineColor(this.eyeDropper(x,y));
+                    break;
+
                 case("None"):
                     break;
             }
@@ -111,8 +143,13 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case("Circle"):
-
                     break;
+
+                case("Color Dropper"):
+                    setCursor(Cursor.CROSSHAIR);
+                    PaintToolBar.setLineColor(this.eyeDropper(x,y));
+                    break;
+
                 case("None"):
                     System.out.println("Nothing done");
                     break;
