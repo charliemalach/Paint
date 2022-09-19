@@ -2,6 +2,7 @@ package com.example.paint;
 
 
 import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
@@ -12,18 +13,19 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
+import static com.example.paint.Paint.white;
+
 public class PaintTabs extends Tab {
 
     public Pane CanvasPane;
-
     private static FileChooser chooseFile;
     private double scale;
-
     private String title;
     private File path;
     private PaintCanvas canvas;
     private ScrollPane sp;
     private StackPane canvasStack;
+
 
 
     public PaintTabs(){
