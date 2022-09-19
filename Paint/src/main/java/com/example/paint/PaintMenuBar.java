@@ -1,22 +1,11 @@
 package com.example.paint;
 
 import javafx.application.Platform;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
-import javafx.stage.FileChooser;
-import javax.imageio.ImageIO;
-import java.awt.image.RenderedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Optional;
 import static com.example.paint.Paint.*;
 
@@ -66,41 +55,21 @@ public class PaintMenuBar extends MenuBar {
             }
         });
 
-        //'Exit' menu item. Allows users to exit current project after prompting them to save.
+        //'Exit' menu item. Allows users to exit current project after prompting them to save. TODO: fix this section
         SeparatorMenuItem separator = new SeparatorMenuItem();
         MenuItem Exit = new MenuItem("Exit", null);
         Exit.setMnemonicParsing(
                 true);
         Exit.setAccelerator(
                 new KeyCodeCombination(KeyCode.ESCAPE)); //sets hotkey ESC --> Ends program
-        Exit.setOnAction(e -> {
-            if (Saving) {
-                Platform.exit();
-                System.exit(0);
-            } else {
-                Alert exit = new Alert(Alert.AlertType.CONFIRMATION);
-                exit.setTitle("File has NOT been Saved");
-                String text = "Would you like to save? (Click Cancel to close without saving.)";
-                exit.setContentText(text);
-                Optional<ButtonType> show = exit.showAndWait();
-                if ((show.isPresent()) && (show.get() == ButtonType.OK)) {
-                    try {
-                        Paint.getCurrentTab().saveImageAs();
-                    } catch (Exception ex) {
-                        System.out.println(ex);
-                    }
-                    //After project is saved, program will exit.
-                    Platform.exit();
-                    System.exit(0);
-                } else {
-                    //If Cancel button is clicked, program will just exit.
-                    Platform.exit();
-                    System.exit(0);
-                }
+        Exit.setOnAction((ActionEvent event) ->{
+            try {
+                Paint.getCurrentTab().quitProgram();
+            } catch (Exception exception) {
+                System.out.println(exception);
             }
         });
-
-
+        
         //Creates the About section in the Help menu
         MenuItem About = new Menu("About");
         About.setMnemonicParsing(

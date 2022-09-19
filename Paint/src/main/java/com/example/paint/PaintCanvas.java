@@ -9,7 +9,6 @@ public class PaintCanvas extends PaintDraw {
     public PaintCanvas()
     {
         super();
-
         setOnMouseMoved(e -> {
             switch(PaintToolBar.getTool())
             {
@@ -28,7 +27,6 @@ public class PaintCanvas extends PaintDraw {
                 case("None"):
             }
         });
-
 
         //when mouse is initially held down
         setOnMousePressed(e -> {

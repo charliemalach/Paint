@@ -1,8 +1,11 @@
 package com.example.paint;
 
 
+import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
@@ -12,6 +15,7 @@ import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 import static com.example.paint.Paint.white;
 
@@ -85,6 +89,7 @@ public class PaintTabs extends Tab {
         Paint.tabpane.getSelectionModel().select(temp);
     }
 
+
     public void saveImage()
     {
         Image im = this.canvas.getRegion(0, 0, this.canvas.getWidth(), this.canvas.getHeight());
@@ -103,6 +108,32 @@ public class PaintTabs extends Tab {
         File path = chooseFile.showSaveDialog(Paint.mainStage);
         this.setFilePath(path);
         this.saveImage();
+    }
+
+    public void quitProgram() //TODO: finish this function
+    {
+    if(this.path != null)
+        {
+            Alert exit = new Alert(Alert.AlertType.CONFIRMATION);
+            exit.setTitle("File has NOT been Saved");
+            String text = "Would you like to save? (Click Cancel to close without saving.)";
+            exit.setContentText(text);
+            Optional<ButtonType> show = exit.showAndWait();
+            if ((show.isPresent()) && (show.get() == ButtonType.OK)) {
+                try {
+                    Paint.getCurrentTab().saveImageAs();
+                } catch (Exception ex) {
+                    System.out.println(ex);
+                }
+                //After project is saved, program will exit.
+                Platform.exit();
+                System.exit(0);
+            } else {
+                //If Cancel button is clicked, program will just exit.
+                Platform.exit();
+                System.exit(0);
+            }
+        }
     }
 
     public PaintCanvas getCanvas()
