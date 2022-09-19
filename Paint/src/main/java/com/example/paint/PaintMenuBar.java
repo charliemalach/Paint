@@ -42,33 +42,9 @@ public class PaintMenuBar extends MenuBar {
                 true);
         Open.setAccelerator(
                 new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN)); //sets hotkey CTRL + O --> Open Program
-        Open.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) {
-                FileChooser fc = new FileChooser();
-                fc.setTitle("Open File");
-                fc.getExtensionFilters().addAll(
-                        new FileChooser.ExtensionFilter("All Images", "*.*"),
-                        new FileChooser.ExtensionFilter("PNG Files", "*.png")
-                );
-                File file = fc.showOpenDialog(mainStage);
-                if (file != null) {
-                    try { // Presents and resizes the selected image on the canvas
-                        InputStream io = new FileInputStream(file);
-                        Image pic = new Image(io);
-                        canvas.setWidth(pic.getWidth());
-                        canvas.setHeight(pic.getHeight());
-//                        mainStage.setHeight(canvas.getHeight());
-//                        mainStage.setWidth(canvas.getWidth());
-                        gc.drawImage(pic, 0, 0, canvas.getWidth(), canvas.getHeight());
-                    } catch (Exception ex) {
-                        System.out.println("Error");
-                    }
-                    Saving = false;
-                }
-            }
-        }
-        );
-
+        Open.setOnAction((ActionEvent event) -> {
+            PaintTabs.openImage();
+        });
 
         //'Save' menu item. Allows users to save current project.
         MenuItem Save = new MenuItem("Save"); //Creates menu option to save current user project

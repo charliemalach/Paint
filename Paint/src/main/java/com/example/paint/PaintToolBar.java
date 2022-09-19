@@ -16,6 +16,7 @@ public class PaintToolBar extends ToolBar {
     private static ColorPicker lineColorPicker;
     public static int usingTool;
     private static int usingWidth;
+    private static Label zoomLabel;
 
     public PaintToolBar() {
         super();
@@ -30,14 +31,16 @@ public class PaintToolBar extends ToolBar {
 
         lineColorPicker = new ColorPicker();
         lineColorPicker.setValue(Color.BLACK); //default color = black
-
+        zoomLabel = new Label("100%");
         toolBox.setValue("None");
         widthBox.setValue(1);
 
         //adds items to toolbox
         getItems().addAll(new Label("Tools: "), toolBox, new Separator(),
                         new Label("Line Width: "), widthBox,
-                        new Label("Color: "), lineColorPicker
+                        new Label("Color: "), lineColorPicker, new Separator(),
+                        new Label("Zoom: "), zoomLabel
+
         );
 
         // Listeners!
@@ -61,4 +64,6 @@ public class PaintToolBar extends ToolBar {
     {
         return TOOLS[usingTool];
     }
+    public static void setZoomLabel(double zoomVal){ zoomLabel.setText(String.format("%.1f", zoomVal * 100) + "%"); }
+
 }

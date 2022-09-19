@@ -1,11 +1,17 @@
 package com.example.paint;
 
+import javafx.geometry.Rectangle2D;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
+import java.io.File;
 import static com.example.paint.Paint.*;
-import static com.example.paint.Paint.line;
+import static com.example.paint.Paint.gc;
 
 public class PaintDraw extends Canvas {
     private double x, y, x1, y1; //variables used for line coordinates
+
 
     public PaintDraw()
     {
@@ -70,5 +76,47 @@ public class PaintDraw extends Canvas {
                     break;
             }
         });
+    }
+
+    public Image getRegion(double x1, double y1, double x2, double y2)
+    {
+        SnapshotParameters sp = new SnapshotParameters();
+        WritableImage wi = new WritableImage((int)Math.abs(x1 - x2), (int)Math.abs(y1-y2));
+
+        sp.setViewport(new Rectangle2D(
+                (x1 < x2 ? x1 : x2),
+                (y1 < y2 ? y1 : y2),
+                Math.abs(x1 - x2),
+                Math.abs(y1 - y2)));
+
+
+        this.snapshot(sp, wi);
+        return wi;
+    }
+
+    public void drawImage(Image im)
+    {
+        clearCanvas();
+        this.setWidth(im.getWidth());
+        this.setHeight(im.getHeight());
+        this.gc.drawImage(im, 0, 0);
+    }
+
+    public void drawImage(File file)
+    {
+        if(file!=null){
+            Image img = new Image(file.toURI().toString());
+            this.drawImage(img);
+        }
+    }
+
+    public void drawImageAt(Image im, double x, double y)
+    {
+        this.gc.drawImage(im, x, y);
+    }
+
+    public void clearCanvas()
+    {
+        this.gc.clearRect(0,0, this.getWidth(), this.getHeight());
     }
 }
