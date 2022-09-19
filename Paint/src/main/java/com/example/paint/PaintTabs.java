@@ -28,7 +28,7 @@ public class PaintTabs extends Tab {
 
     public PaintTabs(){
         super();
-        this.title= "Title";
+        this.setText("New Tab");
         this.canvas = new PaintCanvas();
         setUp();
     }
@@ -36,7 +36,7 @@ public class PaintTabs extends Tab {
     public PaintTabs(File file){
         super();
         this.path = file;
-        this.title = path.getName();
+        this.setText(path.getName());
         this.canvas = new PaintCanvas();
         setUp();
     }
