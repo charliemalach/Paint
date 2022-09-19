@@ -9,7 +9,7 @@ import static com.example.paint.Paint.*;
 
 
 public class PaintToolBar extends ToolBar {
-    public final static String[] TOOLS = {"None", "Line", "Pencil", "Square", "Rectangle", "Ellipse" , "Circle"};
+    public final static String[] TOOLS = {"None", "Line", "Dashed Line", "Pencil", "Square", "Rectangle", "Ellipse" , "Circle"};
     private static final Integer[] LINE_WIDTH = {1, 2, 3, 5, 10, 15, 20, 25, 50, 100};
     private static ComboBox<String> toolBox;
     private static ComboBox<Integer> widthBox;
@@ -31,15 +31,15 @@ public class PaintToolBar extends ToolBar {
 
         lineColorPicker = new ColorPicker();
         lineColorPicker.setValue(Color.BLACK); //default color = black
-        zoomLabel = new Label("100%");
+//        zoomLabel = new Label("100%");
         toolBox.setValue("None");
         widthBox.setValue(1);
 
         //adds items to toolbox
         getItems().addAll(new Label("Tools: "), toolBox, new Separator(),
                         new Label("Line Width: "), widthBox,
-                        new Label("Color: "), lineColorPicker, new Separator(),
-                        new Label("Zoom: "), zoomLabel
+                        new Label("Color: "), lineColorPicker, new Separator()
+//                        new Label("Zoom: "), zoomLabel
 
         );
 
@@ -64,5 +64,13 @@ public class PaintToolBar extends ToolBar {
         return TOOLS[usingTool];
     }
     public static void setZoomLabel(double zoomVal){ zoomLabel.setText(String.format("%.1f", zoomVal * 100) + "%"); }
+
+    public static Color getLineColor(){ return lineColorPicker.getValue(); }
+
+    public static void setLineColor(Color color){ lineColorPicker.setValue(color); }
+
+    public static int getLineWidth(){ return usingWidth; }
+
+
 
 }

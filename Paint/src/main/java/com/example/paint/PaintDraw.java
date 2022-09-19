@@ -6,6 +6,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeLineCap;
 
 import java.io.File;
@@ -59,11 +60,30 @@ public class PaintDraw extends Canvas {
         this.gc.strokeOval(x,y,w,h);
     }
 
-    public void drawLine(double x1, double y1, double x2, double y2){gc.strokeLine(x1, y1, x2, y2);}
-
-    public void drawPencil(double x1, double y1, double x2, double y2)
+    public void drawLine(double x1, double y1, double x2, double y2)
     {
+        gc.strokeLine(x1, y1, x2, y2);
+    }
 
+    public void drawDashedLine(double x1, double y1, double x2, double y2)
+    {
+       gc.setLineDashes(15);
+       gc.strokeLine(x1, y1, x2, y2);
+    }
+
+    public void drawPencilStart(double x1, double y1)
+    {
+        this.gc.setLineCap(StrokeLineCap.ROUND);
+        this.gc.beginPath();
+        this.gc.moveTo(x1, y1);
+        this.gc.stroke();
+    }
+
+    public void drawPencilEnd(double x1, double y1)
+    {
+        this.gc.setLineCap(StrokeLineCap.ROUND);
+        this.gc.lineTo(x1, y1);
+        this.gc.stroke();
     }
 
     public Image getRegion(double x1, double y1, double x2, double y2)
@@ -112,4 +132,11 @@ public class PaintDraw extends Canvas {
     {
         this.gc.clearRect(0,0, this.getWidth(), this.getHeight());
     }
+
+    public void setLineColor(Color color){gc.setStroke(color);}
+
+    public void setLineWidth(double width){this.gc.setLineWidth(width);}
+
+    public double getLineWidth(){return this.gc.getLineWidth();}
+
 }

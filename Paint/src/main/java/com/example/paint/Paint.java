@@ -30,13 +30,11 @@ public class Paint extends Application {
     private final static int windowHeight = 720; //Dictates the initial width of the application window
     public static Stage mainStage; //Creates the main Stage
     public static BorderPane pane = new BorderPane();
-    public static File file; //Creates a local variable called 'file' for file management
+
     public static Image white = new Image("C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\main\\resources\\images\\white.jpg");;
-    public static File saved_file; //Creates a variable called 'saved_file' for edited files
     public static Boolean Saving = true; //Boolean to determine if file is saved
     public static PaintToolBar toolbar = new PaintToolBar();
     public static PaintMenuBar menuBar = new PaintMenuBar(); //Creates a MenuBar
-    public static Line line = new Line();
     public static TabPane tabpane;
 
     @Override
@@ -44,15 +42,12 @@ public class Paint extends Application {
         Paint.mainStage = stage;
         Image icon = new Image("C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\main\\resources\\images\\icon.png"); //change to relative path instead of hard coded
 
-        tabpane = new TabPane();
-        //picture to canvas
-        VBox topMenu = new VBox(menuBar, toolbar);
 
         //layout setup
-
+        tabpane = new TabPane();
+        VBox topMenu = new VBox(menuBar, toolbar);
         pane.setCenter(tabpane);
         pane.setTop(topMenu);
-
         tabpane.getTabs().add(new PaintTabs());
         tabpane.getSelectionModel().selectFirst();
 
