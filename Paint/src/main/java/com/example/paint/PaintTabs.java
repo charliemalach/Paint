@@ -8,7 +8,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
-
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;

@@ -73,9 +73,11 @@ public class PaintDraw extends Canvas {
 
     public void drawPencilStart(double x1, double y1)
     {
+        gc.setLineDashes(0);
         this.gc.setLineCap(StrokeLineCap.ROUND);
         this.gc.beginPath();
         this.gc.moveTo(x1, y1);
+        this.gc.lineTo(x1, y1);
         this.gc.stroke();
     }
 
