@@ -13,11 +13,11 @@ public class PaintCanvas extends PaintDraw {
             switch(PaintToolBar.getTool())
             {
                 case("Line"):
-                case("Dotted Line"):
-                case("Rectangle"):
+                case("Dashed Line"):
                 case("Pencil"):
-                case("Ellipse"):
                 case("Square"):
+                case("Rectangle"):
+                case("Ellipse"):
                 case("Circle"):
                     setCursor(Cursor.DEFAULT);
                     break;
@@ -61,7 +61,7 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case("Circle"):
-
+                    this.drawCircle(x, y, x, y);
                     break;
 
                 case("Color Dropper"):
@@ -141,6 +141,7 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case("Circle"):
+                    this.drawCircle(x, y, x1, y1);
                     break;
 
                 case("Color Dropper"):

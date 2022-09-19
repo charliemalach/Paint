@@ -8,6 +8,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeLineCap;
 
 import java.io.File;
@@ -56,9 +57,17 @@ public class PaintDraw extends Canvas {
         double y = (y1 < y2 ? y1 : y2);
         double w = Math.abs(x1 - x2);
         double h = Math.abs(y1 - y2);
-        if(this.getFillShape())
-            this.gc.fillOval(x,y,w,h);
         this.gc.strokeOval(x,y,w,h);
+    }
+
+    public void drawCircle(double x1, double y1, double x2, double y2)
+    {
+        double x = (x1 < x2 ? x1 : x2);
+        double y = (y1 < y2 ? y1 : y2);
+        double w = Math.abs(x1 - x2);
+        double h = Math.abs(x1 - x2);
+        this.gc.strokeOval(x,y,w,h);
+        gc.strokeOval(x, y, w, h);
     }
 
     public void drawLine(double x1, double y1, double x2, double y2)

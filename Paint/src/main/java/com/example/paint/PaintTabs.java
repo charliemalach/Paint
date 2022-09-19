@@ -89,6 +89,14 @@ public class PaintTabs extends Tab {
         Paint.tabpane.getSelectionModel().select(temp);
     }
 
+    public static void newTab()
+    {
+        PaintTabs temp;
+        temp = new PaintTabs();
+        Paint.tabpane.getTabs().add(temp);
+        Paint.tabpane.getSelectionModel().select(temp);
+    }
+
 
     public void saveImage()
     {
