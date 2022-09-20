@@ -25,12 +25,19 @@ public class PaintMenuBar extends MenuBar {
         //This section adds the other main options to the menu bar
         getMenus().addAll(File, Edit, Options, Help);
 
+
+        MenuItem New = new MenuItem("New");
+        New.setMnemonicParsing(true);
+        New.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.CONTROL_DOWN));
+        New.setOnAction((ActionEvent event) -> {
+            PaintTabs.newTab();
+        });
+
+
         //'Open' menu item. Allows users to open a picture to the current project.
         MenuItem Open = new MenuItem("Open");
-        Open.setMnemonicParsing(
-                true);
-        Open.setAccelerator(
-                new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN)); //sets hotkey CTRL + O --> Open Program
+        Open.setMnemonicParsing(true);
+        Open.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN)); //sets hotkey CTRL + O --> Open Program
         Open.setOnAction((ActionEvent event) -> {
             PaintTabs.openImage();
         });
@@ -117,7 +124,7 @@ public class PaintMenuBar extends MenuBar {
         });
 
         //This section adds all the File options to the menu bar
-        File.getItems().addAll(Open, Save, SaveAs, separator, Exit);
+        File.getItems().addAll(New, Open, Save, SaveAs, separator, Exit);
         //This section adds the About option under Help
         Help.getItems().addAll(About, helpOption);
     }
