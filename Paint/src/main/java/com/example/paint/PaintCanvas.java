@@ -3,8 +3,7 @@ package com.example.paint;
 import javafx.scene.Cursor;
 
 public class PaintCanvas extends PaintDraw {
-    private double x, y, x1, y1; //variables used for line coordinates
-
+    private double x, y, x1, y1; //variables used for drawing
 
     public PaintCanvas() {
         super();
@@ -58,7 +57,7 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Circle"):
-
+                    this.drawCircle(x, y, x, y);
                     break;
 
                 case ("Color Dropper"):
@@ -84,19 +83,19 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Square"):
-
+                    //does nothing during drag event
                     break;
 
                 case ("Rectangle"):
-
+                    //does nothing during drag event
                     break;
 
                 case ("Ellipse"):
-
+                    //does nothing during drag event
                     break;
 
                 case ("Circle"):
-
+                    //does nothing during drag event
                     break;
 
                 case ("Color Dropper"):
@@ -136,6 +135,7 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Circle"):
+                    this.drawCircle(x, y, x1, y1);
                     break;
 
                 case ("Color Dropper"):

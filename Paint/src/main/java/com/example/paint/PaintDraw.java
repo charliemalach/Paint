@@ -50,12 +50,19 @@ public class PaintDraw extends Canvas {
     }
 
     public void drawEllipse(double x1, double y1, double x2, double y2) {
-        double x = (x1 < x2 ? x1 : x2);
-        double y = (y1 < y2 ? y1 : y2);
+        double x = (Math.min(x1, x2));
+        double y = (Math.min(y1, y2));
         double w = Math.abs(x1 - x2);
         double h = Math.abs(y1 - y2);
-        if (this.getFillShape())
-            this.gc.fillOval(x, y, w, h);
+        this.gc.strokeOval(x, y, w, h);
+    }
+
+    public void drawCircle(double x1, double y1, double x2, double y2)
+    {
+        double x = (Math.min(x1, x2));
+        double y = (Math.min(y1, y2));
+        double w = Math.abs(x1 - x2);
+        double h = Math.abs(x1 - x2);
         this.gc.strokeOval(x, y, w, h);
     }
 
