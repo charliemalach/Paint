@@ -61,11 +61,11 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Color Dropper"):
-                    PaintToolBar.setLineColor(this.eyeDropper(x, y));
+                    PaintToolBar.setLineColor(this.eyeDropper(x, y)); //changes cursor for color selector
                     break;
 
                 case ("None"):
-                    System.out.println("Nothing done");
+                    //does nothing
                     break;
             }
         });
@@ -99,11 +99,12 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Color Dropper"):
-                    setCursor(Cursor.CROSSHAIR);
+                    setCursor(Cursor.CROSSHAIR); //changes cursor for color selector
                     PaintToolBar.setLineColor(this.eyeDropper(x, y));
                     break;
 
                 case ("None"):
+                    //does nothing
                     break;
             }
         });
@@ -120,6 +121,7 @@ public class PaintCanvas extends PaintDraw {
                 case ("Dashed Line"):
                     this.drawDashedLine(x, y, x1, y1); //draws a dashed line from starting coordinates to new ending coordinates
                 case ("Pencil"):
+                    //does nothing, already drawn
                     break;
 
                 case ("Square"):
@@ -139,7 +141,7 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Color Dropper"):
-                    setCursor(Cursor.CROSSHAIR);
+                    setCursor(Cursor.CROSSHAIR); //changes cursor for color selector
                     PaintToolBar.setLineColor(this.eyeDropper(x, y));
                     break;
 

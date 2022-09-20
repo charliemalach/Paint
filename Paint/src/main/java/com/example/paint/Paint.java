@@ -1,12 +1,14 @@
 package com.example.paint;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
@@ -41,12 +43,12 @@ public class Paint extends Application {
 
 
         //layout setup
-        tabpane = new TabPane();
-        VBox topMenu = new VBox(menuBar, toolbar);
-        pane.setCenter(tabpane);
-        pane.setTop(topMenu);
-        tabpane.getTabs().add(new PaintTabs());
-        tabpane.getSelectionModel().selectFirst();
+        tabpane = new TabPane(); //add new tabpane
+        VBox topMenu = new VBox(menuBar, toolbar); //add menubar and toolbar to vbox object
+        pane.setCenter(tabpane); //set tab to center of the main pane
+        pane.setTop(topMenu); //set top menu to the top of the main pane
+        tabpane.getTabs().add(new PaintTabs()); //adds new paint tab to the tabpane
+//        tabpane.getSelectionModel().selectFirst();
 
         //starts scene
         Scene scene = new Scene(pane, windowLength, windowHeight); //creates a new scene with the main Grid Pane and the desired application window size.
@@ -54,6 +56,14 @@ public class Paint extends Application {
         stage.getIcons().add(icon);
         stage.setScene(scene); //sets the scene
         stage.show(); //shows the scene on screen
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() { //smart save
+            public void handle(WindowEvent we) {
+                if (tabpane.getTabs() != null) //if the tab is active / has stuff in it, prompt user to save
+                    Paint.getCurrentTab().quitProgram();
+                else
+                    stage.close();
+            }
+        });
     }
 
     public static void main(String[] args) {
