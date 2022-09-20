@@ -16,12 +16,12 @@ public class PaintCanvas extends PaintDraw {
                 case ("Ellipse"):
                 case ("Square"):
                 case ("Circle"):
+                case ("None"):
                     setCursor(Cursor.DEFAULT);
                     break;
                 case ("Color Dropper"):
                     setCursor(Cursor.CROSSHAIR);
                     break;
-                case ("None"):
             }
         });
 

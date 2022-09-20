@@ -1,6 +1,5 @@
 package com.example.paint;
 
-
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.Alert;
@@ -20,7 +19,6 @@ public class PaintTabs extends Tab {
 
     public Pane CanvasPane;
     private static FileChooser chooseFile;
-    private double scale;
     private String title;
     private File path;
     private PaintCanvas canvas;
@@ -28,23 +26,22 @@ public class PaintTabs extends Tab {
     private StackPane canvasStack;
 
 
-    public PaintTabs() {
+    public PaintTabs() { //sets the default tab 
         super();
         this.setText("New Tab");
         this.canvas = new PaintCanvas();
-        setUp();
+        tabStart();
     }
 
-    public PaintTabs(File file) {
+    public PaintTabs(File file) { //sets a new tab on image open 
         super();
         this.path = file;
         this.setText(path.getName());
         this.canvas = new PaintCanvas();
-        setUp();
+        tabStart();
     }
 
-    private void setUp() {
-        this.scale = 1;
+    private void tabStart() {
 
         chooseFile = new FileChooser();
         chooseFile.getExtensionFilters().addAll(
@@ -85,14 +82,14 @@ public class PaintTabs extends Tab {
 
     public static void newTab()
     {
-        PaintTabs temp;
-        temp = new PaintTabs();
-        Paint.tabpane.getTabs().add(temp);
-        Paint.tabpane.getSelectionModel().select(temp);
+        PaintTabs newTab;
+        newTab = new PaintTabs();
+        Paint.tabpane.getTabs().add(newTab);
+        Paint.tabpane.getSelectionModel().select(newTab);
     }
 
 
-    public void saveImage() {
+    public void saveImage() { //saves the image
         Image im = this.canvas.getRegion(0, 0, this.canvas.getWidth(), this.canvas.getHeight());
         try {
             if (this.path != null) {
@@ -104,13 +101,13 @@ public class PaintTabs extends Tab {
         }
     }
 
-    public void saveImageAs() {
+    public void saveImageAs() { //saves image as
         File path = chooseFile.showSaveDialog(Paint.mainStage);
         this.setFilePath(path);
         this.saveImage();
     }
 
-    public void quitProgram() //TODO: finish this function
+    public void quitProgram() //prompts the user to save before quitting program
     {
         if (this.path != null) {
             Alert exit = new Alert(Alert.AlertType.CONFIRMATION);
@@ -135,22 +132,6 @@ public class PaintTabs extends Tab {
         }
     }
 
-    public PaintCanvas getCanvas() {
-        return this.canvas;
-    }
-
-    public double getCanvasHeight() {
-        return this.canvas.getHeight();
-    }
-
-    public double getCanvasWidth() {
-        return this.canvas.getWidth();
-    }
-
-    public void drawImageAt(Image im, double x, double y) {
-        this.canvas.drawImageAt(im, x, y);
-    }
-
     public void setTitle(String title) {
         this.title = title;
         this.updateTitle();
@@ -166,25 +147,5 @@ public class PaintTabs extends Tab {
         else
             this.setText(this.title);
     }
-
-    public void setScale(double scale) {
-        this.scale = scale;
-    }
-
-    public double getScale() {
-        return this.scale;
-    }
-
-    public void resetScale() {
-        this.setScale(1);
-    }
-
-    public void updateScale() {
-        this.CanvasPane.setScaleX(this.getScale());
-        this.CanvasPane.setScaleY(this.getScale());
-        this.CanvasPane.setPrefSize(this.canvas.getWidth() * this.getScale() * 2, this.canvas.getHeight() * this.getScale() * 2);
-        PaintToolBar.setZoomLabel(this.getScale()); //?
-    }
-
 
 }

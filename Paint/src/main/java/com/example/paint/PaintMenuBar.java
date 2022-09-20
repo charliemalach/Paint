@@ -1,15 +1,10 @@
 package com.example.paint;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
-
-import java.util.Optional;
-
-import static com.example.paint.Paint.*;
 
 public class PaintMenuBar extends MenuBar {
 

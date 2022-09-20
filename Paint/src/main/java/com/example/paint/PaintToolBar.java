@@ -76,5 +76,4 @@ public class PaintToolBar extends ToolBar {
         return usingWidth;
     }
 
-
 }

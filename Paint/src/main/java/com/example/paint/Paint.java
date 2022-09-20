@@ -9,7 +9,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-
 import java.io.IOException;
 
 
@@ -30,8 +29,6 @@ public class Paint extends Application {
     public static Stage mainStage; //Creates the main Stage
     public static BorderPane pane = new BorderPane();
     public static Image white = new Image("C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\main\\resources\\images\\white.jpg");
-    ;
-    public static Boolean Saving = true; //Boolean to determine if file is saved
     public static PaintToolBar toolbar = new PaintToolBar();
     public static PaintMenuBar menuBar = new PaintMenuBar(); //Creates a MenuBar
     public static TabPane tabpane;
