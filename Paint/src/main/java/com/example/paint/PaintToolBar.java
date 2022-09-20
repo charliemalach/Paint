@@ -24,7 +24,7 @@ public class PaintToolBar extends ToolBar {
         usingWidth = 1; //default line width
         usingTool = 0; //default tool = "none"
 
-        toolBox = new ComboBox<>(FXCollections.observableArrayList(TOOLS));
+        toolBox = new ComboBox<>(FXCollections.observableArrayList(TOOLS)); 
         widthBox = new ComboBox<>(FXCollections.observableArrayList(LINE_WIDTH));
 
         lineColorPicker = new ColorPicker();
@@ -36,7 +36,7 @@ public class PaintToolBar extends ToolBar {
         //adds items to toolbox
         getItems().addAll(new Label("Tools: "), toolBox, new Separator(),
                 new Label("Line Width: "), widthBox,
-                new Label("Color: "), lineColorPicker, new Separator()
+                new Label("Line Color: "), lineColorPicker, new Separator()
 //                        new Label("Zoom: "), zoomLabel
 
         );

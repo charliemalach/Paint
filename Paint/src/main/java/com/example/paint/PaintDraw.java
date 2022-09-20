@@ -1,7 +1,6 @@
 package com.example.paint;
 
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Cursor;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -61,13 +60,13 @@ public class PaintDraw extends Canvas {
     }
 
     public void drawLine(double x1, double y1, double x2, double y2) {
-        gc.strokeLine(x1, y1, x2, y2);
+        gc.setLineDashes(0);
+        gc.strokeLine(x1, y1, x2, y2); //draws line from x1, y1 to x2, y2
     }
 
     public void drawDashedLine(double x1, double y1, double x2, double y2) {
-
-        gc.setLineDashes(15);
-        gc.strokeLine(x1, y1, x2, y2);
+        gc.setLineDashes(15); //sets dashes in the line
+        gc.strokeLine(x1, y1, x2, y2); //draws dashed line from x1, y1 to x2, y2
     }
 
     public void drawPencilStart(double x1, double y1) {
