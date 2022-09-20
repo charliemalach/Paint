@@ -3,21 +3,24 @@
 Charlie's Pain(t) Version 1.0.2, 9/19/22
 
 New Features:
-	- Ability to draw a line on the canvas & pictures
-	- Ability to choose color
-	- Ability to change line size & color
-	- Ability to save image with graphical changes
-	- Ability to resize canvas upon opening new picture
-	- Added scroll bar
-	- Added 'Help' menu item with 'Help' and 'About' options
+	- Ability to draw (line, dashed line, pencil, rectangle, square, circle, ellipse)
+	- Ability to change size & color of drawn object
+	- Ability to save image with drawn changes
+	- Ability to select color from any specific pixel on the canvas
+	- Ability to handle multiple image types (png, jpg, bmp)
+	- Added keyboard shortcuts for menu items
+	- Added tabs to handle multiple images within the program
+	- Added 'smart save' prompting users to save upon closing unsaved project
+	- Added text label next to colors (hex for some, color name for more common)
+
 
 Known Issues:
 	- N/A
 
 Expected Next Sprint:
-	- Ability to open multiple pictures
-	- Ability to open multiple windows (tabs)
-	- Ability to draw shapes
+	- Ability to fill color on the shape
+	- Paint Bucket?
+	- Gradient tool?
 	- Ability to erase from screen
 
 Links:
