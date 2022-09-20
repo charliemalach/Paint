@@ -3,7 +3,6 @@ package com.example.paint;
 
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ScrollPane;
@@ -17,8 +16,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
-import static com.example.paint.Paint.white;
-
 public class PaintTabs extends Tab {
 
     public Pane CanvasPane;
@@ -31,15 +28,14 @@ public class PaintTabs extends Tab {
     private StackPane canvasStack;
 
 
-
-    public PaintTabs(){
+    public PaintTabs() {
         super();
         this.setText("New Tab");
         this.canvas = new PaintCanvas();
         setUp();
     }
 
-    public PaintTabs(File file){
+    public PaintTabs(File file) {
         super();
         this.path = file;
         this.setText(path.getName());
@@ -47,7 +43,7 @@ public class PaintTabs extends Tab {
         setUp();
     }
 
-    private void setUp(){
+    private void setUp() {
         this.scale = 1;
 
         chooseFile = new FileChooser();
@@ -62,17 +58,15 @@ public class PaintTabs extends Tab {
         this.canvasStack.getChildren().addAll(CanvasPane);
         this.sp = new ScrollPane(this.canvasStack);
         this.setContent(sp);
-        this.sp.setPrefViewportWidth(this.canvas.getWidth()/2);
-        this.sp.setPrefViewportHeight(this.canvas.getHeight()/2);
+        this.sp.setPrefViewportWidth(this.canvas.getWidth() / 2);
+        this.sp.setPrefViewportHeight(this.canvas.getHeight() / 2);
     }
 
-    public void setFilePath(File path)
-    {
+    public void setFilePath(File path) {
         this.path = path;
     }
 
-    public File getFilePath()
-    {
+    public File getFilePath() {
         return this.path;
     }
 
@@ -90,21 +84,19 @@ public class PaintTabs extends Tab {
     }
 
 
-    public void saveImage()
-    {
+    public void saveImage() {
         Image im = this.canvas.getRegion(0, 0, this.canvas.getWidth(), this.canvas.getHeight());
-        try{
-            if(this.path != null){
+        try {
+            if (this.path != null) {
                 ImageIO.write(SwingFXUtils.fromFXImage(im, null), "png", this.path);
                 this.setTitle(this.getFilePath().getName());
             }
-        }catch(IOException ex) {
+        } catch (IOException ex) {
             System.out.println(ex.toString());
         }
     }
 
-    public void saveImageAs()
-    {
+    public void saveImageAs() {
         File path = chooseFile.showSaveDialog(Paint.mainStage);
         this.setFilePath(path);
         this.saveImage();
@@ -112,8 +104,7 @@ public class PaintTabs extends Tab {
 
     public void quitProgram() //TODO: finish this function
     {
-    if(this.path != null)
-        {
+        if (this.path != null) {
             Alert exit = new Alert(Alert.AlertType.CONFIRMATION);
             exit.setTitle("File has NOT been Saved");
             String text = "Would you like to save? (Click Cancel to close without saving.)";
@@ -136,64 +127,54 @@ public class PaintTabs extends Tab {
         }
     }
 
-    public PaintCanvas getCanvas()
-    {
+    public PaintCanvas getCanvas() {
         return this.canvas;
     }
 
-    public double getCanvasHeight()
-    {
+    public double getCanvasHeight() {
         return this.canvas.getHeight();
     }
 
-    public double getCanvasWidth()
-    {
+    public double getCanvasWidth() {
         return this.canvas.getWidth();
     }
 
-    public void drawImageAt(Image im, double x, double y)
-    {
+    public void drawImageAt(Image im, double x, double y) {
         this.canvas.drawImageAt(im, x, y);
     }
 
-    public void setTitle(String title)
-    {
+    public void setTitle(String title) {
         this.title = title;
         this.updateTitle();
     }
 
-    public File getPath()
-    {
+    public File getPath() {
         return this.path;
     }
 
-    public void updateTitle()
-    {
-        if(this.path != null)
+    public void updateTitle() {
+        if (this.path != null)
             this.title = this.path.getName();
         else
             this.setText(this.title);
     }
 
-    public void setScale(double scale)
-    {
+    public void setScale(double scale) {
         this.scale = scale;
     }
 
-    public double getScale(){
+    public double getScale() {
         return this.scale;
     }
 
-    public void resetScale()
-    {
+    public void resetScale() {
         this.setScale(1);
     }
 
-    public void updateScale()
-    {
+    public void updateScale() {
         this.CanvasPane.setScaleX(this.getScale());
         this.CanvasPane.setScaleY(this.getScale());
-        this.CanvasPane.setPrefSize(this.canvas.getWidth()*this.getScale()* 2, this.canvas.getHeight()*this.getScale()*2);
+        this.CanvasPane.setPrefSize(this.canvas.getWidth() * this.getScale() * 2, this.canvas.getHeight() * this.getScale() * 2);
         PaintToolBar.setZoomLabel(this.getScale()); //?
     }
 

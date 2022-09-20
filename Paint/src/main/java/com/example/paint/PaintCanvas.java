@@ -6,25 +6,23 @@ public class PaintCanvas extends PaintDraw {
     private double x, y, x1, y1; //variables used for line coordinates
 
 
-    public PaintCanvas()
-    {
+    public PaintCanvas() {
         super();
         setOnMouseMoved(e -> {
-            switch(PaintToolBar.getTool())
-            {
-                case("Line"):
-                case("Dotted Line"):
-                case("Rectangle"):
-                case("Pencil"):
-                case("Ellipse"):
-                case("Square"):
-                case("Circle"):
+            switch (PaintToolBar.getTool()) {
+                case ("Line"):
+                case ("Dotted Line"):
+                case ("Rectangle"):
+                case ("Pencil"):
+                case ("Ellipse"):
+                case ("Square"):
+                case ("Circle"):
                     setCursor(Cursor.DEFAULT);
                     break;
-                case("Color Dropper"):
+                case ("Color Dropper"):
                     setCursor(Cursor.CROSSHAIR);
                     break;
-                case("None"):
+                case ("None"):
             }
         });
 
@@ -34,41 +32,40 @@ public class PaintCanvas extends PaintDraw {
             y = e.getY();
             this.setLineColor(PaintToolBar.getLineColor()); //gets the desired line color from PaintToolBar class
             this.setLineWidth(PaintToolBar.getLineWidth()); //gets the desired line width from PaintToolBar class
-            switch(PaintToolBar.getTool())
-            {
-                case("Line"):
+            switch (PaintToolBar.getTool()) {
+                case ("Line"):
                     this.drawLine(x, y, x, y); //draws a line at the beginning coordinates
                     break;
 
-                case("Dashed Line"):
+                case ("Dashed Line"):
                     this.drawDashedLine(x, y, x, y); //draws a dashed line at the beginning coordinates
                     break;
 
-                case("Pencil"):
+                case ("Pencil"):
                     this.drawPencilStart(x, y); //draws the beginning pencil mark at the beginning coordinates
                     break;
 
-                case("Square"):
+                case ("Square"):
                     this.drawSquare(x, y, x, y); //draws a square at the beginning coordinates
                     break;
 
-                case("Rectangle"):
+                case ("Rectangle"):
                     this.drawRect(x, y, x, y); //draws a rectangle at the beginning coordinates
                     break;
 
-                case("Ellipse"):
+                case ("Ellipse"):
                     this.drawEllipse(x, y, x, y); //draws an ellipse at the beginning coordinates
                     break;
 
-                case("Circle"):
+                case ("Circle"):
 
                     break;
 
-                case("Color Dropper"):
-                    PaintToolBar.setLineColor(this.eyeDropper(x,y));
+                case ("Color Dropper"):
+                    PaintToolBar.setLineColor(this.eyeDropper(x, y));
                     break;
 
-                case("None"):
+                case ("None"):
                     System.out.println("Nothing done");
                     break;
             }
@@ -78,37 +75,36 @@ public class PaintCanvas extends PaintDraw {
         setOnMouseDragged(e -> {
             x1 = e.getX();
             y1 = e.getY();
-            switch(PaintToolBar.getTool())
-            {
-                case("Line"):
+            switch (PaintToolBar.getTool()) {
+                case ("Line"):
                     break;
 
-                case("Pencil"):
+                case ("Pencil"):
                     this.drawPencilEnd(x1, y1); //draws a pencil stroke to the end coordinates
                     break;
 
-                case("Square"):
+                case ("Square"):
 
                     break;
 
-                case("Rectangle"):
+                case ("Rectangle"):
 
                     break;
 
-                case("Ellipse"):
+                case ("Ellipse"):
 
                     break;
 
-                case("Circle"):
+                case ("Circle"):
 
                     break;
 
-                case("Color Dropper"):
+                case ("Color Dropper"):
                     setCursor(Cursor.CROSSHAIR);
-                    PaintToolBar.setLineColor(this.eyeDropper(x,y));
+                    PaintToolBar.setLineColor(this.eyeDropper(x, y));
                     break;
 
-                case("None"):
+                case ("None"):
                     break;
             }
         });
@@ -117,38 +113,37 @@ public class PaintCanvas extends PaintDraw {
         setOnMouseReleased(e -> {
             x1 = e.getX();
             y1 = e.getY();
-            switch(PaintToolBar.getTool())
-            {
-                case("Line"):
+            switch (PaintToolBar.getTool()) {
+                case ("Line"):
                     this.drawLine(x, y, x1, y1); //draws a line from starting coordinates to new ending coordinates
                     break;
 
-                case("Dashed Line"):
+                case ("Dashed Line"):
                     this.drawDashedLine(x, y, x1, y1); //draws a dashed line from starting coordinates to new ending coordinates
-                case("Pencil"):
+                case ("Pencil"):
                     break;
 
-                case("Square"):
+                case ("Square"):
                     this.drawSquare(x, y, x1, y1); //draws a square from the starting coordinates to the new ending coordinates
                     break;
 
-                case("Rectangle"):
+                case ("Rectangle"):
                     this.drawRect(x, y, x1, y1); //draws a rectangle from the starting coordinates to the new ending coordinates
                     break;
 
-                case("Ellipse"):
+                case ("Ellipse"):
                     this.drawEllipse(x, y, x1, y1); //draws an ellipse from the starting coordinates to the new ending coordinates
                     break;
 
-                case("Circle"):
+                case ("Circle"):
                     break;
 
-                case("Color Dropper"):
+                case ("Color Dropper"):
                     setCursor(Cursor.CROSSHAIR);
-                    PaintToolBar.setLineColor(this.eyeDropper(x,y));
+                    PaintToolBar.setLineColor(this.eyeDropper(x, y));
                     break;
 
-                case("None"):
+                case ("None"):
                     System.out.println("Nothing done");
                     break;
             }

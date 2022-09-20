@@ -6,9 +6,8 @@ import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 
 
-
 public class PaintToolBar extends ToolBar {
-    public final static String[] TOOLS = {"None", "Line", "Dashed Line", "Pencil", "Square", "Rectangle", "Ellipse" , "Circle", "Color Dropper"};
+    public final static String[] TOOLS = {"None", "Line", "Dashed Line", "Pencil", "Square", "Rectangle", "Ellipse", "Circle", "Color Dropper"};
     private static final Integer[] LINE_WIDTH = {1, 2, 3, 5, 10, 15, 20, 25, 50, 100};
     private static ComboBox<String> toolBox;
     private static ComboBox<Integer> widthBox;
@@ -36,8 +35,8 @@ public class PaintToolBar extends ToolBar {
 
         //adds items to toolbox
         getItems().addAll(new Label("Tools: "), toolBox, new Separator(),
-                        new Label("Line Width: "), widthBox,
-                        new Label("Color: "), lineColorPicker, new Separator()
+                new Label("Line Width: "), widthBox,
+                new Label("Color: "), lineColorPicker, new Separator()
 //                        new Label("Zoom: "), zoomLabel
 
         );
@@ -55,18 +54,27 @@ public class PaintToolBar extends ToolBar {
             System.out.println("Width Selected: " + usingWidth);
         });
     }
+
     public static String getTool() //returns current tool
     {
         return TOOLS[usingTool];
     }
-    public static void setZoomLabel(double zoomVal){ zoomLabel.setText(String.format("%.1f", zoomVal * 100) + "%"); }
 
-    public static Color getLineColor(){ return lineColorPicker.getValue(); }
+    public static void setZoomLabel(double zoomVal) {
+        zoomLabel.setText(String.format("%.1f", zoomVal * 100) + "%");
+    }
 
-    public static void setLineColor(Color color){ lineColorPicker.setValue(color); }
+    public static Color getLineColor() {
+        return lineColorPicker.getValue();
+    }
 
-    public static int getLineWidth(){ return usingWidth; }
+    public static void setLineColor(Color color) {
+        lineColorPicker.setValue(color);
+    }
 
+    public static int getLineWidth() {
+        return usingWidth;
+    }
 
 
 }

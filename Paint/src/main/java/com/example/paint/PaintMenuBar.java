@@ -6,7 +6,9 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
+
 import java.util.Optional;
+
 import static com.example.paint.Paint.*;
 
 public class PaintMenuBar extends MenuBar {
@@ -38,7 +40,7 @@ public class PaintMenuBar extends MenuBar {
         Save.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN)); //sets hotkey CTRL + S --> Save
         Save.setMnemonicParsing(true);
         Save.setOnAction((ActionEvent event) -> {
-            if(Paint.getCurrentTab().getFilePath() == null)
+            if (Paint.getCurrentTab().getFilePath() == null)
                 Paint.getCurrentTab().saveImageAs();
             else
                 Paint.getCurrentTab().saveImage();
@@ -62,14 +64,14 @@ public class PaintMenuBar extends MenuBar {
                 true);
         Exit.setAccelerator(
                 new KeyCodeCombination(KeyCode.ESCAPE)); //sets hotkey ESC --> Ends program
-        Exit.setOnAction((ActionEvent event) ->{
+        Exit.setOnAction((ActionEvent event) -> {
             try {
                 Paint.getCurrentTab().quitProgram();
             } catch (Exception exception) {
                 System.out.println(exception);
             }
         });
-        
+
         //Creates the About section in the Help menu
         MenuItem About = new Menu("About");
         About.setMnemonicParsing(
@@ -77,15 +79,15 @@ public class PaintMenuBar extends MenuBar {
         About.setAccelerator(
                 new KeyCodeCombination(KeyCode.F1, KeyCombination.SHIFT_DOWN)); //sets hotkey Shift + F1 --> opens about tab
         About.setOnAction(e -> {
-                    Alert aboutPaint = new Alert(Alert.AlertType.INFORMATION);
-                    aboutPaint.setTitle("About");
-                    aboutPaint.setHeaderText("About Pain(t) v1.0.1");
-                    String text = "Pain(t) - v1.0.1 is a JavaFX image handling project created by Charlie Malachinski. " +
-                                    "This program currently allows users to upload, save and save as images. These images can be drawn upon and saved with the new markings. " +
-                                    "\n" + "\n" +
-                                    "More features will come in the future.";
-                    aboutPaint.setContentText(text);
-                    aboutPaint.showAndWait();
+            Alert aboutPaint = new Alert(Alert.AlertType.INFORMATION);
+            aboutPaint.setTitle("About");
+            aboutPaint.setHeaderText("About Pain(t) v1.0.1");
+            String text = "Pain(t) - v1.0.1 is a JavaFX image handling project created by Charlie Malachinski. " +
+                    "This program currently allows users to upload, save and save as images. These images can be drawn upon and saved with the new markings. " +
+                    "\n" + "\n" +
+                    "More features will come in the future.";
+            aboutPaint.setContentText(text);
+            aboutPaint.showAndWait();
         });
 
         MenuItem helpOption = new Menu("Help");
@@ -98,21 +100,21 @@ public class PaintMenuBar extends MenuBar {
             helpPaint.setTitle("Help");
             helpPaint.setHeaderText("Q&A - Help for Pain(t)");
             String text =
-                            "Q: How do I open an image?\n" +
+                    "Q: How do I open an image?\n" +
                             "A: File -> Open -> Select desired image.\n" +
-                                    "\n" +
+                            "\n" +
                             "Q: How do I change the size of the line?\n" +
                             "A: Select desired width from the 'Line Width' drop down.\n" +
-                                    "\n" +
+                            "\n" +
                             "Q: What are the keyboard shortcuts for the application?\n" +
                             "A: The following are the shortcuts used by the application: \n" +
                             "   'Ctrl + O' is used to open an image\n" +
                             "   'Ctrl + S is used to save an image\n" +
                             "   'Ctrl + Shift + S is used to save image as\n" +
-                            "   'Esc' is used to exit the program.\n" ;
+                            "   'Esc' is used to exit the program.\n";
             helpPaint.setContentText(text);
             helpPaint.showAndWait();
-       });
+        });
 
         //This section adds all the File options to the menu bar
         File.getItems().addAll(Open, Save, SaveAs, separator, Exit);
