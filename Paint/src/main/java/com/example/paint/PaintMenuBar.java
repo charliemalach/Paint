@@ -20,7 +20,6 @@ public class PaintMenuBar extends MenuBar {
         //This section adds the other main options to the menu bar
         getMenus().addAll(File, Edit, Options, Help);
 
-
         MenuItem New = new MenuItem("New");
         New.setMnemonicParsing(true);
         New.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.CONTROL_DOWN));
