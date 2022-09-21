@@ -23,33 +23,33 @@ public class PaintDraw extends Canvas {
     public void rectTool(double x1, double y1, double x2, double y2) { //draws a rectangle to the canvas with the given parameters
         double x = (Math.min(x1, x2)); //set x to the smaller of the two values to map to bottom left
         double y = (Math.min(y1, y2));
-        double w = Math.abs(x1 - x2);   //abs val of the two x's = length of x
-        double h = Math.abs(y1 - y2);
-        this.gc.strokeRect(x, y, w, h);
+        double width = Math.abs(x1 - x2);   //abs val of the two x's = length of x
+        double height = Math.abs(y1 - y2);
+        this.gc.strokeRect(x, y, width, height);
     }
 
     public void squareTool(double x1, double y1, double x2, double y2) { //draws a square to the canvas with the given parameters
         double x = (Math.min(x1, x2)); //set x to the smaller of the two values to map to bottom left
         double y = (Math.min(y1, y2));
-        double w = Math.abs(x1 - x2);   //abs val of the two x's = length of x
-        double h = Math.abs(x1 - x2);
-        this.gc.strokeRect(x, y, w, h);
+        double width = Math.abs(x1 - x2);   //abs val of the two x's = length of x
+        double height = Math.abs(x1 - x2);
+        this.gc.strokeRect(x, y, width, height);
     }
 
     public void ellipseTool(double x1, double y1, double x2, double y2) { //draws an ellipse to the canvas with the given parameters
         double x = (Math.min(x1, x2));
         double y = (Math.min(y1, y2));
-        double w = Math.abs(x1 - x2);
-        double h = Math.abs(y1 - y2);
-        this.gc.strokeOval(x, y, w, h);
+        double width = Math.abs(x1 - x2);
+        double height = Math.abs(y1 - y2);
+        this.gc.strokeOval(x, y, width, height);
     }
 
     public void circleTool(double x1, double y1, double x2, double y2) { //draws a circle to the canvas with the given parameters
         double x = (Math.min(x1, x2));
         double y = (Math.min(y1, y2));
-        double w = Math.abs(x1 - x2);
-        double h = Math.abs(x1 - x2);
-        this.gc.strokeOval(x, y, w, h);
+        double width = Math.abs(x1 - x2);
+        double height = Math.abs(x1 - x2);
+        this.gc.strokeOval(x, y, width, height);
     }
 
     public void lineTool(double x1, double y1, double x2, double y2) { //draws a line to the canvas with the given parameters
