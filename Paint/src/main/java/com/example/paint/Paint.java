@@ -61,6 +61,8 @@ public class Paint extends Application {
                     stage.close();
             }
         });
+
+
     }
 
     public static void main(String[] args) {

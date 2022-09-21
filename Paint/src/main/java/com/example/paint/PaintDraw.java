@@ -11,6 +11,8 @@ import javafx.scene.shape.StrokeLineCap;
 
 import java.io.File;
 
+import static com.example.paint.Paint.mainStage;
+
 public class PaintDraw extends Canvas {
 
     private GraphicsContext gc;
@@ -21,7 +23,7 @@ public class PaintDraw extends Canvas {
         this.gc.setLineCap(StrokeLineCap.ROUND);
     }
 
-    public void drawRect(double x1, double y1, double x2, double y2) {
+    public void rectTool(double x1, double y1, double x2, double y2) {
         double x = (Math.min(x1, x2)); //set x to the smaller of the two values to map to bottom left
         double y = (Math.min(y1, y2));
         double w = Math.abs(x1 - x2);   //abs val of the two x's = length of x
@@ -29,7 +31,7 @@ public class PaintDraw extends Canvas {
         this.gc.strokeRect(x, y, w, h);
     }
 
-    public void drawSquare(double x1, double y1, double x2, double y2)
+    public void squareTool(double x1, double y1, double x2, double y2)
     {
         double x = (Math.min(x1, x2)); //set x to the smaller of the two values to map to bottom left
         double y = (Math.min(y1, y2));
@@ -38,7 +40,7 @@ public class PaintDraw extends Canvas {
         this.gc.strokeRect(x, y, w, h);
     }
 
-    public void drawEllipse(double x1, double y1, double x2, double y2) {
+    public void ellipseTool(double x1, double y1, double x2, double y2) {
         double x = (Math.min(x1, x2));
         double y = (Math.min(y1, y2));
         double w = Math.abs(x1 - x2);
@@ -46,7 +48,7 @@ public class PaintDraw extends Canvas {
         this.gc.strokeOval(x, y, w, h);
     }
 
-    public void drawCircle(double x1, double y1, double x2, double y2)
+    public void circleTool(double x1, double y1, double x2, double y2)
     {
         double x = (Math.min(x1, x2));
         double y = (Math.min(y1, y2));
@@ -55,12 +57,12 @@ public class PaintDraw extends Canvas {
         this.gc.strokeOval(x, y, w, h);
     }
 
-    public void drawLine(double x1, double y1, double x2, double y2) {
+    public void lineTool(double x1, double y1, double x2, double y2) {
         gc.setLineDashes(0);
         gc.strokeLine(x1, y1, x2, y2); //draws line from x1, y1 to x2, y2
     }
 
-    public void drawDashedLine(double x1, double y1, double x2, double y2) {
+    public void dashedLineTool(double x1, double y1, double x2, double y2) {
         gc.setLineDashes(15); //sets dashes in the line
         gc.strokeLine(x1, y1, x2, y2); //draws dashed line from x1, y1 to x2, y2
     }
