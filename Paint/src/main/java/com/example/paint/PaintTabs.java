@@ -42,7 +42,6 @@ public class PaintTabs extends Tab {
     }
 
     private void tabStart() {
-
         chooseFile = new FileChooser();
         chooseFile.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("PNG", "*.png"),
@@ -50,10 +49,14 @@ public class PaintTabs extends Tab {
                 new FileChooser.ExtensionFilter("Bitmap", "*.bmp")
         );
 
+
+        //handles the canvas and the new stack
         this.CanvasPane = new Pane(canvas);
         this.canvasStack = new StackPane();
         this.canvasStack.getChildren().addAll(CanvasPane);
-        this.sp = new ScrollPane(this.canvasStack);
+
+        //handles the scroll pane on the canvas
+        this.sp = new ScrollPane(this.canvasStack); //creates a scroll pane
         this.setContent(sp);
         this.sp.setPrefViewportWidth(this.canvas.getWidth() / 2);
         this.sp.setPrefViewportHeight(this.canvas.getHeight() / 2);
@@ -67,7 +70,7 @@ public class PaintTabs extends Tab {
         return this.path;
     }
 
-    public static void openImage() {
+    public static void openImage() { //uses file chooser to open an image stored in path and displays it on the canvas
         File path = chooseFile.showOpenDialog(Paint.mainStage);
         PaintTabs temp;
         if (path == null)
@@ -80,14 +83,13 @@ public class PaintTabs extends Tab {
         Paint.tabpane.getSelectionModel().select(temp);
     }
 
-    public static void newTab()
+    public static void newTab() //opens a new
     {
         PaintTabs newTab;
         newTab = new PaintTabs();
         Paint.tabpane.getTabs().add(newTab);
         Paint.tabpane.getSelectionModel().select(newTab);
     }
-
 
     public void saveImage() { //saves the image
         Image im = this.canvas.getRegion(0, 0, this.canvas.getWidth(), this.canvas.getHeight());
@@ -97,7 +99,7 @@ public class PaintTabs extends Tab {
                 this.setTitle(this.getFilePath().getName());
             }
         } catch (IOException ex) {
-            System.out.println(ex.toString());
+            System.out.println(ex);
         }
     }
 
@@ -132,7 +134,7 @@ public class PaintTabs extends Tab {
         }
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title) { //sets the title of the current tab
         this.title = title;
         this.updateTitle();
     }
@@ -141,7 +143,7 @@ public class PaintTabs extends Tab {
         return this.path;
     }
 
-    public void updateTitle() {
+    public void updateTitle() { //updates the title of the current tab to the name of the path
         if (this.path != null)
             this.title = this.path.getName();
         else
