@@ -33,6 +33,8 @@ public class Paint extends Application {
     public static PaintMenuBar menuBar = new PaintMenuBar(); //Creates a MenuBar
     public static TabPane tabpane;
 
+    public static Scene scene;
+
     @Override
     public void start(Stage stage) throws IOException {
         Paint.mainStage = stage;
@@ -48,7 +50,7 @@ public class Paint extends Application {
 //        tabpane.getSelectionModel().selectFirst();
 
         //starts scene
-        Scene scene = new Scene(pane, windowLength, windowHeight); //creates a new scene with the main Grid Pane and the desired application window size.
+        scene = new Scene(pane, windowLength, windowHeight); //creates a new scene with the main Grid Pane and the desired application window size.
         stage.setTitle(TITLE + " - " + VERSION); //sets the title
         stage.getIcons().add(icon);
         stage.setScene(scene); //sets the scene
@@ -61,7 +63,6 @@ public class Paint extends Application {
                     stage.close();
             }
         });
-
 
     }
 

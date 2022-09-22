@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
+import static com.example.paint.Paint.mainStage;
 
 public class PaintTabs extends Tab {
 
@@ -24,7 +25,6 @@ public class PaintTabs extends Tab {
     private PaintCanvas canvas;
     private ScrollPane sp;
     private StackPane canvasStack;
-
 
     public PaintTabs() { //sets the default tab 
         super();
@@ -73,13 +73,12 @@ public class PaintTabs extends Tab {
     }
 
     public static void openImage() { //uses file chooser to open an image stored in path and displays it on the canvas
-        File path = chooseFile.showOpenDialog(Paint.mainStage);
+        File path = chooseFile.showOpenDialog(mainStage);
         PaintTabs temp;
         if (path == null)
             temp = new PaintTabs();
         else
             temp = new PaintTabs(path);
-
         temp.canvas.drawImage(path);
         Paint.tabpane.getTabs().add(temp);
         Paint.tabpane.getSelectionModel().select(temp);
@@ -106,7 +105,7 @@ public class PaintTabs extends Tab {
     }
 
     public void saveImageAs() { //saves image as
-        File path = chooseFile.showSaveDialog(Paint.mainStage);
+        File path = chooseFile.showSaveDialog(mainStage);
         this.setFilePath(path);
         this.saveImage();
     }

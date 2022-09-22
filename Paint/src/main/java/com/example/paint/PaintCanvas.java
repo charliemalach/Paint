@@ -9,9 +9,7 @@ public class PaintCanvas extends PaintDraw {
 
     public PaintCanvas() {
         super();
-        this.autosize();
-        if(this.getWidth() > mainStage.getWidth())
-            this.setWidth(mainStage.getWidth());
+        
 
         setOnMouseMoved(e -> {
             switch (PaintToolBar.getTool()) {
