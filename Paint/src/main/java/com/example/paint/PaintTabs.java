@@ -46,7 +46,9 @@ public class PaintTabs extends Tab {
         chooseFile.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("PNG", "*.png"),
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-                new FileChooser.ExtensionFilter("Bitmap", "*.bmp")
+                new FileChooser.ExtensionFilter("Bitmap", "*.bmp"),
+                new FileChooser.ExtensionFilter("Jpeg", "*.jpeg")
+
         );
 
 
