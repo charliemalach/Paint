@@ -48,9 +48,7 @@ public class PaintTabs extends Tab {
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),
                 new FileChooser.ExtensionFilter("Bitmap", "*.bmp"),
                 new FileChooser.ExtensionFilter("Jpeg", "*.jpeg")
-
         );
-
 
         //handles the canvas and the new stack
         this.CanvasPane = new Pane(canvas);
@@ -150,5 +148,4 @@ public class PaintTabs extends Tab {
         else
             this.setText(this.title);
     }
-
 }

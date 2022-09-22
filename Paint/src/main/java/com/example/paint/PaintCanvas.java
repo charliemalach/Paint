@@ -2,14 +2,13 @@ package com.example.paint;
 
 import javafx.scene.Cursor;
 
-import static com.example.paint.Paint.mainStage;
 
 public class PaintCanvas extends PaintDraw {
     private double x, y, x1, y1; //variables used for drawing
 
     public PaintCanvas() {
         super();
-        
+
 
         setOnMouseMoved(e -> {
             switch (PaintToolBar.getTool()) {
