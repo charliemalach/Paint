@@ -41,13 +41,6 @@ public class PaintTabs extends Tab {
         tabStart();
     }
 
-    public void resizeCanvas()
-    {
-        this.canvas.setHeight(mainStage.getHeight());
-        this.canvas.setWidth(mainStage.getWidth());
-
-    }
-
 
     private void tabStart() {
         chooseFile = new FileChooser();
