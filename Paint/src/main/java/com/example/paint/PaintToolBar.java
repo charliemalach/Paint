@@ -36,7 +36,6 @@ public class PaintToolBar extends ToolBar {
         getItems().addAll(new Label("Tools: "), toolBox, new Separator(),
                 new Label("Line Width: "), widthBox,
                 new Label("Line Color: "), lineColorPicker, new Separator()
-//                        new Label("Zoom: "), zoomLabel
 
         );
 

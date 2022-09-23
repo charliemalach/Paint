@@ -24,11 +24,10 @@ import java.io.IOException;
 public class Paint extends Application {
     private final static String TITLE = "Malachinski - Pain(t)"; //Name of the application
     private final static String VERSION = "v1.0.1";
-    private final static int windowLength = 1280; //Dictates the initial length of the application window
+    private final static int windowWidth = 1280; //Dictates the initial length of the application window
     private final static int windowHeight = 720; //Dictates the initial width of the application window
     public static Stage mainStage; //Creates the main Stage
     public static BorderPane pane = new BorderPane();
-    public static Image white = new Image("C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\main\\resources\\images\\white.jpg");
     public static PaintToolBar toolbar = new PaintToolBar();
     public static PaintMenuBar menuBar = new PaintMenuBar(); //Creates a MenuBar
     public static TabPane tabpane;
@@ -37,6 +36,7 @@ public class Paint extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+
         Paint.mainStage = stage;
         Image icon = new Image("C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\main\\resources\\images\\icon.png"); //change to relative path instead of hard coded
 
@@ -50,11 +50,12 @@ public class Paint extends Application {
 //        tabpane.getSelectionModel().selectFirst();
 
         //starts scene
-        scene = new Scene(pane, windowLength, windowHeight); //creates a new scene with the main Grid Pane and the desired application window size.
+        scene = new Scene(pane, windowWidth, windowHeight); //creates a new scene with the main Grid Pane and the desired application window size.
         stage.setTitle(TITLE + " - " + VERSION); //sets the title
         stage.getIcons().add(icon);
         stage.setScene(scene); //sets the scene
         stage.show(); //shows the scene on screen
+
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() { //smart save
             public void handle(WindowEvent we) {
                 if (tabpane.getTabs() != null) //if the tab is active / has stuff in it, prompt user to save
@@ -63,7 +64,6 @@ public class Paint extends Application {
                     stage.close();
             }
         });
-
     }
 
     public static void main(String[] args) {

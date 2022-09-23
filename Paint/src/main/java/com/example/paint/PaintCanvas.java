@@ -8,23 +8,11 @@ public class PaintCanvas extends PaintDraw {
 
     public PaintCanvas() {
         super();
-
-
         setOnMouseMoved(e -> {
             switch (PaintToolBar.getTool()) {
-                case ("Line"):
-                case ("Dotted Line"):
-                case ("Rectangle"):
-                case ("Pencil"):
-                case ("Ellipse"):
-                case ("Square"):
-                case ("Circle"):
-                case ("None"):
-                    setCursor(Cursor.DEFAULT);
-                    break;
-                case ("Color Dropper"):
-                    setCursor(Cursor.CROSSHAIR);
-                    break;
+                case ("Line"), ("Dotted Line"), ("Rectangle"), ("Pencil"), ("Ellipse"), ("Square"), ("Circle"), ("None") ->
+                        setCursor(Cursor.DEFAULT);
+                case ("Color Dropper") -> setCursor(Cursor.CROSSHAIR);
             }
         });
 
