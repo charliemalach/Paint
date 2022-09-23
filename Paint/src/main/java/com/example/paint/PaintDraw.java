@@ -19,6 +19,7 @@ public class PaintDraw extends Canvas {
         this.gc = this.getGraphicsContext2D();
         this.gc.setLineCap(StrokeLineCap.ROUND);
     }
+    
 
     public void rectTool(double x1, double y1, double x2, double y2) { //draws a rectangle to the canvas with the given parameters
         double x = (Math.min(x1, x2)); //set x to the smaller of the two values to map to bottom left
