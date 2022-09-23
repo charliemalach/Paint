@@ -31,7 +31,6 @@ public class Paint extends Application {
     public static PaintToolBar toolbar = new PaintToolBar();
     public static PaintMenuBar menuBar = new PaintMenuBar(); //Creates a MenuBar
     public static TabPane tabpane;
-
     public static Scene scene;
 
     @Override
