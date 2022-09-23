@@ -28,7 +28,6 @@ public class PaintToolBar extends ToolBar {
 
         lineColorPicker = new ColorPicker();
         lineColorPicker.setValue(Color.BLACK); //default color = black
-//        zoomLabel = new Label("100%");
         toolBox.setValue("None");
         widthBox.setValue(1);
 
