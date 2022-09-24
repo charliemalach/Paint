@@ -1,9 +1,13 @@
 package com.example.paint;
 
+import javafx.application.Platform;
 import javafx.scene.Cursor;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
+import java.util.Optional;
 import java.util.Stack;
 
 
@@ -106,8 +110,23 @@ public class PaintCanvas extends PaintDraw {
 
                 case ("Clear Canvas"):
                     //add onclick listener here
-                    this.clearCanvas();
-                    this.updateCanvas();
+                        Alert clear = new Alert(Alert.AlertType.CONFIRMATION);
+                        clear.setTitle("Clear Canvas?");
+                        String text = "Would you like to clear the canvas? (Changes will not be saved.)";
+                        clear.setContentText(text);
+                        Optional<ButtonType> show = clear.showAndWait();
+                        if ((show.isPresent()) && (show.get() == ButtonType.OK)) {
+                            try {
+                                this.clearCanvas();
+                            } catch (Exception ex) {
+                                System.out.println(ex);
+                            }
+                            //After project is saved, program will exit.
+                            this.updateCanvas();
+                        } else {
+                            this.updateCanvas();
+                        }
+                        break;
 
                 case ("None"):
                     //does nothing
