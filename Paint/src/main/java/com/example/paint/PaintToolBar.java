@@ -7,13 +7,15 @@ import javafx.scene.paint.Color;
 
 
 public class PaintToolBar extends ToolBar {
-    public final static String[] TOOLS = {"None", "Line", "Dashed Line", "Pencil", "Square", "Rectangle", "Ellipse", "Circle", "Color Dropper"};
+    public final static String[] TOOLS = {"None", "Line", "Dashed Line", "Pencil", "Square", "Rectangle", "Ellipse", "Circle", "Color Dropper", "Eraser", "Copy", "Paste", "Clear Canvas"};
     private static final Integer[] LINE_WIDTH = {1, 2, 3, 5, 10, 15, 20, 25, 50, 100};
     private static ComboBox<String> toolBox;
     private static ComboBox<Integer> widthBox;
     private static ColorPicker lineColorPicker;
+    private static ColorPicker fillColorPicker;
     public static int usingTool;
     private static int usingWidth;
+
 
     public PaintToolBar() {
         super();
@@ -27,15 +29,16 @@ public class PaintToolBar extends ToolBar {
         widthBox = new ComboBox<>(FXCollections.observableArrayList(LINE_WIDTH));
 
         lineColorPicker = new ColorPicker();
+        fillColorPicker = new ColorPicker();
         lineColorPicker.setValue(Color.BLACK); //default color = black
         toolBox.setValue("None");
         widthBox.setValue(1);
+
 
         //adds items to toolbox
         getItems().addAll(new Label("Tools: "), toolBox, new Separator(),
                 new Label("Line Width: "), widthBox,
                 new Label("Line Color: "), lineColorPicker, new Separator()
-
         );
 
         // Listeners!
@@ -60,9 +63,16 @@ public class PaintToolBar extends ToolBar {
     public static Color getLineColor() {
         return lineColorPicker.getValue();
     }
+    public static Color getFillColor() {
+      return fillColorPicker.getValue();
+    }
 
     public static void setLineColor(Color color) {
         lineColorPicker.setValue(color);
+    }
+
+    public static void setFillColor(Color color){
+        fillColorPicker.setValue(color);
     }
 
     public static int getLineWidth() {

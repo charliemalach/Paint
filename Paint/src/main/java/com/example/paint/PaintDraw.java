@@ -108,6 +108,7 @@ public class PaintDraw extends Canvas {
             this.drawImage(img);
         }
     }
+
     public void clearCanvas() {
         this.gc.clearRect(0, 0, this.getWidth(), this.getHeight());
     }
@@ -116,9 +117,28 @@ public class PaintDraw extends Canvas {
         gc.setStroke(color);
     }
 
+    public Color getLineColor()
+    {
+        return (Color)gc.getStroke();
+    }
+
+    public void setFillColor(Color color)
+    {
+        gc.setFill(color);
+    }
+
+    public Color getFillColor()
+    {
+        return (Color)gc.getFill();
+    }
+
     public void setLineWidth(double width) {
         this.gc.setLineWidth(width);
     }
 
+    public void drawImageAt(Image im, double x, double y)
+    {
+        this.gc.drawImage(im, x, y);
+    }
 
 }

@@ -2,6 +2,8 @@ package com.example.paint;
 
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ScrollPane;
@@ -31,6 +33,14 @@ public class PaintTabs extends Tab {
         this.setText("New Tab");
         this.canvas = new PaintCanvas();
         tabStart();
+        this.setOnCloseRequest(new EventHandler<Event>()
+        {
+            @Override
+            public void handle(Event arg0)
+            {
+                forceQuit();
+            }
+        });
     }
 
     public PaintTabs(File file) { //sets a new tab on image open 
@@ -39,6 +49,14 @@ public class PaintTabs extends Tab {
         this.setText(path.getName());
         this.canvas = new PaintCanvas();
         tabStart();
+        this.setOnCloseRequest(new EventHandler<Event>()
+        {
+            @Override
+            public void handle(Event arg0)
+            {
+                forceQuit();
+            }
+        });
     }
 
 
@@ -134,6 +152,30 @@ public class PaintTabs extends Tab {
         }
     }
 
+    public void forceQuit() //prompts the user to save before quitting program
+    {
+            Alert exit = new Alert(Alert.AlertType.CONFIRMATION);
+            exit.setTitle("File has NOT been Saved");
+            String text = "Would you like to save? (Click Cancel to close without saving.)";
+            exit.setContentText(text);
+            Optional<ButtonType> show = exit.showAndWait();
+            if ((show.isPresent()) && (show.get() == ButtonType.OK)) {
+                try {
+                    Paint.getCurrentTab().saveImageAs();
+                } catch (Exception ex) {
+                    System.out.println(ex);
+                }
+                //After project is saved, program will exit.
+                Platform.exit();
+                System.exit(0);
+            } else {
+                //If Cancel button is clicked, program will just exit.
+                Platform.exit();
+                System.exit(0);
+            }
+    }
+
+
     public void setTitle(String title) { //sets the title of the current tab
         this.title = title;
         this.updateTitle();
@@ -149,4 +191,20 @@ public class PaintTabs extends Tab {
         else
             this.setText(this.title);
     }
+
+    public void undo()
+    {
+        this.canvas.undo();
+    }
+    public void redo()
+    {
+        this.canvas.redo();
+    }
+
+    public void updateCanvas()
+    {
+        this.canvas.updateCanvas();
+        this.updateTitle();
+    }
+
 }

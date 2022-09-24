@@ -58,6 +58,21 @@ public class PaintMenuBar extends MenuBar {
             }
         });
 
+        //"Undo" menu item. Allows users to undo their last change.
+        MenuItem Undo = new MenuItem("Undo");
+        Undo.setAccelerator(new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN));
+        Undo.setOnAction((ActionEvent event) -> {
+            Paint.getCurrentTab().undo();
+        });
+
+        //"Redo" menu item. Allows users to redo their last change.
+        MenuItem Redo = new MenuItem("Redo");
+        Redo.setAccelerator(new KeyCodeCombination(KeyCode.Y, KeyCombination.CONTROL_DOWN));
+        Redo.setOnAction((ActionEvent event) -> {
+            Paint.getCurrentTab().redo();
+        });
+
+
         //'Exit' menu item. Allows users to exit current project after prompting them to save. TODO: fix this section
         SeparatorMenuItem separator = new SeparatorMenuItem();
         MenuItem Exit = new MenuItem("Exit", null);
@@ -72,6 +87,9 @@ public class PaintMenuBar extends MenuBar {
                 System.out.println(exception);
             }
         });
+
+
+
 
         //Creates the About section in the Help menu
         MenuItem About = new Menu("About");
@@ -118,7 +136,7 @@ public class PaintMenuBar extends MenuBar {
         });
 
         //This section adds all the File options to the menu bar
-        File.getItems().addAll(New, Open, Save, SaveAs, separator, Exit);
+        File.getItems().addAll(New, Open, Save, SaveAs, Undo, Redo, separator, Exit);
         //This section adds the About option under Help
         Help.getItems().addAll(About, helpOption);
     }
