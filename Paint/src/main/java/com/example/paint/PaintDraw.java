@@ -79,6 +79,24 @@ public class PaintDraw extends Canvas {
         this.gc.stroke();
     }
 
+
+    public void drawEraserStart(double x1, double y1) { //draws the beginning of a freehand line to the canvas with the given parameters
+        gc.setLineDashes(0);
+        this.gc.setLineCap(StrokeLineCap.ROUND);
+        this.gc.beginPath();
+        this.gc.moveTo(x1, y1);
+        this.gc.lineTo(x1, y1);
+        this.gc.stroke();
+    }
+
+    public void drawEraserEnd(double x1, double y1) { //draws the end of a freehand line to the canvas with the given parameters
+        gc.setLineDashes(0);
+        this.gc.setLineCap(StrokeLineCap.ROUND);
+        this.gc.lineTo(x1, y1);
+        this.gc.stroke();
+    }
+
+    
     public Color eyeDropper(double x, double y) { //selects the color at a specific pixel on the canvas
         return this.getRegion(x, y, x + 1, y + 1).getPixelReader().getColor(0, 0);
     }

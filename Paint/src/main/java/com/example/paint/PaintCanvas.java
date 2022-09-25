@@ -35,8 +35,10 @@ public class PaintCanvas extends PaintDraw {
 
         setOnMouseMoved(e -> {
             switch (PaintToolBar.getTool()) {
-                case ("Line"), ("Dotted Line"), ("Rectangle"), ("Pencil"), ("Ellipse"), ("Square"), ("Circle"), ("None"), ("Eraser"), ("Clear Canvas") ->
+                case ("Line"), ("Dashed Line"), ("Rectangle"), ("Pencil"), ("Ellipse"), ("Square"), ("Circle"), ("None"), ("Eraser"), ("Copy") ->
                         setCursor(Cursor.DEFAULT);
+                case ("Clear Canvas"), ("Paste") -> setCursor(Cursor.OPEN_HAND);
+
                 case ("Color Dropper") -> setCursor(Cursor.CROSSHAIR);
             }
         });
@@ -89,13 +91,13 @@ public class PaintCanvas extends PaintDraw {
 
                 case ("Eraser"):
                     this.setLineColor(Color.WHITE);
-                    this.drawPencilStart(x, y); //draws the beginning eraser mark at the beginning coordinates
+                    this.drawEraserStart(x, y); //draws the beginning eraser mark at the beginning coordinates
                     this.updateCanvas();
                     break;
 
                 case("Copy"):
                     this.setLineWidth(2);
-                    this.setLineColor(Color.BLACK);
+                    this.setLineColor(Color.RED);
                     this.rectTool(x, y, x, y);
                     this.updateCanvas();
                     break;
@@ -170,7 +172,7 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Eraser"):
-                    this.drawPencilEnd(x1, y1); //draws a pencil stroke to the end coordinates
+                    this.drawEraserEnd(x1, y1); //draws a pencil stroke to the end coordinates
                     this.updateCanvas();
                     break;
 
@@ -261,7 +263,6 @@ public class PaintCanvas extends PaintDraw {
                     System.out.println("Nothing done");
                     break;
             }
-            Paint.getCurrentTab().updateTitle();
             this.updateCanvas();
         });
     }
