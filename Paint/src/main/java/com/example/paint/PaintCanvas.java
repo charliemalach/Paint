@@ -120,7 +120,7 @@ public class PaintCanvas extends PaintDraw {
                 case("Copy"):
                     this.lineDashes(5);
                     this.setLineWidth(2);
-                    this.setLineColor(Color.RED);
+                    this.setLineColor(Color.GREEN);
                     this.rectTool(x, y, x, y);
                     this.updateCanvas();
                     break;
