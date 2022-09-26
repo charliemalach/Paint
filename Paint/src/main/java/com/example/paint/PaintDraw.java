@@ -10,7 +10,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeLineCap;
 import java.io.File;
 
-public class PaintDraw extends Canvas {
+import static com.example.paint.Paint.mainStage;
+
+public class PaintDraw extends ResizableCanvas {
 
     private GraphicsContext gc;
 
@@ -19,7 +21,6 @@ public class PaintDraw extends Canvas {
         this.gc = this.getGraphicsContext2D();
         this.gc.setLineCap(StrokeLineCap.ROUND);
     }
-
 
     public void rectTool(double x1, double y1, double x2, double y2) { //draws a rectangle to the canvas with the given parameters
         double x = (Math.min(x1, x2)); //set x to the smaller of the two values to map to bottom left
@@ -96,7 +97,7 @@ public class PaintDraw extends Canvas {
         this.gc.stroke();
     }
 
-    
+
     public Color eyeDropper(double x, double y) { //selects the color at a specific pixel on the canvas
         return this.getRegion(x, y, x + 1, y + 1).getPixelReader().getColor(0, 0);
     }

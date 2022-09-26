@@ -10,6 +10,8 @@ import javafx.scene.paint.Color;
 import java.util.Optional;
 import java.util.Stack;
 
+import static com.example.paint.Paint.mainStage;
+
 
 public class PaintCanvas extends PaintDraw {
     private double x, y, x1, y1; //variables used for drawing
@@ -294,5 +296,6 @@ public class PaintCanvas extends PaintDraw {
         undo.push(this.getRegion(0, 0, this.getWidth(), this.getHeight()));
         redo.clear();
     }
+
 
 }

@@ -46,7 +46,6 @@ public class Paint extends Application {
         pane.setCenter(tabpane); //set tab to center of the main pane
         pane.setTop(topMenu); //set top menu to the top of the main pane
         tabpane.getTabs().add(new PaintTabs()); //adds new paint tab to the tabpane
-//        tabpane.getSelectionModel().selectFirst();
 
         //starts scene
         scene = new Scene(pane, windowWidth, windowHeight); //creates a new scene with the main Grid Pane and the desired application window size.

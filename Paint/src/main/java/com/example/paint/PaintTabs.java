@@ -24,7 +24,7 @@ public class PaintTabs extends Tab {
     private static FileChooser chooseFile;
     private String title;
     private File path;
-    private PaintCanvas canvas;
+    public PaintCanvas canvas;
     private ScrollPane sp;
     private StackPane canvasStack;
 
@@ -43,6 +43,8 @@ public class PaintTabs extends Tab {
         });
     }
 
+
+
     public PaintTabs(File file) { //sets a new tab on image open 
         super();
         this.path = file;
@@ -59,7 +61,6 @@ public class PaintTabs extends Tab {
         });
     }
 
-
     private void tabStart() {
         chooseFile = new FileChooser();
         chooseFile.getExtensionFilters().addAll(
@@ -73,6 +74,7 @@ public class PaintTabs extends Tab {
         this.CanvasPane = new Pane(canvas);
         this.canvasStack = new StackPane();
         this.canvasStack.getChildren().addAll(CanvasPane);
+
 
         //handles the scroll pane on the canvas
         this.sp = new ScrollPane(this.canvasStack); //creates a scroll pane
