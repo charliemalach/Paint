@@ -24,7 +24,7 @@ public class PaintTabs extends Tab {
     private static FileChooser chooseFile;
     private String title;
     private File path;
-    public PaintCanvas canvas;
+    public static PaintCanvas canvas;
     private ScrollPane sp;
     private StackPane canvasStack;
 

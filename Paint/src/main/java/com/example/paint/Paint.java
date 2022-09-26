@@ -44,8 +44,13 @@ public class Paint extends Application {
         tabpane = new TabPane(); //add new tabpane
         VBox topMenu = new VBox(menuBar, toolbar); //add menubar and toolbar to vbox object
         pane.setCenter(tabpane); //set tab to center of the main pane
-        pane.setTop(topMenu); //set top menu to the top of the main pane
+
         tabpane.getTabs().add(new PaintTabs()); //adds new paint tab to the tabpane
+
+        pane.getChildren().add(PaintTabs.canvas);
+        PaintTabs.canvas.widthProperty().bind(pane.widthProperty());
+        PaintTabs.canvas.heightProperty().bind(pane.heightProperty());
+        pane.setTop(topMenu); //set top menu to the top of the main pane
 
         //starts scene
         scene = new Scene(pane, windowWidth, windowHeight); //creates a new scene with the main Grid Pane and the desired application window size.
