@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 
 
 public class PaintToolBar extends ToolBar {
-    public final static String[] TOOLS = {"None", "Line", "Dashed Line", "Pencil", "Square", "Rectangle", "Triangle", "Ellipse", "Circle", "Color Dropper", "Eraser", "Copy", "Cut", "Paste", "Clear Canvas"};
+    public final static String[] TOOLS = {"None", "Line", "Dashed Line", "Pencil", "Square", "Rectangle", "Polygon", "Triangle", "Ellipse", "Circle", "Color Dropper", "Eraser", "Copy", "Cut", "Paste", "Clear Canvas"};
     private static final Integer[] LINE_WIDTH = {1, 2, 3, 5, 10, 15, 20, 25, 50, 100};
     private static ComboBox<String> toolBox;
     private static ComboBox<Integer> widthBox;
@@ -41,7 +41,7 @@ public class PaintToolBar extends ToolBar {
 
 
         //adds items to toolbox
-        getItems().addAll(new Label("Tools: "), toolBox, sides, new Separator(),
+        getItems().addAll(new Label("Tools: "), toolBox, new Separator(), sides, new Separator(),
                 new Label("Line Width: "), widthBox,
                 new Label("Line Color: "), lineColorPicker, new Separator()
         );
@@ -53,6 +53,10 @@ public class PaintToolBar extends ToolBar {
 
         toolBox.getSelectionModel().selectedIndexProperty().addListener((observable, value, newValue) -> { //set new tool as selected tool
             usingTool = newValue.intValue();
+            if(TOOLS[usingTool].equals("Polygon"))   //enables the text input for the n-gon option and disables it otherwise
+                sides.setVisible(true);
+            else
+                sides.setVisible(false);
             System.out.println("Tool Selected: " + TOOLS[usingTool]);
         });
 

@@ -89,7 +89,7 @@ public class PaintCanvas extends PaintDraw {
 
                 case("Triangle"):
                     this.lineDashes(0);
-                    this.triangleTool(x, y, x, y);
+                    this.triangleTool(x, y, x, y, 3);
                     this.updateCanvas();
                     break;
 
@@ -288,7 +288,7 @@ public class PaintCanvas extends PaintDraw {
 
                 case ("Triangle"):
                     this.lineDashes(0);
-                    this.triangleTool(x, y, x1, y1);
+                    this.triangleTool(x, y, e.getX(), e.getY(), 3);
                     this.updateCanvas();
                     break;
 

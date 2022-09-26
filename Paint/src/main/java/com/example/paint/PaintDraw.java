@@ -36,28 +36,30 @@ public class PaintDraw extends ResizableCanvas { //extends the resizable canvas,
         this.gc.strokeRect(x, y, width, height);
     }
 
-    public void polygonTool(double x1, double y1, double x2, double y2, int i) //stolen
-    {
-        double[] xPoints = new double[i];
-        double[] yPoints = new double[i];
+    public void polygonTool(double x1, double y1, double x2, double y2, int n){
+        double[] xPoints = new double[n];
+        double[] yPoints = new double[n];
         double radius = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
         double startAngle = Math.atan2(y2 - y1, x2 - x1);
-
-        for(int k = 0; k < i; k++){
-            xPoints[i] = x1 + (radius * Math.cos(((2*Math.PI*i)/i) + startAngle));
-            yPoints[i] = y1 + (radius * Math.sin(((2*Math.PI*i)/i) + startAngle));
+        //try and figure out how to fix later
+        for(int i = 0; i < n; i++){
+            xPoints[i] = x1 + (radius * Math.cos(((2*Math.PI*i)/n) + startAngle));
+            yPoints[i] = y1 + (radius * Math.sin(((2*Math.PI*i)/n) + startAngle));
         }
-        if(this.getShapeFill())
-            this.gc.fillPolygon(xPoints, yPoints, i);
-        this.gc.strokePolygon(xPoints, yPoints, i);
+        this.gc.strokePolygon(xPoints, yPoints, n);
     }
 
-    public void triangleTool(double x1, double y1, double x2, double y2) {
-        double x = x1; //set x to the smaller of the two values to map to bottom left
-        double y = y1;
-        double height;
-        double width = height = (int) x^2 + (int) y^2 ;   //abs val of the two x's = length of x (will be the same because it's a square)
-        this.gc.strokeRect(x, y, width, height);
+    public void triangleTool(double x1, double y1, double x2, double y2, int n) {
+        double[] xPoints = new double[n];
+        double[] yPoints = new double[n];
+        double radius = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
+        double startAngle = Math.atan2(y2 - y1, x2 - x1);
+        //try and figure out how to fix later
+        for(int i = 0; i < n; i++){
+            xPoints[i] = x1 + (radius * Math.cos(((2*Math.PI*i)/n) + startAngle));
+            yPoints[i] = y1 + (radius * Math.sin(((2*Math.PI*i)/n) + startAngle));
+        }
+        this.gc.strokePolygon(xPoints, yPoints, n);
     }
 
     public void ellipseTool(double x1, double y1, double x2, double y2) { //draws an ellipse to the canvas with the given parameters
