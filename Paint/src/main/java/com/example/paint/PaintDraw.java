@@ -12,7 +12,7 @@ import java.io.File;
 
 import static com.example.paint.Paint.mainStage;
 
-public class PaintDraw extends ResizableCanvas {
+public class PaintDraw extends ResizableCanvas { //extends the resizable canvas, allowing users to draw on extended part of canvas
 
     private GraphicsContext gc;
 
@@ -33,30 +33,37 @@ public class PaintDraw extends ResizableCanvas {
     public void squareTool(double x1, double y1, double x2, double y2) { //draws a square to the canvas with the given parameters
         double x = (Math.min(x1, x2)); //set x to the smaller of the two values to map to bottom left
         double y = (Math.min(y1, y2));
-        double width = Math.abs(x1 - x2);   //abs val of the two x's = length of x
-        double height = Math.abs(x1 - x2);
+        double height;
+        double width = height = Math.abs(x1 - x2);   //abs val of the two x's = length of x (will be the same because it's a square)
         this.gc.strokeRect(x, y, width, height);
     }
 
     public void ellipseTool(double x1, double y1, double x2, double y2) { //draws an ellipse to the canvas with the given parameters
-        double x = (Math.min(x1, x2));
-        double y = (Math.min(y1, y2));
-        double width = Math.abs(x1 - x2);
-        double height = Math.abs(y1 - y2);
+        double x = (Math.min(x1, x2)); //calculates the minimum of x1 and x2
+        double y = (Math.min(y1, y2)); //calculates the minimum of y1 and y2
+        double width = Math.abs(x1 - x2); //takes the absolute value of x1 - x2
+        double height = Math.abs(y1 - y2); //takes the absolute value of y1 - y2
         this.gc.strokeOval(x, y, width, height);
     }
 
     public void circleTool(double x1, double y1, double x2, double y2) { //draws a circle to the canvas with the given parameters
-        double x = (Math.min(x1, x2));
-        double y = (Math.min(y1, y2));
-        double width = Math.abs(x1 - x2);
-        double height = Math.abs(x1 - x2);
+        double x = (Math.min(x1, x2)); //calculates the minimum of x1 and x2
+        double y = (Math.min(y1, y2)); //calculates the minimum of y1 and y2
+        double height;
+        double width = height = Math.abs(x1 - x2); //takes the absolute value of x1 - x2 (these will be the same because it is a circle)
+
         this.gc.strokeOval(x, y, width, height);
     }
 
     public void lineTool(double x1, double y1, double x2, double y2) { //draws a line to the canvas with the given parameters
-        gc.setLineDashes(0);
+        gc.setLineDashes(0); //ensure there are no dashes in the pencil
         gc.strokeLine(x1, y1, x2, y2); //draws line from x1, y1 to x2, y2
+    }
+
+    public void lineDashes()
+    {
+        gc.setLineDashes(5);
+
     }
 
     public void dashedLineTool(double x1, double y1, double x2, double y2) { //draws a dashed line to the canvas with the given parameters
@@ -65,7 +72,7 @@ public class PaintDraw extends ResizableCanvas {
     }
 
     public void drawPencilStart(double x1, double y1) { //draws the beginning of a freehand line to the canvas with the given parameters
-        gc.setLineDashes(0);
+        gc.setLineDashes(0); //ensure there are no dashes in the pencil
         this.gc.setLineCap(StrokeLineCap.ROUND);
         this.gc.beginPath();
         this.gc.moveTo(x1, y1);
@@ -74,7 +81,7 @@ public class PaintDraw extends ResizableCanvas {
     }
 
     public void drawPencilEnd(double x1, double y1) { //draws the end of a freehand line to the canvas with the given parameters
-        gc.setLineDashes(0);
+        gc.setLineDashes(0); //ensure there are no dashes in the pencil
         this.gc.setLineCap(StrokeLineCap.ROUND);
         this.gc.lineTo(x1, y1);
         this.gc.stroke();
@@ -102,7 +109,7 @@ public class PaintDraw extends ResizableCanvas {
         return this.getRegion(x, y, x + 1, y + 1).getPixelReader().getColor(0, 0);
     }
 
-    public Image getRegion(double x1, double y1, double x2, double y2) {
+    public Image getRegion(double x1, double y1, double x2, double y2) { //gets the 'region' parameters
         SnapshotParameters sp = new SnapshotParameters();
         WritableImage wi = new WritableImage((int) Math.abs(x1 - x2), (int) Math.abs(y1 - y2));
         sp.setViewport(new Rectangle2D(
@@ -121,42 +128,34 @@ public class PaintDraw extends ResizableCanvas {
         this.gc.drawImage(im, 0, 0);
     }
 
-    public void drawImage(File file) {
+    public void drawImage(File file) { //draws image to the screen
         if (file != null) {
             Image img = new Image(file.toURI().toString());
             this.drawImage(img);
         }
     }
 
-    public void clearCanvas() {
+    public void clearCanvas() { //clears the canvas of all content
         this.gc.clearRect(0, 0, this.getWidth(), this.getHeight());
     }
 
-    public void setLineColor(Color color) {
+    public void setLineColor(Color color) { //sets the color of the line
         gc.setStroke(color);
     }
 
-    public Color getLineColor()
-    {
+    public Color getLineColor() { //returns the current color of the line
         return (Color)gc.getStroke();
     }
 
-    public void setFillColor(Color color)
-    {
+    public void setFillColor(Color color) { //sets the fill color
         gc.setFill(color);
     }
 
-    public Color getFillColor()
-    {
-        return (Color)gc.getFill();
-    }
-
-    public void setLineWidth(double width) {
+    public void setLineWidth(double width) { //sets the width for the line
         this.gc.setLineWidth(width);
     }
 
-    public void drawImageAt(Image im, double x, double y)
-    {
+    public void drawImageAt(Image im, double x, double y) { //draws image at specific parameters
         this.gc.drawImage(im, x, y);
     }
 

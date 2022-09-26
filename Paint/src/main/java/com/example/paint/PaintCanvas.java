@@ -35,18 +35,17 @@ public class PaintCanvas extends PaintDraw {
 
         this.undo.push(this.getRegion(0, 0, this.getWidth(), this.getHeight()));
 
-        setOnMouseMoved(e -> {
+        setOnMouseMoved(e -> { //when mouse is moved at all on canvas
             switch (PaintToolBar.getTool()) {
                 case ("Line"), ("Dashed Line"), ("Rectangle"), ("Pencil"), ("Ellipse"), ("Square"), ("Circle"), ("None"), ("Eraser"), ("Copy") ->
-                        setCursor(Cursor.DEFAULT);
-                case ("Clear Canvas"), ("Paste") -> setCursor(Cursor.OPEN_HAND);
+                        setCursor(Cursor.DEFAULT); //cursor is just default
+                case ("Clear Canvas"), ("Paste") -> setCursor(Cursor.OPEN_HAND); //cursor is hand, couldn't think of better cursor
 
-                case ("Color Dropper") -> setCursor(Cursor.CROSSHAIR);
+                case ("Color Dropper") -> setCursor(Cursor.CROSSHAIR); //cursor is crosshairs, thought it would be p cool
             }
         });
 
-        //when mouse is initially held down
-        setOnMousePressed(e -> {
+        setOnMousePressed(e -> { //when mouse is initially held down
             x = e.getX();
             y = e.getY();
             this.setLineColor(PaintToolBar.getLineColor()); //gets the desired line color from PaintToolBar class
