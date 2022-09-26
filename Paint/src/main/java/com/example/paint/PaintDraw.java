@@ -2,7 +2,6 @@ package com.example.paint;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.SnapshotParameters;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
@@ -10,11 +9,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeLineCap;
 import java.io.File;
 
-import static com.example.paint.Paint.mainStage;
-
 public class PaintDraw extends ResizableCanvas { //extends the resizable canvas, allowing users to draw on extended part of canvas
 
     private GraphicsContext gc;
+    private boolean shapeFill;
 
     public PaintDraw() { //default draw method
         super();
@@ -35,6 +33,30 @@ public class PaintDraw extends ResizableCanvas { //extends the resizable canvas,
         double y = (Math.min(y1, y2));
         double height;
         double width = height = Math.abs(x1 - x2);   //abs val of the two x's = length of x (will be the same because it's a square)
+        this.gc.strokeRect(x, y, width, height);
+    }
+
+    public void polygonTool(double x1, double y1, double x2, double y2, int i) //stolen
+    {
+        double[] xPoints = new double[i];
+        double[] yPoints = new double[i];
+        double radius = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
+        double startAngle = Math.atan2(y2 - y1, x2 - x1);
+
+        for(int k = 0; k < i; k++){
+            xPoints[i] = x1 + (radius * Math.cos(((2*Math.PI*i)/i) + startAngle));
+            yPoints[i] = y1 + (radius * Math.sin(((2*Math.PI*i)/i) + startAngle));
+        }
+        if(this.getShapeFill())
+            this.gc.fillPolygon(xPoints, yPoints, i);
+        this.gc.strokePolygon(xPoints, yPoints, i);
+    }
+
+    public void triangleTool(double x1, double y1, double x2, double y2) {
+        double x = x1; //set x to the smaller of the two values to map to bottom left
+        double y = y1;
+        double height;
+        double width = height = (int) x^2 + (int) y^2 ;   //abs val of the two x's = length of x (will be the same because it's a square)
         this.gc.strokeRect(x, y, width, height);
     }
 
@@ -149,6 +171,16 @@ public class PaintDraw extends ResizableCanvas { //extends the resizable canvas,
 
     public void setFillColor(Color color) { //sets the fill color
         gc.setFill(color);
+    }
+
+    public boolean getShapeFill()
+    {
+        return this.shapeFill;
+    }
+
+    public void setShapeFill(boolean shapeFill)
+    {
+        this.shapeFill = shapeFill;
     }
 
     public void setLineWidth(double width) { //sets the width for the line

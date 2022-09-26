@@ -29,6 +29,7 @@ public class PaintCanvas extends PaintDraw {
         //set default background size & color
         this.setWidth(1280);
         this.setHeight(720);
+        this.setShapeFill(true);
         this.setFillColor(Color.WHITE);
         this.setLineColor(Color.WHITE);
         this.rectTool(0,0,this.getWidth(), this.getHeight());
@@ -37,7 +38,7 @@ public class PaintCanvas extends PaintDraw {
 
         setOnMouseMoved(e -> { //when mouse is moved at all on canvas
             switch (PaintToolBar.getTool()) {
-                case ("Line"), ("Dashed Line"), ("Rectangle"), ("Pencil"), ("Ellipse"), ("Square"), ("Circle"), ("None"), ("Eraser"), ("Copy") ->
+                case ("Line"), ("Dashed Line"), ("Rectangle"), ("Pencil"), ("Ellipse"), ("Square"), ("Triangle"), ("Circle"), ("None"), ("Eraser"), ("Copy"), ("Cut") ->
                         setCursor(Cursor.DEFAULT); //cursor is just default
                 case ("Clear Canvas"), ("Paste") -> setCursor(Cursor.OPEN_HAND); //cursor is hand, couldn't think of better cursor
 
@@ -50,6 +51,7 @@ public class PaintCanvas extends PaintDraw {
             y = e.getY();
             this.setLineColor(PaintToolBar.getLineColor()); //gets the desired line color from PaintToolBar class
             this.setLineWidth(PaintToolBar.getLineWidth()); //gets the desired line width from PaintToolBar class
+            this.setFillColor(PaintToolBar.getFillColor());
             switch (PaintToolBar.getTool()) {
                 case ("Line"):
                     this.lineDashes(0);
@@ -80,6 +82,17 @@ public class PaintCanvas extends PaintDraw {
                     this.updateCanvas();
                     break;
 
+                case ("Polygon"):
+                    this.polygonTool(x, y, x, y, 5);
+                    this.updateCanvas();
+                    break;
+
+                case("Triangle"):
+                    this.lineDashes(0);
+                    this.triangleTool(x, y, x, y);
+                    this.updateCanvas();
+                    break;
+
                 case ("Ellipse"):
                     this.lineDashes(0);
                     this.ellipseTool(x, y, x, y); //draws an ellipse at the beginning coordinates
@@ -105,9 +118,16 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case("Copy"):
-//                    this.lineDashes(5);
+                    this.lineDashes(5);
                     this.setLineWidth(2);
                     this.setLineColor(Color.RED);
+                    this.rectTool(x, y, x, y);
+                    this.updateCanvas();
+                    break;
+
+                case ("Cut"):
+                    this.setLineWidth(2);
+                    this.setLineColor(Color.BLUE);
                     this.rectTool(x, y, x, y);
                     this.updateCanvas();
                     break;
@@ -169,6 +189,14 @@ public class PaintCanvas extends PaintDraw {
                     //does nothing during drag event
                     break;
 
+                case ("Polygon"):
+                    //does nothing
+                    break;
+
+                case ("Triangle"):
+                    //does nothing
+                    break;
+
                 case ("Ellipse"):
                     //does nothing during drag event
                     break;
@@ -192,10 +220,17 @@ public class PaintCanvas extends PaintDraw {
 
                 case ("Copy"):
                     this.lineDashes(5);
+                    this.undo(); //this is what gets rid of the image
+                    this.rectTool(x, y, e.getX(), e.getY());
+                    this.updateCanvas();
+                    break;
+
+                case ("Cut"):
                     this.undo();
                     this.rectTool(x, y, e.getX(), e.getY());
                     this.updateCanvas();
                     break;
+
 
                 case ("Paste"):
                     this.lineDashes(0);
@@ -246,6 +281,17 @@ public class PaintCanvas extends PaintDraw {
                     this.updateCanvas();
                     break;
 
+                case ("Polygon"):
+                    this.polygonTool(x, y, e.getX(), e.getY(), PaintToolBar.getUsingSides());
+                    this.updateCanvas();
+                    break;
+
+                case ("Triangle"):
+                    this.lineDashes(0);
+                    this.triangleTool(x, y, x1, y1);
+                    this.updateCanvas();
+                    break;
+
                 case ("Ellipse"):
                     this.lineDashes(0);
                     this.ellipseTool(x, y, x1, y1); //draws an ellipse from the starting coordinates to the new ending coordinates
@@ -271,8 +317,18 @@ public class PaintCanvas extends PaintDraw {
 
                 case ("Copy"):
                     this.lineDashes(0);
+                    this.undo(); //this is what gets rid of the image!
+                    this.image = this.getRegion(x, y, e.getX(), e.getY());
+                    this.updateCanvas();
+                    break;
+
+                case ("Cut"):
                     this.undo();
                     this.image = this.getRegion(x, y, e.getX(), e.getY());
+                    this.setLineWidth(1);
+                    this.setShapeFill(true);
+                    this.setLineColor(PaintToolBar.getFillColor());
+                    this.rectTool(x, y, e.getX(), e.getY());
                     this.updateCanvas();
                     break;
 

@@ -58,20 +58,6 @@ public class PaintMenuBar extends MenuBar {
             }
         });
 
-        //"Undo" menu item. Allows users to undo their last change.
-        MenuItem Undo = new MenuItem("Undo");
-        Undo.setAccelerator(new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN));
-        Undo.setOnAction((ActionEvent event) -> {
-            Paint.getCurrentTab().undo();
-        });
-
-        //"Redo" menu item. Allows users to redo their last change.
-        MenuItem Redo = new MenuItem("Redo");
-        Redo.setAccelerator(new KeyCodeCombination(KeyCode.Y, KeyCombination.CONTROL_DOWN));
-        Redo.setOnAction((ActionEvent event) -> {
-            Paint.getCurrentTab().redo();
-        });
-
 
         //'Exit' menu item. Allows users to exit current project after prompting them to save.
         SeparatorMenuItem separator = new SeparatorMenuItem();
@@ -133,8 +119,24 @@ public class PaintMenuBar extends MenuBar {
             helpPaint.showAndWait();
         });
 
+        //"Undo" menu item. Allows users to undo their last change.
+        MenuItem Undo = new MenuItem("Undo");
+        Undo.setAccelerator(new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN));
+        Undo.setOnAction((ActionEvent event) -> {
+            Paint.getCurrentTab().undo();
+        });
+
+        //"Redo" menu item. Allows users to redo their last change.
+        MenuItem Redo = new MenuItem("Redo");
+        Redo.setAccelerator(new KeyCodeCombination(KeyCode.Y, KeyCombination.CONTROL_DOWN));
+        Redo.setOnAction((ActionEvent event) -> {
+            Paint.getCurrentTab().redo();
+        });
+
         //This section adds all the File options to the menu bar
-        File.getItems().addAll(New, Open, Save, SaveAs, Undo, Redo, separator, Exit);
+        File.getItems().addAll(New, Open, Save, SaveAs, separator, Exit);
+        //This section adds all the Edit options
+        Edit.getItems().addAll(Undo, Redo);
         //This section adds the About option under Help
         Help.getItems().addAll(About, helpOption);
     }
