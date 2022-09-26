@@ -76,11 +76,11 @@ public class Paint extends Application {
         launch();
     }
 
-    public static PaintTabs getCurrentTab() {
+    public static PaintTabs getCurrentTab() { //returns the tab currently being used by the user
         return (PaintTabs) tabpane.getSelectionModel().getSelectedItem();
     }
 
-    public static void removeCurrentTab() {
+    public static void removeCurrentTab() { //removes the tab currently being used by the user
         Paint.tabpane.getTabs().remove(Paint.getCurrentTab());
     }
 }

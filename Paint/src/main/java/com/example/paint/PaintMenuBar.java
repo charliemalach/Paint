@@ -27,7 +27,6 @@ public class PaintMenuBar extends MenuBar {
             PaintTabs.newTab();
         });
 
-
         //'Open' menu item. Allows users to open a picture to the current project.
         MenuItem Open = new MenuItem("Open");
         Open.setMnemonicParsing(true);
@@ -73,7 +72,6 @@ public class PaintMenuBar extends MenuBar {
                 System.out.println(exception);
             }
         });
-
 
         //Creates the About section in the Help menu
         MenuItem About = new Menu("About");

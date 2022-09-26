@@ -61,7 +61,7 @@ public class PaintTabs extends Tab {
         });
     }
 
-    private void tabStart() { //
+    private void tabStart() { //default constructor
         chooseFile = new FileChooser();
         chooseFile.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("PNG", "*.png"),

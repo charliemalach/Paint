@@ -9,6 +9,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeLineCap;
 import java.io.File;
 
+import static com.example.paint.Paint.mainStage;
+import static com.example.paint.Paint.pane;
+
 public class PaintDraw extends ResizableCanvas { //extends the resizable canvas, allowing users to draw on extended part of canvas
 
     private GraphicsContext gc;
@@ -36,7 +39,7 @@ public class PaintDraw extends ResizableCanvas { //extends the resizable canvas,
         this.gc.strokeRect(x, y, width, height);
     }
 
-    public void polygonTool(double x1, double y1, double x2, double y2, int n){
+    public void polygonTool(double x1, double y1, double x2, double y2, int n){ //draws a polygon using the users parameter (sides)
         double[] xPoints = new double[n];
         double[] yPoints = new double[n];
         double radius = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
@@ -49,7 +52,7 @@ public class PaintDraw extends ResizableCanvas { //extends the resizable canvas,
         this.gc.strokePolygon(xPoints, yPoints, n);
     }
 
-    public void triangleTool(double x1, double y1, double x2, double y2, int n) {
+    public void triangleTool(double x1, double y1, double x2, double y2, int n) { //draws a triangle (very similar to polygon)
         double[] xPoints = new double[n];
         double[] yPoints = new double[n];
         double radius = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
@@ -84,7 +87,7 @@ public class PaintDraw extends ResizableCanvas { //extends the resizable canvas,
         gc.strokeLine(x1, y1, x2, y2); //draws line from x1, y1 to x2, y2
     }
 
-    public void lineDashes(double x)
+    public void lineDashes(double x) //sets the amount of dashes in the line
     {
         gc.setLineDashes(x);
 
@@ -150,6 +153,8 @@ public class PaintDraw extends ResizableCanvas { //extends the resizable canvas,
         this.setWidth(im.getWidth());
         this.setHeight(im.getHeight());
         this.gc.drawImage(im, 0, 0);
+        this.setHeight(pane.getHeight());
+        this.setWidth(pane.getWidth());
     }
 
     public void drawImage(File file) { //draws image to the screen
