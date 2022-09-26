@@ -60,9 +60,9 @@ public class PaintDraw extends ResizableCanvas { //extends the resizable canvas,
         gc.strokeLine(x1, y1, x2, y2); //draws line from x1, y1 to x2, y2
     }
 
-    public void lineDashes()
+    public void lineDashes(double x)
     {
-        gc.setLineDashes(5);
+        gc.setLineDashes(x);
 
     }
 

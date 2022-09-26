@@ -73,7 +73,7 @@ public class PaintMenuBar extends MenuBar {
         });
 
 
-        //'Exit' menu item. Allows users to exit current project after prompting them to save. TODO: fix this section
+        //'Exit' menu item. Allows users to exit current project after prompting them to save.
         SeparatorMenuItem separator = new SeparatorMenuItem();
         MenuItem Exit = new MenuItem("Exit", null);
         Exit.setMnemonicParsing(
@@ -89,8 +89,6 @@ public class PaintMenuBar extends MenuBar {
         });
 
 
-
-
         //Creates the About section in the Help menu
         MenuItem About = new Menu("About");
         About.setMnemonicParsing(
@@ -102,7 +100,7 @@ public class PaintMenuBar extends MenuBar {
             aboutPaint.setTitle("About");
             aboutPaint.setHeaderText("About Pain(t) v1.0.1");
             String text = "Pain(t) - v1.0.1 is a JavaFX image handling project created by Charlie Malachinski. " +
-                    "This program currently allows users to upload, save and save as images. These images can be drawn upon and saved with the new markings. " +
+                    "This program currently allows users to upload, save and save as images. These images can be drawn upon using shapes and saved with the new markings. " +
                     "\n" + "\n" +
                     "More features will come in the future.";
             aboutPaint.setContentText(text);

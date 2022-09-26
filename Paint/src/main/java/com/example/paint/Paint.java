@@ -23,7 +23,7 @@ import java.io.IOException;
 
 public class Paint extends Application {
     private final static String TITLE = "Malachinski - Pain(t)"; //Name of the application
-    private final static String VERSION = "v1.0.1";
+    private final static String VERSION = "v1.0.2";
     private final static int windowWidth = 1280; //Dictates the initial length of the application window
     private final static int windowHeight = 720; //Dictates the initial width of the application window
     public static Stage mainStage; //Creates the main Stage
@@ -47,9 +47,9 @@ public class Paint extends Application {
 
         tabpane.getTabs().add(new PaintTabs()); //adds new paint tab to the tabpane
 
-        pane.getChildren().add(PaintTabs.canvas);
-        PaintTabs.canvas.widthProperty().bind(pane.widthProperty());
-        PaintTabs.canvas.heightProperty().bind(pane.heightProperty());
+        pane.getChildren().add(PaintTabs.canvasStack);
+        PaintTabs.canvas.widthProperty().bind(pane.widthProperty()); //these break it
+        PaintTabs.canvas.heightProperty().bind(pane.heightProperty()); //these break it
         pane.setTop(topMenu); //set top menu to the top of the main pane
 
         //starts scene

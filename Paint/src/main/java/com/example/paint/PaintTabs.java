@@ -26,7 +26,7 @@ public class PaintTabs extends Tab {
     private File path;
     public static PaintCanvas canvas;
     private ScrollPane sp;
-    private StackPane canvasStack;
+    public static StackPane canvasStack;
 
     public PaintTabs() { //sets the default tab 
         super();
@@ -38,7 +38,7 @@ public class PaintTabs extends Tab {
             @Override
             public void handle(Event arg0)
             {
-                forceQuit();
+                quitTab();
             }
         });
     }
@@ -56,18 +56,20 @@ public class PaintTabs extends Tab {
             @Override
             public void handle(Event arg0)
             {
-                forceQuit();
+                quitTab();
             }
         });
     }
 
-    private void tabStart() {
+    private void tabStart() { //
         chooseFile = new FileChooser();
         chooseFile.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("PNG", "*.png"),
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),
                 new FileChooser.ExtensionFilter("Bitmap", "*.bmp"),
-                new FileChooser.ExtensionFilter("Jpeg", "*.jpeg")
+                new FileChooser.ExtensionFilter("JPEG", "*.jpeg"),
+                new FileChooser.ExtensionFilter("GIF", "*.gif")
+
         );
 
         //handles the canvas and the new stack
@@ -83,11 +85,11 @@ public class PaintTabs extends Tab {
         this.sp.setPrefViewportHeight(this.canvas.getHeight() / 2);
     }
 
-    public void setFilePath(File path) {
+    public void setFilePath(File path) { //sets the path for the current file
         this.path = path;
     }
 
-    public File getFilePath() {
+    public File getFilePath() { //returns the path for the current file
         return this.path;
     }
 
@@ -103,7 +105,7 @@ public class PaintTabs extends Tab {
         Paint.tabpane.getSelectionModel().select(temp);
     }
 
-    public static void newTab() //opens a new
+    public static void newTab() //opens a new tab on the canvas
     {
         PaintTabs newTab;
         newTab = new PaintTabs();
@@ -111,7 +113,7 @@ public class PaintTabs extends Tab {
         Paint.tabpane.getSelectionModel().select(newTab);
     }
 
-    public void saveImage() { //saves the image
+    public void saveImage() { //saves the original image
         Image im = this.canvas.getRegion(0, 0, this.canvas.getWidth(), this.canvas.getHeight());
         try {
             if (this.path != null) {
@@ -123,7 +125,7 @@ public class PaintTabs extends Tab {
         }
     }
 
-    public void saveImageAs() { //saves image as
+    public void saveImageAs() { //saves image as a new image of desired file type
         File path = chooseFile.showSaveDialog(mainStage);
         this.setFilePath(path);
         this.saveImage();
@@ -154,7 +156,7 @@ public class PaintTabs extends Tab {
         }
     }
 
-    public void forceQuit() //prompts the user to save before quitting program
+    public void quitTab() //prompts the user to save before closing the current tab
     {
             Alert exit = new Alert(Alert.AlertType.CONFIRMATION);
             exit.setTitle("File has NOT been Saved");
@@ -168,12 +170,10 @@ public class PaintTabs extends Tab {
                     System.out.println(ex);
                 }
                 //After project is saved, program will exit.
-                Platform.exit();
-                System.exit(0);
+                Paint.removeCurrentTab();
             } else {
                 //If Cancel button is clicked, program will just exit.
-                Platform.exit();
-                System.exit(0);
+                return;
             }
     }
 
@@ -196,10 +196,14 @@ public class PaintTabs extends Tab {
 
     public void undo()
     {
+        PaintTabs.canvas.widthProperty().unbind(); //these break it
+        PaintTabs.canvas.heightProperty().unbind(); //these break it
         this.canvas.undo();
     }
     public void redo()
     {
+        PaintTabs.canvas.widthProperty().unbind(); //these break it
+        PaintTabs.canvas.heightProperty().unbind(); //these break it
         this.canvas.redo();
     }
 

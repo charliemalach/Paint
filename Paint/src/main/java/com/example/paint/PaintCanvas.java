@@ -52,6 +52,7 @@ public class PaintCanvas extends PaintDraw {
             this.setLineWidth(PaintToolBar.getLineWidth()); //gets the desired line width from PaintToolBar class
             switch (PaintToolBar.getTool()) {
                 case ("Line"):
+                    this.lineDashes(0);
                     this.lineTool(x, y, x, y); //draws a line at the beginning coordinates
                     this.updateCanvas();
                     break;
@@ -62,41 +63,49 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Pencil"):
+                    this.lineDashes(0);
                     this.drawPencilStart(x, y); //draws the beginning pencil mark at the beginning coordinates
                     this.updateCanvas();
                     break;
 
                 case ("Square"):
+                    this.lineDashes(0);
                     this.squareTool(x, y, x, y); //draws a square at the beginning coordinates
                     this.updateCanvas();
                     break;
 
                 case ("Rectangle"):
+                    this.lineDashes(0);
                     this.rectTool(x, y, x, y); //draws a rectangle at the beginning coordinates
                     this.updateCanvas();
                     break;
 
                 case ("Ellipse"):
+                    this.lineDashes(0);
                     this.ellipseTool(x, y, x, y); //draws an ellipse at the beginning coordinates
                     this.updateCanvas();
                     break;
 
                 case ("Circle"):
+                    this.lineDashes(0);
                     this.circleTool(x, y, x, y);
                     this.updateCanvas();
                     break;
 
                 case ("Color Dropper"):
+                    this.lineDashes(0);
                     PaintToolBar.setLineColor(this.eyeDropper(x, y)); //changes cursor for color selector
                     break;
 
                 case ("Eraser"):
+                    this.lineDashes(0);
                     this.setLineColor(Color.WHITE);
                     this.drawEraserStart(x, y); //draws the beginning eraser mark at the beginning coordinates
                     this.updateCanvas();
                     break;
 
                 case("Copy"):
+//                    this.lineDashes(5);
                     this.setLineWidth(2);
                     this.setLineColor(Color.RED);
                     this.rectTool(x, y, x, y);
@@ -104,6 +113,7 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case("Paste"):
+                    this.lineDashes(0);
                     try{
                         this.drawImageAt(image, e.getX(), e.getY());
                     }catch(Exception exception){
@@ -146,6 +156,7 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Pencil"):
+                    this.lineDashes(0);
                     this.drawPencilEnd(x1, y1); //draws a pencil stroke to the end coordinates
                     this.updateCanvas();
                     break;
@@ -167,23 +178,27 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Color Dropper"):
+                    this.lineDashes(0);
                     setCursor(Cursor.CROSSHAIR); //changes cursor for color selector
                     PaintToolBar.setLineColor(this.eyeDropper(x, y));
                     this.updateCanvas();
                     break;
 
                 case ("Eraser"):
+                    this.lineDashes(0);
                     this.drawEraserEnd(x1, y1); //draws a pencil stroke to the end coordinates
                     this.updateCanvas();
                     break;
 
                 case ("Copy"):
+                    this.lineDashes(5);
                     this.undo();
                     this.rectTool(x, y, e.getX(), e.getY());
                     this.updateCanvas();
                     break;
 
                 case ("Paste"):
+                    this.lineDashes(0);
                     this.undo();
                     try{
                         this.drawImageAt(image, e.getX(), e.getY());
@@ -205,11 +220,13 @@ public class PaintCanvas extends PaintDraw {
             y1 = e.getY();
             switch (PaintToolBar.getTool()) {
                 case ("Line"):
+                    this.lineDashes(0);
                     this.lineTool(x, y, x1, y1); //draws a line from starting coordinates to new ending coordinates
                     this.updateCanvas();
                     break;
 
                 case ("Dashed Line"):
+                    this.lineDashes(0);
                     this.dashedLineTool(x, y, x1, y1); //draws a dashed line from starting coordinates to new ending coordinates
                     this.updateCanvas();
                     break;
@@ -218,26 +235,31 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Square"):
+                    this.lineDashes(0);
                     this.squareTool(x, y, x1, y1); //draws a square from the starting coordinates to the new ending coordinates
                     this.updateCanvas();
                     break;
 
                 case ("Rectangle"):
+                    this.lineDashes(0);
                     this.rectTool(x, y, x1, y1); //draws a rectangle from the starting coordinates to the new ending coordinates
                     this.updateCanvas();
                     break;
 
                 case ("Ellipse"):
+                    this.lineDashes(0);
                     this.ellipseTool(x, y, x1, y1); //draws an ellipse from the starting coordinates to the new ending coordinates
                     this.updateCanvas();
                     break;
 
                 case ("Circle"):
+                    this.lineDashes(0);
                     this.circleTool(x, y, x1, y1);
                     this.updateCanvas();
                     break;
 
                 case ("Color Dropper"):
+                    this.lineDashes(0);
                     setCursor(Cursor.CROSSHAIR); //changes cursor for color selector
                     PaintToolBar.setLineColor(this.eyeDropper(x, y));
                     this.updateCanvas();
@@ -248,12 +270,14 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Copy"):
+                    this.lineDashes(0);
                     this.undo();
                     this.image = this.getRegion(x, y, e.getX(), e.getY());
                     this.updateCanvas();
                     break;
 
                 case ("Paste"):
+                    this.lineDashes(0);
                     this.undo();
                     if (this.image != null) {
                         this.drawImageAt(this.image, e.getX(), e.getY());
@@ -268,8 +292,10 @@ public class PaintCanvas extends PaintDraw {
         });
     }
 
-    public void undo()
+    public void undo() //this is broken ?
     {
+        PaintTabs.canvas.widthProperty().unbind(); //these break it
+        PaintTabs.canvas.heightProperty().unbind(); //these break it
         Image img = undo.pop();
         if(!undo.empty()){
             redo.push(img);
@@ -281,8 +307,10 @@ public class PaintCanvas extends PaintDraw {
         }
     }
 
-    public void redo()
+    public void redo() //this is broken too?
     {
+        PaintTabs.canvas.widthProperty().unbind(); //these break it
+        PaintTabs.canvas.heightProperty().unbind(); //these break it
         if(!redo.empty()){
             Image im = redo.pop();
             undo.push(im);
