@@ -326,8 +326,9 @@ public class PaintCanvas extends PaintDraw {
                 case ("Cut"): //cuts a piece of the canvas at the given coordinates
                     this.undo();
                     this.image = this.getRegion(x, y, e.getX(), e.getY());
-                    this.setLineWidth(1);
+                    this.setLineWidth(0);
                     this.setShapeFill(true);
+                    this.setFillColor(Color.WHITE);
                     this.setLineColor(PaintToolBar.getFillColor());
                     this.rectTool(x, y, e.getX(), e.getY());
                     this.updateCanvas();

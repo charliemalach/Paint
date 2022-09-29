@@ -28,6 +28,8 @@ public class PaintDraw extends ResizableCanvas { //extends the resizable canvas,
         double y = (Math.min(y1, y2));
         double width = Math.abs(x1 - x2);   //abs val of the two x's = length of x
         double height = Math.abs(y1 - y2);
+        if(this.getShapeFill())
+            this.gc.fillRect(x, y, width, height);
         this.gc.strokeRect(x, y, width, height);
     }
 
