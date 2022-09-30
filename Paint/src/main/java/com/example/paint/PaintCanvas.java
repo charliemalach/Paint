@@ -27,8 +27,8 @@ public class PaintCanvas extends PaintDraw {
         super();
         //set defaults for undo/redo stack
         this.image = null;
-        this.undo = new Stack<>();
-        this.redo = new Stack<>();
+        this.undo = new Stack<>(); //new stack for undo
+        this.redo = new Stack<>(); //new stack for redo
 
         //set default background size & color
         this.setWidth(1280);
@@ -36,7 +36,7 @@ public class PaintCanvas extends PaintDraw {
         this.setShapeFill(true);
         this.setFillColor(Color.WHITE);
         this.setLineColor(Color.WHITE);
-        this.rectTool(0,0,this.getWidth(), this.getHeight());
+        this.rectTool(0,0,this.getWidth(), this.getHeight()); //draws a background for the default
 
         this.undo.push(this.getRegion(0, 0, this.getWidth(), this.getHeight()));
 
