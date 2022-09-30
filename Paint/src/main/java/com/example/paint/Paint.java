@@ -24,8 +24,8 @@ import java.io.IOException;
 public class Paint extends Application {
     private final static String TITLE = "Malachinski - Pain(t)"; //Name of the application
     private final static String VERSION = "v1.0.2";
-    private final static int windowWidth = 1280; //Dictates the initial length of the application window
-    private final static int windowHeight = 720; //Dictates the initial width of the application window
+    public final static int windowWidth = 1280; //Dictates the initial length of the application window
+    public final static int windowHeight = 720; //Dictates the initial width of the application window
     public static Stage mainStage; //Creates the main Stage
     public static BorderPane pane = new BorderPane();
     public static PaintToolBar toolbar = new PaintToolBar();

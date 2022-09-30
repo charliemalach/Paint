@@ -131,11 +131,51 @@ public class PaintMenuBar extends MenuBar {
             Paint.getCurrentTab().redo();
         });
 
+
+        MenuItem Resize = new MenuItem("Resize"); //THIS WORKS: however it is not the most practical code. I can change this later to make it better. 
+        Resize.setOnAction((ActionEvent event ) -> {
+
+            TextInputDialog input = new TextInputDialog("1280");
+            input.setContentText("New Width: ");
+            input.setHeaderText("Resize Canvas");
+
+            Label label = new Label("");
+
+
+
+            input.showAndWait();
+            label.setText(input.getEditor().getText());
+
+
+            try{
+                Integer.parseInt(label.getText());
+                PaintTabs.resizeCanvas(Integer.valueOf(label.getText()));
+            }
+            catch (Exception e)
+            {
+                input = new TextInputDialog("1280");
+                input.setContentText("New Width: ");
+                input.setHeaderText("INVALID: Enter Valid Width");
+
+                input.showAndWait();
+                label.setText(input.getEditor().getText());
+                Integer.parseInt(label.getText());
+                PaintTabs.resizeCanvas(Integer.valueOf(label.getText()));
+            }
+
+        });
+
+
+
+
+
         //This section adds all the File options to the menu bar
         File.getItems().addAll(New, Open, Save, SaveAs, separator, Exit);
         //This section adds all the Edit options
-        Edit.getItems().addAll(Undo, Redo);
+        Edit.getItems().addAll(Undo, Redo, Resize);
         //This section adds the About option under Help
         Help.getItems().addAll(About, helpOption);
+
+
     }
 }

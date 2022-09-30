@@ -5,9 +5,12 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 
+import static com.example.paint.Paint.windowWidth;
+import static com.example.paint.PaintTabs.canvas;
+
 
 public class PaintToolBar extends ToolBar {
-    public final static String[] TOOLS = {"None", "Line", "Dashed Line", "Pencil", "Square", "Rectangle", "Polygon", "Triangle", "Ellipse", "Circle", "Color Dropper", "Eraser", "Copy", "Cut", "Paste", "Clear Canvas"};
+    public final static String[] TOOLS = {"None", "Line", "Dashed Line", "Pencil", "Square", "Rectangle", "Polygon", "Triangle", "Ellipse", "Circle", "Color Dropper", "Eraser", "Copy", "Cut", "Paste", "Clear Canvas", "Resize Canvas"};
     private static final Integer[] LINE_WIDTH = {1, 2, 3, 5, 10, 15, 20, 25, 50, 100};
     private static ComboBox<String> toolBox;
     private static ComboBox<Integer> widthBox;
@@ -16,8 +19,10 @@ public class PaintToolBar extends ToolBar {
     public static int usingTool;
     private static int usingWidth;
 
-    private static TextField sides;
+    private static int usingCanvasWidth;
 
+    private static TextField sides;
+    private static TextField canvasWidth;
     private static int usingSides;
 
 
@@ -32,7 +37,10 @@ public class PaintToolBar extends ToolBar {
         usingTool = 0; //default tool = "none"
         usingSides = 3; //default number of sides = 3
 
+
+        canvasWidth = new TextField("1280");
         sides = new TextField("3");
+
         lineColorPicker = new ColorPicker();
         fillColorPicker = new ColorPicker();
         lineColorPicker.setValue(Color.BLACK); //default color = black
@@ -68,6 +76,8 @@ public class PaintToolBar extends ToolBar {
             }
         });
 
+
+
         widthBox.setOnAction((ActionEvent e) -> { //sets new line width as selected width
             usingWidth = widthBox.getValue();
             System.out.println("Width Selected: " + usingWidth);
@@ -97,6 +107,7 @@ public class PaintToolBar extends ToolBar {
     public static int getLineWidth() {
         return usingWidth;
     }
+
 
     public static int getUsingSides()
     {

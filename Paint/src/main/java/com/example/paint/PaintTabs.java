@@ -183,7 +183,7 @@ public class PaintTabs extends Tab {
         this.updateTitle();
     }
 
-    public File getPath() {
+    public File getPath() { //returns the path of the current file
         return this.path;
     }
 
@@ -196,8 +196,8 @@ public class PaintTabs extends Tab {
 
     public void undo()
     {
-        PaintTabs.canvas.widthProperty().unbind(); //these break it
-        PaintTabs.canvas.heightProperty().unbind(); //these break it
+        PaintTabs.canvas.widthProperty().unbind(); //these break it i think
+        PaintTabs.canvas.heightProperty().unbind(); //these break it i think
         this.canvas.undo();
     }
     public void redo()
@@ -207,10 +207,13 @@ public class PaintTabs extends Tab {
         this.canvas.redo();
     }
 
-    public void updateCanvas()
+    public static void resizeCanvas(int x) //resizes the entire canvas proportional with the newly provided canvas width
     {
-        this.canvas.updateCanvas();
-        this.updateTitle();
+        PaintTabs.canvas.widthProperty().unbind(); //unbinds the responsive canvas
+        PaintTabs.canvas.heightProperty().unbind(); //unbinds the responsive canvas
+        canvas.setWidth(x);
+        canvas.setHeight(x / 1.78);
     }
+
 
 }
