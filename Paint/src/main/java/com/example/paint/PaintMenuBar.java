@@ -143,14 +143,34 @@ public class PaintMenuBar extends MenuBar {
         MenuItem Resize = new MenuItem("Resize"); //THIS WORKS: however it is not the most practical code. I can change this later to make it better.
         Resize.setOnAction((ActionEvent event ) -> {
 
-            int test = resizeCanvas();
-            if(test > 0 && test < 10000)
+            TextInputDialog input = new TextInputDialog("1280");
+            input.setContentText("New Width: ");
+            input.setHeaderText("Resize Canvas");
+
+            Label label = new Label("");
+
+
+
+            input.showAndWait();
+            label.setText(input.getEditor().getText());
+
+
+            try{
+                Integer.parseInt(label.getText());
+                PaintTabs.resizeCanvas(Integer.valueOf(label.getText()));
+            }
+            catch (Exception e)
             {
-                PaintTabs.resizeCanvas(test);
+                input = new TextInputDialog("1280");
+                input.setContentText("New Width: ");
+                input.setHeaderText("INVALID: Enter Valid Width");
+
+                input.showAndWait();
+                label.setText(input.getEditor().getText());
+                Integer.parseInt(label.getText());
+                PaintTabs.resizeCanvas(Integer.valueOf(label.getText()));
             }
-            else{
-                resizeCanvas();
-            }
+
         });
 
 
@@ -162,13 +182,4 @@ public class PaintMenuBar extends MenuBar {
         Help.getItems().addAll(About, helpOption);
     }
 
-    public int resizeCanvas()
-    {
-        TextInputDialog input = new TextInputDialog("1280");
-        input.setContentText("New Width: ");
-        input.setHeaderText("Resize Canvas");
-        input.showAndWait();
-        System.out.println(Integer.parseInt(input.getEditor().getText()));
-        return Integer.parseInt(input.getEditor().getText());
-    }
 }

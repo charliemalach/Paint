@@ -222,6 +222,7 @@ public class PaintTabs extends Tab {
             canvas.setHeight(x / 1.78); //sets the height. i use this to make it proportional. 1920 / 1080 = ~1.78, and 1280 / 720 =~1.78, so this made sense to me
 
 
+
     }
 
 
