@@ -11,6 +11,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -37,8 +38,10 @@ public class PaintTabs extends Tab {
     public PaintTabs() { //sets the default tab 
         super();
         this.setText("New Tab");
+        PaintTabs newTab;
         this.canvas = new PaintCanvas(); //modifies the current canvas
         tabStart(); //starts a new tab with the new canvas
+
         this.setOnCloseRequest(new EventHandler<Event>() { //handles the request to close the current tab
             @Override
             public void handle(Event arg0)

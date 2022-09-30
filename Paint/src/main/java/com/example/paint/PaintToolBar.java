@@ -66,7 +66,7 @@ public class PaintToolBar extends ToolBar {
             if(Integer.parseInt(newValue) >= 3)
                 usingSides = Integer.parseInt(newValue);
             else{
-                sides.setText("3");
+                sides.setText("1");
             }
         });
 
