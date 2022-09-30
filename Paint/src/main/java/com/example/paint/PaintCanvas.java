@@ -12,7 +12,11 @@ import java.util.Stack;
 
 import static com.example.paint.Paint.mainStage;
 
-
+/**
+ * Malachinski Pain(t) Application - PaintCanvas.java
+ * This class file is used to manage the changes made on the canvas. Tool selection and their methods occurs here.
+ *
+ **/
 public class PaintCanvas extends PaintDraw {
     private double x, y, x1, y1; //variables used for drawing
     private Image image;

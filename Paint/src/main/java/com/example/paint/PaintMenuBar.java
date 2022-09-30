@@ -6,6 +6,12 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 
+/**
+ * Malachinski Pain(t) Application - PaintMenuBar.java
+ * This class file is used to manage the menu bar and all the relevant menu bar events.
+ *
+ **/
+
 public class PaintMenuBar extends MenuBar {
 
     public PaintMenuBar() {
@@ -20,6 +26,7 @@ public class PaintMenuBar extends MenuBar {
         //This section adds the other main options to the menu bar
         getMenus().addAll(File, Edit, Options, Help);
 
+        //'New' menu item. Allows users to create a new tab and a new project.
         MenuItem New = new MenuItem("New");
         New.setMnemonicParsing(true);
         New.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.CONTROL_DOWN));
@@ -91,6 +98,7 @@ public class PaintMenuBar extends MenuBar {
             aboutPaint.showAndWait();
         });
 
+        //'Help' menu item. Allows users to browse a 'Q&A' section about the application.
         MenuItem helpOption = new Menu("Help");
         helpOption.setMnemonicParsing(
                 true);
@@ -131,42 +139,19 @@ public class PaintMenuBar extends MenuBar {
             Paint.getCurrentTab().redo();
         });
 
-
-        MenuItem Resize = new MenuItem("Resize"); //THIS WORKS: however it is not the most practical code. I can change this later to make it better. 
+        //"Resize" menu item. Allows users to resize the canvas for larger drawing.
+        MenuItem Resize = new MenuItem("Resize"); //THIS WORKS: however it is not the most practical code. I can change this later to make it better.
         Resize.setOnAction((ActionEvent event ) -> {
 
-            TextInputDialog input = new TextInputDialog("1280");
-            input.setContentText("New Width: ");
-            input.setHeaderText("Resize Canvas");
-
-            Label label = new Label("");
-
-
-
-            input.showAndWait();
-            label.setText(input.getEditor().getText());
-
-
-            try{
-                Integer.parseInt(label.getText());
-                PaintTabs.resizeCanvas(Integer.valueOf(label.getText()));
-            }
-            catch (Exception e)
+            int test = resizeCanvas();
+            if(test > 0 && test < 10000)
             {
-                input = new TextInputDialog("1280");
-                input.setContentText("New Width: ");
-                input.setHeaderText("INVALID: Enter Valid Width");
-
-                input.showAndWait();
-                label.setText(input.getEditor().getText());
-                Integer.parseInt(label.getText());
-                PaintTabs.resizeCanvas(Integer.valueOf(label.getText()));
+                PaintTabs.resizeCanvas(test);
             }
-
+            else{
+                resizeCanvas();
+            }
         });
-
-
-
 
 
         //This section adds all the File options to the menu bar
@@ -175,7 +160,15 @@ public class PaintMenuBar extends MenuBar {
         Edit.getItems().addAll(Undo, Redo, Resize);
         //This section adds the About option under Help
         Help.getItems().addAll(About, helpOption);
+    }
 
-
+    public int resizeCanvas()
+    {
+        TextInputDialog input = new TextInputDialog("1280");
+        input.setContentText("New Width: ");
+        input.setHeaderText("Resize Canvas");
+        input.showAndWait();
+        System.out.println(Integer.parseInt(input.getEditor().getText()));
+        return Integer.parseInt(input.getEditor().getText());
     }
 }

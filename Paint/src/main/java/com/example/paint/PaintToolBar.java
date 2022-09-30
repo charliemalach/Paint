@@ -5,47 +5,44 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 
-import static com.example.paint.Paint.windowWidth;
-import static com.example.paint.PaintTabs.canvas;
+/**
+ * Malachinski Pain(t) Application - PaintToolBar.java
+ * This class file is used to manage the toolbar and its relevant methods. The color, line width, and number of sides (for specific shapes) are managed within this class file.
+ *
+ **/
 
 
 public class PaintToolBar extends ToolBar {
-    public final static String[] TOOLS = {"None", "Line", "Dashed Line", "Pencil", "Square", "Rectangle", "Polygon", "Triangle", "Ellipse", "Circle", "Color Dropper", "Eraser", "Copy", "Cut", "Paste", "Clear Canvas", "Resize Canvas"};
-    private static final Integer[] LINE_WIDTH = {1, 2, 3, 5, 10, 15, 20, 25, 50, 100};
-    private static ComboBox<String> toolBox;
-    private static ComboBox<Integer> widthBox;
-    private static ColorPicker lineColorPicker;
-    private static ColorPicker fillColorPicker;
-    public static int usingTool;
-    private static int usingWidth;
-
-    private static int usingCanvasWidth;
-
-    private static TextField sides;
-    private static TextField canvasWidth;
+    public final static String[] TOOLS = {"None", "Line", "Dashed Line", "Pencil", "Square", "Rectangle", "Polygon", "Triangle", "Ellipse", "Circle", "Color Dropper", "Eraser", "Copy", "Cut", "Paste", "Clear Canvas"};
+    private static final Integer[] LINE_WIDTH = {1, 2, 3, 5, 10, 15, 20, 25, 50, 100}; //hard coded line widths for the user to use, might make this custom later
+    private static ComboBox<String> toolBox; //creates a combo box to store all the available tools
+    private static ComboBox<Integer> widthBox; //creates a combo box to store all the available widths
+    private static ColorPicker lineColorPicker; //creates the color picker for the line
+    private static ColorPicker fillColorPicker; //creates the color picker for the fill of the object
+    public static int usingTool; //creates the identifier for the array to observe which tool is being used
+    private static int usingWidth; //creates a variable for the line width
+    private static TextField sides; //creates an editable text field for the number of sides of the object
     private static int usingSides;
 
 
-    public PaintToolBar() {
+    public PaintToolBar() { //sets up the toolbar
         super();
 
-        toolBox = new ComboBox<>(FXCollections.observableArrayList(TOOLS));
-        widthBox = new ComboBox<>(FXCollections.observableArrayList(LINE_WIDTH));
+        toolBox = new ComboBox<>(FXCollections.observableArrayList(TOOLS)); //adds all the defined tools to the toolbox
+        widthBox = new ComboBox<>(FXCollections.observableArrayList(LINE_WIDTH)); //adds all the defined widths to the width selection box
 
         //setting all defaults:
         usingWidth = 1; //default line width
         usingTool = 0; //default tool = "none"
         usingSides = 3; //default number of sides = 3
 
+        sides = new TextField("3"); //sets the default sides in the editable text field
 
-        canvasWidth = new TextField("1280");
-        sides = new TextField("3");
-
-        lineColorPicker = new ColorPicker();
-        fillColorPicker = new ColorPicker();
+        lineColorPicker = new ColorPicker(); //creates color picker for the line
+        fillColorPicker = new ColorPicker(); //creates color picker for the fill
         lineColorPicker.setValue(Color.BLACK); //default color = black
-        toolBox.setValue("None");
-        widthBox.setValue(1);
+        toolBox.setValue("None"); //sets the default tool to "none"
+        widthBox.setValue(1); //sets the default width to 1
 
 
         //adds items to toolbox
@@ -54,21 +51,18 @@ public class PaintToolBar extends ToolBar {
                 new Label("Line Color: "), lineColorPicker, new Separator()
         );
 
-        sides.setVisible(false);
+        sides.setVisible(false); //makes sides invisible until the proper tool is selected
         sides.setPrefWidth(50);
 
-        // Listeners!
+        // Listeners for the tools
 
         toolBox.getSelectionModel().selectedIndexProperty().addListener((observable, value, newValue) -> { //set new tool as selected tool
             usingTool = newValue.intValue();
-            if(TOOLS[usingTool].equals("Polygon"))   //enables the text input for the n-gon option and disables it otherwise
-                sides.setVisible(true);
-            else
-                sides.setVisible(false);
+            sides.setVisible(TOOLS[usingTool].equals("Polygon")); //enables the text input for the n-gon option and disables it otherwise
             System.out.println("Tool Selected: " + TOOLS[usingTool]);
         });
 
-        sides.textProperty().addListener((observable, value, newValue) -> {
+        sides.textProperty().addListener((observable, value, newValue) -> { //parses the text input for sides so that it becomes a usable int value
             if(Integer.parseInt(newValue) >= 3)
                 usingSides = Integer.parseInt(newValue);
             else{
@@ -80,7 +74,7 @@ public class PaintToolBar extends ToolBar {
 
         widthBox.setOnAction((ActionEvent e) -> { //sets new line width as selected width
             usingWidth = widthBox.getValue();
-            System.out.println("Width Selected: " + usingWidth);
+            System.out.println("Width Selected: " + usingWidth); //print statement for debugging purposes
         });
     }
 
@@ -89,28 +83,26 @@ public class PaintToolBar extends ToolBar {
         return TOOLS[usingTool];
     }
 
-    public static Color getLineColor() {
+    public static Color getLineColor() { //gets the color of the line
         return lineColorPicker.getValue();
     }
-    public static Color getFillColor() {
+    public static Color getFillColor() { //gets the color of the fill object
       return fillColorPicker.getValue();
     }
 
-    public static void setLineColor(Color color) {
+    public static void setLineColor(Color color) { //sets the color of the line
         lineColorPicker.setValue(color);
     }
 
-    public static void setFillColor(Color color){
+    public static void setFillColor(Color color){ //sets the fill color of the object
         fillColorPicker.setValue(color);
     }
 
-    public static int getLineWidth() {
+    public static int getLineWidth() { //returns the width of the current object
         return usingWidth;
     }
 
-
-    public static int getUsingSides()
-    {
+    public static int getUsingSides() { //returns the current number of sides for the object
         return usingSides;
     }
 

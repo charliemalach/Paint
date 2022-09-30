@@ -12,6 +12,11 @@ import java.io.File;
 import static com.example.paint.Paint.mainStage;
 import static com.example.paint.Paint.pane;
 
+/**
+ * Malachinski Pain(t) Application - PaintDraw.java
+ * This class file is used to manage the tools used to draw on the canvas. All the tool methods and their getters / setters are defined here.
+ *
+ **/
 public class PaintDraw extends ResizableCanvas { //extends the resizable canvas, allowing users to draw on extended part of canvas
 
     private GraphicsContext gc;

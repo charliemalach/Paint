@@ -18,27 +18,32 @@ import java.io.IOException;
 import java.util.Optional;
 import static com.example.paint.Paint.mainStage;
 
+/**
+ * Malachinski Pain(t) Application - PaintTabs.java
+ * This class file is used to manage the changes made to individual tabs. This class also manages multiple canvases in the canvas stack, allowing for multiple canvases.
+ *
+ **/
+
 public class PaintTabs extends Tab {
 
-    public Pane CanvasPane;
-    private static FileChooser chooseFile;
+    public Pane CanvasPane; //creates a new pane to manage the canvas
+    private static FileChooser chooseFile; //includes the file chooser
     private String title;
     private File path;
-    public static PaintCanvas canvas;
-    private ScrollPane sp;
-    public static StackPane canvasStack;
+    public static PaintCanvas canvas; //adds a new canvas object
+    private ScrollPane sp; //creates the scroll pane
+    public static StackPane canvasStack; //creates a canvas stack for multiple canvas objects
 
     public PaintTabs() { //sets the default tab 
         super();
         this.setText("New Tab");
-        this.canvas = new PaintCanvas();
-        tabStart();
-        this.setOnCloseRequest(new EventHandler<Event>()
-        {
+        this.canvas = new PaintCanvas(); //modifies the current canvas
+        tabStart(); //starts a new tab with the new canvas
+        this.setOnCloseRequest(new EventHandler<Event>() { //handles the request to close the current tab
             @Override
             public void handle(Event arg0)
             {
-                quitTab();
+                quitTab();  //prompts the user to save before closing the current tab with the quitTab() method
             }
         });
     }
@@ -49,14 +54,14 @@ public class PaintTabs extends Tab {
         super();
         this.path = file;
         this.setText(path.getName());
-        this.canvas = new PaintCanvas();
+        this.canvas = new PaintCanvas(); //modifies the current canvas
         tabStart();
         this.setOnCloseRequest(new EventHandler<Event>()
         {
             @Override
             public void handle(Event arg0)
             {
-                quitTab();
+                quitTab(); //prompts the user to save before closing the current tab with the quitTab() method
             }
         });
     }
@@ -64,18 +69,18 @@ public class PaintTabs extends Tab {
     private void tabStart() { //default constructor
         chooseFile = new FileChooser();
         chooseFile.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("PNG", "*.png"),
-                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-                new FileChooser.ExtensionFilter("Bitmap", "*.bmp"),
-                new FileChooser.ExtensionFilter("JPEG", "*.jpeg"),
-                new FileChooser.ExtensionFilter("GIF", "*.gif")
+                new FileChooser.ExtensionFilter("PNG", "*.png"), //handles .PNG files
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"), //handles .JPG files
+                new FileChooser.ExtensionFilter("Bitmap", "*.bmp"), //handles .BMP files
+                new FileChooser.ExtensionFilter("JPEG", "*.jpeg"), //handles .JPEG files
+                new FileChooser.ExtensionFilter("GIF", "*.gif") //handles .GIF files
 
         );
 
         //handles the canvas and the new stack
         this.CanvasPane = new Pane(canvas);
         this.canvasStack = new StackPane();
-        this.canvasStack.getChildren().addAll(CanvasPane);
+        this.canvasStack.getChildren().addAll(CanvasPane); //adds all canvas pane objects to the stack
 
 
         //handles the scroll pane on the canvas
@@ -178,9 +183,10 @@ public class PaintTabs extends Tab {
     }
 
 
+
     public void setTitle(String title) { //sets the title of the current tab
         this.title = title;
-        this.updateTitle();
+        this.updateTitle(); //updates the title of tab
     }
 
     public File getPath() { //returns the path of the current file
@@ -211,8 +217,11 @@ public class PaintTabs extends Tab {
     {
         PaintTabs.canvas.widthProperty().unbind(); //unbinds the responsive canvas
         PaintTabs.canvas.heightProperty().unbind(); //unbinds the responsive canvas
-        canvas.setWidth(x);
-        canvas.setHeight(x / 1.78);
+
+            canvas.setWidth(x); //sets the canvas width to the given int
+            canvas.setHeight(x / 1.78); //sets the height. i use this to make it proportional. 1920 / 1080 = ~1.78, and 1280 / 720 =~1.78, so this made sense to me
+
+
     }
 
 
