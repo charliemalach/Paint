@@ -143,29 +143,26 @@ public class PaintMenuBar extends MenuBar {
         MenuItem Resize = new MenuItem("Resize"); //THIS WORKS: however it is not the most practical code. I can change this later to make it better.
         Resize.setOnAction((ActionEvent event ) -> {
 
-            TextInputDialog input = new TextInputDialog("1280");
+            TextInputDialog input = new TextInputDialog("1280"); //sets default width to 1280
             input.setContentText("New Width: ");
             input.setHeaderText("Resize Canvas");
-
             Label label = new Label("");
             input.showAndWait();
             label.setText(input.getEditor().getText());
-            try{
+
+            try{ //tries to resize canvas with given parameter
                 Integer.parseInt(label.getText());
                 PaintTabs.resizeCanvas(Integer.valueOf(label.getText()));
             }
-            catch (Exception e)
-            {
+            catch (Exception e) { //catches exception and prompts user to try again
                 input = new TextInputDialog("1280");
                 input.setContentText("New Width: ");
                 input.setHeaderText("INVALID: Enter Valid Width");
-
                 input.showAndWait();
                 label.setText(input.getEditor().getText());
-                Integer.parseInt(label.getText());
+                Integer.parseInt(label.getText()); //i need to change this but idk what to change it to
                 PaintTabs.resizeCanvas(Integer.valueOf(label.getText()));
             }
-
         });
 
 
