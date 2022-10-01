@@ -12,7 +12,6 @@ New Features:
 	- Ability to select and move a piece of the image 
 	- Ability to draw a triangle (additional shape of choice) 
 
-
 Known Issues:
 	- N/A
 
