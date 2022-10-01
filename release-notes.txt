@@ -1,3 +1,30 @@
+#----------------------------------------------------------------------------------------------------#
+
+Charlie's Pain(t) Version 1.0.3, 9/30/22
+
+New Features:
+	- Application starts with a blank, white, drawable canvas 
+	- Implemented a 'clear canvas' button that prompts users with a warning to verify that they want to clear
+	- Ability to undo / redo changes made to the image with a stack 
+	- Ability to erase parts of the image 
+	- Ability to draw a regular sided polygon with any user provided # of sides 
+	- Ability to copy and paste a selected piece of the image 
+	- Ability to select and move a piece of the image 
+	- Ability to draw a triangle (additional shape of choice) 
+
+
+Known Issues:
+	- N/A
+
+Expected Next Sprint:
+	- Ability to fill color on the shape
+	- Paint Bucket?
+	- Gradient tool?
+	- Text tool?
+
+Links:
+	- GitHub Repository: https://github.com/charliemalach/Paint
+
 
 #----------------------------------------------------------------------------------------------------#
 
