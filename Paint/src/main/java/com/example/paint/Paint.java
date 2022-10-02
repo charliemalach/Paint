@@ -14,16 +14,17 @@ import java.io.IOException;
 
 /**
  * Malachinski Pain(t) Application
- * The Pain(t) application is a program that currently allows users to upload, save and save as images. These images can be drawn upon and saved as new files. Users can use the following tools: Line, Dotted Line, Pencil, Square, Rectangle, and more. More features will come in the future.
+ * The Pain(t) application is a program that currently allows users to upload, save and save as images. Auto-save has also been implemented. These images can be drawn upon and saved as new files. Users can use the following tools: Line, Dotted Line, Pencil, Square, Rectangle, and more. More features will come in the future.
+ * The application also hosts a total of 3 unit tests to ensure that methods work properly.
  *
  * @author Charlie Malachinski
- * @version 1.0.2
+ * @version 1.0.4
  * @since 2022-09-19
  **/
 
 public class Paint extends Application {
     private final static String TITLE = "Malachinski - Pain(t)"; //Name of the application
-    private final static String VERSION = "v1.0.2";
+    private final static String VERSION = "v1.0.4";
     public final static int windowWidth = 1280; //Dictates the initial length of the application window
     public final static int windowHeight = 720; //Dictates the initial width of the application window
     public static Stage mainStage; //Creates the main Stage
@@ -67,9 +68,6 @@ public class Paint extends Application {
                     stage.close();
             }
         });
-
-
-
     }
 
     public static void main(String[] args) {

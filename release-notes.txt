@@ -1,5 +1,29 @@
 #----------------------------------------------------------------------------------------------------#
 
+Charlie's Pain(t) Version 1.0.4, 10/2/22
+
+New Features:
+	- Application now has 3 separate unit tests
+	- Application now has auto-save feature implemented
+	- Application's auto-save has an optional visibility feature
+	- Application's code now includes Javadoc commenting
+	- Application has the ability to save in alternative file form than the original image
+
+Known Issues:
+	- N/A
+
+Expected Next Sprint:
+	- Ability to fill color on the shape
+	- Paint Bucket?
+	- Gradient tool?
+	- Text tool?
+
+Links:
+	- GitHub Repository: https://github.com/charliemalach/Paint
+
+
+#----------------------------------------------------------------------------------------------------#
+
 Charlie's Pain(t) Version 1.0.3, 9/30/22
 
 New Features:
