@@ -16,6 +16,8 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Optional;
@@ -53,8 +55,6 @@ public class PaintTabs extends Tab {
         this.canvas = new PaintCanvas(); //modifies the current canvas
         tabStart(); //starts a new tab with the new canvas
     }
-
-
 
     public PaintTabs(File file) { //sets a new tab on image open 
         super();
@@ -96,17 +96,16 @@ public class PaintTabs extends Tab {
         this.sp.setPrefViewportWidth(this.canvas.getWidth() / 2);
         this.sp.setPrefViewportHeight(this.canvas.getHeight() / 2);
 
-        this.autoSaveSec = 5;
+        this.autoSaveSec = 30;
         this.autosaveTimer = new Timer();
         this.autoSave = new TimerTask(){
             @Override
-            public void run()
-            {
+            public void run(){
                 Platform.runLater(new Runnable(){
                     @Override
                     public void run(){
-                        autoSaveImage();
-                        autosaveTimer.schedule(autoSave, 0, autoSaveSec*MILS_IN_SECS); //this is broken ?
+                        autoSave();
+//                        autosaveTimer.schedule(autoSave, 0, autoSaveSec*MILS_IN_SECS);
                     }
                 });
             }
@@ -141,12 +140,12 @@ public class PaintTabs extends Tab {
                     @Override
                     public void run(){
                         autoSaveImage();
-                        autosaveTimer.schedule(autoSave, 0, (long) autoSaveSec*MILS_IN_SECS);
+                        autosaveTimer.schedule(autoSave, 0, autoSaveSec*MILS_IN_SECS);
                     }
                 });
             }
         };
-        this.autosaveTimer.schedule(this.autoSave, 0, (long) this.autoSaveSec*MILS_IN_SECS);
+        this.autosaveTimer.schedule(this.autoSave, 0, this.autoSaveSec*MILS_IN_SECS);
     }
 
     public void setFilePath(File path) { //sets the path for the current file
@@ -182,6 +181,21 @@ public class PaintTabs extends Tab {
         try {
             if (this.path != null) {
                 ImageIO.write(SwingFXUtils.fromFXImage(im, null), "png", this.path);
+                this.setTitle(this.getFilePath().getName());
+            }
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    public void autoSave()
+    {
+        File backup = new File(AUTOSAVE_DIR + LocalDate.now() + Instant.now().toEpochMilli() + ".png");
+        Image im = this.canvas.getRegion(0, 0, this.canvas.getWidth(), this.canvas.getHeight());
+        try {
+            if (this.path != null) {
+                ImageIO.write(SwingFXUtils.fromFXImage(im, null), "png", backup);
+//                new FileOutputStream(backup);
                 this.setTitle(this.getFilePath().getName());
             }
         } catch (IOException ex) {
@@ -241,8 +255,6 @@ public class PaintTabs extends Tab {
             }
     }
 
-
-
     public void setTitle(String title) { //sets the title of the current tab
         this.title = title;
         this.updateTitle(); //updates the title of tab
@@ -279,10 +291,5 @@ public class PaintTabs extends Tab {
 
             canvas.setWidth(x); //sets the canvas width to the given int
             canvas.setHeight(x / 1.78); //sets the height. i use this to make it proportional. 1920 / 1080 = ~1.78, and 1280 / 720 =~1.78, so this made sense to me
-
-
-
     }
-
-
 }
