@@ -1,5 +1,6 @@
 package com.example.paint;
 
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -33,6 +34,8 @@ public class Paint extends Application {
     public static PaintMenuBar menuBar = new PaintMenuBar(); //Creates a MenuBar
     public static TabPane tabpane;
     public static Scene scene;
+    public static Timeline autosave;
+    public static int autosaveInterval;
 
     @Override
     public void start(Stage stage) throws IOException {

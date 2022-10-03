@@ -11,12 +11,17 @@ import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Optional;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import static com.example.paint.Paint.mainStage;
 
 /**
@@ -34,42 +39,36 @@ public class PaintTabs extends Tab {
     public static PaintCanvas canvas; //adds a new canvas object
     private ScrollPane sp; //creates the scroll pane
     public static StackPane canvasStack; //creates a canvas stack for multiple canvas objects
+    private int autoSaveSec;
+    private Image autoSaveBackup;
+    private Timer autosaveTimer;
+    private TimerTask autoSave;
+    private final static int MILS_IN_SECS = 1000;
+    private boolean unsavedChanges;
+    private final static String AUTOSAVE_DIR = "C:\\Users\\Charlie\\Desktop\\CS 250\\Images\\";
 
     public PaintTabs() { //sets the default tab 
         super();
+        this.unsavedChanges = true;
         this.setText("New Tab");
         PaintTabs newTab;
         this.canvas = new PaintCanvas(); //modifies the current canvas
         tabStart(); //starts a new tab with the new canvas
-
-        this.setOnCloseRequest(new EventHandler<Event>() { //handles the request to close the current tab
-            @Override
-            public void handle(Event arg0)
-            {
-                quitTab();  //prompts the user to save before closing the current tab with the quitTab() method
-            }
-        });
     }
 
 
 
     public PaintTabs(File file) { //sets a new tab on image open 
         super();
+        this.unsavedChanges = false;
         this.path = file;
         this.setText(path.getName());
         this.canvas = new PaintCanvas(); //modifies the current canvas
         tabStart();
-        this.setOnCloseRequest(new EventHandler<Event>()
-        {
-            @Override
-            public void handle(Event arg0)
-            {
-                quitTab(); //prompts the user to save before closing the current tab with the quitTab() method
-            }
-        });
     }
 
     private void tabStart() { //default constructor
+        this.autoSaveBackup = null;
         chooseFile = new FileChooser();
         chooseFile.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("PNG", "*.png"), //handles .PNG files
@@ -91,6 +90,68 @@ public class PaintTabs extends Tab {
         this.setContent(sp);
         this.sp.setPrefViewportWidth(this.canvas.getWidth() / 2);
         this.sp.setPrefViewportHeight(this.canvas.getHeight() / 2);
+
+        this.setOnCloseRequest(new EventHandler<Event>()
+        {
+            @Override
+            public void handle(Event arg0)
+            {
+                    quitTab(); //prompts the user to save before closing the current tab with the quitTab() method
+            }
+        });
+
+        this.autoSaveSec = 30;
+        this.autosaveTimer = new Timer();
+        this.autoSave = new TimerTask(){
+            @Override
+            public void run()
+            {
+                Platform.runLater(new Runnable(){
+                    @Override
+                    public void run(){
+                        autoSaveImage();
+                        autosaveTimer.schedule(autoSave, 0, autoSaveSec*MILS_IN_SECS);
+                    }
+                });
+            }
+
+        };
+        this.autosaveTimer.schedule(this.autoSave, 30000, this.autoSaveSec*MILS_IN_SECS);
+    }
+
+    public void autoSaveImage()
+    {
+        if(this.unsavedChanges && this.path != null){
+            this.autoSaveBackup = this.canvas.getRegion(0, 0, this.canvas.getWidth(), this.canvas.getHeight());
+            File backup = new File(AUTOSAVE_DIR + LocalDate.now() + Instant.now().toEpochMilli() + ".png");
+            try{
+                backup.createNewFile();
+                ImageIO.write(SwingFXUtils.fromFXImage(this.autoSaveBackup, null),
+                        "png",
+                        new FileOutputStream(backup));
+            } catch (IOException exception){
+                System.out.println("n0");
+            }
+        }
+    }
+
+    public void updateSaveTimer(){
+        this.autoSaveSec = PaintToolBar.getSaveTimer();
+        this.autoSave.cancel();
+        this.autosaveTimer.purge();
+        this.autoSave = new TimerTask(){
+            @Override
+            public void run(){
+                Platform.runLater(new Runnable(){
+                    @Override
+                    public void run(){
+                        autoSaveImage();
+                        autosaveTimer.schedule(autoSave, 30000, autoSaveSec*MILS_IN_SECS);
+                    }
+                });
+            }
+        };
+        this.autosaveTimer.schedule(this.autoSave, 30000, this.autoSaveSec*MILS_IN_SECS);
     }
 
     public void setFilePath(File path) { //sets the path for the current file

@@ -192,7 +192,7 @@ public class PaintDraw extends ResizableCanvas { //extends the resizable canvas,
         return this.shapeFill;
     }
 
-    public void setShapeFill(boolean shapeFill)
+    public void setShapeFill(boolean shapeFill) //sets
     {
         this.shapeFill = shapeFill;
     }

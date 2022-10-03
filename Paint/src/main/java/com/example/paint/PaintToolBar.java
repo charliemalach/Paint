@@ -23,6 +23,8 @@ public class PaintToolBar extends ToolBar {
     private static int usingWidth; //creates a variable for the line width
     private static TextField sides; //creates an editable text field for the number of sides of the object
     private static int usingSides;
+    private static TextField saveTime;
+    private static int currentTime;
 
 
     public PaintToolBar() { //sets up the toolbar
@@ -35,6 +37,7 @@ public class PaintToolBar extends ToolBar {
         usingWidth = 1; //default line width
         usingTool = 0; //default tool = "none"
         usingSides = 3; //default number of sides = 3
+        currentTime = 15;
 
         sides = new TextField("3"); //sets the default sides in the editable text field
 
@@ -43,16 +46,19 @@ public class PaintToolBar extends ToolBar {
         lineColorPicker.setValue(Color.BLACK); //default color = black
         toolBox.setValue("None"); //sets the default tool to "none"
         widthBox.setValue(1); //sets the default width to 1
+        saveTime = new TextField(Integer.toString(currentTime));
 
 
         //adds items to toolbox
         getItems().addAll(new Label("Tools: "), toolBox, new Separator(), sides, new Separator(),
                 new Label("Line Width: "), widthBox,
-                new Label("Line Color: "), lineColorPicker, new Separator()
+                new Label("Line Color: "), lineColorPicker, new Separator(),
+                new Label("Auto-Save: "), saveTime, new Label(" sec")
         );
 
         sides.setVisible(false); //makes sides invisible until the proper tool is selected
         sides.setPrefWidth(50);
+        saveTime.setPrefWidth(50);
 
         // Listeners for the tools
 
@@ -68,6 +74,15 @@ public class PaintToolBar extends ToolBar {
             else{
                 sides.setText("1");
             }
+        });
+
+        saveTime.textProperty().addListener((observable, value, newValue) -> {
+            if(Integer.parseInt(newValue) >=1)
+                currentTime = Integer.parseInt(newValue);
+            else{
+                saveTime.setText("1");
+            }
+            Paint.getCurrentTab().updateSaveTimer();
         });
 
 
@@ -104,6 +119,11 @@ public class PaintToolBar extends ToolBar {
 
     public static int getUsingSides() { //returns the current number of sides for the object
         return usingSides;
+    }
+
+    public static int getSaveTimer()
+    {
+        return currentTime;
     }
 
 }
