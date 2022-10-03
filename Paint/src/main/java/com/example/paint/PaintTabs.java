@@ -189,7 +189,7 @@ public class PaintTabs extends Tab {
     }
 
     public void autoSave()
-    {
+    { //WORKING FUNCTION - DO NOT FUCK WITH IT
         File backup = new File(AUTOSAVE_DIR + LocalDate.now() + Instant.now().toEpochMilli() + ".png");
         Image im = this.canvas.getRegion(0, 0, this.canvas.getWidth(), this.canvas.getHeight());
         try {
@@ -197,6 +197,7 @@ public class PaintTabs extends Tab {
                 ImageIO.write(SwingFXUtils.fromFXImage(im, null), "png", backup);
 //                new FileOutputStream(backup);
                 this.setTitle(this.getFilePath().getName());
+                System.out.println("Auto Save was Successful!");
             }
         } catch (IOException ex) {
             System.out.println(ex);
