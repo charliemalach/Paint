@@ -29,7 +29,6 @@ public class PaintToolBar extends ToolBar {
     private static TextField saveTime;
     private static int currentTime;
 
-
     public PaintToolBar() { //sets up the toolbar
         super();
 
@@ -50,9 +49,11 @@ public class PaintToolBar extends ToolBar {
         fillColorPicker = new ColorPicker(); //creates color picker for the fill
         lineColorPicker.setValue(Color.BLACK); //default color = black
         toolBox.setValue("None"); //sets the default tool to "none"
+        saveBox.setValue("No");
         widthBox.setValue(1); //sets the default width to 1
         saveTime = new TextField(Integer.toString(currentTime));
 
+        Label seconds = new Label(" seconds");
 
 
 
@@ -60,10 +61,11 @@ public class PaintToolBar extends ToolBar {
         getItems().addAll(new Label("Tools: "), toolBox, new Separator(), sides, new Separator(),
                 new Label("Line Width: "), widthBox,
                 new Label("Line Color: "), lineColorPicker, new Separator(),
-                new Label("Auto-Save "), saveBox, saveTime
+                new Label("Auto-Save "), saveBox, saveTime, seconds
+
         );
 
-
+        seconds.setVisible(false);
         saveTime.setVisible(false); //false
         sides.setVisible(false); //makes sides invisible until the proper tool is selected
         sides.setPrefWidth(50);
@@ -80,6 +82,7 @@ public class PaintToolBar extends ToolBar {
         saveBox.getSelectionModel().selectedIndexProperty().addListener((observable, value, newValue) -> {
             usingSave = newValue.intValue();
             saveTime.setVisible(SAVES[usingSave].equals("Yes"));
+            seconds.setVisible(SAVES[usingSave].equals("Yes"));
                 });
 
             sides.textProperty().addListener((observable, value, newValue) -> { //parses the text input for sides so that it becomes a usable int value
