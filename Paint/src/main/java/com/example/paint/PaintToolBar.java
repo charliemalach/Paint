@@ -37,7 +37,7 @@ public class PaintToolBar extends ToolBar {
         usingWidth = 1; //default line width
         usingTool = 0; //default tool = "none"
         usingSides = 3; //default number of sides = 3
-        currentTime = 15;
+        currentTime = 5;
 
         sides = new TextField("3"); //sets the default sides in the editable text field
 

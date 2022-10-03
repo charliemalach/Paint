@@ -21,7 +21,6 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import static com.example.paint.Paint.mainStage;
 
 /**
@@ -45,13 +44,12 @@ public class PaintTabs extends Tab {
     private TimerTask autoSave;
     private final static int MILS_IN_SECS = 1000;
     private boolean unsavedChanges;
-    private final static String AUTOSAVE_DIR = "C:\\Users\\Charlie\\Desktop\\CS 250\\Images\\";
+    private final static String AUTOSAVE_DIR = "C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\main\\resources\\images\\";
 
     public PaintTabs() { //sets the default tab 
         super();
         this.unsavedChanges = true;
         this.setText("New Tab");
-        PaintTabs newTab;
         this.canvas = new PaintCanvas(); //modifies the current canvas
         tabStart(); //starts a new tab with the new canvas
     }
@@ -76,7 +74,6 @@ public class PaintTabs extends Tab {
                 new FileChooser.ExtensionFilter("Bitmap", "*.bmp"), //handles .BMP files
                 new FileChooser.ExtensionFilter("JPEG", "*.jpeg"), //handles .JPEG files
                 new FileChooser.ExtensionFilter("GIF", "*.gif") //handles .GIF files
-
         );
 
         //handles the canvas and the new stack
@@ -99,7 +96,7 @@ public class PaintTabs extends Tab {
         this.sp.setPrefViewportWidth(this.canvas.getWidth() / 2);
         this.sp.setPrefViewportHeight(this.canvas.getHeight() / 2);
 
-        this.autoSaveSec = 30;
+        this.autoSaveSec = 5;
         this.autosaveTimer = new Timer();
         this.autoSave = new TimerTask(){
             @Override
@@ -109,25 +106,24 @@ public class PaintTabs extends Tab {
                     @Override
                     public void run(){
                         autoSaveImage();
-                        autosaveTimer.schedule(autoSave, 0, (long) autoSaveSec *MILS_IN_SECS);
+                        autosaveTimer.schedule(autoSave, 0, autoSaveSec*MILS_IN_SECS); //this is broken ?
                     }
                 });
             }
-
         };
-        this.autosaveTimer.schedule(this.autoSave, 30000, (long) this.autoSaveSec *MILS_IN_SECS);
+        this.autosaveTimer.schedule(this.autoSave, 30000, this.autoSaveSec*MILS_IN_SECS);
     }
 
-    public void autoSaveImage()
-    {
+    public void autoSaveImage() {
         if(this.unsavedChanges && this.path != null){
             this.autoSaveBackup = this.canvas.getRegion(0, 0, this.canvas.getWidth(), this.canvas.getHeight());
             File backup = new File(AUTOSAVE_DIR + LocalDate.now() + Instant.now().toEpochMilli() + ".png");
             try{
                 backup.createNewFile();
                 ImageIO.write(SwingFXUtils.fromFXImage(this.autoSaveBackup, null),
-                        "png",
-                        new FileOutputStream(backup));
+                            "png",
+                            new FileOutputStream(backup));
+                System.out.println("Successful Auto Save");
             } catch (IOException exception){
                 System.out.println("n0");
             }
@@ -145,12 +141,12 @@ public class PaintTabs extends Tab {
                     @Override
                     public void run(){
                         autoSaveImage();
-                        autosaveTimer.schedule(autoSave, 0, (long) autoSaveSec *MILS_IN_SECS);
+                        autosaveTimer.schedule(autoSave, 0, (long) autoSaveSec*MILS_IN_SECS);
                     }
                 });
             }
         };
-        this.autosaveTimer.schedule(this.autoSave, 0, (long) this.autoSaveSec *MILS_IN_SECS);
+        this.autosaveTimer.schedule(this.autoSave, 0, (long) this.autoSaveSec*MILS_IN_SECS);
     }
 
     public void setFilePath(File path) { //sets the path for the current file
