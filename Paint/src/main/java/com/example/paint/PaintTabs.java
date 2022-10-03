@@ -101,6 +101,7 @@ public class PaintTabs extends Tab {
                 Platform.runLater(new Runnable(){
                     @Override
                     public void run(){
+                        Paint.getCurrentTab();
                         autoSave();
                     }
                 });
@@ -119,6 +120,7 @@ public class PaintTabs extends Tab {
                 Platform.runLater(new Runnable(){
                     @Override
                     public void run(){
+                        Paint.getCurrentTab();
                         autoSave();
                     }
                 });
