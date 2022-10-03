@@ -14,10 +14,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Optional;
@@ -96,7 +93,7 @@ public class PaintTabs extends Tab {
         this.sp.setPrefViewportWidth(this.canvas.getWidth() / 2);
         this.sp.setPrefViewportHeight(this.canvas.getHeight() / 2);
 
-        this.autoSaveSec = 30;
+        this.autoSaveSec = PaintToolBar.getSaveTimer();
         this.autosaveTimer = new Timer();
         this.autoSave = new TimerTask(){
             @Override
@@ -105,28 +102,11 @@ public class PaintTabs extends Tab {
                     @Override
                     public void run(){
                         autoSave();
-//                        autosaveTimer.schedule(autoSave, 0, autoSaveSec*MILS_IN_SECS);
                     }
                 });
             }
         };
-        this.autosaveTimer.schedule(this.autoSave, 30000, this.autoSaveSec*MILS_IN_SECS);
-    }
-
-    public void autoSaveImage() {
-        if(this.unsavedChanges && this.path != null){
-            this.autoSaveBackup = this.canvas.getRegion(0, 0, this.canvas.getWidth(), this.canvas.getHeight());
-            File backup = new File(AUTOSAVE_DIR + LocalDate.now() + Instant.now().toEpochMilli() + ".png");
-            try{
-                backup.createNewFile();
-                ImageIO.write(SwingFXUtils.fromFXImage(this.autoSaveBackup, null),
-                            "png",
-                            new FileOutputStream(backup));
-                System.out.println("Successful Auto Save");
-            } catch (IOException exception){
-                System.out.println("n0");
-            }
-        }
+        this.autosaveTimer.schedule(this.autoSave, 30000, (long) this.autoSaveSec *MILS_IN_SECS);
     }
 
     public void updateSaveTimer(){
@@ -139,13 +119,12 @@ public class PaintTabs extends Tab {
                 Platform.runLater(new Runnable(){
                     @Override
                     public void run(){
-                        autoSaveImage();
-                        autosaveTimer.schedule(autoSave, 0, autoSaveSec*MILS_IN_SECS);
+                        autoSave();
                     }
                 });
             }
         };
-        this.autosaveTimer.schedule(this.autoSave, 0, this.autoSaveSec*MILS_IN_SECS);
+        this.autosaveTimer.schedule(this.autoSave, 0, (long) this.autoSaveSec *MILS_IN_SECS);
     }
 
     public void setFilePath(File path) { //sets the path for the current file
