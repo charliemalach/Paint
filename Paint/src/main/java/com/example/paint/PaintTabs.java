@@ -84,21 +84,20 @@ public class PaintTabs extends Tab {
         this.canvasStack = new StackPane();
         this.canvasStack.getChildren().addAll(CanvasPane); //adds all canvas pane objects to the stack
 
+        this.setOnCloseRequest(new EventHandler<Event>()
+        {
+            @Override
+            public void handle(Event arg0)
+            {
+                quitTab(); //prompts the user to save before closing the current tab with the quitTab() method
+            }
+        });
 
         //handles the scroll pane on the canvas
         this.sp = new ScrollPane(this.canvasStack); //creates a scroll pane
         this.setContent(sp);
         this.sp.setPrefViewportWidth(this.canvas.getWidth() / 2);
         this.sp.setPrefViewportHeight(this.canvas.getHeight() / 2);
-
-        this.setOnCloseRequest(new EventHandler<Event>()
-        {
-            @Override
-            public void handle(Event arg0)
-            {
-                    quitTab(); //prompts the user to save before closing the current tab with the quitTab() method
-            }
-        });
 
         this.autoSaveSec = 30;
         this.autosaveTimer = new Timer();
@@ -110,13 +109,13 @@ public class PaintTabs extends Tab {
                     @Override
                     public void run(){
                         autoSaveImage();
-                        autosaveTimer.schedule(autoSave, 0, autoSaveSec*MILS_IN_SECS);
+                        autosaveTimer.schedule(autoSave, 0, (long) autoSaveSec *MILS_IN_SECS);
                     }
                 });
             }
 
         };
-        this.autosaveTimer.schedule(this.autoSave, 30000, this.autoSaveSec*MILS_IN_SECS);
+        this.autosaveTimer.schedule(this.autoSave, 30000, (long) this.autoSaveSec *MILS_IN_SECS);
     }
 
     public void autoSaveImage()
@@ -146,12 +145,12 @@ public class PaintTabs extends Tab {
                     @Override
                     public void run(){
                         autoSaveImage();
-                        autosaveTimer.schedule(autoSave, 30000, autoSaveSec*MILS_IN_SECS);
+                        autosaveTimer.schedule(autoSave, 0, (long) autoSaveSec *MILS_IN_SECS);
                     }
                 });
             }
         };
-        this.autosaveTimer.schedule(this.autoSave, 30000, this.autoSaveSec*MILS_IN_SECS);
+        this.autosaveTimer.schedule(this.autoSave, 0, (long) this.autoSaveSec *MILS_IN_SECS);
     }
 
     public void setFilePath(File path) { //sets the path for the current file
