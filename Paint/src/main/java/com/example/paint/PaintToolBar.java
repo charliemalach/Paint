@@ -14,15 +14,18 @@ import javafx.scene.paint.Color;
 
 public class PaintToolBar extends ToolBar {
     public final static String[] TOOLS = {"None", "Line", "Dashed Line", "Pencil", "Square", "Rectangle", "Polygon", "Triangle", "Ellipse", "Circle", "Color Dropper", "Eraser", "Copy", "Cut", "Paste", "Clear Canvas"};
+    public final static String[] SAVES = {"Yes", "No"};
     private static final Integer[] LINE_WIDTH = {1, 2, 3, 5, 10, 15, 20, 25, 50, 100}; //hard coded line widths for the user to use, might make this custom later
     private static ComboBox<String> toolBox; //creates a combo box to store all the available tools
     private static ComboBox<Integer> widthBox; //creates a combo box to store all the available widths
+    private static ComboBox<String> saveBox;
     private static ColorPicker lineColorPicker; //creates the color picker for the line
     private static ColorPicker fillColorPicker; //creates the color picker for the fill of the object
     public static int usingTool; //creates the identifier for the array to observe which tool is being used
     private static int usingWidth; //creates a variable for the line width
     private static TextField sides; //creates an editable text field for the number of sides of the object
     private static int usingSides;
+    private static int usingSave;
     private static TextField saveTime;
     private static int currentTime;
 
@@ -31,11 +34,13 @@ public class PaintToolBar extends ToolBar {
         super();
 
         toolBox = new ComboBox<>(FXCollections.observableArrayList(TOOLS)); //adds all the defined tools to the toolbox
+        saveBox = new ComboBox<>(FXCollections.observableArrayList(SAVES));
         widthBox = new ComboBox<>(FXCollections.observableArrayList(LINE_WIDTH)); //adds all the defined widths to the width selection box
 
         //setting all defaults:
         usingWidth = 1; //default line width
         usingTool = 0; //default tool = "none"
+        usingSave = 0;
         usingSides = 3; //default number of sides = 3
         currentTime = 5;
 
@@ -49,13 +54,17 @@ public class PaintToolBar extends ToolBar {
         saveTime = new TextField(Integer.toString(currentTime));
 
 
+
+
         //adds items to toolbox
         getItems().addAll(new Label("Tools: "), toolBox, new Separator(), sides, new Separator(),
                 new Label("Line Width: "), widthBox,
                 new Label("Line Color: "), lineColorPicker, new Separator(),
-                new Label("Auto-Save: "), saveTime, new Label(" sec")
+                new Label("Auto-Save "), saveBox, saveTime
         );
 
+
+        saveTime.setVisible(false); //false
         sides.setVisible(false); //makes sides invisible until the proper tool is selected
         sides.setPrefWidth(50);
         saveTime.setPrefWidth(50);
@@ -68,7 +77,12 @@ public class PaintToolBar extends ToolBar {
             System.out.println("Tool Selected: " + TOOLS[usingTool]);
         });
 
-        sides.textProperty().addListener((observable, value, newValue) -> { //parses the text input for sides so that it becomes a usable int value
+        saveBox.getSelectionModel().selectedIndexProperty().addListener((observable, value, newValue) -> {
+            usingSave = newValue.intValue();
+            saveTime.setVisible(SAVES[usingSave].equals("Yes"));
+                });
+
+            sides.textProperty().addListener((observable, value, newValue) -> { //parses the text input for sides so that it becomes a usable int value
             if(Integer.parseInt(newValue) >= 3)
                 usingSides = Integer.parseInt(newValue);
             else{
@@ -84,7 +98,6 @@ public class PaintToolBar extends ToolBar {
             }
             Paint.getCurrentTab().updateSaveTimer();
         });
-
 
 
         widthBox.setOnAction((ActionEvent e) -> { //sets new line width as selected width
