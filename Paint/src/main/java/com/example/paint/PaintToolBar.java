@@ -114,6 +114,11 @@ public class PaintToolBar extends ToolBar {
         return TOOLS[usingTool];
     }
 
+    public static String getSave()
+    {
+        return SAVES[usingSave];
+    }
+
     public static Color getLineColor() { //gets the color of the line
         return lineColorPicker.getValue();
     }

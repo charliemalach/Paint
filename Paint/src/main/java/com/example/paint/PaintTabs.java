@@ -101,8 +101,17 @@ public class PaintTabs extends Tab {
                 Platform.runLater(new Runnable(){
                     @Override
                     public void run(){
-                        Paint.getCurrentTab();
-                        autoSave();
+                        switch(PaintToolBar.getSave()) {
+                            case "Yes":
+                                System.out.println("Auto save is enabled.");
+                                Paint.getCurrentTab();
+                                autoSave();
+                                break;
+                            case "No":
+                                System.out.println("Auto save is not enabled");
+                                Paint.getCurrentTab();
+                                break;
+                        }
                     }
                 });
             }
@@ -120,8 +129,15 @@ public class PaintTabs extends Tab {
                 Platform.runLater(new Runnable(){
                     @Override
                     public void run(){
-                        Paint.getCurrentTab();
-                        autoSave();
+                        switch(PaintToolBar.getSave()) {
+                            case "Yes":
+                                Paint.getCurrentTab();
+                                autoSave();
+                                break;
+                            case "No":
+                                Paint.getCurrentTab();
+                                break;
+                        }
                     }
                 });
             }
