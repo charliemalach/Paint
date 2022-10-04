@@ -98,7 +98,6 @@ public class PaintTabs extends Tab {
         this.autoSave = new TimerTask(){
             @Override
             public void run(){
-                Paint.getCurrentTab();
                 Platform.runLater(new Runnable(){
                     @Override
                     public void run(){
@@ -126,7 +125,6 @@ public class PaintTabs extends Tab {
         this.autoSave = new TimerTask(){
             @Override
             public void run(){
-                Paint.getCurrentTab();
                 Platform.runLater(new Runnable(){
                     @Override
                     public void run(){
@@ -142,7 +140,6 @@ public class PaintTabs extends Tab {
             }
         };
         this.autosaveTimer.schedule(this.autoSave, 0, (long) this.autoSaveSec *MILS_IN_SECS);
-        Paint.getCurrentTab();
     }
 
     public void setFilePath(File path) { //sets the path for the current file
@@ -187,6 +184,7 @@ public class PaintTabs extends Tab {
 
     public void autoSave()
     { //WORKING FUNCTION - DO NOT FUCK WITH IT
+        Paint.getCurrentTab();
         File backup = new File(AUTOSAVE_DIR + LocalDate.now() + Instant.now().toEpochMilli() + ".png");
         Image im = this.canvas.getRegion(0, 0, this.canvas.getWidth(), this.canvas.getHeight());
         try {
