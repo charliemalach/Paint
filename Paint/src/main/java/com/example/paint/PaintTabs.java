@@ -98,18 +98,17 @@ public class PaintTabs extends Tab {
         this.autoSave = new TimerTask(){
             @Override
             public void run(){
+                Paint.getCurrentTab();
                 Platform.runLater(new Runnable(){
                     @Override
                     public void run(){
                         switch(PaintToolBar.getSave()) {
                             case "Yes":
                                 System.out.println("Auto save is enabled.");
-                                Paint.getCurrentTab();
                                 autoSave();
                                 break;
                             case "No":
                                 System.out.println("Auto save is not enabled");
-                                Paint.getCurrentTab();
                                 break;
                         }
                     }
@@ -117,6 +116,7 @@ public class PaintTabs extends Tab {
             }
         };
         this.autosaveTimer.schedule(this.autoSave, 30000, (long) this.autoSaveSec *MILS_IN_SECS);
+        Paint.getCurrentTab();
     }
 
     public void updateSaveTimer(){
@@ -126,16 +126,15 @@ public class PaintTabs extends Tab {
         this.autoSave = new TimerTask(){
             @Override
             public void run(){
+                Paint.getCurrentTab();
                 Platform.runLater(new Runnable(){
                     @Override
                     public void run(){
                         switch(PaintToolBar.getSave()) {
                             case "Yes":
-                                Paint.getCurrentTab();
                                 autoSave();
                                 break;
                             case "No":
-                                Paint.getCurrentTab();
                                 break;
                         }
                     }
@@ -143,6 +142,7 @@ public class PaintTabs extends Tab {
             }
         };
         this.autosaveTimer.schedule(this.autoSave, 0, (long) this.autoSaveSec *MILS_IN_SECS);
+        Paint.getCurrentTab();
     }
 
     public void setFilePath(File path) { //sets the path for the current file

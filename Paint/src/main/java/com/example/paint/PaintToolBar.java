@@ -102,7 +102,6 @@ public class PaintToolBar extends ToolBar {
             Paint.getCurrentTab().updateSaveTimer();
         });
 
-
         widthBox.setOnAction((ActionEvent e) -> { //sets new line width as selected width
             usingWidth = widthBox.getValue();
             System.out.println("Width Selected: " + usingWidth); //print statement for debugging purposes
