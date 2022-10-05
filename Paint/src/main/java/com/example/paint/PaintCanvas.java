@@ -48,7 +48,7 @@ public class PaintCanvas extends PaintDraw {
                         setCursor(Cursor.DEFAULT); //cursor is just default
                 case ("Clear Canvas"), ("Paste") -> setCursor(Cursor.OPEN_HAND); //cursor is hand, couldn't think of better cursor
 
-                case ("Color Dropper") -> setCursor(Cursor.CROSSHAIR); //cursor is crosshairs, thought it would be p cool
+                case ("Color Dropper") -> setCursor(Cursor.CROSSHAIR); //cursor is crosshair, thought it would be p cool
             }
         });
 

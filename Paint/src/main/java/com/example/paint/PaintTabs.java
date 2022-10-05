@@ -102,12 +102,12 @@ public class PaintTabs extends Tab {
                     @Override
                     public void run(){
                         switch(PaintToolBar.getSave()) {
-                            case "Yes":
+                            case ("No"):
+                                System.out.println("Auto save is not enabled");
+                                break;
+                            case ("Yes"):
                                 System.out.println("Auto save is enabled.");
                                 autoSave();
-                                break;
-                            case "No":
-                                System.out.println("Auto save is not enabled");
                                 break;
                         }
                     }
