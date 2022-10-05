@@ -24,6 +24,8 @@ public class ResizableCanvas extends Canvas { //makes the canvas resizable when 
         gc.rect(0, 0, width, height); //draws a new 'rect' that acts as the canvas with the new width and height.
     }
 
+
+
     @Override
     public boolean isResizable() { //overrides the resizable boolean
         return true;

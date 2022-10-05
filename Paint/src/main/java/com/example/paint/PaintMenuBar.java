@@ -162,6 +162,7 @@ public class PaintMenuBar extends MenuBar {
                 label.setText(input.getEditor().getText());
                 Integer.parseInt(label.getText()); //i need to change this but idk what to change it to
                 PaintTabs.resizeCanvas(Integer.valueOf(label.getText()));
+
             }
         });
 
