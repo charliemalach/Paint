@@ -39,9 +39,9 @@ public class PaintToolBar extends ToolBar {
         //setting all defaults:
         usingWidth = 1; //default line width
         usingTool = 0; //default tool = "none"
-        usingSave = 0;
+        usingSave = 0; //default auto save = "no"
         usingSides = 3; //default number of sides = 3
-        currentTime = 5;
+        currentTime = 15; //default save timer = 15 seconds
 
         sides = new TextField("3"); //sets the default sides in the editable text field
 
@@ -49,7 +49,7 @@ public class PaintToolBar extends ToolBar {
         fillColorPicker = new ColorPicker(); //creates color picker for the fill
         lineColorPicker.setValue(Color.BLACK); //default color = black
         toolBox.setValue("None"); //sets the default tool to "none"
-        saveBox.setValue("No");
+        saveBox.setValue("Yes");
         widthBox.setValue(1); //sets the default width to 1
         saveTime = new TextField(Integer.toString(currentTime));
 
@@ -66,7 +66,7 @@ public class PaintToolBar extends ToolBar {
         );
 
         seconds.setVisible(false);
-        saveTime.setVisible(false); //false
+        saveTime.setVisible(true); //false
         sides.setVisible(false); //makes sides invisible until the proper tool is selected
         sides.setPrefWidth(50);
         saveTime.setPrefWidth(50);

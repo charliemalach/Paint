@@ -21,26 +21,25 @@ import static com.example.paint.Paint.mainStage;
  **/
 public class PaintCanvas extends PaintDraw {
     private double x, y, x1, y1; //variables used for drawing
-    private Image image;
-    private Stack<Image> undo;
-    private Stack<Image> redo;
+    private Image image; //image object used for undo/redo stack
+    private Stack<Image> undo; //stack used for 'undo' changes
+    private Stack<Image> redo; //stack used for 'redo' changes
 
     public PaintCanvas() {
         super();
         //set defaults for undo/redo stack
-        this.image = null;
+        this.image = null; //default image is null
         this.undo = new Stack<>(); //new stack for undo
         this.redo = new Stack<>(); //new stack for redo
 
         //set default background size & color
-        this.setWidth(1280);
-        this.setHeight(720);
-        this.setShapeFill(true);
-        this.setFillColor(Color.WHITE);
-        this.setLineColor(Color.WHITE);
+        this.setWidth(1280); //default width is 1280
+        this.setHeight(720); //default height is 720
+        this.setShapeFill(true); //default fill = yes
+        this.setFillColor(Color.WHITE); //default fill = white
+        this.setLineColor(Color.WHITE); //default line = white
         this.rectTool(0,0,this.getWidth(), this.getHeight()); //draws a background for the default
-
-        this.undo.push(this.getRegion(0, 0, this.getWidth(), this.getHeight()));
+        this.undo.push(this.getRegion(0, 0, this.getWidth(), this.getHeight())); //pushes undo on create
 
         setOnMouseMoved(e -> { //when mouse is moved at all on canvas
             switch (PaintToolBar.getTool()) {
@@ -97,7 +96,7 @@ public class PaintCanvas extends PaintDraw {
 
                 case("Triangle"):  //draws a triangle at the beginning coordinates
                     this.lineDashes(0);
-                    this.triangleTool(x, y, x, y, 3);
+                    this.triangleTool(x, y, x, y, 3); //hard coded 3 for the triangle to work
                     this.updateCanvas();
                     break;
 
@@ -360,8 +359,6 @@ public class PaintCanvas extends PaintDraw {
 
     public void undo() //this is broken ?
     {
-//        PaintTabs.canvas.widthProperty().unbind(); //these break it
-//        PaintTabs.canvas.heightProperty().unbind(); //these break it
         Image img = undo.pop();
         if(!undo.empty()){
             redo.push(img);
@@ -375,8 +372,6 @@ public class PaintCanvas extends PaintDraw {
 
     public void redo() //this is broken too?
     {
-//        PaintTabs.canvas.widthProperty().unbind(); //these break it
-//        PaintTabs.canvas.heightProperty().unbind(); //these break it
         if(!redo.empty()){
             Image im = redo.pop();
             undo.push(im);

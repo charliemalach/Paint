@@ -38,11 +38,10 @@ public class PaintTabs extends Tab {
     private ScrollPane sp; //creates the scroll pane
     public static StackPane canvasStack; //creates a canvas stack for multiple canvas objects
     private int autoSaveSec;
-    private Image autoSaveBackup;
     private Timer autosaveTimer;
     private TimerTask autoSave;
     private final static int MILS_IN_SECS = 1000;
-    private boolean unsavedChanges;
+    private final boolean unsavedChanges;
     private final static String AUTOSAVE_DIR = "C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\main\\resources\\images\\";
 
     public PaintTabs() { //sets the default tab 
@@ -63,7 +62,6 @@ public class PaintTabs extends Tab {
     }
 
     private void tabStart() { //default constructor
-        this.autoSaveBackup = null;
         chooseFile = new FileChooser();
         chooseFile.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("PNG", "*.png"), //handles .PNG files
@@ -198,13 +196,12 @@ public class PaintTabs extends Tab {
             System.out.println(ex);
         }
     }
-
-
+    
     public void saveImageAs() { //saves image as a new image of desired file type
         Alert saveWarning = new Alert(Alert.AlertType.INFORMATION);
         saveWarning.setTitle("Data Loss Warning");
         saveWarning.setHeaderText("Potential Data Loss");
-        String text = "Saving in a different file type may result in image features/data loss.";
+        String text = "Saving in a different file type may result in image features/data loss. Press 'OK' to continue save.";
         saveWarning.setContentText(text);
         saveWarning.showAndWait();
 
