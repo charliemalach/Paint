@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class PaintDrawTest {
 
     public PaintDrawTest(){
-
     }
     @BeforeClass
     public static void setUpClass() {

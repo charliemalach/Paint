@@ -62,7 +62,6 @@ public class PaintToolBar extends ToolBar {
                 new Label("Line Width: "), widthBox,
                 new Label("Line Color: "), lineColorPicker, new Separator(),
                 new Label("Auto-Save "), saveBox, saveTime, seconds
-
         );
 
         seconds.setVisible(false);
