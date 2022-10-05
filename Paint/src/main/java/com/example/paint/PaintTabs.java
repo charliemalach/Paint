@@ -34,7 +34,7 @@ public class PaintTabs extends Tab {
     private static FileChooser chooseFile; //includes the file chooser
     private String title;
     private File path;
-    public static PaintCanvas canvas; //adds a new canvas object
+    public PaintCanvas canvas; //adds a new canvas object
     private ScrollPane sp; //creates the scroll pane
     public static StackPane canvasStack; //creates a canvas stack for multiple canvas objects
     private int autoSaveSec;
@@ -276,23 +276,18 @@ public class PaintTabs extends Tab {
 
     public void undo()
     {
-        PaintTabs.canvas.widthProperty().unbind(); //these break it i think
-        PaintTabs.canvas.heightProperty().unbind(); //these break it i think
+
         this.canvas.undo();
     }
     public void redo()
     {
-        PaintTabs.canvas.widthProperty().unbind(); //these break it
-        PaintTabs.canvas.heightProperty().unbind(); //these break it
+
         this.canvas.redo();
     }
 
-    public static void resizeCanvas(int x) //resizes the entire canvas proportional with the newly provided canvas width
+    public void resizeCanvas(int x) //resizes the entire canvas proportional with the newly provided canvas width
     {
-        PaintTabs.canvas.widthProperty().unbind(); //unbinds the responsive canvas
-        PaintTabs.canvas.heightProperty().unbind(); //unbinds the responsive canvas
-
-            canvas.setWidth(x); //sets the canvas width to the given int
-            canvas.setHeight(x / 1.78); //sets the height. i use this to make it proportional. 1920 / 1080 = ~1.78, and 1280 / 720 =~1.78, so this made sense to me
+        this.canvas.setWidth(x); //sets the canvas width to the given int
+        this.canvas.setHeight(x / 1.78); //sets the height. i use this to make it proportional. 1920 / 1080 = ~1.78, and 1280 / 720 =~1.78, so this made sense to me
     }
 }

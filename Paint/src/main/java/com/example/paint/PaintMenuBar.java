@@ -152,7 +152,7 @@ public class PaintMenuBar extends MenuBar {
 
             try{ //tries to resize canvas with given parameter
                 Integer.parseInt(label.getText());
-                PaintTabs.resizeCanvas(Integer.valueOf(label.getText()));
+                Paint.getCurrentTab().resizeCanvas(Integer.valueOf(label.getText()));
             }
             catch (Exception e) { //catches exception and prompts user to try again
                 input = new TextInputDialog("1280");
@@ -161,8 +161,7 @@ public class PaintMenuBar extends MenuBar {
                 input.showAndWait();
                 label.setText(input.getEditor().getText());
                 Integer.parseInt(label.getText()); //i need to change this but idk what to change it to
-                PaintTabs.resizeCanvas(Integer.valueOf(label.getText()));
-
+                Paint.getCurrentTab().resizeCanvas(Integer.valueOf(label.getText()));
             }
         });
 

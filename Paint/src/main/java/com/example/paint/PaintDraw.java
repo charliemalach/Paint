@@ -2,6 +2,7 @@ package com.example.paint;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
@@ -16,7 +17,7 @@ import static com.example.paint.Paint.pane;
  * This class file is used to manage the tools used to draw on the canvas. All the tool methods and their getters / setters are defined here.
  *
  **/
-public class PaintDraw extends ResizableCanvas { //extends the resizable canvas, allowing users to draw on extended part of canvas
+public class PaintDraw extends Canvas { //extends the resizable canvas, allowing users to draw on extended part of canvas
 
     private GraphicsContext gc;
     private boolean shapeFill;
@@ -152,7 +153,6 @@ public class PaintDraw extends ResizableCanvas { //extends the resizable canvas,
     public void lineDashes(double x) //sets the amount of dashes in the line
     {
         gc.setLineDashes(x);
-
     }
 
     /**
@@ -193,7 +193,6 @@ public class PaintDraw extends ResizableCanvas { //extends the resizable canvas,
         this.gc.stroke();
     }
 
-
     /**
      * draws the start of an eraser mark to the canvas from x1 to y1
      * @param x1 - x1 for initial x
@@ -219,7 +218,6 @@ public class PaintDraw extends ResizableCanvas { //extends the resizable canvas,
         this.gc.lineTo(x1, y1);
         this.gc.stroke();
     }
-
 
     /**
      * gets the current color at coordinates x,y
@@ -332,7 +330,6 @@ public class PaintDraw extends ResizableCanvas { //extends the resizable canvas,
         this.shapeFill = shapeFill;
     }
 
-
     /**
      * sets the width of the current line
      * @param width - the width value of the current line
@@ -359,5 +356,4 @@ public class PaintDraw extends ResizableCanvas { //extends the resizable canvas,
     public void drawImageAt(Image im, double x, double y) { //draws image at specific parameters
         this.gc.drawImage(im, x, y);
     }
-
 }

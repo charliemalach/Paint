@@ -31,7 +31,7 @@ public class Paint extends Application {
     public static Stage mainStage; //Creates the main Stage
     public static BorderPane pane = new BorderPane();
     public static PaintToolBar toolbar = new PaintToolBar();
-    public static PaintMenuBar menuBar = new PaintMenuBar(); //Creates a MenuBar
+    public PaintMenuBar menuBar = new PaintMenuBar(); //Creates a MenuBar
     public static TabPane tabpane;
     public static Scene scene;
     public static Timeline autosave;
@@ -52,8 +52,8 @@ public class Paint extends Application {
         tabpane.getTabs().add(new PaintTabs()); //adds new paint tab to the tabpane
 
         pane.getChildren().add(PaintTabs.canvasStack);
-        PaintTabs.canvas.widthProperty().bind(pane.widthProperty()); //these break it
-        PaintTabs.canvas.heightProperty().bind(pane.heightProperty()); //these break it
+//        PaintTabs.canvas.widthProperty().bind(pane.widthProperty()); //these break it
+//        PaintTabs.canvas.heightProperty().bind(pane.heightProperty()); //these break it
         pane.setTop(topMenu); //set top menu to the top of the main pane
 
         //starts scene
@@ -62,6 +62,7 @@ public class Paint extends Application {
         stage.getIcons().add(icon);
         stage.setScene(scene); //sets the scene
         stage.show(); //shows the scene on screen
+
 
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() { //smart save
             public void handle(WindowEvent we) {

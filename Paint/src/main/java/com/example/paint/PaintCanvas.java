@@ -60,6 +60,7 @@ public class PaintCanvas extends PaintDraw {
             this.setFillColor(PaintToolBar.getFillColor()); //gets the desired fill color from PaintToolBar class
             switch (PaintToolBar.getTool()) {
 
+
                 case ("Line"): //draws a line at the beginning coordinates
                     this.lineDashes(0);
                     this.lineTool(x, y, x, y);
@@ -359,8 +360,8 @@ public class PaintCanvas extends PaintDraw {
 
     public void undo() //this is broken ?
     {
-        PaintTabs.canvas.widthProperty().unbind(); //these break it
-        PaintTabs.canvas.heightProperty().unbind(); //these break it
+//        PaintTabs.canvas.widthProperty().unbind(); //these break it
+//        PaintTabs.canvas.heightProperty().unbind(); //these break it
         Image img = undo.pop();
         if(!undo.empty()){
             redo.push(img);
@@ -374,8 +375,8 @@ public class PaintCanvas extends PaintDraw {
 
     public void redo() //this is broken too?
     {
-        PaintTabs.canvas.widthProperty().unbind(); //these break it
-        PaintTabs.canvas.heightProperty().unbind(); //these break it
+//        PaintTabs.canvas.widthProperty().unbind(); //these break it
+//        PaintTabs.canvas.heightProperty().unbind(); //these break it
         if(!redo.empty()){
             Image im = redo.pop();
             undo.push(im);
