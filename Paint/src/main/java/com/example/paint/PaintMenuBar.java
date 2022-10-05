@@ -165,7 +165,6 @@ public class PaintMenuBar extends MenuBar {
             }
         });
 
-
         //This section adds all the File options to the menu bar
         File.getItems().addAll(New, Open, Save, SaveAs, separator, Exit);
         //This section adds all the Edit options
