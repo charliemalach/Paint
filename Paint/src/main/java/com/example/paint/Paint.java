@@ -49,9 +49,7 @@ public class Paint extends Application {
 
         tabpane.getTabs().add(new PaintTabs()); //adds new paint tab to the tabpane
 
-        pane.getChildren().add(PaintTabs.canvasStack);
-//        PaintTabs.canvas.widthProperty().bind(pane.widthProperty()); //these break it
-//        PaintTabs.canvas.heightProperty().bind(pane.heightProperty()); //these break it
+        pane.getChildren().add(PaintTabs.canvasStack); 
         pane.setTop(topMenu); //set top menu to the top of the main pane
 
         //starts scene
