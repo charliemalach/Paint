@@ -36,7 +36,7 @@ class PaintDrawTest {
     }
 
     /**
-     * Tests the setLineWidth() method to determine if it works properly. 
+     * Tests the setLineWidth() method to determine if it works properly.
      */
     @Test
     public void testSetLineWidth() {

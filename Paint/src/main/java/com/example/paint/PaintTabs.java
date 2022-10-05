@@ -118,6 +118,23 @@ public class PaintTabs extends Tab {
         Paint.getCurrentTab();
     }
 
+    public void autoSave()
+    { //WORKING FUNCTION - DO NOT FUCK WITH IT
+        Paint.getCurrentTab();
+        File backup = new File(AUTOSAVE_DIR + LocalDate.now() + Instant.now().toEpochMilli() + ".png");
+        Image im = this.canvas.getRegion(0, 0, this.canvas.getWidth(), this.canvas.getHeight());
+        try {
+            if (this.path != null) {
+                ImageIO.write(SwingFXUtils.fromFXImage(im, null), "png", backup);
+//                new FileOutputStream(backup);
+                this.setTitle(this.getFilePath().getName());
+                System.out.println("Auto Save was Successful!");
+            }
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
     public void updateSaveTimer(){
         this.autoSaveSec = PaintToolBar.getSaveTimer();
         this.autoSave.cancel();
@@ -182,22 +199,6 @@ public class PaintTabs extends Tab {
         }
     }
 
-    public void autoSave()
-    { //WORKING FUNCTION - DO NOT FUCK WITH IT
-        Paint.getCurrentTab();
-        File backup = new File(AUTOSAVE_DIR + LocalDate.now() + Instant.now().toEpochMilli() + ".png");
-        Image im = this.canvas.getRegion(0, 0, this.canvas.getWidth(), this.canvas.getHeight());
-        try {
-            if (this.path != null) {
-                ImageIO.write(SwingFXUtils.fromFXImage(im, null), "png", backup);
-//                new FileOutputStream(backup);
-                this.setTitle(this.getFilePath().getName());
-                System.out.println("Auto Save was Successful!");
-            }
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-    }
 
     public void saveImageAs() { //saves image as a new image of desired file type
         Alert saveWarning = new Alert(Alert.AlertType.INFORMATION);
