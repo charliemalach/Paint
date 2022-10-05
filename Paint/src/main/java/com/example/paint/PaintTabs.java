@@ -196,7 +196,7 @@ public class PaintTabs extends Tab {
             System.out.println(ex);
         }
     }
-    
+
     public void saveImageAs() { //saves image as a new image of desired file type
         Alert saveWarning = new Alert(Alert.AlertType.INFORMATION);
         saveWarning.setTitle("Data Loss Warning");
