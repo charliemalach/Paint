@@ -39,12 +39,17 @@ class PaintDrawTest {
      */
     @Test
     public void testSetLineWidth() {
-        System.out.println("setLineWidth test");
+        System.out.println("setLineWidth test: ");
         double width = 1.0;
         PaintDraw test = new PaintDraw();
         test.setLineWidth(width);
-        assertEquals(1.0, test.getLineWidth(), 0.1);
-        System.out.println("setLineWidth was successful.");
+        try{
+            assertEquals(1.0, test.getLineWidth(), 0.1);
+            System.out.println("setLineWidth was successful.\n");
+        } catch (Exception ex) {
+            System.out.println("setLineWidth was not successful." + ex);
+        }
+
     }
 
     /**
@@ -52,12 +57,16 @@ class PaintDrawTest {
      */
     @Test
     public void testSetLineColor() {
-        System.out.println("setLineColor test");
+        System.out.println("setLineColor test: ");
         Color color = Color.BLACK;
         PaintDraw test = new PaintDraw();
         test.setLineColor(color);
-        assertEquals(color, test.getLineColor());
-        System.out.println("setLineColor was successful.");
+        try {
+            assertEquals(color, test.getLineColor());
+            System.out.println("setLineColor was successful.\n");
+        } catch (Exception ex){
+            System.out.println("setLineColor was not successful." + ex);
+        }
     }
 
     /**
@@ -65,11 +74,16 @@ class PaintDrawTest {
      */
     @Test
     public void testSetFillColor() {
-        System.out.println("setFillColor");
+        System.out.println("setFillColor test: ");
         Color color = Color.BLACK;
         PaintDraw test = new PaintDraw();
         test.setFillColor(color);
-        assertEquals(color, test.getFillColor());
-        System.out.println("setFillColor was successful.");
+        try {
+            assertEquals(color, test.getFillColor());
+            System.out.println("setFillColor was successful.\n");
+
+        } catch (Exception ex){
+            System.out.println("setFillColor was not successful." + ex);
+        }
     }
 }

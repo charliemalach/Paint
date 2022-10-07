@@ -210,6 +210,19 @@ public class PaintTabs extends Tab {
         this.saveImage();
     }
 
+    public void saveImageAs(File path) { //saves existing image as a new image of desired file type
+
+        Alert saveWarning = new Alert(Alert.AlertType.INFORMATION);
+        saveWarning.setTitle("Data Loss Warning");
+        saveWarning.setHeaderText("Potential Data Loss");
+        String text = "Saving in a different file type may result in image features/data loss. Press 'OK' to continue save.";
+        saveWarning.setContentText(text);
+        saveWarning.showAndWait();
+
+        this.setFilePath(path);
+        this.saveImage();
+    }
+
     public void quitProgram() //prompts the user to save before quitting program
     {
         if (this.path != null) {

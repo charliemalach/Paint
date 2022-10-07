@@ -73,7 +73,6 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
         double[] yPoints = new double[s];
         double radius = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
         double startAngle = Math.atan2(y2 - y1, x2 - x1);
-        //try and figure out how to fix later
         for(int i = 0; i < s; i++){
             xPoints[i] = x1 + (radius * Math.cos(((2*Math.PI*i)/s) + startAngle));
             yPoints[i] = y1 + (radius * Math.sin(((2*Math.PI*i)/s) + startAngle));
@@ -94,7 +93,6 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
         double[] yPoints = new double[s];
         double radius = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
         double startAngle = Math.atan2(y2 - y1, x2 - x1);
-        //try and figure out how to fix later
         for(int i = 0; i < s; i++){
             xPoints[i] = x1 + (radius * Math.cos(((2*Math.PI*i)/s) + startAngle));
             yPoints[i] = y1 + (radius * Math.sin(((2*Math.PI*i)/s) + startAngle));
@@ -132,8 +130,7 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
 
         this.gc.strokeOval(x, y, width, height);
     }
-
-
+    
     /**
      * draws a line to the canvas from x1,y1 to x2,y2
      * @param x1 - x1 coordinate for initial x
