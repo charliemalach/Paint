@@ -14,7 +14,7 @@ import static com.example.paint.Paint.pane;
 
 /**
  * Malachinski Pain(t) Application - PaintDraw.java
- * This class file is used to manage the tools used to draw on the canvas. All the tool methods and their getters / setters are defined here.
+ * This class file is used to manage the tools used to draw on the canvas. All the tool methods and their getters / setters are defined here. INCLUDES JAVADOC COMMENTING
  *
  **/
 public class PaintDraw extends Canvas { //extends the resizable canvas, allowing users to draw on extended part of canvas
@@ -71,11 +71,11 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
     public void polygonTool(double x1, double y1, double x2, double y2, int s){ //draws a polygon using the user's parameter (sides)
         double[] xPoints = new double[s];
         double[] yPoints = new double[s];
-        double radius = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
-        double startAngle = Math.atan2(y2 - y1, x2 - x1);
+        double radius = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2)); //big math calculation
+        double startAngle = Math.atan2(y2 - y1, x2 - x1); //big math calculation
         for(int i = 0; i < s; i++){
-            xPoints[i] = x1 + (radius * Math.cos(((2*Math.PI*i)/s) + startAngle));
-            yPoints[i] = y1 + (radius * Math.sin(((2*Math.PI*i)/s) + startAngle));
+            xPoints[i] = x1 + (radius * Math.cos(((2*Math.PI*i)/s) + startAngle)); //big math calculation
+            yPoints[i] = y1 + (radius * Math.sin(((2*Math.PI*i)/s) + startAngle)); //big math calculation
         }
         this.gc.strokePolygon(xPoints, yPoints, s);
     }
@@ -91,11 +91,11 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
     public void triangleTool(double x1, double y1, double x2, double y2, int s) {
         double[] xPoints = new double[s];
         double[] yPoints = new double[s];
-        double radius = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
-        double startAngle = Math.atan2(y2 - y1, x2 - x1);
+        double radius = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2)); //big math calculation
+        double startAngle = Math.atan2(y2 - y1, x2 - x1); //big math calculation
         for(int i = 0; i < s; i++){
-            xPoints[i] = x1 + (radius * Math.cos(((2*Math.PI*i)/s) + startAngle));
-            yPoints[i] = y1 + (radius * Math.sin(((2*Math.PI*i)/s) + startAngle));
+            xPoints[i] = x1 + (radius * Math.cos(((2*Math.PI*i)/s) + startAngle)); //big math calculation
+            yPoints[i] = y1 + (radius * Math.sin(((2*Math.PI*i)/s) + startAngle)); //big math calculation
         }
         this.gc.strokePolygon(xPoints, yPoints, s);
     }

@@ -64,8 +64,8 @@ public class PaintToolBar extends ToolBar {
                 new Label("Auto-Save "), saveBox, saveTime, seconds
         );
 
-        seconds.setVisible(false);
-        saveTime.setVisible(true); //false
+        seconds.setVisible(false); //makes the 'seconds' text box invisible
+        saveTime.setVisible(true); //makes the text box visible
         sides.setVisible(false); //makes sides invisible until the proper tool is selected
         sides.setPrefWidth(50);
         saveTime.setPrefWidth(50);
@@ -92,7 +92,7 @@ public class PaintToolBar extends ToolBar {
             }
         });
 
-        saveTime.textProperty().addListener((observable, value, newValue) -> {
+        saveTime.textProperty().addListener((observable, value, newValue) -> { //sets the auto-save text box to the provided value
             if(Integer.parseInt(newValue) >=1)
                 currentTime = Integer.parseInt(newValue);
             else{
@@ -112,7 +112,7 @@ public class PaintToolBar extends ToolBar {
         return TOOLS[usingTool];
     }
 
-    public static String getSave()
+    public static String getSave() //returns the save time
     {
         return SAVES[usingSave];
     }
@@ -140,7 +140,7 @@ public class PaintToolBar extends ToolBar {
         return usingSides;
     }
 
-    public static int getSaveTimer()
+    public static int getSaveTimer() //returns the current time for the auto-save timer
     {
         return currentTime;
     }

@@ -41,14 +41,14 @@ public class Paint extends Application {
         Paint.mainStage = stage;
         Image icon = new Image("C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\main\\resources\\images\\icon.png"); //change to relative path instead of hard coded
 
-
         //layout setup
         tabpane = new TabPane(); //add new tabpane
-        VBox topMenu = new VBox(menuBar, toolbar); //add menubar and toolbar to vbox object
-        pane.setCenter(tabpane); //set tab to center of the main pane
-
         tabpane.getTabs().add(new PaintTabs()); //adds new paint tab to the tabpane
 
+
+        VBox topMenu = new VBox(menuBar, toolbar); //add menubar and toolbar to vbox object
+
+        pane.setCenter(tabpane); //set tab to center of the main pane
         pane.getChildren().add(PaintTabs.canvasStack); 
         pane.setTop(topMenu); //set top menu to the top of the main pane
 

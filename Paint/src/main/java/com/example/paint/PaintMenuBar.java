@@ -87,7 +87,7 @@ public class PaintMenuBar extends MenuBar {
         About.setAccelerator(
                 new KeyCodeCombination(KeyCode.F1, KeyCombination.SHIFT_DOWN)); //sets hotkey Shift + F1 --> opens about tab
         About.setOnAction(e -> {
-            Alert aboutPaint = new Alert(Alert.AlertType.INFORMATION);
+            Alert aboutPaint = new Alert(Alert.AlertType.INFORMATION); //'about' alert
             aboutPaint.setTitle("About");
             aboutPaint.setHeaderText("About Pain(t) v1.0.1");
             String text = "Pain(t) - v1.0.1 is a JavaFX image handling project created by Charlie Malachinski. " +
@@ -105,7 +105,7 @@ public class PaintMenuBar extends MenuBar {
         helpOption.setAccelerator(
                 new KeyCodeCombination(KeyCode.H, KeyCombination.SHIFT_DOWN)); //sets hotkey Shift + H --> opens help tab
         helpOption.setOnAction(e -> {
-            Alert helpPaint = new Alert(Alert.AlertType.INFORMATION);
+            Alert helpPaint = new Alert(Alert.AlertType.INFORMATION); //'help' alert
             helpPaint.setTitle("Help");
             helpPaint.setHeaderText("Q&A - Help for Pain(t)");
             String text =

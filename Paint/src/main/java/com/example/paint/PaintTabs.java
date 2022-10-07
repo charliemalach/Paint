@@ -144,10 +144,10 @@ public class PaintTabs extends Tab {
                     @Override
                     public void run(){
                         switch(PaintToolBar.getSave()) {
-                            case "Yes":
+                            case "Yes": //if auto-save is selected
                                 autoSave();
                                 break;
-                            case "No":
+                            case "No": //if auto-save is not selected
                                 break;
                         }
                     }
@@ -198,7 +198,7 @@ public class PaintTabs extends Tab {
     }
 
     public void saveImageAs() { //saves image as a new image of desired file type
-        Alert saveWarning = new Alert(Alert.AlertType.INFORMATION);
+        Alert saveWarning = new Alert(Alert.AlertType.WARNING); //data loss warning
         saveWarning.setTitle("Data Loss Warning");
         saveWarning.setHeaderText("Potential Data Loss");
         String text = "Saving in a different file type may result in image features/data loss. Press 'OK' to continue save.";
@@ -212,7 +212,7 @@ public class PaintTabs extends Tab {
 
     public void saveImageAs(File path) { //saves existing image as a new image of desired file type
 
-        Alert saveWarning = new Alert(Alert.AlertType.INFORMATION);
+        Alert saveWarning = new Alert(Alert.AlertType.WARNING); //data loss warning
         saveWarning.setTitle("Data Loss Warning");
         saveWarning.setHeaderText("Potential Data Loss");
         String text = "Saving in a different file type may result in image features/data loss. Press 'OK' to continue save.";
@@ -285,14 +285,12 @@ public class PaintTabs extends Tab {
             this.setText(this.title);
     }
 
-    public void undo()
+    public void undo() //UNDO CHANGES MADE TO CANVAS (IN THE STACK)
     {
-
         this.canvas.undo();
     }
-    public void redo()
+    public void redo() //REDO CHANGES MADE TO CANVAS (IN THE STACK)
     {
-
         this.canvas.redo();
     }
 
