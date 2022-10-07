@@ -68,7 +68,7 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
      * @param y2 - y2 coordinate for
      * @param s - s for desired sides on the polygon
      */
-    public void polygonTool(double x1, double y1, double x2, double y2, int s){ //draws a polygon using the users parameter (sides)
+    public void polygonTool(double x1, double y1, double x2, double y2, int s){ //draws a polygon using the user's parameter (sides)
         double[] xPoints = new double[s];
         double[] yPoints = new double[s];
         double radius = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
@@ -130,7 +130,7 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
 
         this.gc.strokeOval(x, y, width, height);
     }
-    
+
     /**
      * draws a line to the canvas from x1,y1 to x2,y2
      * @param x1 - x1 coordinate for initial x

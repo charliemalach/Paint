@@ -18,21 +18,6 @@ class PaintDrawTest {
 
     public PaintDrawTest(){
     }
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Tests the setLineWidth() method to determine if it works properly.
@@ -44,7 +29,7 @@ class PaintDrawTest {
         PaintDraw test = new PaintDraw();
         test.setLineWidth(width);
         try{
-            assertEquals(1.0, test.getLineWidth(), 0.1);
+            assertEquals(width, test.getLineWidth());
             System.out.println("setLineWidth was successful.\n");
         } catch (Exception ex) {
             System.out.println("setLineWidth was not successful." + ex);
