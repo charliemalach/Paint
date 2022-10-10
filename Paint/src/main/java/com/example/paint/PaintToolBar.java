@@ -1,9 +1,19 @@
 package com.example.paint;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.util.Callback;
+
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
 
 /**
  * Malachinski Pain(t) Application - PaintToolBar.java
@@ -28,6 +38,15 @@ public class PaintToolBar extends ToolBar {
     private static int usingSave;
     private static TextField saveTime;
     private static int currentTime;
+
+    @FXML
+    private ImageView appleImage;
+
+    @FXML //  fx:id="orangeImage"
+    private ImageView orangeImage; // Value injected by FXMLLoader
+
+
+
 
     public PaintToolBar() { //sets up the toolbar
         super();
@@ -55,7 +74,7 @@ public class PaintToolBar extends ToolBar {
 
         Label seconds = new Label(" seconds");
 
-
+        //tools and their images
 
         //adds items to toolbox
         getItems().addAll(new Label("Tools: "), toolBox, new Separator(), sides, new Separator(),
@@ -69,6 +88,61 @@ public class PaintToolBar extends ToolBar {
         sides.setVisible(false); //makes sides invisible until the proper tool is selected
         sides.setPrefWidth(50);
         saveTime.setPrefWidth(50);
+
+
+
+
+//TODO: fix this broken garbage
+        toolBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+
+            }
+
+            public void changed(ObservableValue<? extends String> selected, String oldTool, String newTool){
+                if (oldTool != null) {
+                    switch(oldTool) {
+                        case "None": ; break;
+                        case "Line": ; break;
+                        case "Dashed Line": ; break;
+                        case "Pencil": ; break;
+                        case "Square": ; break;
+                        case "Rectangle": ; break;
+                        case "Polygon": ; break;
+                        case "Triangle": ; break;
+                        case "Ellipse": ; break;
+                        case "Circle": ; break;
+                        case "Color Dropper": ; break;
+                        case "Eraser": ; break;
+                        case "Copy": ; break;
+                        case "Cut": ; break;
+                        case "Paste": ; break;
+                        case "Clear Canvas": ; break;
+                    }
+                }
+
+                if (newTool != null) {
+                    switch(newTool) {
+                        case "None": ; break;
+                        case "Line": ; break;
+                        case "Dashed Line": ; break;
+                        case "Pencil": ; break;
+                        case "Square": ; break;
+                        case "Rectangle": ; break;
+                        case "Polygon": ; break;
+                        case "Triangle": ; break;
+                        case "Ellipse": ; break;
+                        case "Circle": ; break;
+                        case "Color Dropper": ; break;
+                        case "Eraser": ; break;
+                        case "Copy": ; break;
+                        case "Cut": ; break;
+                        case "Paste": ; break;
+                        case "Clear Canvas": ; break;
+                    }
+                }
+            }
+        });
 
         // Listeners for the tools
 
@@ -105,6 +179,7 @@ public class PaintToolBar extends ToolBar {
             usingWidth = widthBox.getValue();
             System.out.println("Width Selected: " + usingWidth); //print statement for debugging purposes
         });
+
     }
 
     public static String getTool() //returns current tool
@@ -144,5 +219,4 @@ public class PaintToolBar extends ToolBar {
     {
         return currentTime;
     }
-
 }
