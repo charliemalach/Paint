@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import java.io.IOException;
 
-
 /**
  * Malachinski Pain(t) Application
  * The Pain(t) application is a program that currently allows users to upload, save and save as images. Auto-save has also been implemented. These images can be drawn upon and saved as new files. Users can use the following tools: Line, Dotted Line, Pencil, Square, Rectangle, and more. More features will come in the future.

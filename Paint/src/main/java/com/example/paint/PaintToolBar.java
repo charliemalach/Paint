@@ -70,14 +70,13 @@ public class PaintToolBar extends ToolBar {
 
         Label seconds = new Label(" seconds");
 
-
-
         //adds items to toolbox
         getItems().addAll(new Label("Tools: "), toolBox, new Separator(), sides, new Separator(),
                 new Label("Line Width: "), widthBox,
                 new Label("Line Color: "), lineColorPicker, new Separator(),
                 new Label("Auto-Save "), saveBox, saveTime, seconds
         );
+
 
         toolBox.setTooltip(new Tooltip("Select the desired tool."));
         widthBox.setTooltip(new Tooltip("Select the desired line width."));
