@@ -1,21 +1,20 @@
 package com.example.paint;
 
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.scene.transform.Rotate;
-import javafx.scene.transform.Translate;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 
 /**
  * Malachinski Pain(t) Application - PaintToolBar.java
@@ -24,13 +23,14 @@ import java.io.FileNotFoundException;
  **/
 
 
-public class PaintToolBar extends ToolBar {
+public class PaintToolBar extends ToolBar implements Initializable {
+
     public final static String[] TOOLS = {"None", "Line", "Dashed Line", "Pencil", "Square", "Rectangle", "Polygon",
             "Triangle", "Ellipse", "Circle", "Color Dropper", "Eraser", "Copy", "Cut", "Paste", "Clear Canvas", "Rotate" , "Flip Horizontal",
             "Flip Vertical"};
     public final static String[] SAVES = {"Yes", "No"};
     private static final Integer[] LINE_WIDTH = {1, 2, 3, 5, 10, 15, 20, 25, 50, 100}; //hard coded line widths for the user to use, might make this custom later
-    public static ComboBox<String> toolBox; //creates a combo box to store all the available tools
+//    public static ComboBox<String> toolBox; //creates a combo box to store all the available tools
     private static ComboBox<Integer> widthBox; //creates a combo box to store all the available widths
     private static ComboBox<String> saveBox;
     private static ColorPicker lineColorPicker; //creates the color picker for the line
@@ -43,10 +43,55 @@ public class PaintToolBar extends ToolBar {
     private static TextField saveTime;
     private static int currentTime;
 
+    @FXML //  fx:id="fruitCombo"
+    public static ComboBox<String> toolBox; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="appleImage"
+    private ImageView flipXImage; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="orangeImage"
+    private ImageView orangeImage; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="pearImage"
+    private ImageView pearImage; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="selectedFruit"
+    private Label selectedFruit; // Value injected by FXMLLoader
+
+
+    @Override // This method is called by the FXMLLoader when initialization is complete
+    public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
+        toolBox = new ComboBox<>(FXCollections.observableArrayList(TOOLS)); //adds all the defined tools to the toolbox
+        assert flipXImage != null : "fx:id=\"flipXImage\" was not injected: check your FXML file 'fruitcombo.fxml'.";
+        assert orangeImage != null : "fx:id=\"orangeImage\" was not injected: check your FXML file 'fruitcombo.fxml'.";
+        assert pearImage != null : "fx:id=\"pearImage\" was not injected: check your FXML file 'fruitcombo.fxml'.";
+        assert selectedFruit != null : "fx:id=\"selectedFruit\" was not injected: check your FXML file 'fruitcombo.fxml'.";
+
+        selectedFruit.textProperty().bind(toolBox.getSelectionModel().selectedItemProperty());
+
+        // listen for changes to the fruit combo box selection and update the displayed fruit image accordingly.
+        toolBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
+                if (oldFruit != null) {
+                    switch(oldFruit) {
+                        case "flipX":  flipXImage.setVisible(false);  break;
+                        case "Orange": orangeImage.setVisible(false); break;
+                        case "Pear":   pearImage.setVisible(false);   break;
+                    }
+                }
+                if (newFruit != null) {
+                    switch(newFruit) {
+                        case "Flip Horizontal":  flipXImage.setVisible(true);   break;
+                        case "Orange": orangeImage.setVisible(true);  break;
+                        case "Pear":   pearImage.setVisible(true);    break;
+                    }
+                }
+            }
+        });
+    }
 
     public PaintToolBar() { //sets up the toolbar
         super();
-
         toolBox = new ComboBox<>(FXCollections.observableArrayList(TOOLS)); //adds all the defined tools to the toolbox
         saveBox = new ComboBox<>(FXCollections.observableArrayList(SAVES));
         widthBox = new ComboBox<>(FXCollections.observableArrayList(LINE_WIDTH)); //adds all the defined widths to the width selection box
@@ -69,7 +114,6 @@ public class PaintToolBar extends ToolBar {
         saveTime = new TextField(Integer.toString(currentTime));
 
         Label seconds = new Label(" seconds");
-
 
 
 

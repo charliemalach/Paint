@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<?import java.net.URL?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="205.0" prefWidth="168.0" styleClass="layout" xmlns:fx="http://javafx.com/fxml">
     <children>
         <ComboBox fx:id="toolBox" layoutX="15.0" layoutY="33.0" prefWidth="90.0" promptText="choose">
             <items>
                 <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="flipX" />
+                    <String fx:value="Flip Horizontal" />
                     <String fx:value="FlipY" />
                     <String fx:value="rotate" />
                 </FXCollections>
