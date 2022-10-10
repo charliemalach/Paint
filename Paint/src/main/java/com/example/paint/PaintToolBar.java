@@ -42,9 +42,6 @@ public class PaintToolBar extends ToolBar {
     private static int usingSave;
     private static TextField saveTime;
     private static int currentTime;
-    private final Button flipHoriz;
-    private final Button flipVert;
-    private final Button rotate;
 
 
     public PaintToolBar() { //sets up the toolbar
@@ -73,54 +70,24 @@ public class PaintToolBar extends ToolBar {
 
         Label seconds = new Label(" seconds");
 
-        flipHoriz = new Button("");
-        flipVert = new Button("");
-        rotate = new Button("");
 
         //adds items to toolbox
-        getItems().addAll(new Label("Tools: "), toolBox, new Separator(), sides, new Separator(), flipHoriz, flipVert, rotate, new Separator(),
+        getItems().addAll(new Label("Tools: "), toolBox, new Separator(), sides, new Separator(),
                 new Label("Line Width: "), widthBox,
                 new Label("Line Color: "), lineColorPicker, new Separator(),
                 new Label("Auto-Save "), saveBox, saveTime, seconds
         );
 
-        flipHoriz.setTooltip(new Tooltip("Flip the image horizontally"));
-        flipVert.setTooltip(new Tooltip("Flip the image vertically"));
-        rotate.setTooltip(new Tooltip("Rotate the image 90 degrees"));
-
-
-        try{
-            flipHoriz.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + "buttons\\horizontal.png"), 21, 21, true, true)));
-            flipVert.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + "buttons\\vertical.png"), 21, 21, true,true)));
-            rotate.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + "buttons\\rotate.png"), 21, 21, true, true)));
-        } catch (FileNotFoundException ex)
-        {
-            System.out.println(ex);
-        }
-
+        toolBox.setTooltip(new Tooltip("Select the desired tool."));
+        widthBox.setTooltip(new Tooltip("Select the desired line width."));
+        lineColorPicker.setTooltip(new Tooltip("Select the desired color."));
+        saveBox.setTooltip(new Tooltip("Enable or disable auto-save."));
 
         seconds.setVisible(false); //makes the 'seconds' text box invisible
         saveTime.setVisible(true); //makes the text box visible
         sides.setVisible(false); //makes sides invisible until the proper tool is selected
         sides.setPrefWidth(50);
         saveTime.setPrefWidth(50);
-
-
-        flipHoriz.setOnAction((ActionEvent e) -> {
-            Translate flipTranslate = new Translate(0, this.getHeight());
-            Rotate flipRotation = new Rotate(180, Rotate.X_AXIS);
-            this.getTransforms().addAll(flipTranslate, flipRotation);
-        });
-
-        flipVert.setOnAction((ActionEvent e) -> {
-            Translate flipTranslate = new Translate(this.getHeight(), 0);
-            Rotate flipRotation = new Rotate(180, Rotate.Y_AXIS);
-            this.getTransforms().addAll(flipTranslate, flipRotation);
-        });
-
-        rotate.setOnAction((ActionEvent e) -> {
-            this.setRotate(this.getRotate() + 90);
-        });
 
         // Listeners for the tools
 
