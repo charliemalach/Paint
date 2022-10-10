@@ -79,6 +79,7 @@ public class PaintToolBar extends ToolBar implements Initializable {
                         case "Pear":   pearImage.setVisible(false);   break;
                     }
                 }
+
                 if (newFruit != null) {
                     switch(newFruit) {
                         case "Flip Horizontal":  flipXImage.setVisible(true);   break;
@@ -89,7 +90,7 @@ public class PaintToolBar extends ToolBar implements Initializable {
             }
         });
     }
-
+    
     public PaintToolBar() { //sets up the toolbar
         super();
         toolBox = new ComboBox<>(FXCollections.observableArrayList(TOOLS)); //adds all the defined tools to the toolbox
