@@ -1,11 +1,7 @@
 package com.example.paint;
 
 import javafx.scene.paint.Color;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -34,7 +30,6 @@ class PaintDrawTest {
         } catch (Exception ex) {
             System.out.println("setLineWidth was not successful." + ex);
         }
-
     }
 
     /**
