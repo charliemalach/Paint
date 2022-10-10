@@ -25,12 +25,15 @@ public class PaintCanvas extends PaintDraw {
     private Stack<Image> undo; //stack used for 'undo' changes
     private Stack<Image> redo; //stack used for 'redo' changes
 
+
     public PaintCanvas() {
         super();
         //set defaults for undo/redo stack
         this.image = null; //default image is null
         this.undo = new Stack<>(); //new stack for undo
         this.redo = new Stack<>(); //new stack for redo
+
+
 
         //set default background size & color
         this.setWidth(1280); //default width is 1280
@@ -167,6 +170,18 @@ public class PaintCanvas extends PaintDraw {
                             this.updateCanvas();
                         }
                         break;
+
+                case ("Rotate"):
+                    this.rotateImage();
+                    break;
+
+                case ("Flip Horizontal"):
+                    this.flipImageY();
+                    break;
+
+                case ("Flip Vertical"):
+                    this.flipImageX();
+                    break;
 
                 case ("None"):
                     //does nothing

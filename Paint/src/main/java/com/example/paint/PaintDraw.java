@@ -8,6 +8,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeLineCap;
+import javafx.scene.transform.Rotate;
+import javafx.scene.transform.Translate;
+
 import java.io.File;
 
 import static com.example.paint.Paint.pane;
@@ -214,6 +217,25 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
         this.gc.setLineCap(StrokeLineCap.ROUND);
         this.gc.lineTo(x1, y1);
         this.gc.stroke();
+    }
+
+    public void rotateImage()
+    {
+        this.setRotate(this.getRotate() + 90);
+    }
+
+    public void flipImageX()
+    {
+        Translate flipTranslate = new Translate(0, this.getHeight());
+        Rotate flipRotation = new Rotate(180, Rotate.X_AXIS);
+        this.getTransforms().addAll(flipTranslate, flipRotation);
+    }
+
+    public void flipImageY()
+    {
+        Translate flipTranslate = new Translate(this.getHeight(), 0);
+        Rotate flipRotation = new Rotate(180, Rotate.Y_AXIS);
+        this.getTransforms().addAll(flipTranslate, flipRotation);
     }
 
     /**

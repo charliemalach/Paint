@@ -7,13 +7,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.util.Callback;
+import javafx.scene.transform.Rotate;
+import javafx.scene.transform.Translate;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import java.awt.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 /**
  * Malachinski Pain(t) Application - PaintToolBar.java
@@ -23,7 +25,9 @@ import java.awt.*;
 
 
 public class PaintToolBar extends ToolBar {
-    public final static String[] TOOLS = {"None", "Line", "Dashed Line", "Pencil", "Square", "Rectangle", "Polygon", "Triangle", "Ellipse", "Circle", "Color Dropper", "Eraser", "Copy", "Cut", "Paste", "Clear Canvas"};
+    public final static String[] TOOLS = {"None", "Line", "Dashed Line", "Pencil", "Square", "Rectangle", "Polygon",
+            "Triangle", "Ellipse", "Circle", "Color Dropper", "Eraser", "Copy", "Cut", "Paste", "Clear Canvas", "Rotate" , "Flip Horizontal",
+            "Flip Vertical"};
     public final static String[] SAVES = {"Yes", "No"};
     private static final Integer[] LINE_WIDTH = {1, 2, 3, 5, 10, 15, 20, 25, 50, 100}; //hard coded line widths for the user to use, might make this custom later
     private static ComboBox<String> toolBox; //creates a combo box to store all the available tools
@@ -38,14 +42,9 @@ public class PaintToolBar extends ToolBar {
     private static int usingSave;
     private static TextField saveTime;
     private static int currentTime;
-
-    @FXML
-    private ImageView appleImage;
-
-    @FXML //  fx:id="orangeImage"
-    private ImageView orangeImage; // Value injected by FXMLLoader
-
-
+    private final Button flipHoriz;
+    private final Button flipVert;
+    private final Button rotate;
 
 
     public PaintToolBar() { //sets up the toolbar
@@ -60,7 +59,7 @@ public class PaintToolBar extends ToolBar {
         usingTool = 0; //default tool = "none"
         usingSave = 0; //default auto save = "no"
         usingSides = 3; //default number of sides = 3
-        currentTime = 15; //default save timer = 15 seconds
+        currentTime = 45; //default save timer = 15 seconds
 
         sides = new TextField("3"); //sets the default sides in the editable text field
 
@@ -74,14 +73,31 @@ public class PaintToolBar extends ToolBar {
 
         Label seconds = new Label(" seconds");
 
-        //tools and their images
+        flipHoriz = new Button("");
+        flipVert = new Button("");
+        rotate = new Button("");
 
         //adds items to toolbox
-        getItems().addAll(new Label("Tools: "), toolBox, new Separator(), sides, new Separator(),
+        getItems().addAll(new Label("Tools: "), toolBox, new Separator(), sides, new Separator(), flipHoriz, flipVert, rotate, new Separator(),
                 new Label("Line Width: "), widthBox,
                 new Label("Line Color: "), lineColorPicker, new Separator(),
                 new Label("Auto-Save "), saveBox, saveTime, seconds
         );
+
+        flipHoriz.setTooltip(new Tooltip("Flip the image horizontally"));
+        flipVert.setTooltip(new Tooltip("Flip the image vertically"));
+        rotate.setTooltip(new Tooltip("Rotate the image 90 degrees"));
+
+
+        try{
+            flipHoriz.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + "buttons\\horizontal.png"), 21, 21, true, true)));
+            flipVert.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + "buttons\\vertical.png"), 21, 21, true,true)));
+            rotate.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + "buttons\\rotate.png"), 21, 21, true, true)));
+        } catch (FileNotFoundException ex)
+        {
+            System.out.println(ex);
+        }
+
 
         seconds.setVisible(false); //makes the 'seconds' text box invisible
         saveTime.setVisible(true); //makes the text box visible
@@ -90,58 +106,20 @@ public class PaintToolBar extends ToolBar {
         saveTime.setPrefWidth(50);
 
 
+        flipHoriz.setOnAction((ActionEvent e) -> {
+            Translate flipTranslate = new Translate(0, this.getHeight());
+            Rotate flipRotation = new Rotate(180, Rotate.X_AXIS);
+            this.getTransforms().addAll(flipTranslate, flipRotation);
+        });
 
+        flipVert.setOnAction((ActionEvent e) -> {
+            Translate flipTranslate = new Translate(this.getHeight(), 0);
+            Rotate flipRotation = new Rotate(180, Rotate.Y_AXIS);
+            this.getTransforms().addAll(flipTranslate, flipRotation);
+        });
 
-//TODO: fix this broken garbage
-        toolBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-
-            }
-
-            public void changed(ObservableValue<? extends String> selected, String oldTool, String newTool){
-                if (oldTool != null) {
-                    switch(oldTool) {
-                        case "None": ; break;
-                        case "Line": ; break;
-                        case "Dashed Line": ; break;
-                        case "Pencil": ; break;
-                        case "Square": ; break;
-                        case "Rectangle": ; break;
-                        case "Polygon": ; break;
-                        case "Triangle": ; break;
-                        case "Ellipse": ; break;
-                        case "Circle": ; break;
-                        case "Color Dropper": ; break;
-                        case "Eraser": ; break;
-                        case "Copy": ; break;
-                        case "Cut": ; break;
-                        case "Paste": ; break;
-                        case "Clear Canvas": ; break;
-                    }
-                }
-
-                if (newTool != null) {
-                    switch(newTool) {
-                        case "None": ; break;
-                        case "Line": ; break;
-                        case "Dashed Line": ; break;
-                        case "Pencil": ; break;
-                        case "Square": ; break;
-                        case "Rectangle": ; break;
-                        case "Polygon": ; break;
-                        case "Triangle": ; break;
-                        case "Ellipse": ; break;
-                        case "Circle": ; break;
-                        case "Color Dropper": ; break;
-                        case "Eraser": ; break;
-                        case "Copy": ; break;
-                        case "Cut": ; break;
-                        case "Paste": ; break;
-                        case "Clear Canvas": ; break;
-                    }
-                }
-            }
+        rotate.setOnAction((ActionEvent e) -> {
+            this.setRotate(this.getRotate() + 90);
         });
 
         // Listeners for the tools
