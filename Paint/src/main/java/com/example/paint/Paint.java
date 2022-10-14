@@ -1,6 +1,6 @@
 package com.example.paint;
 
-import javafx.animation.Timeline;
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -20,8 +20,8 @@ import java.io.IOException;
  * The application also hosts a total of 3 unit tests to ensure that methods work properly.
  *
  * @author Charlie Malachinski
- * @version 1.0.4
- * @since 2022-09-19
+ * @version 1.0.5
+ * @since 2022-10-14
  **/
 
 public class Paint extends Application {

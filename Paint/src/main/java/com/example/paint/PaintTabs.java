@@ -14,12 +14,15 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static com.example.paint.Paint.Logger;
 import static com.example.paint.Paint.mainStage;
 
 /**
@@ -175,6 +178,15 @@ public class PaintTabs extends Tab {
         temp.canvas.drawImage(path);
         Paint.tabpane.getTabs().add(temp);
         Paint.tabpane.getSelectionModel().select(temp);
+        try {
+            FileWriter myWriter = new FileWriter(Logger);
+            myWriter.write(LocalDate.now() + "" +  Instant.now().toString() + "- user opened image " + path);
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
     }
 
     public static void newTab() //opens a new tab on the canvas
