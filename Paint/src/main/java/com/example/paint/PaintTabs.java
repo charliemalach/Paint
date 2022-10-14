@@ -178,15 +178,6 @@ public class PaintTabs extends Tab {
         temp.canvas.drawImage(path);
         Paint.tabpane.getTabs().add(temp);
         Paint.tabpane.getSelectionModel().select(temp);
-        try {
-            FileWriter myWriter = new FileWriter(Logger);
-            myWriter.write(LocalDate.now() + "" +  Instant.now().toString() + "- user opened image " + path);
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-
     }
 
     public static void newTab() //opens a new tab on the canvas
