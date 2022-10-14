@@ -22,9 +22,10 @@ import java.io.FileNotFoundException;
 
 public class PaintToolBar extends ToolBar {
 
-    public final static String[] TOOLS = {"None", "Line", "Dashed Line", "Pencil", "Square", "Rectangle", "Polygon",
-            "Triangle", "Ellipse", "Circle", "Color Dropper", "Eraser", "Copy", "Cut", "Paste", "Clear Canvas", "Rotate" , "Flip Horizontal",
-            "Flip Vertical"};
+    public final static String[] TOOLS = {
+            "None",  "Square", "Rectangle", "Polygon", "Triangle", "Ellipse", "Circle",
+            "Clear Canvas", "Rotate" , "Flip Horizontal", "Flip Vertical",
+            "Line", "Dashed Line", "Pencil", "Color Dropper", "Eraser", "Copy", "Cut", "Paste",};
 
     public final static String[] BUTTONS = {"Line", "Dashed Line", "Pencil", "Color Dropper", "Eraser", "Copy", "Cut", "Paste"};
     public final static String[] SAVES = {"Yes", "No"};
@@ -42,14 +43,14 @@ public class PaintToolBar extends ToolBar {
     private static TextField saveTime;
     private static int currentTime;
 
-    private final Button tool_Line; //tool 1
-    private final Button tool_DashedLine; //tool 2
-    private final Button tool_Pencil; //tool 3
-    private final Button tool_EyeDropper; //tool 10
-    private final Button tool_Eraser; //tool 11
-    private final Button tool_Copy; //tool 12
-    private final Button tool_Cut; //tool 13
-    private final Button tool_Paste; //tool 14
+    private final Button tool_Line; //tool 11
+    private final Button tool_DashedLine; //tool 12
+    private final Button tool_Pencil; //tool 13
+    private final Button tool_EyeDropper; //tool 14
+    private final Button tool_Eraser; //tool 15
+    private final Button tool_Copy; //tool 16
+    private final Button tool_Cut; //tool 17
+    private final Button tool_Paste; //tool 18
 
 
 
@@ -75,6 +76,8 @@ public class PaintToolBar extends ToolBar {
         saveBox.setValue("Yes");
         widthBox.setValue(1); //sets the default width to 1
         saveTime = new TextField(Integer.toString(currentTime));
+        Label seconds = new Label(" seconds");
+
 
         tool_Line = new Button("");
         tool_DashedLine = new Button();
@@ -85,7 +88,6 @@ public class PaintToolBar extends ToolBar {
         tool_Cut = new Button();
         tool_Paste = new Button();
 
-        Label seconds = new Label(" seconds");
 
         //adds items to toolbox
         getItems().addAll(new Label("Tools: "), toolBox, new Separator(), sides,
@@ -129,7 +131,6 @@ public class PaintToolBar extends ToolBar {
 
 
         // Listeners for the tools
-
         toolBox.getSelectionModel().selectedIndexProperty().addListener((observable, value, newValue) -> { //set new tool as selected tool
             usingTool = newValue.intValue();
             sides.setVisible(TOOLS[usingTool].equals("Polygon")); //enables the text input for the n-gon option and disables it otherwise
@@ -166,35 +167,35 @@ public class PaintToolBar extends ToolBar {
 
         //button listeners
         tool_Line.setOnAction((ActionEvent e) ->{
-            usingTool = 1;
-        });
-
-        tool_DashedLine.setOnAction((ActionEvent e) ->{
-            usingTool = 2;
-        });
-
-        tool_Pencil.setOnAction((ActionEvent e) ->{
-            usingTool = 3;
-        });
-
-        tool_EyeDropper.setOnAction((ActionEvent e) ->{
-            usingTool = 10;
-        });
-
-        tool_Eraser.setOnAction((ActionEvent e) ->{
             usingTool = 11;
         });
 
-        tool_Copy.setOnAction((ActionEvent e) ->{
+        tool_DashedLine.setOnAction((ActionEvent e) ->{
             usingTool = 12;
         });
 
-        tool_Cut.setOnAction((ActionEvent e) ->{
+        tool_Pencil.setOnAction((ActionEvent e) ->{
             usingTool = 13;
         });
 
-        tool_Paste.setOnAction((ActionEvent e) ->{
+        tool_EyeDropper.setOnAction((ActionEvent e) ->{
             usingTool = 14;
+        });
+
+        tool_Eraser.setOnAction((ActionEvent e) ->{
+            usingTool = 15;
+        });
+
+        tool_Copy.setOnAction((ActionEvent e) ->{
+            usingTool = 16;
+        });
+
+        tool_Cut.setOnAction((ActionEvent e) ->{
+            usingTool = 17;
+        });
+
+        tool_Paste.setOnAction((ActionEvent e) ->{
+            usingTool = 18;
         });
     }
 
