@@ -61,8 +61,6 @@ public class PaintCanvas extends PaintDraw {
             this.setLineWidth(PaintToolBar.getLineWidth()); //gets the desired line width from PaintToolBar class
             this.setFillColor(PaintToolBar.getFillColor()); //gets the desired fill color from PaintToolBar class
             switch (PaintToolBar.getTool()) {
-
-
                 case ("Line"): //draws a line at the beginning coordinates
                     this.lineDashes(0);
                     this.lineTool(x, y, x, y);

@@ -25,6 +25,8 @@ public class PaintToolBar extends ToolBar {
     public final static String[] TOOLS = {"None", "Line", "Dashed Line", "Pencil", "Square", "Rectangle", "Polygon",
             "Triangle", "Ellipse", "Circle", "Color Dropper", "Eraser", "Copy", "Cut", "Paste", "Clear Canvas", "Rotate" , "Flip Horizontal",
             "Flip Vertical"};
+
+    public final static String[] BUTTONS = {"Line", "Dashed Line", "Pencil", "Color Dropper", "Eraser", "Copy", "Cut", "Paste"};
     public final static String[] SAVES = {"Yes", "No"};
     private static final Integer[] LINE_WIDTH = {1, 2, 3, 5, 10, 15, 20, 25, 50, 100}; //hard coded line widths for the user to use, might make this custom later
     public static ComboBox<String> toolBox; //creates a combo box to store all the available tools
@@ -40,14 +42,14 @@ public class PaintToolBar extends ToolBar {
     private static TextField saveTime;
     private static int currentTime;
 
-    private final Button tool_Line;
-    private final Button tool_DashedLine;
-    private final Button tool_Pencil;
-    private final Button tool_EyeDropper;
-    private final Button tool_Eraser;
-    private final Button tool_Copy;
-    private final Button tool_Cut;
-    private final Button tool_Paste;
+    private final Button tool_Line; //tool 1
+    private final Button tool_DashedLine; //tool 2
+    private final Button tool_Pencil; //tool 3
+    private final Button tool_EyeDropper; //tool 10
+    private final Button tool_Eraser; //tool 11
+    private final Button tool_Copy; //tool 12
+    private final Button tool_Cut; //tool 13
+    private final Button tool_Paste; //tool 14
 
 
 
@@ -113,14 +115,14 @@ public class PaintToolBar extends ToolBar {
 
         try {
             int size = 20;
-            tool_Line.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + ""), size, size, true, true)));
-            tool_DashedLine.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + ""), size, size, true, true)));
-            tool_Pencil.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + ""), size, size, true, true)));
-            tool_EyeDropper.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + ""), size, size, true, true)));
-            tool_Eraser.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + ""), size, size, true, true)));
-            tool_Copy.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + ""), size, size, true, true)));
-            tool_Cut.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + ""), size, size, true, true)));
-            tool_Paste.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + ""), size, size, true, true)));
+            tool_Line.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + "buttons\\line.png"), size, size, true, true)));
+            tool_DashedLine.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + "buttons\\dashed line.png"), size, size, true, true)));
+            tool_Pencil.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + "buttons\\pencil.png"), size, size, true, true)));
+            tool_EyeDropper.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + "buttons\\eyedropper.png"), size, size, true, true)));
+            tool_Eraser.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + "buttons\\eraser.png"), size, size, true, true)));
+            tool_Copy.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + "buttons\\copy.png"), size, size, true, true)));
+            tool_Cut.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + "buttons\\cut.png"), size, size, true, true)));
+            tool_Paste.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + "buttons\\paste.png"), size, size, true, true)));
         } catch (FileNotFoundException e) {
             return;
         }
@@ -162,8 +164,37 @@ public class PaintToolBar extends ToolBar {
             System.out.println("Width Selected: " + usingWidth); //print statement for debugging purposes
         });
 
+        //button listeners
         tool_Line.setOnAction((ActionEvent e) ->{
             usingTool = 1;
+        });
+
+        tool_DashedLine.setOnAction((ActionEvent e) ->{
+            usingTool = 2;
+        });
+
+        tool_Pencil.setOnAction((ActionEvent e) ->{
+            usingTool = 3;
+        });
+
+        tool_EyeDropper.setOnAction((ActionEvent e) ->{
+            usingTool = 10;
+        });
+
+        tool_Eraser.setOnAction((ActionEvent e) ->{
+            usingTool = 11;
+        });
+
+        tool_Copy.setOnAction((ActionEvent e) ->{
+            usingTool = 12;
+        });
+
+        tool_Cut.setOnAction((ActionEvent e) ->{
+            usingTool = 13;
+        });
+
+        tool_Paste.setOnAction((ActionEvent e) ->{
+            usingTool = 14;
         });
     }
 
