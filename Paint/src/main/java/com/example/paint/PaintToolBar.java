@@ -1,19 +1,16 @@
 package com.example.paint;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 
 /**
@@ -43,6 +40,15 @@ public class PaintToolBar extends ToolBar {
     private static TextField saveTime;
     private static int currentTime;
 
+    private final Button tool_Line;
+    private final Button tool_DashedLine;
+    private final Button tool_Pencil;
+    private final Button tool_EyeDropper;
+    private final Button tool_Eraser;
+    private final Button tool_Copy;
+    private final Button tool_Cut;
+    private final Button tool_Paste;
+
 
 
     public PaintToolBar() { //sets up the toolbar
@@ -68,16 +74,23 @@ public class PaintToolBar extends ToolBar {
         widthBox.setValue(1); //sets the default width to 1
         saveTime = new TextField(Integer.toString(currentTime));
 
+        tool_Line = new Button("");
+        tool_DashedLine = new Button();
+        tool_Pencil = new Button();
+        tool_EyeDropper = new Button();
+        tool_Eraser = new Button();
+        tool_Copy = new Button();
+        tool_Cut = new Button();
+        tool_Paste = new Button();
+
         Label seconds = new Label(" seconds");
 
         //adds items to toolbox
-        getItems().addAll(new Label("Tools: "), toolBox, new Separator(), sides, new Separator(),
-                new Label("Line Width: "), widthBox,
-                new Label("Line Color: "), lineColorPicker, new Separator(),
-                new Label("Auto-Save "), saveBox, saveTime, seconds
+        getItems().addAll(new Label("Tools: "), toolBox, new Separator(), sides,
+                new Separator(),  new Label("Line Width: "), widthBox,  new Label("Line Color: "), lineColorPicker,
+                new Separator(), tool_Line, tool_DashedLine, tool_Pencil, tool_EyeDropper, tool_Eraser, tool_Copy, tool_Cut, tool_Paste,
+                new Separator(), new Label("Auto-Save "), saveBox, saveTime, seconds
         );
-
-
         toolBox.setTooltip(new Tooltip("Select the desired tool."));
         widthBox.setTooltip(new Tooltip("Select the desired line width."));
         lineColorPicker.setTooltip(new Tooltip("Select the desired color."));
@@ -88,6 +101,30 @@ public class PaintToolBar extends ToolBar {
         sides.setVisible(false); //makes sides invisible until the proper tool is selected
         sides.setPrefWidth(50);
         saveTime.setPrefWidth(50);
+
+        tool_Line.setTooltip(new Tooltip("Line Tool"));
+        tool_DashedLine.setTooltip(new Tooltip("Dashed Line Tool"));
+        tool_Pencil.setTooltip(new Tooltip("Pencil Tool"));
+        tool_EyeDropper.setTooltip(new Tooltip("EyeDropper Tool"));
+        tool_Eraser.setTooltip(new Tooltip("Eraser Tool"));
+        tool_Copy.setTooltip(new Tooltip("Copy Tool"));
+        tool_Cut.setTooltip(new Tooltip("Cut Tool"));
+        tool_Paste.setTooltip(new Tooltip("Paste Tool"));
+
+        try {
+            int size = 20;
+            tool_Line.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + ""), size, size, true, true)));
+            tool_DashedLine.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + ""), size, size, true, true)));
+            tool_Pencil.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + ""), size, size, true, true)));
+            tool_EyeDropper.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + ""), size, size, true, true)));
+            tool_Eraser.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + ""), size, size, true, true)));
+            tool_Copy.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + ""), size, size, true, true)));
+            tool_Cut.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + ""), size, size, true, true)));
+            tool_Paste.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + ""), size, size, true, true)));
+        } catch (FileNotFoundException e) {
+            return;
+        }
+
 
         // Listeners for the tools
 
@@ -125,6 +162,9 @@ public class PaintToolBar extends ToolBar {
             System.out.println("Width Selected: " + usingWidth); //print statement for debugging purposes
         });
 
+        tool_Line.setOnAction((ActionEvent e) ->{
+            usingTool = 1;
+        });
     }
 
     public static String getTool() //returns current tool
