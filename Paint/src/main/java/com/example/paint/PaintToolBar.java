@@ -92,7 +92,7 @@ public class PaintToolBar extends ToolBar {
         //adds items to toolbox
         getItems().addAll(new Label("Tools: "), toolBox, new Separator(), sides,
                 new Separator(), tool_Line, tool_DashedLine, tool_Pencil, tool_EyeDropper, tool_Eraser, tool_Copy, tool_Cut, tool_Paste,
-                new Separator(),  new Label("Line Width: "), widthBox,  new Label("Line Color: "), lineColorPicker,     
+                new Separator(),  new Label("Line Width: "), widthBox,  new Label("Line Color: "), lineColorPicker,
                 new Separator(), new Label("Auto-Save "), saveBox, saveTime, seconds
         );
         toolBox.setTooltip(new Tooltip("Select the desired tool."));
@@ -128,7 +128,6 @@ public class PaintToolBar extends ToolBar {
         } catch (FileNotFoundException e) {
             return;
         }
-
 
         // Listeners for the tools
         toolBox.getSelectionModel().selectedIndexProperty().addListener((observable, value, newValue) -> { //set new tool as selected tool
