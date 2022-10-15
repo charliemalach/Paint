@@ -6,8 +6,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 
-import java.io.IOException;
-
 /**
  * Malachinski Pain(t) Application - PaintMenuBar.java
  * This class file is used to manage the menu bar and all the relevant menu bar events.
@@ -33,6 +31,7 @@ public class PaintMenuBar extends MenuBar {
         New.setMnemonicParsing(true);
         New.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.CONTROL_DOWN));
         New.setOnAction((ActionEvent event) -> {
+            PaintTabs.newTab();
         });
 
         //'Open' menu item. Allows users to open a picture to the current project.
@@ -40,11 +39,7 @@ public class PaintMenuBar extends MenuBar {
         Open.setMnemonicParsing(true);
         Open.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN)); //sets hotkey CTRL + O --> Open Program
         Open.setOnAction((ActionEvent event) -> {
-            try {
-                PaintTabs.openImage();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            PaintTabs.openImage();
         });
 
         //'Save' menu item. Allows users to save current project.
