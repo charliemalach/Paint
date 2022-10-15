@@ -178,7 +178,6 @@ public class PaintTabs extends Tab {
         temp.canvas.drawImage(path);
         Paint.tabpane.getTabs().add(temp);
         Paint.tabpane.getSelectionModel().select(temp);
-
     }
     public static void newTab() //opens a new tab on the canvas
     {

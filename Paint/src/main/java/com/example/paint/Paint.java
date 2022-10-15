@@ -33,7 +33,17 @@ public class Paint extends Application {
     private final static String VERSION = "v1.0.5";
     public final static String IMAGES = "C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\main\\resources\\images\\";
     public final static String Logger = "C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\main\\resources\\logger\\";
-    public static File test = new File(Logger + LocalDate.now() + ".txt");
+    public static File test = new File(Logger + "ope.txt");
+    public static BufferedWriter writer;
+
+    static {
+        try {
+            writer = new BufferedWriter(new FileWriter(test));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public final static int windowWidth = 1280; //Dictates the initial length of the application window
     public final static int windowHeight = 720; //Dictates the initial width of the application window
     public static Stage mainStage; //Creates the main Stage
@@ -78,9 +88,8 @@ public class Paint extends Application {
         });
     }
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args){
         launch();
-        BufferedWriter writer = new BufferedWriter(new FileWriter(Logger + LocalDate.now() + ".txt"));
     }
 
     public static PaintTabs getCurrentTab() { //returns the tab currently being used by the user
