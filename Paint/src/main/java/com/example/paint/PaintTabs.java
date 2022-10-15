@@ -168,7 +168,7 @@ public class PaintTabs extends Tab {
         return this.path;
     }
 
-    public static void openImage() { //uses file chooser to open an image stored in path and displays it on the canvas
+    public static void openImage(){ //uses file chooser to open an image stored in path and displays it on the canvas
         File path = chooseFile.showOpenDialog(mainStage);
         PaintTabs temp;
         if (path == null)
@@ -178,8 +178,8 @@ public class PaintTabs extends Tab {
         temp.canvas.drawImage(path);
         Paint.tabpane.getTabs().add(temp);
         Paint.tabpane.getSelectionModel().select(temp);
-    }
 
+    }
     public static void newTab() //opens a new tab on the canvas
     {
         PaintTabs newTab;
@@ -302,4 +302,5 @@ public class PaintTabs extends Tab {
         this.canvas.setWidth(x); //sets the canvas width to the given int
         this.canvas.setHeight(x / 1.78); //sets the height. i use this to make it proportional. 1920 / 1080 = ~1.78, and 1280 / 720 =~1.78, so this made sense to me
     }
+
 }
