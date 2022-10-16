@@ -219,7 +219,7 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
         this.gc.stroke();
     }
 
-    public void rotateImage()
+    public void rotateImage() //this is mad janky
     {
         this.setRotate(this.getRotate() + 90);
     }
