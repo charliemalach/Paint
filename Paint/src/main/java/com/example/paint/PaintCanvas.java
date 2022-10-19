@@ -174,8 +174,7 @@ public class PaintCanvas extends PaintDraw {
                         break;
 
                 case ("Rotate"): //rotates 90 degrees
-                        this.rotateImage();
-
+                    this.rotateImage();
                     break;
 
                 case ("Flip Horizontal"):

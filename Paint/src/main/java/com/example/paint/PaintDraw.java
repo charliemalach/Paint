@@ -224,11 +224,12 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
 
     public void rotateImage()
     {
-        Translate flipTranslate = new Translate(0, 0);
         this.setRotate(this.getRotate() + 90);
+        Translate flipTranslate = new Translate(0, 0);
         this.getTransforms().add(flipTranslate);
         logData(" user rotated the image");
     }
+
 
     public void flipImageX()
     {
