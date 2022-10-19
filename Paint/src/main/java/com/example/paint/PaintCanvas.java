@@ -7,6 +7,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
 import java.util.Optional;
@@ -145,19 +146,12 @@ public class PaintCanvas extends PaintDraw {
                     this.lineDashes(0);
                     try{
                         this.drawImageAt(image, e.getX(), e.getY());
+
                     }catch(Exception exception){
                         System.out.println(exception);
                     }
                     break;
 
-                case ("Select"):
-                    this.undo();
-                    this.rectTool(x, y, x, y);
-                    if (this.image != null) {
-                        this.getRegion(0, 0, image.getWidth(), image.getHeight());
-
-                    }
-                    break;
 
                 case ("Clear Canvas"): //clears the canvas on click
                     //add onclick listener here
@@ -180,8 +174,8 @@ public class PaintCanvas extends PaintDraw {
                         break;
 
                 case ("Rotate"): //rotates 90 degrees
-                    this.rotateImage();
-                    
+                        this.rotateImage();
+
                     break;
 
                 case ("Flip Horizontal"):
@@ -261,16 +255,6 @@ public class PaintCanvas extends PaintDraw {
                     this.undo();
                     this.rectTool(x, y, e.getX(), e.getY());
                     this.updateCanvas();
-                    break;
-
-                case ("Select"): //this is broken ?
-                    this.undo();
-                    this.rectTool(x, y, e.getX(), e.getY());
-                    if (this.image != null) {
-
-                        this.getRegion(0, 0, image.getWidth(), image.getHeight());
-
-                    }
                     break;
 
 
@@ -389,13 +373,6 @@ public class PaintCanvas extends PaintDraw {
                     this.undo();
                     if (this.image != null) {
                         this.drawImageAt(this.image, e.getX(), e.getY());
-                    }
-                    break;
-
-                case ("Select"): //this is broken ?
-                    if (this.image != null) {
-
-                        this.getRegion(0, 0, image.getWidth(), image.getHeight());
                     }
                     break;
 

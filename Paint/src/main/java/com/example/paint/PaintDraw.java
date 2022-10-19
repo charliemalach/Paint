@@ -5,6 +5,7 @@ import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeLineCap;
@@ -221,14 +222,13 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
         this.gc.stroke();
     }
 
-    public void rotateImage() //this is mad janky
+    public void rotateImage()
     {
         Translate flipTranslate = new Translate(0, 0);
         this.setRotate(this.getRotate() + 90);
-        this.getTransforms().addAll(flipTranslate);
+        this.getTransforms().add(flipTranslate);
         logData(" user rotated the image");
     }
-
 
     public void flipImageX()
     {
@@ -275,6 +275,7 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
         this.snapshot(sp, wi);
         return wi;
     }
+
 
     /**
      * draws an image to the canvas at given starting point
