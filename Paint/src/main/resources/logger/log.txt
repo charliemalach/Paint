@@ -1,0 +1,7 @@
+[2022-10-19]  [09:18:54.809940500] user opened a new tab
+[2022-10-19]  [09:19:04.013654400] user drew a line to the canvas
+[2022-10-19]  [09:19:04.906742300] user drew a dashed line to the canvas
+[2022-10-19]  [09:19:06.128487] user selected the Rectangle tool
+[2022-10-19]  [09:19:06.522022] user drew a rectangle to the canvas
+[2022-10-19]  [09:19:07.688859900] user selected the Triangle tool
+[2022-10-19]  [09:19:08.167001100] user drew a triangle to the canvas

@@ -13,17 +13,18 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static com.example.paint.Paint.Logger;
-import static com.example.paint.Paint.mainStage;
+import static com.example.paint.Paint.*;
 
 /**
  * Malachinski Pain(t) Application - PaintTabs.java
@@ -178,6 +179,7 @@ public class PaintTabs extends Tab {
         temp.canvas.drawImage(path);
         Paint.tabpane.getTabs().add(temp);
         Paint.tabpane.getSelectionModel().select(temp);
+        logData(" user opened a new image");
     }
     public static void newTab() //opens a new tab on the canvas
     {
@@ -185,6 +187,7 @@ public class PaintTabs extends Tab {
         newTab = new PaintTabs();
         Paint.tabpane.getTabs().add(newTab);
         Paint.tabpane.getSelectionModel().select(newTab);
+        logData(" user opened a new tab");
     }
 
     public void saveImage() { //saves the original image
@@ -197,6 +200,7 @@ public class PaintTabs extends Tab {
         } catch (IOException ex) {
             System.out.println(ex);
         }
+        logData(" user saved image");
     }
 
     public void saveImageAs() { //saves image as a new image of desired file type
@@ -210,6 +214,7 @@ public class PaintTabs extends Tab {
         File path = chooseFile.showSaveDialog(mainStage);
         this.setFilePath(path);
         this.saveImage();
+        logData(" user saved image as");
     }
 
     public void saveImageAs(File path) { //saves existing image as a new image of desired file type
@@ -223,6 +228,7 @@ public class PaintTabs extends Tab {
 
         this.setFilePath(path);
         this.saveImage();
+        logData(" user saved image as");
     }
 
     public void quitProgram() //prompts the user to save before quitting program
@@ -248,6 +254,7 @@ public class PaintTabs extends Tab {
                 System.exit(0);
             }
         }
+        logData(" user quit the program");
     }
 
     public void quitTab() //prompts the user to save before closing the current tab
@@ -269,6 +276,25 @@ public class PaintTabs extends Tab {
                 //If Cancel button is clicked, program will just exit.
                 return;
             }
+        logData(" user closed a tab");
+    }
+
+    public static void logData(String content){ //logs the data to a new file
+        try {
+            File file = new File(test.toURI());
+
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("[" + LocalDate.now().toString() +"]" +"  "+ "[" + LocalTime.now().toString() + "]" + content + "\r\n");
+            bw.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setTitle(String title) { //sets the title of the current tab
@@ -300,6 +326,8 @@ public class PaintTabs extends Tab {
     {
         this.canvas.setWidth(x); //sets the canvas width to the given int
         this.canvas.setHeight(x / 1.78); //sets the height. i use this to make it proportional. 1920 / 1080 = ~1.78, and 1280 / 720 =~1.78, so this made sense to me
+        logData(" user resized the canvas");
     }
+
 
 }

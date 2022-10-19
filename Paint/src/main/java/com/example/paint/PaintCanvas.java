@@ -13,6 +13,7 @@ import java.util.Optional;
 import java.util.Stack;
 
 import static com.example.paint.Paint.mainStage;
+import static com.example.paint.PaintTabs.logData;
 
 /**
  * Malachinski Pain(t) Application - PaintCanvas.java
@@ -279,12 +280,14 @@ public class PaintCanvas extends PaintDraw {
                     this.lineDashes(0);
                     this.lineTool(x, y, x1, y1); //draws a line from starting coordinates to new ending coordinates
                     this.updateCanvas();
+                    logData(" user drew a line to the canvas");
                     break;
 
                 case ("Dashed Line"): //draws a dashed line using the coordinates
                     this.lineDashes(0);
                     this.dashedLineTool(x, y, x1, y1); //draws a dashed line from starting coordinates to new ending coordinates
                     this.updateCanvas();
+                    logData(" user drew a dashed line to the canvas");
                     break;
                 case ("Pencil"):
                     //does nothing, already drawn
@@ -294,35 +297,41 @@ public class PaintCanvas extends PaintDraw {
                     this.lineDashes(0);
                     this.squareTool(x, y, x1, y1); //draws a square from the starting coordinates to the new ending coordinates
                     this.updateCanvas();
+                    logData(" user drew a square to the canvas");
                     break;
 
                 case ("Rectangle"): //draws a rectangle using the coordinates
                     this.lineDashes(0);
                     this.rectTool(x, y, x1, y1); //draws a rectangle from the starting coordinates to the new ending coordinates
                     this.updateCanvas();
+                    logData(" user drew a rectangle to the canvas");
                     break;
 
                 case ("Polygon"): //draws a polygon using the coordinates and the selected sides
                     this.polygonTool(x, y, e.getX(), e.getY(), PaintToolBar.getUsingSides());
                     this.updateCanvas();
+                    logData(" user drew a polygon to the canvas");
                     break;
 
                 case ("Triangle"): //draws a triangle using the coordinates
                     this.lineDashes(0);
                     this.triangleTool(x, y, e.getX(), e.getY(), 3);
                     this.updateCanvas();
+                    logData(" user drew a triangle to the canvas");
                     break;
 
                 case ("Ellipse"): //draws an ellipse using the coordinates
                     this.lineDashes(0);
                     this.ellipseTool(x, y, x1, y1); //draws an ellipse from the starting coordinates to the new ending coordinates
                     this.updateCanvas();
+                    logData(" user drew an ellipse to the canvas");
                     break;
 
                 case ("Circle"): //draws a circle using the coordinates
                     this.lineDashes(0);
                     this.circleTool(x, y, x1, y1);
                     this.updateCanvas();
+                    logData(" user drew a circle to the canvas");
                     break;
 
                 case ("Color Dropper"): //uses the eye drop function to get color at exact desired pixel
@@ -330,6 +339,7 @@ public class PaintCanvas extends PaintDraw {
                     setCursor(Cursor.CROSSHAIR); //changes cursor for color selector
                     PaintToolBar.setLineColor(this.eyeDropper(x, y));
                     this.updateCanvas();
+
                     break;
 
                 case ("Eraser"):

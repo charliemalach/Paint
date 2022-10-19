@@ -12,6 +12,8 @@ import javafx.scene.paint.Color;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import static com.example.paint.PaintTabs.logData;
+
 
 /**
  * Malachinski Pain(t) Application - PaintToolBar.java
@@ -134,6 +136,7 @@ public class PaintToolBar extends ToolBar {
             usingTool = newValue.intValue();
             sides.setVisible(TOOLS[usingTool].equals("Polygon")); //enables the text input for the n-gon option and disables it otherwise
             System.out.println("Tool Selected: " + TOOLS[usingTool]);
+            logData(" user selected the " + TOOLS[usingTool] + " tool");
         });
 
         saveBox.getSelectionModel().selectedIndexProperty().addListener((observable, value, newValue) -> {
@@ -162,6 +165,7 @@ public class PaintToolBar extends ToolBar {
         widthBox.setOnAction((ActionEvent e) -> { //sets new line width as selected width
             usingWidth = widthBox.getValue();
             System.out.println("Width Selected: " + usingWidth); //print statement for debugging purposes
+            logData(" user changed the width to " + usingWidth);
         });
 
         //button listeners

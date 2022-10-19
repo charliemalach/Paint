@@ -33,16 +33,8 @@ public class Paint extends Application {
     private final static String VERSION = "v1.0.5";
     public final static String IMAGES = "C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\main\\resources\\images\\";
     public final static String Logger = "C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\main\\resources\\logger\\";
-    public static File test = new File(Logger + "ope.txt");
-    public static BufferedWriter writer;
+    public static File test = new File(Logger + "log.txt");
 
-    static {
-        try {
-            writer = new BufferedWriter(new FileWriter(test));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public final static int windowWidth = 1280; //Dictates the initial length of the application window
     public final static int windowHeight = 720; //Dictates the initial width of the application window
@@ -69,6 +61,7 @@ public class Paint extends Application {
         pane.setCenter(tabpane); //set tab to center of the main pane
         pane.getChildren().add(PaintTabs.canvasStack); 
         pane.setTop(topMenu); //set top menu to the top of the main pane
+
 
         //starts scene
         scene = new Scene(pane, windowWidth, windowHeight); //creates a new scene with the main Grid Pane and the desired application window size.
