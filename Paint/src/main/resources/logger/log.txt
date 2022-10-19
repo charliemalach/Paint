@@ -1,7 +1,89 @@
-[2022-10-19]  [09:18:54.809940500] user opened a new tab
-[2022-10-19]  [09:19:04.013654400] user drew a line to the canvas
-[2022-10-19]  [09:19:04.906742300] user drew a dashed line to the canvas
-[2022-10-19]  [09:19:06.128487] user selected the Rectangle tool
-[2022-10-19]  [09:19:06.522022] user drew a rectangle to the canvas
-[2022-10-19]  [09:19:07.688859900] user selected the Triangle tool
-[2022-10-19]  [09:19:08.167001100] user drew a triangle to the canvas
+[2022-10-19]  [09:33:51.257145800] New Tab - user opened a new tab
+[2022-10-19]  [09:34:04.942836500] New Tab - user quit the program
+[2022-10-19]  [09:34:46.333881400] New Tab - user drew a line to the canvas
+[2022-10-19]  [09:34:47.017677800] New Tab - user drew a dashed line to the canvas
+[2022-10-19]  [09:34:49.366960900] New Tab - user opened a new tab
+[2022-10-19]  [09:34:52.954164900] test.png - user opened a new image
+[2022-10-19]  [09:34:54.465177300] test.png - user selected the Ellipse tool
+[2022-10-19]  [09:34:54.756813] test.png - user drew an ellipse to the canvas
+[2022-10-19]  [09:37:47.696943800] New Tab - user selected the Rotate tool
+[2022-10-19]  [09:37:47.891197700] New Tab - user flipped the image vertically
+[2022-10-19]  [09:38:05.265174500] New Tab - user quit the program
+[2022-10-19]  [09:38:44.074937700] test.png - user opened a new image
+[2022-10-19]  [09:38:45.296095700] test.png - user selected the Rotate tool
+[2022-10-19]  [09:38:45.490344700] test.png - user flipped the image vertically
+[2022-10-19]  [09:39:10.427065600] New Tab - user selected the Rotate tool
+[2022-10-19]  [09:39:10.631239400] New Tab - user flipped the image vertically
+[2022-10-19]  [09:39:12.336087200] New Tab - user quit the program
+[2022-10-19]  [09:39:36.201201500] New Tab - user selected the Rotate tool
+[2022-10-19]  [09:39:36.565709800] New Tab - user flipped the image vertically
+[2022-10-19]  [09:39:38.450456700] New Tab - user quit the program
+[2022-10-19]  [09:40:14.234010700] New Tab - user selected the Rotate tool
+[2022-10-19]  [09:40:14.469515300] New Tab - user rotated the image
+[2022-10-19]  [09:40:15.298665300] New Tab - user rotated the image
+[2022-10-19]  [09:40:15.860212300] New Tab - user rotated the image
+[2022-10-19]  [09:40:16.695738100] New Tab - user rotated the image
+[2022-10-19]  [09:40:18.527521900] New Tab - user rotated the image
+[2022-10-19]  [09:40:20.727957200] New Tab - user rotated the image
+[2022-10-19]  [09:40:25.971992600] test.png - user opened a new image
+[2022-10-19]  [09:40:26.680699500] test.png - user rotated the image
+[2022-10-19]  [09:40:27.616219600] test.png - user rotated the image
+[2022-10-19]  [09:40:28.357629800] test.png - user rotated the image
+[2022-10-19]  [09:40:29.185244700] test.png - user rotated the image
+[2022-10-19]  [09:40:30.006873] test.png - user rotated the image
+[2022-10-19]  [09:40:34.159125] test.png - user rotated the image
+[2022-10-19]  [09:40:34.523093300] test.png - user rotated the image
+[2022-10-19]  [09:40:34.928252300] test.png - user rotated the image
+[2022-10-19]  [09:40:35.439798100] test.png - user rotated the image
+[2022-10-19]  [09:40:36.478835] test.png - user rotated the image
+[2022-10-19]  [09:40:37.321276800] test.png - user rotated the image
+[2022-10-19]  [09:40:38.197316700] test.png - user rotated the image
+[2022-10-19]  [09:41:18.840441] New Tab - user selected the Rotate tool
+[2022-10-19]  [09:41:19.022539700] New Tab - user rotated the image
+[2022-10-19]  [09:41:20.393320700] New Tab - user rotated the image
+[2022-10-19]  [09:41:26.946414500] test.png - user opened a new image
+[2022-10-19]  [09:41:27.367691] test.png - user rotated the image
+[2022-10-19]  [09:41:28.395315500] test.png - user rotated the image
+[2022-10-19]  [09:41:57.222221400] New Tab - user selected the Rotate tool
+[2022-10-19]  [09:41:57.503990300] New Tab - user rotated the image
+[2022-10-19]  [09:41:58.222512400] New Tab - user rotated the image
+[2022-10-19]  [09:42:00.140936300] New Tab - user quit the program
+[2022-10-19]  [09:42:10.542060500] New Tab - user selected the Rotate tool
+[2022-10-19]  [09:42:10.942592500] New Tab - user rotated the image
+[2022-10-19]  [09:42:11.600854400] New Tab - user rotated the image
+[2022-10-19]  [09:42:12.078519500] New Tab - user rotated the image
+[2022-10-19]  [09:42:12.546569900] New Tab - user rotated the image
+[2022-10-19]  [09:42:16.109980900] test.png - user opened a new image
+[2022-10-19]  [09:42:17.263194700] test.png - user rotated the image
+[2022-10-19]  [09:42:17.722844300] test.png - user rotated the image
+[2022-10-19]  [09:42:18.145013100] test.png - user rotated the image
+[2022-10-19]  [09:42:18.534150800] test.png - user rotated the image
+[2022-10-19]  [09:42:20.085885800] test.png - user rotated the image
+[2022-10-19]  [09:42:22.512995200] test.png - user rotated the image
+[2022-10-19]  [09:42:23.588330200] test.png - user rotated the image
+[2022-10-19]  [09:42:24.590274] test.png - user rotated the image
+[2022-10-19]  [09:42:25.349153600] test.png - user rotated the image
+[2022-10-19]  [09:42:25.683246900] test.png - user rotated the image
+[2022-10-19]  [09:42:25.941300400] test.png - user rotated the image
+[2022-10-19]  [09:42:26.230683300] test.png - user rotated the image
+[2022-10-19]  [09:42:26.835206200] test.png - user rotated the image
+[2022-10-19]  [09:42:27.037311400] test.png - user rotated the image
+[2022-10-19]  [09:42:27.230655300] test.png - user rotated the image
+[2022-10-19]  [09:42:27.459198300] test.png - user rotated the image
+[2022-10-19]  [09:42:27.941271800] test.png - user rotated the image
+[2022-10-19]  [09:42:28.164268500] test.png - user rotated the image
+[2022-10-19]  [09:42:28.362179900] test.png - user rotated the image
+[2022-10-19]  [09:42:28.568157700] test.png - user rotated the image
+[2022-10-19]  [09:42:29.003212700] test.png - user rotated the image
+[2022-10-19]  [09:42:29.193155300] test.png - user rotated the image
+[2022-10-19]  [09:42:29.358878400] test.png - user rotated the image
+[2022-10-19]  [09:42:29.532316600] test.png - user rotated the image
+[2022-10-19]  [09:43:02.222272400] test.png - user opened a new image
+[2022-10-19]  [09:43:56.843012800] test.png - user opened a new image
+[2022-10-19]  [09:44:26.934016200] test.png - user opened a new image
+[2022-10-19]  [09:44:33.651572500] test.png - user selected the Rotate tool
+[2022-10-19]  [09:44:34.049062600] test.png - user rotated the image
+[2022-10-19]  [09:44:34.670276400] test.png - user rotated the image
+[2022-10-19]  [09:44:35.047169200] test.png - user rotated the image
+[2022-10-19]  [09:44:35.482725300] test.png - user rotated the image
+[2022-10-19]  [09:48:50.337795400] New Tab - user quit the program

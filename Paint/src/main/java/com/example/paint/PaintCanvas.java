@@ -172,6 +172,7 @@ public class PaintCanvas extends PaintDraw {
 
                 case ("Rotate"):
                     this.rotateImage();
+//                    this.testRotate();
                     break;
 
                 case ("Flip Horizontal"):
@@ -241,16 +242,16 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Copy"):
-                    this.lineDashes(5);
-                    this.undo(); //this is what gets rid of the image
-                    this.rectTool(x, y, e.getX(), e.getY());
-                    this.updateCanvas();
+//                    this.lineDashes(5);
+//                    this.undo(); //this is what gets rid of the image
+//                    this.rectTool(x, y, e.getX(), e.getY());
+//                    this.updateCanvas();
                     break;
 
                 case ("Cut"):
-                    this.undo();
-                    this.rectTool(x, y, e.getX(), e.getY());
-                    this.updateCanvas();
+//                    this.undo();
+//                    this.rectTool(x, y, e.getX(), e.getY());
+//                    this.updateCanvas();
                     break;
 
 
@@ -348,13 +349,13 @@ public class PaintCanvas extends PaintDraw {
 
                 case ("Copy"): //copies a piece of the canvas at the given coordinates
                     this.lineDashes(0);
-                    this.undo(); //this is what gets rid of the image!
+//                    this.undo(); //this is what gets rid of the image!
                     this.image = this.getRegion(x, y, e.getX(), e.getY());
                     this.updateCanvas();
                     break;
 
                 case ("Cut"): //cuts a piece of the canvas at the given coordinates
-                    this.undo();
+//                    this.undo();
                     this.image = this.getRegion(x, y, e.getX(), e.getY());
                     this.setLineWidth(0);
                     this.setShapeFill(true);

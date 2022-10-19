@@ -14,6 +14,7 @@ import javafx.scene.transform.Translate;
 import java.io.File;
 
 import static com.example.paint.Paint.pane;
+import static com.example.paint.PaintTabs.logData;
 
 /**
  * Malachinski Pain(t) Application - PaintDraw.java
@@ -221,7 +222,10 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
 
     public void rotateImage() //this is mad janky
     {
+        Translate flipTranslate = new Translate(0, 0);
         this.setRotate(this.getRotate() + 90);
+        this.getTransforms().addAll(flipTranslate);
+        logData(" user rotated the image");
     }
 
     public void flipImageX()
@@ -229,6 +233,7 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
         Translate flipTranslate = new Translate(0, this.getHeight());
         Rotate flipRotation = new Rotate(180, Rotate.X_AXIS);
         this.getTransforms().addAll(flipTranslate, flipRotation);
+        logData(" user flipped the image vertically");
     }
 
     public void flipImageY()
@@ -236,6 +241,7 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
         Translate flipTranslate = new Translate(this.getHeight(), 0);
         Rotate flipRotation = new Rotate(180, Rotate.Y_AXIS);
         this.getTransforms().addAll(flipTranslate, flipRotation);
+        logData(" user flipped the image horizontally");
     }
 
     /**

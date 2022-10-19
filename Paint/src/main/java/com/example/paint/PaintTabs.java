@@ -289,7 +289,7 @@ public class PaintTabs extends Tab {
 
             FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write("[" + LocalDate.now().toString() +"]" +"  "+ "[" + LocalTime.now().toString() + "]" + content + "\r\n");
+            bw.write("[" + LocalDate.now().toString() +"]" +"  "+ "[" + LocalTime.now().toString() + "] " +  getCurrentTab().getText() + " -" + content + "\r\n");
             bw.close();
         }
         catch (IOException e) {
