@@ -150,6 +150,15 @@ public class PaintCanvas extends PaintDraw {
                     }
                     break;
 
+                case ("Select"):
+                    this.undo();
+                    this.rectTool(x, y, x, y);
+                    if (this.image != null) {
+                        this.getRegion(0, 0, image.getWidth(), image.getHeight());
+
+                    }
+                    break;
+
                 case ("Clear Canvas"): //clears the canvas on click
                     //add onclick listener here
                         Alert clear = new Alert(Alert.AlertType.CONFIRMATION);
@@ -170,9 +179,9 @@ public class PaintCanvas extends PaintDraw {
                         }
                         break;
 
-                case ("Rotate"):
+                case ("Rotate"): //rotates 90 degrees
                     this.rotateImage();
-//                    this.testRotate();
+                    
                     break;
 
                 case ("Flip Horizontal"):
@@ -242,16 +251,26 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Copy"):
-//                    this.lineDashes(5);
-//                    this.undo(); //this is what gets rid of the image
-//                    this.rectTool(x, y, e.getX(), e.getY());
-//                    this.updateCanvas();
+                    this.lineDashes(5);
+                    undo(); //this is what gets rid of the image
+                    this.rectTool(x, y, e.getX(), e.getY());
+                    this.updateCanvas();
                     break;
 
                 case ("Cut"):
-//                    this.undo();
-//                    this.rectTool(x, y, e.getX(), e.getY());
-//                    this.updateCanvas();
+                    this.undo();
+                    this.rectTool(x, y, e.getX(), e.getY());
+                    this.updateCanvas();
+                    break;
+
+                case ("Select"): //this is broken ?
+                    this.undo();
+                    this.rectTool(x, y, e.getX(), e.getY());
+                    if (this.image != null) {
+
+                        this.getRegion(0, 0, image.getWidth(), image.getHeight());
+
+                    }
                     break;
 
 
@@ -349,13 +368,13 @@ public class PaintCanvas extends PaintDraw {
 
                 case ("Copy"): //copies a piece of the canvas at the given coordinates
                     this.lineDashes(0);
-//                    this.undo(); //this is what gets rid of the image!
+                    this.undo(); //this is what gets rid of the image!
                     this.image = this.getRegion(x, y, e.getX(), e.getY());
                     this.updateCanvas();
                     break;
 
                 case ("Cut"): //cuts a piece of the canvas at the given coordinates
-//                    this.undo();
+                    this.undo();
                     this.image = this.getRegion(x, y, e.getX(), e.getY());
                     this.setLineWidth(0);
                     this.setShapeFill(true);
@@ -370,6 +389,13 @@ public class PaintCanvas extends PaintDraw {
                     this.undo();
                     if (this.image != null) {
                         this.drawImageAt(this.image, e.getX(), e.getY());
+                    }
+                    break;
+
+                case ("Select"): //this is broken ?
+                    if (this.image != null) {
+
+                        this.getRegion(0, 0, image.getWidth(), image.getHeight());
                     }
                     break;
 

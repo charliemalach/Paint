@@ -25,6 +25,7 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
 
     private GraphicsContext gc;
     private boolean shapeFill;
+    private Image image;
 
     public PaintDraw() { //default draw method
         super();
@@ -227,6 +228,7 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
         this.getTransforms().addAll(flipTranslate);
         logData(" user rotated the image");
     }
+
 
     public void flipImageX()
     {
