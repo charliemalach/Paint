@@ -60,7 +60,7 @@ public class PaintCanvas extends PaintDraw {
             x = e.getX();
             y = e.getY();
 
-            ImageView imagev = new ImageView();
+            ImageView imagev1 = new ImageView();
 
             this.setLineColor(PaintToolBar.getLineColor()); //gets the desired line color from PaintToolBar class
             this.setLineWidth(PaintToolBar.getLineWidth()); //gets the desired line width from PaintToolBar class
@@ -152,10 +152,10 @@ public class PaintCanvas extends PaintDraw {
                     try{
                         if (image != null)
                         {
-                            imagev.setImage(image);
-                            imagev.setX(e.getX());
-                            imagev.setY(e.getY());
-                            canvasStack.getChildren().add(imagev);
+                            imagev1.setImage(image);
+                            imagev1.setX(e.getX());
+                            imagev1.setY(e.getY());
+                            canvasStack.getChildren().add(imagev1);
                         }
 
                     }catch(Exception exception){
@@ -164,10 +164,11 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Move"):
-                    if (image != null)
-                    {imagev.setImage(null);
-                        canvasStack.getChildren().remove(imagev);
+                    try{
                         this.drawImageAt(image, e.getX(), e.getY());
+                    } catch(Exception r)
+                    {
+                        System.out.println(r);
                     }
                     this.updateCanvas();
                     break;
@@ -195,8 +196,8 @@ public class PaintCanvas extends PaintDraw {
                 case ("Rotate"): //rotates 90 degrees
                     if (image != null)
                     {
-                            imagev.setImage(null);
-                            canvasStack.getChildren().remove(imagev);
+                            imagev1.setImage(null);
+                            canvasStack.getChildren().remove(imagev1);
                             this.updateCanvas();
                             TextInputDialog input = new TextInputDialog("0"); //sets default width to 1280
                             input.setContentText("New Angle: ");
@@ -207,7 +208,7 @@ public class PaintCanvas extends PaintDraw {
 
                             try{ //tries to resize canvas with given parameter
                                 Integer.parseInt(label.getText());
-                                imagev.setRotate(Integer.parseInt(label.getText()));
+                                imagev1.setRotate(Integer.parseInt(label.getText()));
                             }
                             catch (Exception ex) { //catches exception and prompts user to try again
                                 input = new TextInputDialog("0");
@@ -215,12 +216,12 @@ public class PaintCanvas extends PaintDraw {
                                 input.setHeaderText("INVALID: Enter Valid Angle");
                                 input.showAndWait();
                                 label.setText(input.getEditor().getText());
-                                imagev.setRotate(Integer.parseInt(label.getText()));
+                                imagev1.setRotate(Integer.parseInt(label.getText()));
                             }
                         this.updateCanvas();
-                        imagev.setImage(image);
-
-                        canvasStack.getChildren().add(imagev);
+                        canvasStack.getChildren().remove(imagev1);
+                        imagev1.setImage(image);
+                        canvasStack.getChildren().add(imagev1);
                     }
                     else {
                         this.rotateImage();
@@ -245,7 +246,7 @@ public class PaintCanvas extends PaintDraw {
         setOnMouseDragged(e -> {
             x1 = e.getX();
             y1 = e.getY();
-            ImageView imagev = new ImageView();
+            ImageView imagev2 = new ImageView();
 
 
             switch (PaintToolBar.getTool()) {
@@ -301,14 +302,14 @@ public class PaintCanvas extends PaintDraw {
                 case ("Paste"):
                     this.lineDashes(0);
                     this.undo();
-                    canvasStack.getChildren().remove(imagev);
+                    canvasStack.getChildren().remove(imagev2);
                     try{
                         if (image != null)
                         {
-                            imagev.setImage(image);
-                            imagev.setX(e.getX());
-                            imagev.setY(e.getY());
-                            canvasStack.getChildren().add(imagev);
+                            imagev2.setImage(image);
+                            imagev2.setX(e.getX());
+                            imagev2.setY(e.getY());
+                            canvasStack.getChildren().add(imagev2);
                         }
                     }catch(Exception exception){
                         System.out.println(exception);
