@@ -227,7 +227,17 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
         this.setRotate(this.getRotate() + 90);
         Translate flipTranslate = new Translate(0, 0);
         this.getTransforms().add(flipTranslate);
+
         logData(" user rotated the image");
+    }
+
+
+    public void rotateTest()
+    {
+        Translate flipTranslate = new Translate(this.getHeight(), 0);
+        Rotate flipRotation = new Rotate(90, Rotate.Y_AXIS);
+        this.getTransforms().addAll(flipRotation, flipTranslate);
+        logData(" user flipped the image vertically");
     }
 
 

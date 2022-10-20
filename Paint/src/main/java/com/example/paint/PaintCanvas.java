@@ -1,6 +1,7 @@
 package com.example.paint;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -14,6 +15,7 @@ import java.util.Optional;
 import java.util.Stack;
 
 import static com.example.paint.Paint.mainStage;
+import static com.example.paint.PaintTabs.canvasStack;
 import static com.example.paint.PaintTabs.logData;
 
 /**
@@ -34,8 +36,6 @@ public class PaintCanvas extends PaintDraw {
         this.image = null; //default image is null
         this.undo = new Stack<>(); //new stack for undo
         this.redo = new Stack<>(); //new stack for redo
-
-
 
         //set default background size & color
         this.setWidth(1280); //default width is 1280
@@ -59,10 +59,15 @@ public class PaintCanvas extends PaintDraw {
         setOnMousePressed(e -> { //when mouse is initially held down
             x = e.getX();
             y = e.getY();
+
+            ImageView imagev = new ImageView();
+
             this.setLineColor(PaintToolBar.getLineColor()); //gets the desired line color from PaintToolBar class
             this.setLineWidth(PaintToolBar.getLineWidth()); //gets the desired line width from PaintToolBar class
             this.setFillColor(PaintToolBar.getFillColor()); //gets the desired fill color from PaintToolBar class
             switch (PaintToolBar.getTool()) {
+
+
                 case ("Line"): //draws a line at the beginning coordinates
                     this.lineDashes(0);
                     this.lineTool(x, y, x, y);
@@ -145,13 +150,27 @@ public class PaintCanvas extends PaintDraw {
                 case("Paste"): //pastes the copied / cut part of the canvas at the desired coordinates
                     this.lineDashes(0);
                     try{
-                        this.drawImageAt(image, e.getX(), e.getY());
+                        if (image != null)
+                        {
+                            imagev.setImage(image);
+                            imagev.setX(e.getX());
+                            imagev.setY(e.getY());
+                            canvasStack.getChildren().add(imagev);
+                        }
 
                     }catch(Exception exception){
                         System.out.println(exception);
                     }
                     break;
 
+                case ("Move"):
+                    if (image != null)
+                    {imagev.setImage(null);
+                        canvasStack.getChildren().remove(imagev);
+                        this.drawImageAt(image, e.getX(), e.getY());
+                    }
+                    this.updateCanvas();
+                    break;
 
                 case ("Clear Canvas"): //clears the canvas on click
                     //add onclick listener here
@@ -174,7 +193,38 @@ public class PaintCanvas extends PaintDraw {
                         break;
 
                 case ("Rotate"): //rotates 90 degrees
-                    this.rotateImage();
+                    if (image != null)
+                    {
+                            imagev.setImage(null);
+                            canvasStack.getChildren().remove(imagev);
+                            this.updateCanvas();
+                            TextInputDialog input = new TextInputDialog("0"); //sets default width to 1280
+                            input.setContentText("New Angle: ");
+                            input.setHeaderText("Rotate Image");
+                            Label label = new Label("");
+                            input.showAndWait();
+                            label.setText(input.getEditor().getText());
+
+                            try{ //tries to resize canvas with given parameter
+                                Integer.parseInt(label.getText());
+                                imagev.setRotate(Integer.parseInt(label.getText()));
+                            }
+                            catch (Exception ex) { //catches exception and prompts user to try again
+                                input = new TextInputDialog("0");
+                                input.setContentText("New Angle: ");
+                                input.setHeaderText("INVALID: Enter Valid Angle");
+                                input.showAndWait();
+                                label.setText(input.getEditor().getText());
+                                imagev.setRotate(Integer.parseInt(label.getText()));
+                            }
+                        this.updateCanvas();
+                        imagev.setImage(image);
+
+                        canvasStack.getChildren().add(imagev);
+                    }
+                    else {
+                        this.rotateImage();
+                    }
                     break;
 
                 case ("Flip Horizontal"):
@@ -195,8 +245,23 @@ public class PaintCanvas extends PaintDraw {
         setOnMouseDragged(e -> {
             x1 = e.getX();
             y1 = e.getY();
+            ImageView imagev = new ImageView();
+
+
             switch (PaintToolBar.getTool()) {
                 case ("Line"):
+
+                case ("Circle"):
+
+                case ("Ellipse"):
+
+                case ("Polygon"):
+
+                case ("Triangle"):
+
+                case ("Rectangle"):
+
+                case ("Square"):
                     //does nothing during drag event
                     break;
 
@@ -204,30 +269,6 @@ public class PaintCanvas extends PaintDraw {
                     this.lineDashes(0);
                     this.drawPencilEnd(x1, y1);
                     this.updateCanvas();
-                    break;
-
-                case ("Square"):
-                    //does nothing during drag event
-                    break;
-
-                case ("Rectangle"):
-                    //does nothing during drag event
-                    break;
-
-                case ("Polygon"):
-                    //does nothing
-                    break;
-
-                case ("Triangle"):
-                    //does nothing
-                    break;
-
-                case ("Ellipse"):
-                    //does nothing during drag event
-                    break;
-
-                case ("Circle"):
-                    //does nothing during drag event
                     break;
 
                 case ("Color Dropper"): //sets the line color to the pixel selected from the eyeDropper function
@@ -260,10 +301,27 @@ public class PaintCanvas extends PaintDraw {
                 case ("Paste"):
                     this.lineDashes(0);
                     this.undo();
+                    canvasStack.getChildren().remove(imagev);
                     try{
-                        this.drawImageAt(image, e.getX(), e.getY());
+                        if (image != null)
+                        {
+                            imagev.setImage(image);
+                            imagev.setX(e.getX());
+                            imagev.setY(e.getY());
+                            canvasStack.getChildren().add(imagev);
+                        }
                     }catch(Exception exception){
                         System.out.println(exception);
+                    }
+                    this.updateCanvas();
+                    break;
+
+                case ("Move"):
+                    this.undo();
+                    try{
+                        this.drawImageAt(image, e.getX(), e.getY());
+                    } catch (Exception r) {
+                        System.out.println(r);
                     }
                     this.updateCanvas();
                     break;
@@ -278,6 +336,8 @@ public class PaintCanvas extends PaintDraw {
         setOnMouseReleased(e -> {
             x1 = e.getX();
             y1 = e.getY();
+            ImageView imagev = new ImageView();
+
             switch (PaintToolBar.getTool()) {
                 case ("Line"): //draws a normal line using the coordinates
                     this.lineDashes(0);
@@ -350,6 +410,7 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Copy"): //copies a piece of the canvas at the given coordinates
+                    this.lineTool(0, 0, 0, 0);
                     this.lineDashes(0);
                     this.undo(); //this is what gets rid of the image!
                     this.image = this.getRegion(x, y, e.getX(), e.getY());
@@ -367,12 +428,13 @@ public class PaintCanvas extends PaintDraw {
                     this.updateCanvas();
                     break;
 
-                case ("Paste"): //pastes chunk of canvas at the given coordinates
-                    this.lineDashes(0);
+                case ("Move"):
                     this.undo();
-                    if (this.image != null) {
-                        this.drawImageAt(this.image, e.getX(), e.getY());
+                    if (this.image != null)
+                    {
+                        this.drawImageAt(image, e.getX(), e.getY());
                     }
+                    canvasStack.getChildren().remove(imagev);
                     break;
 
                 case ("None"):

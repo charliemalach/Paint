@@ -27,7 +27,7 @@ public class PaintToolBar extends ToolBar {
     public final static String[] TOOLS = {
             "None",  "Square", "Rectangle", "Polygon", "Triangle", "Ellipse", "Circle",
             "Clear Canvas", "Rotate" , "Flip Horizontal", "Flip Vertical",
-            "Line", "Dashed Line", "Pencil", "Color Dropper", "Eraser", "Copy", "Cut", "Paste", "Select"};
+            "Line", "Dashed Line", "Pencil", "Color Dropper", "Eraser", "Copy", "Cut", "Paste", "Move"};
 
     public final static String[] BUTTONS = {"Line", "Dashed Line", "Pencil", "Color Dropper", "Eraser", "Copy", "Cut", "Paste"};
     public final static String[] SAVES = {"Yes", "No"};
