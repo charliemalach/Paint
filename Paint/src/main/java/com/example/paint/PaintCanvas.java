@@ -154,10 +154,10 @@ public class PaintCanvas extends PaintDraw {
                     try{
                         if (image != null)
                         {
-                            imagev1.setImage(image);
-                            imagev1.setX(e.getX());
-                            imagev1.setY(e.getY());
-                            canvasStack.getChildren().add(imagev1);
+                            this.imagev1.setImage(image);
+                            this.imagev1.setX(e.getX());
+                            this.imagev1.setY(e.getY());
+                            canvasStack.getChildren().add(this.imagev1);
                         }
 
                     }catch(Exception exception){
@@ -461,15 +461,14 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Move"):
-
                     if(imagev1 != null)
                     {
                         this.imagev2.setImage(image);
                         canvasStack.getChildren().remove(this.imagev1);
                         canvasStack.getChildren().remove(this.imagev2);
 
-                        this.test.setX(e.getX() - 50);
-                        this.test.setY(e.getY() - 50);
+                        this.test.setX(e.getX());
+                        this.test.setY(e.getY());
 
                         this.imagev2.getTransforms().add(test);
                         canvasStack.getChildren().add(this.imagev2);
