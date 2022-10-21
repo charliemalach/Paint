@@ -165,6 +165,7 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Move"):
+                    this.undo();
                     try{
                         this.drawImageAt(image, e.getX(), e.getY());
                     } catch(Exception r)
@@ -432,7 +433,7 @@ public class PaintCanvas extends PaintDraw {
                     this.undo();
                     if (this.image != null)
                     {
-                        this.drawImageAt(image, e.getX(), e.getY());
+                        this.drawImageAt(this.image, e.getX(), e.getY());
                     }
                     canvasStack.getChildren().remove(imagev1);
                     break;
