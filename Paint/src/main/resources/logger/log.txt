@@ -561,3 +561,275 @@
 [2022-10-21]  [08:47:10.638609] test.png - user selected the Move tool
 [2022-10-21]  [08:47:18.393226] test.png - user selected the Rotate tool
 [2022-10-21]  [08:47:25.582933100] test.png - user selected the Move tool
+[2022-10-21]  [08:48:48.025657400] test.png - user opened a new image
+[2022-10-21]  [08:48:50.172906] test.png - user selected the Square tool
+[2022-10-21]  [08:48:50.860956500] test.png - user drew a square to the canvas
+[2022-10-21]  [08:48:56.912909500] test.png - user selected the Rotate tool
+[2022-10-21]  [08:49:11.814932200] test.png - user selected the Flip Horizontal tool
+[2022-10-21]  [08:49:12.120575300] test.png - user flipped the image horizontally
+[2022-10-21]  [08:49:12.566738900] test.png - user flipped the image horizontally
+[2022-10-21]  [08:49:18.144986300] test.png - user selected the Flip Vertical tool
+[2022-10-21]  [08:49:18.545685700] test.png - user flipped the image vertically
+[2022-10-21]  [08:49:18.910740300] test.png - user flipped the image vertically
+[2022-10-21]  [08:49:21.840277700] test.png - user flipped the image vertically
+[2022-10-21]  [08:49:22.424341400] test.png - user flipped the image vertically
+[2022-10-21]  [08:49:23.436788100] test.png - user flipped the image vertically
+[2022-10-21]  [08:49:23.672743600] test.png - user flipped the image vertically
+[2022-10-21]  [08:49:24.084606] test.png - user flipped the image vertically
+[2022-10-21]  [08:49:24.374692400] test.png - user flipped the image vertically
+[2022-10-21]  [08:49:24.659876600] test.png - user flipped the image vertically
+[2022-10-21]  [08:49:24.951892300] test.png - user flipped the image vertically
+[2022-10-21]  [08:49:25.222714200] test.png - user flipped the image vertically
+[2022-10-21]  [08:49:25.509240100] test.png - user flipped the image vertically
+[2022-10-21]  [08:53:39.619198400] test.png - user opened a new image
+[2022-10-21]  [08:53:40.729315300] test.png - user drew a line to the canvas
+[2022-10-21]  [08:53:43.711280800] test.png - user selected the Move tool
+[2022-10-21]  [08:55:03.827577900] test.png - user opened a new image
+[2022-10-21]  [08:55:06.718458200] test.png - user drew a line to the canvas
+[2022-10-21]  [08:55:09.663206700] test.png - user selected the Move tool
+[2022-10-21]  [08:55:31.993125800] New Tab - user saved image
+[2022-10-21]  [08:55:31.997126] New Tab - user saved image as
+[2022-10-21]  [08:55:35.288773200] test.png - user opened a new image
+[2022-10-21]  [08:55:36.156823800] test.png - user drew a line to the canvas
+[2022-10-21]  [08:55:39.138202800] test.png - user selected the Move tool
+[2022-10-21]  [08:57:30.893993800] test.png - user opened a new image
+[2022-10-21]  [08:57:31.894202300] test.png - user drew a line to the canvas
+[2022-10-21]  [08:57:35.195733400] test.png - user selected the Move tool
+[2022-10-21]  [08:58:49.690744] test.png - user opened a new image
+[2022-10-21]  [08:58:50.543053100] test.png - user drew a line to the canvas
+[2022-10-21]  [08:58:53.736260600] test.png - user selected the Move tool
+[2022-10-21]  [09:00:12.635731500] test.png - user opened a new image
+[2022-10-21]  [09:00:14.293896] test.png - user selected the Rectangle tool
+[2022-10-21]  [09:00:14.615450100] test.png - user drew a rectangle to the canvas
+[2022-10-21]  [09:00:17.853713100] test.png - user selected the Move tool
+[2022-10-21]  [09:01:28.949723200] test.png - user opened a new image
+[2022-10-21]  [09:01:29.807887500] test.png - user drew a line to the canvas
+[2022-10-21]  [09:01:32.553533500] test.png - user selected the Move tool
+[2022-10-21]  [09:02:28.264704500] test.png - user opened a new image
+[2022-10-21]  [09:02:29.994720300] test.png - user drew a line to the canvas
+[2022-10-21]  [09:02:34.121259500] test.png - user selected the Move tool
+[2022-10-21]  [09:03:58.143694500] test.png - user opened a new image
+[2022-10-21]  [09:03:59.109944300] test.png - user drew a line to the canvas
+[2022-10-21]  [09:04:02.650931100] test.png - user selected the Move tool
+[2022-10-21]  [09:04:13.300670700] test.png - user selected the Rotate tool
+[2022-10-21]  [09:04:41.626268200] test.png - user opened a new image
+[2022-10-21]  [09:04:49.437571100] test.png - user opened a new image
+[2022-10-21]  [09:04:50.395696500] test.png - user drew a line to the canvas
+[2022-10-21]  [09:05:01.323333400] test.png - user selected the Move tool
+[2022-10-21]  [09:08:02.275670800] test.png - user opened a new image
+[2022-10-21]  [09:08:03.211704800] test.png - user drew a line to the canvas
+[2022-10-21]  [09:08:06.332488100] test.png - user selected the Move tool
+[2022-10-21]  [09:08:56.154020900] test.png - user opened a new image
+[2022-10-21]  [09:08:57.038267] test.png - user drew a line to the canvas
+[2022-10-21]  [09:08:59.719529100] test.png - user selected the Move tool
+[2022-10-21]  [09:10:44.945947200] test.png - user opened a new image
+[2022-10-21]  [09:10:46.552631700] test.png - user drew a line to the canvas
+[2022-10-21]  [09:10:51.685094200] test.png - user selected the Move tool
+[2022-10-21]  [09:12:11.907642600] test.png - user opened a new image
+[2022-10-21]  [09:12:12.831164800] test.png - user drew a line to the canvas
+[2022-10-21]  [09:12:18.783390100] test.png - user selected the Rotate tool
+[2022-10-21]  [09:13:13.762396700] test.png - user opened a new image
+[2022-10-21]  [09:13:15.160433900] test.png - user drew a line to the canvas
+[2022-10-21]  [09:13:17.846903100] test.png - user selected the Move tool
+[2022-10-21]  [09:14:04.915874] test.png - user opened a new image
+[2022-10-21]  [09:14:05.781341400] test.png - user drew a line to the canvas
+[2022-10-21]  [09:14:08.786582800] test.png - user selected the Move tool
+[2022-10-21]  [09:16:30.186606800] test.png - user opened a new image
+[2022-10-21]  [09:16:31.363699600] test.png - user drew a line to the canvas
+[2022-10-21]  [09:16:36.242021600] test.png - user selected the Rotate tool
+[2022-10-21]  [09:16:40.522609700] test.png - user selected the Move tool
+[2022-10-21]  [10:24:59.925055] test.png - user opened a new image
+[2022-10-21]  [10:25:01.009051200] test.png - user drew a line to the canvas
+[2022-10-21]  [10:25:11.476028900] test.png - user selected the Move tool
+[2022-10-21]  [10:26:15.327812200] test.png - user opened a new image
+[2022-10-21]  [10:26:16.318420600] test.png - user drew a line to the canvas
+[2022-10-21]  [10:26:19.491448900] test.png - user selected the Move tool
+[2022-10-21]  [10:26:58.603018100] test.png - user opened a new image
+[2022-10-21]  [10:26:59.897402300] test.png - user drew a line to the canvas
+[2022-10-21]  [10:27:03.057239100] test.png - user selected the Paste tool
+[2022-10-21]  [10:27:04.481612300] test.png - user selected the Move tool
+[2022-10-21]  [10:28:06.610993600] test.png - user opened a new image
+[2022-10-21]  [10:28:09.094070800] test.png - user drew a line to the canvas
+[2022-10-21]  [10:28:12.140420800] test.png - user selected the Move tool
+[2022-10-21]  [10:28:33.493979600] test.png - user opened a new image
+[2022-10-21]  [10:28:34.314173] test.png - user drew a line to the canvas
+[2022-10-21]  [10:28:37.334492] test.png - user selected the Move tool
+[2022-10-21]  [10:29:59.301816100] test.png - user opened a new image
+[2022-10-21]  [10:30:00.142848300] test.png - user drew a line to the canvas
+[2022-10-21]  [10:30:02.971647300] test.png - user selected the Move tool
+[2022-10-21]  [10:31:28.884536800] test.png - user opened a new image
+[2022-10-21]  [10:31:30.297654800] test.png - user drew a line to the canvas
+[2022-10-21]  [10:31:34.958566700] test.png - user selected the Move tool
+[2022-10-21]  [10:31:41.575156800] test.png - user selected the Rotate tool
+[2022-10-21]  [10:31:46.423751] test.png - user selected the Move tool
+[2022-10-21]  [10:33:26.926844200] test.png - user opened a new image
+[2022-10-21]  [10:33:27.845774900] test.png - user drew a line to the canvas
+[2022-10-21]  [10:33:30.661044400] test.png - user selected the Move tool
+[2022-10-21]  [10:35:31.707788700] test.png - user opened a new image
+[2022-10-21]  [10:35:32.998701300] test.png - user drew a line to the canvas
+[2022-10-21]  [10:35:37.552851] test.png - user selected the Move tool
+[2022-10-21]  [10:36:27.793558900] New Tab - user opened a new tab
+[2022-10-21]  [10:36:31.617807600] test.png - user opened a new image
+[2022-10-21]  [10:36:32.519338900] test.png - user drew a line to the canvas
+[2022-10-21]  [10:36:35.812370900] test.png - user selected the Move tool
+[2022-10-21]  [10:37:22.435730] test.png - user opened a new image
+[2022-10-21]  [10:37:24.635734600] test.png - user drew a line to the canvas
+[2022-10-21]  [10:37:28.049160200] test.png - user selected the Move tool
+[2022-10-21]  [10:40:24.275652600] test.png - user opened a new image
+[2022-10-21]  [10:40:25.267273800] test.png - user drew a line to the canvas
+[2022-10-21]  [10:40:29.091380800] test.png - user selected the Move tool
+[2022-10-21]  [10:40:58.411765300] New Tab - user opened a new tab
+[2022-10-21]  [10:41:01.755466600] test.png - user opened a new image
+[2022-10-21]  [10:41:02.793007800] test.png - user drew a line to the canvas
+[2022-10-21]  [10:41:05.769809200] test.png - user selected the Move tool
+[2022-10-21]  [10:41:50.135644300] test.png - user opened a new image
+[2022-10-21]  [10:41:51.158558400] test.png - user drew a line to the canvas
+[2022-10-21]  [10:41:53.908090600] test.png - user selected the Move tool
+[2022-10-21]  [10:42:20.435343800] test.png - user opened a new image
+[2022-10-21]  [10:42:21.490905] test.png - user drew a line to the canvas
+[2022-10-21]  [10:42:24.370068400] test.png - user selected the Move tool
+[2022-10-21]  [10:42:57.019580600] test.png - user opened a new image
+[2022-10-21]  [10:42:57.904583300] test.png - user drew a line to the canvas
+[2022-10-21]  [10:43:00.450182400] test.png - user selected the Move tool
+[2022-10-21]  [10:43:16.862591400] test.png - user opened a new image
+[2022-10-21]  [10:43:17.688564] test.png - user drew a line to the canvas
+[2022-10-21]  [10:43:20.259088200] test.png - user selected the Move tool
+[2022-10-21]  [10:43:50.265100] test.png - user opened a new image
+[2022-10-21]  [10:43:51.217591] test.png - user drew a line to the canvas
+[2022-10-21]  [10:43:53.941437300] test.png - user selected the Move tool
+[2022-10-21]  [10:45:38.279224] test.png - user opened a new image
+[2022-10-21]  [10:45:39.072628400] test.png - user drew a line to the canvas
+[2022-10-21]  [10:45:42.284296900] test.png - user selected the Move tool
+[2022-10-21]  [10:46:36.894406400] test.png - user opened a new image
+[2022-10-21]  [10:46:37.847373800] test.png - user drew a line to the canvas
+[2022-10-21]  [10:46:41.357164100] test.png - user selected the Move tool
+[2022-10-21]  [10:49:11.039372700] New Tab - user quit the program
+[2022-10-21]  [10:49:12.523130100] New Tab - user quit the program
+[2022-10-21]  [10:49:24.769093300] test.png - user opened a new image
+[2022-10-21]  [10:49:25.766434] test.png - user drew a line to the canvas
+[2022-10-21]  [10:49:28.698499600] test.png - user selected the Move tool
+[2022-10-21]  [10:50:15.643854200] test.png - user opened a new image
+[2022-10-21]  [10:50:16.546798300] test.png - user drew a line to the canvas
+[2022-10-21]  [10:50:19.542526100] test.png - user selected the Move tool
+[2022-10-21]  [10:51:34.435704900] test.png - user opened a new image
+[2022-10-21]  [10:51:35.441403] test.png - user drew a line to the canvas
+[2022-10-21]  [10:51:38.017939] test.png - user selected the Move tool
+[2022-10-21]  [10:52:17.121327] test.png - user opened a new image
+[2022-10-21]  [10:52:18.060744300] test.png - user drew a line to the canvas
+[2022-10-21]  [10:52:20.797818300] test.png - user selected the Move tool
+[2022-10-21]  [10:53:09.088298500] test.png - user opened a new image
+[2022-10-21]  [10:53:09.894884] test.png - user drew a line to the canvas
+[2022-10-21]  [10:53:12.462202700] test.png - user selected the Move tool
+[2022-10-21]  [10:53:37.482119500] test.png - user opened a new image
+[2022-10-21]  [10:53:39.098769100] test.png - user drew a line to the canvas
+[2022-10-21]  [10:53:43.020277900] test.png - user selected the Move tool
+[2022-10-21]  [10:54:47.683245900] test.png - user opened a new image
+[2022-10-21]  [10:54:48.452588] test.png - user drew a line to the canvas
+[2022-10-21]  [10:54:51.072545600] test.png - user selected the Move tool
+[2022-10-21]  [10:56:22.027211200] test.png - user opened a new image
+[2022-10-21]  [10:56:23.028638900] test.png - user drew a line to the canvas
+[2022-10-21]  [10:56:26.178385900] test.png - user selected the Paste tool
+[2022-10-21]  [10:56:27.338178700] test.png - user selected the Move tool
+[2022-10-21]  [10:57:04.286192600] test.png - user opened a new image
+[2022-10-21]  [10:57:05.489230100] test.png - user drew a line to the canvas
+[2022-10-21]  [10:57:08.418293600] test.png - user selected the Move tool
+[2022-10-21]  [10:57:46.416610] test.png - user selected the Rotate tool
+[2022-10-21]  [10:58:55.112083200] test.png - user opened a new image
+[2022-10-21]  [10:58:56.048697600] test.png - user drew a line to the canvas
+[2022-10-21]  [10:58:59.353300800] test.png - user selected the Move tool
+[2022-10-21]  [10:59:04.828697800] test.png - user selected the Rotate tool
+[2022-10-21]  [11:02:16.282221] test.png - user opened a new image
+[2022-10-21]  [11:02:17.209050500] test.png - user drew a line to the canvas
+[2022-10-21]  [11:02:19.821919800] test.png - user selected the Line tool
+[2022-10-21]  [11:02:21.604907900] test.png - user selected the Move tool
+[2022-10-21]  [11:02:57.753314100] test.png - user opened a new image
+[2022-10-21]  [11:02:58.632218500] test.png - user drew a line to the canvas
+[2022-10-21]  [11:03:02.149252300] test.png - user selected the Move tool
+[2022-10-21]  [11:03:11.592186400] test.png - user selected the Flip Horizontal tool
+[2022-10-21]  [11:03:11.978292300] test.png - user flipped the image horizontally
+[2022-10-21]  [11:03:12.624791100] test.png - user flipped the image horizontally
+[2022-10-21]  [11:03:13.077153200] test.png - user flipped the image horizontally
+[2022-10-21]  [11:03:13.849224600] test.png - user flipped the image horizontally
+[2022-10-21]  [11:03:20.301191900] test.png - user selected the Rotate tool
+[2022-10-21]  [11:03:59.268812] test.png - user opened a new image
+[2022-10-21]  [11:04:00.194695500] test.png - user drew a line to the canvas
+[2022-10-21]  [11:04:02.892428100] test.png - user selected the Move tool
+[2022-10-21]  [11:04:47.749508100] test.png - user opened a new image
+[2022-10-21]  [11:04:48.548347] test.png - user drew a line to the canvas
+[2022-10-21]  [11:04:52.210680200] test.png - user selected the Move tool
+[2022-10-21]  [11:05:08.968398300] test.png - user opened a new image
+[2022-10-21]  [11:05:10.499192900] test.png - user drew a line to the canvas
+[2022-10-21]  [11:06:06.092365100] test.png - user opened a new image
+[2022-10-21]  [11:06:07.067914200] test.png - user drew a line to the canvas
+[2022-10-21]  [11:06:10.373117500] test.png - user selected the Move tool
+[2022-10-21]  [11:07:13.700228100] test.png - user opened a new image
+[2022-10-21]  [11:07:14.568336100] test.png - user drew a line to the canvas
+[2022-10-21]  [11:07:17.229359100] test.png - user selected the Move tool
+[2022-10-21]  [11:08:11.115477800] test.png - user opened a new image
+[2022-10-21]  [11:08:11.903364] test.png - user drew a line to the canvas
+[2022-10-21]  [11:08:14.575077900] test.png - user selected the Move tool
+[2022-10-21]  [11:12:15.630034900] test.png - user opened a new image
+[2022-10-21]  [11:12:16.600711] test.png - user drew a line to the canvas
+[2022-10-21]  [11:12:19.650335100] test.png - user selected the Move tool
+[2022-10-21]  [11:13:17.795347400] test.png - user opened a new image
+[2022-10-21]  [11:13:18.708185200] test.png - user drew a line to the canvas
+[2022-10-21]  [11:13:22.490360700] test.png - user selected the Move tool
+[2022-10-21]  [11:15:40.567697400] test.png - user opened a new image
+[2022-10-21]  [11:15:41.526538600] test.png - user drew a line to the canvas
+[2022-10-21]  [11:15:44.748960300] test.png - user selected the Move tool
+[2022-10-21]  [11:17:16.197230600] test.png - user opened a new image
+[2022-10-21]  [11:17:17.012926600] test.png - user drew a line to the canvas
+[2022-10-21]  [11:17:19.600794800] test.png - user selected the Paste tool
+[2022-10-21]  [11:17:20.854675500] test.png - user selected the Move tool
+[2022-10-21]  [11:18:46.371438700] test.png - user opened a new image
+[2022-10-21]  [11:18:47.932443500] test.png - user drew a line to the canvas
+[2022-10-21]  [11:18:51.118786700] test.png - user selected the Move tool
+[2022-10-21]  [11:19:08.921360500] New Tab - user opened a new tab
+[2022-10-21]  [11:19:13.818716100] test.png - user opened a new image
+[2022-10-21]  [11:19:15.231582600] test.png - user drew a line to the canvas
+[2022-10-21]  [11:19:18.487742] test.png - user selected the Move tool
+[2022-10-21]  [11:20:49.640839200] test.png - user opened a new image
+[2022-10-21]  [11:20:58.445238300] test.png - user opened a new image
+[2022-10-21]  [11:20:59.284534900] test.png - user drew a line to the canvas
+[2022-10-21]  [11:21:04.116010600] test.png - user selected the Move tool
+[2022-10-21]  [11:21:37.807510800] test.png - user opened a new image
+[2022-10-21]  [11:21:38.896862700] test.png - user drew a line to the canvas
+[2022-10-21]  [11:21:41.557486700] test.png - user selected the Move tool
+[2022-10-21]  [11:22:11.625504700] test.png - user opened a new image
+[2022-10-21]  [11:22:12.503546800] test.png - user drew a line to the canvas
+[2022-10-21]  [11:22:15.733871900] test.png - user selected the Move tool
+[2022-10-21]  [11:24:01.037073100] test.png - user opened a new image
+[2022-10-21]  [11:24:01.904451800] test.png - user drew a line to the canvas
+[2022-10-21]  [11:24:04.853982400] test.png - user selected the Move tool
+[2022-10-21]  [11:24:47.275429700] test.png - user opened a new image
+[2022-10-21]  [11:24:48.228430600] test.png - user drew a line to the canvas
+[2022-10-21]  [11:24:51.137135400] test.png - user selected the Move tool
+[2022-10-21]  [11:25:03.270930100] New Tab - user quit the program
+[2022-10-21]  [11:25:31.769406100] test.png - user opened a new image
+[2022-10-21]  [11:25:32.529180] test.png - user drew a line to the canvas
+[2022-10-21]  [11:25:36.385552] test.png - user selected the Move tool
+[2022-10-21]  [11:26:06.289862100] New Tab - user quit the program
+[2022-10-21]  [11:26:20.934400] test.png - user opened a new image
+[2022-10-21]  [11:26:23.964384400] test.png - user drew a line to the canvas
+[2022-10-21]  [11:26:26.782889500] test.png - user selected the Move tool
+[2022-10-21]  [11:27:38.590345600] test.png - user opened a new image
+[2022-10-21]  [11:27:39.491772700] test.png - user drew a line to the canvas
+[2022-10-21]  [11:27:44.400553200] test.png - user selected the Move tool
+[2022-10-21]  [11:28:05.351927700] test.png - user opened a new image
+[2022-10-21]  [11:28:06.356683500] test.png - user drew a line to the canvas
+[2022-10-21]  [11:28:12.882717800] test.png - user selected the Rotate tool
+[2022-10-21]  [11:28:47.028285800] test.png - user opened a new image
+[2022-10-21]  [11:28:51.084146900] test.png - user drew a line to the canvas
+[2022-10-21]  [11:28:53.066054800] test.png - user selected the Rotate tool
+[2022-10-21]  [11:28:53.296267] test.png - user rotated the image
+[2022-10-21]  [11:28:54.142296400] test.png - user rotated the image
+[2022-10-21]  [11:28:54.538823900] test.png - user rotated the image
+[2022-10-21]  [11:28:54.905991900] test.png - user rotated the image
+[2022-10-21]  [11:28:58.028603500] test.png - user selected the Flip Vertical tool
+[2022-10-21]  [11:28:58.272558] test.png - user flipped the image vertically
+[2022-10-21]  [11:28:58.752882300] test.png - user flipped the image vertically
+[2022-10-21]  [11:29:00.082134200] test.png - user selected the Flip Horizontal tool
+[2022-10-21]  [11:29:00.350174700] test.png - user flipped the image horizontally
+[2022-10-21]  [11:29:00.783332900] test.png - user flipped the image horizontally
+[2022-10-21]  [11:29:05.715167] test.png - user selected the Rotate tool
+[2022-10-21]  [11:29:17.410608800] test.png - user selected the Move tool

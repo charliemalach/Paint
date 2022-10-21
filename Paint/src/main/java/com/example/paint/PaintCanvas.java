@@ -10,6 +10,7 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Translate;
 
 import java.util.Optional;
 import java.util.Stack;
@@ -30,6 +31,9 @@ public class PaintCanvas extends PaintDraw {
     private Stack<Image> redo; //stack used for 'redo' changes
 
     private ImageView imagev1 = new ImageView();
+    private ImageView imagev2 = new ImageView();
+
+    private Translate test = new Translate();
 
     public PaintCanvas() {
         super();
@@ -60,9 +64,6 @@ public class PaintCanvas extends PaintDraw {
         setOnMousePressed(e -> { //when mouse is initially held down
             x = e.getX();
             y = e.getY();
-
-
-
             this.setLineColor(PaintToolBar.getLineColor()); //gets the desired line color from PaintToolBar class
             this.setLineWidth(PaintToolBar.getLineWidth()); //gets the desired line width from PaintToolBar class
             this.setFillColor(PaintToolBar.getFillColor()); //gets the desired fill color from PaintToolBar class
@@ -165,13 +166,28 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Move"):
-                    this.undo();
-                    try{
-                        this.drawImageAt(image, e.getX(), e.getY());
-                    } catch(Exception r)
+                    if(image != null)
                     {
-                        System.out.println(r);
+                        this.imagev2.setImage(image);
+                        canvasStack.getChildren().remove(this.imagev1);
+                        canvasStack.getChildren().remove(this.imagev2);
+
+                        this.test.setX(e.getX());
+                        this.test.setY(e.getY());
+
+                        this.imagev2.getTransforms().add(test);
+                        canvasStack.getChildren().add(this.imagev2);
+
+                        this.updateCanvas();
                     }
+
+//                    canvasStack.getChildren().add(imagev1);
+//                    try{
+//                        this.drawImageAt(image, e.getX(), e.getY());
+//                    } catch(Exception r)
+//                    {
+//                        System.out.println(r);
+//                    }
                     this.updateCanvas();
                     break;
 
@@ -221,7 +237,7 @@ public class PaintCanvas extends PaintDraw {
                                 imagev1.setRotate(Integer.parseInt(label.getText()));
                             }
                         this.updateCanvas();
-                        canvasStack.getChildren().remove(imagev1);
+//                        canvasStack.getChildren().remove(imagev1);
                         imagev1.setImage(image);
                         canvasStack.getChildren().add(imagev1);
                     }
@@ -319,12 +335,27 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Move"):
-                    this.undo();
-                    try{
-                        this.drawImageAt(image, e.getX(), e.getY());
-                    } catch (Exception r) {
-                        System.out.println(r);
+
+                    if(imagev1 != null)
+                    {
+                        this.imagev2.setImage(image);
+                        canvasStack.getChildren().remove(this.imagev1);
+                        canvasStack.getChildren().remove(this.imagev2);
+
+                        this.test.setX(e.getX());
+                        this.test.setY(e.getY());
+
+                        this.imagev2.getTransforms().add(test);
+                        canvasStack.getChildren().add(this.imagev2);
+
+                        this.updateCanvas();
                     }
+
+//                    try{
+//                        this.drawImageAt(image, e.getX(), e.getY());
+//                    } catch (Exception r) {
+//                        System.out.println(r);
+//                    }
                     this.updateCanvas();
                     break;
 
@@ -430,12 +461,37 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Move"):
-                    this.undo();
-                    if (this.image != null)
+
+                    if(imagev1 != null)
                     {
-                        this.drawImageAt(this.image, e.getX(), e.getY());
+                        this.imagev2.setImage(image);
+                        canvasStack.getChildren().remove(this.imagev1);
+                        canvasStack.getChildren().remove(this.imagev2);
+
+                        this.test.setX(e.getX() - 50);
+                        this.test.setY(e.getY() - 50);
+
+                        this.imagev2.getTransforms().add(test);
+                        canvasStack.getChildren().add(this.imagev2);
+                        System.out.println(this.imagev2.getTranslateX());
+                        System.out.println(e.getX());
+                        System.out.println(imagev2.getScaleX());
+                        System.out.println("image height " + image.getHeight());
+                        System.out.println("image view height "  + imagev2.getFitHeight());
+
+                        this.updateCanvas();
+
+
                     }
-                    canvasStack.getChildren().remove(imagev1);
+
+
+
+
+//                    if (this.image != null)
+//                    {
+//                        this.drawImageAt(this.image, e.getX(), e.getY());
+//                    }
+//                    canvasStack.getChildren().remove(imagev1);
                     break;
 
                 case ("None"):
