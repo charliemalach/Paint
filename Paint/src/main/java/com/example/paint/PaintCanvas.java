@@ -29,6 +29,7 @@ public class PaintCanvas extends PaintDraw {
     private Stack<Image> undo; //stack used for 'undo' changes
     private Stack<Image> redo; //stack used for 'redo' changes
 
+    private ImageView imagev1 = new ImageView();
 
     public PaintCanvas() {
         super();
@@ -60,7 +61,7 @@ public class PaintCanvas extends PaintDraw {
             x = e.getX();
             y = e.getY();
 
-            ImageView imagev1 = new ImageView();
+
 
             this.setLineColor(PaintToolBar.getLineColor()); //gets the desired line color from PaintToolBar class
             this.setLineWidth(PaintToolBar.getLineWidth()); //gets the desired line width from PaintToolBar class
@@ -246,7 +247,6 @@ public class PaintCanvas extends PaintDraw {
         setOnMouseDragged(e -> {
             x1 = e.getX();
             y1 = e.getY();
-            ImageView imagev2 = new ImageView();
 
 
             switch (PaintToolBar.getTool()) {
@@ -302,14 +302,14 @@ public class PaintCanvas extends PaintDraw {
                 case ("Paste"):
                     this.lineDashes(0);
                     this.undo();
-                    canvasStack.getChildren().remove(imagev2);
+                    canvasStack.getChildren().remove(imagev1);
                     try{
                         if (image != null)
                         {
-                            imagev2.setImage(image);
-                            imagev2.setX(e.getX());
-                            imagev2.setY(e.getY());
-                            canvasStack.getChildren().add(imagev2);
+                            imagev1.setImage(image);
+                            imagev1.setX(e.getX());
+                            imagev1.setY(e.getY());
+                            canvasStack.getChildren().add(imagev1);
                         }
                     }catch(Exception exception){
                         System.out.println(exception);
@@ -337,7 +337,6 @@ public class PaintCanvas extends PaintDraw {
         setOnMouseReleased(e -> {
             x1 = e.getX();
             y1 = e.getY();
-            ImageView imagev = new ImageView();
 
             switch (PaintToolBar.getTool()) {
                 case ("Line"): //draws a normal line using the coordinates
@@ -435,7 +434,7 @@ public class PaintCanvas extends PaintDraw {
                     {
                         this.drawImageAt(image, e.getX(), e.getY());
                     }
-                    canvasStack.getChildren().remove(imagev);
+                    canvasStack.getChildren().remove(imagev1);
                     break;
 
                 case ("None"):
