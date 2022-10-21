@@ -857,3 +857,20 @@
 [2022-10-21]  [11:36:22.089551] test.png - user opened a new image
 [2022-10-21]  [11:36:22.850111] test.png - user drew a line to the canvas
 [2022-10-21]  [11:36:25.888856100] test.png - user selected the Move tool
+[2022-10-21]  [11:37:57.695823500] test.png - user opened a new image
+[2022-10-21]  [11:37:59.617134900] test.png - user selected the Rotate tool
+[2022-10-21]  [11:37:59.818130800] test.png - user rotated the image
+[2022-10-21]  [11:38:00.255123] test.png - user rotated the image
+[2022-10-21]  [11:38:00.618720100] test.png - user rotated the image
+[2022-10-21]  [11:38:00.898759500] test.png - user rotated the image
+[2022-10-21]  [12:08:37.502240300] test.png - user opened a new image
+[2022-10-21]  [12:08:40.056389600] test.png - user selected the Rectangle tool
+[2022-10-21]  [12:08:40.614739500] test.png - user drew a rectangle to the canvas
+[2022-10-21]  [12:09:24.175908300] test.png - user selected the Flip Horizontal tool
+[2022-10-21]  [12:09:24.653497500] test.png - user flipped the image horizontally
+[2022-10-21]  [12:09:25.118121400] test.png - user flipped the image horizontally
+[2022-10-21]  [12:09:27.572676700] test.png - user selected the Flip Vertical tool
+[2022-10-21]  [12:09:27.930011600] test.png - user flipped the image vertically
+[2022-10-21]  [12:09:28.246643300] test.png - user flipped the image vertically
+[2022-10-21]  [12:09:34.320398400] test.png - user selected the Rotate tool
+[2022-10-21]  [12:09:51.147117400] test.png - user selected the Move tool

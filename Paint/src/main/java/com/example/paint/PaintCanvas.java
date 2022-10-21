@@ -466,10 +466,8 @@ public class PaintCanvas extends PaintDraw {
                         this.imagev2.setImage(image);
                         canvasStack.getChildren().remove(this.imagev1);
                         canvasStack.getChildren().remove(this.imagev2);
-
                         this.test.setX(e.getX());
                         this.test.setY(e.getY());
-
                         this.imagev2.getTransforms().add(test);
                         canvasStack.getChildren().add(this.imagev2);
                         System.out.println(this.imagev2.getTranslateX());
