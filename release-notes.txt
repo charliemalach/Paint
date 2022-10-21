@@ -1,5 +1,25 @@
 #----------------------------------------------------------------------------------------------------#
 
+Charlie's Pain(t) Version 1.0.5, 10/2/22
+
+New Features:
+	- Application now allows users to rotate the entire image (90 degrees)
+	- Application can now rotate specific chunks of the image  (90, 180, 270 degrees)
+	- Application's main drawing tools have buttons with icons
+    - Application's main drawing tools now have tooltips on hover
+	- Application now has a log file that tracks the user's changes to the software (with threading)
+
+Known Issues:
+	- N/A
+
+Expected Next Sprint:
+	- N/A
+
+Links:
+	- GitHub Repository: https://github.com/charliemalach/Paint
+
+#----------------------------------------------------------------------------------------------------#
+
 Charlie's Pain(t) Version 1.0.4, 10/2/22
 
 New Features:
