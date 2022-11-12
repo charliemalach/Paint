@@ -1,7 +1,4 @@
 package com.example.paint;
-
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -10,12 +7,8 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.scene.transform.Translate;
-
 import java.util.Optional;
 import java.util.Stack;
-
-import static com.example.paint.Paint.mainStage;
 import static com.example.paint.PaintTabs.canvasStack;
 import static com.example.paint.PaintTabs.logData;
 
@@ -24,17 +17,19 @@ import static com.example.paint.PaintTabs.logData;
  * This class file is used to manage the changes made on the canvas. Tool selection and their methods occurs here.
  *
  **/
+
 public class PaintCanvas extends PaintDraw {
     private double x, y, x1, y1; //variables used for drawing
     private Image image; //image object used for undo/redo stack
     private Stack<Image> undo; //stack used for 'undo' changes
     private Stack<Image> redo; //stack used for 'redo' changes
 
-    private ImageView imagev1 = new ImageView();
-    private ImageView imagev2 = new ImageView();
+    private ImageView imagev1 = new ImageView(); //Imageview used to show the image
 
-    private Translate test = new Translate();
 
+    /**
+     *
+     */
     public PaintCanvas() {
         super();
         //set defaults for undo/redo stack
@@ -159,29 +154,13 @@ public class PaintCanvas extends PaintDraw {
                             this.imagev1.setY(e.getY());
                             canvasStack.getChildren().add(this.imagev1);
                         }
-
                     }catch(Exception exception){
                         System.out.println(exception);
                     }
                     break;
 
-                case ("Move"):
-//                    if(image != null)
-//                    {
-//                        this.imagev2.setImage(image);
-//                        canvasStack.getChildren().remove(this.imagev1);
-//                        canvasStack.getChildren().remove(this.imagev2);
-//
-//                        this.test.setX(e.getX());
-//                        this.test.setY(e.getY());
-//
-//                        this.imagev2.getTransforms().add(test);
-//                        canvasStack.getChildren().add(this.imagev2);
-//
-//                        this.updateCanvas();
-//                    }
-                    this.undo();
-//                    canvasStack.getChildren().add(imagev1);
+                case ("Move"): //moves selection of image on the canvas
+                 this.undo();
                     try{
                         this.drawImageAt(image, e.getX(), e.getY());
                     } catch(Exception r)
@@ -335,21 +314,6 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Move"):
-
-//                    if(imagev1 != null)
-//                    {
-//                        this.imagev2.setImage(image);
-//                        canvasStack.getChildren().remove(this.imagev1);
-//                        canvasStack.getChildren().remove(this.imagev2);
-//
-//                        this.test.setX(e.getX());
-//                        this.test.setY(e.getY());
-//
-//                        this.imagev2.getTransforms().add(test);
-//                        canvasStack.getChildren().add(this.imagev2);
-//
-//                        this.updateCanvas();
-//                    }
                     this.undo();
                     try{
                         this.drawImageAt(image, e.getX(), e.getY());
@@ -461,34 +425,12 @@ public class PaintCanvas extends PaintDraw {
                     break;
 
                 case ("Move"):
-//                    if(imagev1 != null)
-////                    {
-////                        this.imagev2.setImage(image);
-////                        canvasStack.getChildren().remove(this.imagev1);
-////                        canvasStack.getChildren().remove(this.imagev2);
-////                        this.test.setX(e.getX());
-////                        this.test.setY(e.getY());
-////                        this.imagev2.getTransforms().add(test);
-////                        canvasStack.getChildren().add(this.imagev2);
-////                        System.out.println(this.imagev2.getTranslateX());
-////                        System.out.println(e.getX());
-////                        System.out.println(imagev2.getScaleX());
-////                        System.out.println("image height " + image.getHeight());
-////                        System.out.println("image view height "  + imagev2.getFitHeight());
-////
-////                        this.updateCanvas();
-////
-////
-////                    }
-
-
-
-
-                    if (this.image != null)
+                    undo();
+                    if (image != null)
                     {
-                        this.drawImageAt(this.image, e.getX(), e.getY());
+                        this.drawImageAt(image, e.getX(), e.getY());
                     }
-                    canvasStack.getChildren().remove(imagev1);
+                    canvasStack.getChildren().remove(image);
                     break;
 
                 case ("None"):
@@ -499,7 +441,10 @@ public class PaintCanvas extends PaintDraw {
         });
     }
 
-    public void undo() //this is broken ?
+    /**
+     * Will undo the most recent change made to the canvas
+     */
+    public void undo()
     {
         Image img = undo.pop();
         if(!undo.empty()){
@@ -512,7 +457,10 @@ public class PaintCanvas extends PaintDraw {
         }
     }
 
-    public void redo() //this is broken too?
+    /**
+     * Will redo most recent change that was undone on the canvas
+     */
+    public void redo()
     {
         if(!redo.empty()){
             Image im = redo.pop();
@@ -521,7 +469,10 @@ public class PaintCanvas extends PaintDraw {
         }
     }
 
-    public void updateCanvas() //updates the canvas on the stack
+    /**
+     * Will update the canvas stack
+     */
+    public void updateCanvas()
     {
         undo.push(this.getRegion(0, 0, this.getWidth(), this.getHeight()));
         redo.clear();

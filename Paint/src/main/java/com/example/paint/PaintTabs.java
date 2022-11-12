@@ -23,13 +23,11 @@ import java.time.LocalTime;
 import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import static com.example.paint.Paint.*;
 
 /**
  * Malachinski Pain(t) Application - PaintTabs.java
  * This class file is used to manage the changes made to individual tabs. This class also manages multiple canvases in the canvas stack, allowing for multiple canvases.
- *
  **/
 
 public class PaintTabs extends Tab {
@@ -56,7 +54,11 @@ public class PaintTabs extends Tab {
         tabStart(); //starts a new tab with the new canvas
     }
 
-    public PaintTabs(File file) { //sets a new tab on image open 
+    /**
+     * Creates a new tab with the opened image
+     * @param file - image opened to the canvas
+     */
+    public PaintTabs(File file) { //sets a new tab on image open
         super();
         this.unsavedChanges = false;
         this.path = file;
@@ -65,6 +67,9 @@ public class PaintTabs extends Tab {
         tabStart();
     }
 
+    /**
+     * Starts a new blank tab and allows user to select image
+     */
     private void tabStart() { //default constructor
         chooseFile = new FileChooser();
         chooseFile.getExtensionFilters().addAll(
@@ -120,15 +125,17 @@ public class PaintTabs extends Tab {
         Paint.getCurrentTab();
     }
 
+    /**
+     * Auto saves tab to auto save path
+     */
     public void autoSave()
-    { //WORKING FUNCTION - DO NOT FUCK WITH IT
+    {
         Paint.getCurrentTab();
         File backup = new File(AUTOSAVE_DIR + LocalDate.now() + Instant.now().toEpochMilli() + ".png");
         Image im = this.canvas.getRegion(0, 0, this.canvas.getWidth(), this.canvas.getHeight());
         try {
             if (this.path != null) {
                 ImageIO.write(SwingFXUtils.fromFXImage(im, null), "png", backup);
-//                new FileOutputStream(backup);
                 this.setTitle(this.getFilePath().getName());
                 System.out.println("Auto Save was Successful!");
             }
@@ -137,6 +144,9 @@ public class PaintTabs extends Tab {
         }
     }
 
+    /**
+     * Allows user to update timer for auto save
+     */
     public void updateSaveTimer(){
         this.autoSaveSec = PaintToolBar.getSaveTimer();
         this.autoSave.cancel();
@@ -161,14 +171,25 @@ public class PaintTabs extends Tab {
         this.autosaveTimer.schedule(this.autoSave, 0, (long) this.autoSaveSec *MILS_IN_SECS);
     }
 
+    /**
+     * Sets the path for the file
+     * @param path - path set for file object
+     */
     public void setFilePath(File path) { //sets the path for the current file
         this.path = path;
     }
 
+    /**
+     * Gets the path for the file
+     * @return - returns the file object's current path
+     */
     public File getFilePath() { //returns the path for the current file
         return this.path;
     }
 
+    /**
+     * Allows user to open an image on the current tab
+     */
     public static void openImage(){ //uses file chooser to open an image stored in path and displays it on the canvas
         File path = chooseFile.showOpenDialog(mainStage);
         PaintTabs temp;
@@ -181,6 +202,10 @@ public class PaintTabs extends Tab {
         Paint.tabpane.getSelectionModel().select(temp);
         logData(" user opened a new image");
     }
+
+    /**
+     * Allows user to create a new blank tab on the stack
+     */
     public static void newTab() //opens a new tab on the canvas
     {
         PaintTabs newTab;
@@ -190,6 +215,9 @@ public class PaintTabs extends Tab {
         logData(" user opened a new tab");
     }
 
+    /**
+     * Allows user to save changes to the original file
+     */
     public void saveImage() { //saves the original image
         Image im = this.canvas.getRegion(0, 0, this.canvas.getWidth(), this.canvas.getHeight());
         try {
@@ -203,6 +231,9 @@ public class PaintTabs extends Tab {
         logData(" user saved image");
     }
 
+    /**
+     * Allows user to save image as different file type
+     */
     public void saveImageAs() { //saves image as a new image of desired file type
         Alert saveWarning = new Alert(Alert.AlertType.WARNING); //data loss warning
         saveWarning.setTitle("Data Loss Warning");
@@ -217,6 +248,10 @@ public class PaintTabs extends Tab {
         logData(" user saved image as");
     }
 
+    /**
+     * Allows users to save image as different file type at specific path
+     * @param path - path to save as image to
+     */
     public void saveImageAs(File path) { //saves existing image as a new image of desired file type
 
         Alert saveWarning = new Alert(Alert.AlertType.WARNING); //data loss warning
@@ -231,6 +266,9 @@ public class PaintTabs extends Tab {
         logData(" user saved image as");
     }
 
+    /**
+     * 'Smart Save' function prompting users to save their work prior to closing the program
+     */
     public void quitProgram() //prompts the user to save before quitting program
     {
         if (this.path != null) {
@@ -257,6 +295,9 @@ public class PaintTabs extends Tab {
         logData(" user quit the program");
     }
 
+    /**
+     * 'Smart Save' function that prompts users to save their work prior to closing specific tab
+     */
     public void quitTab() //prompts the user to save before closing the current tab
     {
             Alert exit = new Alert(Alert.AlertType.CONFIRMATION);
@@ -279,6 +320,10 @@ public class PaintTabs extends Tab {
         logData(" user closed a tab");
     }
 
+    /**
+     * Method that logs changes made to the canvas
+     * @param content - 'content' as string value of changes being made to the canvas
+     */
     public static void logData(String content){ //logs the data to a new file
         try {
             File file = new File(test.toURI());
@@ -297,11 +342,19 @@ public class PaintTabs extends Tab {
         }
     }
 
+    /**
+     * Sets the title of the current tab
+     * @param title - string value of the current title of the file being modified
+     */
     public void setTitle(String title) { //sets the title of the current tab
         this.title = title;
         this.updateTitle(); //updates the title of tab
     }
 
+    /**
+     * Gets the current path of the file
+     * @return - returns the name of the current path being modified
+     */
     public File getPath() { //returns the path of the current file
         return this.path;
     }
@@ -313,15 +366,26 @@ public class PaintTabs extends Tab {
             this.setText(this.title);
     }
 
+    /**
+     * Will undo any recent changes made to the stack
+     */
     public void undo() //UNDO CHANGES MADE TO CANVAS (IN THE STACK)
     {
         this.canvas.undo();
     }
+
+    /**
+     * Will redo any recent changes that were undone from the stack
+     */
     public void redo() //REDO CHANGES MADE TO CANVAS (IN THE STACK)
     {
         this.canvas.redo();
     }
 
+    /**
+     * Will allow users to resize the canvas proportionally with given parameters
+     * @param x - width value of the new canvas size
+     */
     public void resizeCanvas(int x) //resizes the entire canvas proportional with the newly provided canvas width
     {
         this.canvas.setWidth(x); //sets the canvas width to the given int

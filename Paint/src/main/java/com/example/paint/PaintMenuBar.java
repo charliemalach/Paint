@@ -1,5 +1,4 @@
 package com.example.paint;
-
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -9,7 +8,6 @@ import javafx.scene.input.KeyCombination;
 /**
  * Malachinski Pain(t) Application - PaintMenuBar.java
  * This class file is used to manage the menu bar and all the relevant menu bar events.
- *
  **/
 
 public class PaintMenuBar extends MenuBar {

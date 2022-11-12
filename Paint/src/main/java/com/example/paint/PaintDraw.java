@@ -1,32 +1,26 @@
 package com.example.paint;
-
 import javafx.geometry.Rectangle2D;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
-
 import java.io.File;
-
 import static com.example.paint.Paint.pane;
 import static com.example.paint.PaintTabs.logData;
 
 /**
  * Malachinski Pain(t) Application - PaintDraw.java
  * This class file is used to manage the tools used to draw on the canvas. All the tool methods and their getters / setters are defined here. INCLUDES JAVADOC COMMENTING
- *
  **/
 public class PaintDraw extends Canvas { //extends the resizable canvas, allowing users to draw on extended part of canvas
 
     private GraphicsContext gc;
     private boolean shapeFill;
-    private Image image;
 
     public PaintDraw() { //default draw method
         super();
@@ -222,6 +216,9 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
         this.gc.stroke();
     }
 
+    /**
+     * Rotates the image 90 degrees on the canvas
+     */
     public void rotateImage()
     {
         this.setRotate(this.getRotate() + 90);
@@ -231,16 +228,9 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
         logData(" user rotated the image");
     }
 
-
-    public void rotateTest()
-    {
-        Translate flipTranslate = new Translate(this.getHeight(), 0);
-        Rotate flipRotation = new Rotate(90, Rotate.Y_AXIS);
-        this.getTransforms().addAll(flipRotation, flipTranslate);
-        logData(" user flipped the image vertically");
-    }
-
-
+    /**
+     * Flips the Image on the X axis of the canvas
+     */
     public void flipImageX()
     {
         Translate flipTranslate = new Translate(0, this.getHeight());
@@ -249,6 +239,9 @@ public class PaintDraw extends Canvas { //extends the resizable canvas, allowing
         logData(" user flipped the image vertically");
     }
 
+    /**
+     * Flips the Image on the Y axis of the canvas
+     */
     public void flipImageY()
     {
         Translate flipTranslate = new Translate(this.getHeight(), 0);

@@ -902,3 +902,28 @@
 [2022-10-21]  [13:58:32.482767500] test.png - user selected the Flip Vertical tool
 [2022-10-21]  [13:58:32.979577600] test.png - user flipped the image vertically
 [2022-10-21]  [13:59:40.937998500] test.png - user flipped the image vertically
+[2022-11-12]  [11:07:16.640773500] Me.PNG - user opened a new image
+[2022-11-12]  [11:07:22.792853900] Me.PNG - user selected the Move tool
+[2022-11-12]  [11:07:25.939058400] Me.PNG - user selected the None tool
+[2022-11-12]  [11:07:31.684299800] Me.PNG - user saved image
+[2022-11-12]  [11:07:31.684299800] Me.PNG - user saved image as
+[2022-11-12]  [11:07:31.685296900] New Tab - user closed a tab
+[2022-11-12]  [11:07:32.358803700] New Tab - user quit the program
+[2022-11-12]  [11:09:24.528101800] Me.PNG - user opened a new image
+[2022-11-12]  [11:09:27.194817700] Me.PNG - user drew a line to the canvas
+[2022-11-12]  [11:09:30.578063] Me.PNG - user selected the Move tool
+[2022-11-12]  [11:10:32.266724800] Me.PNG - user opened a new image
+[2022-11-12]  [11:10:33.323191400] Me.PNG - user drew a line to the canvas
+[2022-11-12]  [11:10:35.484243500] Me.PNG - user selected the Move tool
+[2022-11-12]  [11:11:26.242183900] Me.PNG - user opened a new image
+[2022-11-12]  [11:11:27.546068800] Me.PNG - user drew a line to the canvas
+[2022-11-12]  [11:11:29.496682300] Me.PNG - user selected the Move tool
+[2022-11-12]  [11:12:13.166259500] Me.PNG - user opened a new image
+[2022-11-12]  [11:12:15.159321800] Me.PNG - user drew a line to the canvas
+[2022-11-12]  [11:12:17.174903300] Me.PNG - user selected the Move tool
+[2022-11-12]  [11:12:52.002120400] Me.PNG - user opened a new image
+[2022-11-12]  [11:12:54.902906300] Me.PNG - user drew a line to the canvas
+[2022-11-12]  [11:12:58.075754600] Me.PNG - user selected the Move tool
+[2022-11-12]  [11:13:32.457923200] Me.PNG - user opened a new image
+[2022-11-12]  [11:13:39.372732100] Me.PNG - user selected the Move tool
+[2022-11-12]  [11:13:49.143336600] Me.PNG - user opened a new image

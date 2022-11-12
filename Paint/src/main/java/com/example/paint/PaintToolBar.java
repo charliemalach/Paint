@@ -1,5 +1,4 @@
 package com.example.paint;
-
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
@@ -8,43 +7,40 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-
 import static com.example.paint.PaintTabs.logData;
 
 
 /**
  * Malachinski Pain(t) Application - PaintToolBar.java
  * This class file is used to manage the toolbar and its relevant methods. The color, line width, and number of sides (for specific shapes) are managed within this class file.
- *
  **/
 
 
 public class PaintToolBar extends ToolBar {
 
-    public final static String[] TOOLS = {
+    public final static String[] TOOLS = { //all the available tools in the toolbar
             "None",  "Square", "Rectangle", "Polygon", "Triangle", "Ellipse", "Circle",
             "Clear Canvas", "Rotate" , "Flip Horizontal", "Flip Vertical",
             "Line", "Dashed Line", "Pencil", "Color Dropper", "Eraser", "Copy", "Cut", "Paste", "Move"};
 
-    public final static String[] BUTTONS = {"Line", "Dashed Line", "Pencil", "Color Dropper", "Eraser", "Copy", "Cut", "Paste"};
-    public final static String[] SAVES = {"Yes", "No"};
+    public final static String[] SAVES = {"Yes", "No"}; //enable or disable autosave
     private static final Integer[] LINE_WIDTH = {1, 2, 3, 5, 10, 15, 20, 25, 50, 100}; //hard coded line widths for the user to use, might make this custom later
     public static ComboBox<String> toolBox; //creates a combo box to store all the available tools
     private static ComboBox<Integer> widthBox; //creates a combo box to store all the available widths
-    private static ComboBox<String> saveBox;
+    private static ComboBox<String> saveBox; //creates a combo box to store the value of auto save
     private static ColorPicker lineColorPicker; //creates the color picker for the line
     private static ColorPicker fillColorPicker; //creates the color picker for the fill of the object
     public static int usingTool; //creates the identifier for the array to observe which tool is being used
     private static int usingWidth; //creates a variable for the line width
     private static TextField sides; //creates an editable text field for the number of sides of the object
-    private static int usingSides;
-    private static int usingSave;
-    private static TextField saveTime;
-    private static int currentTime;
+    private static int usingSides; //creates a variable to determine how many sides the polygon object will be
+    private static int usingSave; //creates a variable to determine if auto save is being used
+    private static TextField saveTime; //creates a text variable for the current time for auto save
+    private static int currentTime; //creates a variable to determine current time for auto save
 
+    //creates buttons for most common tools in the tool box
     private final Button tool_Line; //tool 11
     private final Button tool_DashedLine; //tool 12
     private final Button tool_Pencil; //tool 13
@@ -80,8 +76,8 @@ public class PaintToolBar extends ToolBar {
         saveTime = new TextField(Integer.toString(currentTime));
         Label seconds = new Label(" seconds");
 
-
-        tool_Line = new Button("");
+        //Creates buttons for most commonly used tools
+        tool_Line = new Button();
         tool_DashedLine = new Button();
         tool_Pencil = new Button();
         tool_EyeDropper = new Button();
@@ -89,7 +85,6 @@ public class PaintToolBar extends ToolBar {
         tool_Copy = new Button();
         tool_Cut = new Button();
         tool_Paste = new Button();
-
 
         //adds items to toolbox
         getItems().addAll(new Label("Tools: "), toolBox, new Separator(), sides,
@@ -102,12 +97,14 @@ public class PaintToolBar extends ToolBar {
         lineColorPicker.setTooltip(new Tooltip("Select the desired color."));
         saveBox.setTooltip(new Tooltip("Enable or disable auto-save."));
 
+
         seconds.setVisible(false); //makes the 'seconds' text box invisible
         saveTime.setVisible(true); //makes the text box visible
         sides.setVisible(false); //makes sides invisible until the proper tool is selected
         sides.setPrefWidth(50);
         saveTime.setPrefWidth(50);
 
+        //sets the tooltips for the most commonly used tools (buttons)
         tool_Line.setTooltip(new Tooltip("Line Tool"));
         tool_DashedLine.setTooltip(new Tooltip("Dashed Line Tool"));
         tool_Pencil.setTooltip(new Tooltip("Pencil Tool"));
@@ -117,6 +114,7 @@ public class PaintToolBar extends ToolBar {
         tool_Cut.setTooltip(new Tooltip("Cut Tool"));
         tool_Paste.setTooltip(new Tooltip("Paste Tool"));
 
+        //sets the images for the buttons of the most commonly used tools
         try {
             int size = 20;
             tool_Line.setGraphic(new ImageView(new Image(new FileInputStream(Paint.IMAGES + "buttons\\line.png"), size, size, true, true)));
@@ -168,74 +166,111 @@ public class PaintToolBar extends ToolBar {
             logData(" user changed the width to " + usingWidth);
         });
 
-        //button listeners
+        //All button tool listeners
         tool_Line.setOnAction((ActionEvent e) ->{
-            usingTool = 11;
+            usingTool = 11;//line tool
         });
 
         tool_DashedLine.setOnAction((ActionEvent e) ->{
-            usingTool = 12;
+            usingTool = 12;//dashed line tool
         });
 
         tool_Pencil.setOnAction((ActionEvent e) ->{
-            usingTool = 13;
+            usingTool = 13;//pencil tool
         });
 
         tool_EyeDropper.setOnAction((ActionEvent e) ->{
-            usingTool = 14;
+            usingTool = 14;//eyedropper tool
         });
 
         tool_Eraser.setOnAction((ActionEvent e) ->{
-            usingTool = 15;
+            usingTool = 15;//eraser tool
         });
 
         tool_Copy.setOnAction((ActionEvent e) ->{
-            usingTool = 16;
+            usingTool = 16;//copy tool
         });
 
         tool_Cut.setOnAction((ActionEvent e) ->{
-            usingTool = 17;
+            usingTool = 17;//cut tool
         });
 
         tool_Paste.setOnAction((ActionEvent e) ->{
-            usingTool = 18;
+            usingTool = 18;//paste tool
         });
     }
 
+    /**
+     * Gets the current tool being used
+     * @return - returns the string value of the current tool being used
+     */
     public static String getTool() //returns current tool
     {
         return TOOLS[usingTool];
     }
 
+    /**
+     * Gets the current save time
+     * @return - returns the string value of the current save time
+     */
     public static String getSave() //returns the save time
     {
         return SAVES[usingSave];
     }
 
+    /**
+     * Gets the current color being used for the line
+     * @return - returns the color value of the current line
+     */
     public static Color getLineColor() { //gets the color of the line
         return lineColorPicker.getValue();
     }
+
+    /**
+     * Gets the current color being used for the fill
+     * @return - returns the color value of the current fill
+     */
     public static Color getFillColor() { //gets the color of the fill object
       return fillColorPicker.getValue();
     }
 
+    /**
+     * Sets the color for the current line
+     * @param color - sets the color value of the current line
+     */
     public static void setLineColor(Color color) { //sets the color of the line
         lineColorPicker.setValue(color);
     }
 
+    /**
+     * Sets the color for the current fill
+     * @param color - sets the color value for the current fill
+     */
     public static void setFillColor(Color color){ //sets the fill color of the object
         fillColorPicker.setValue(color);
     }
 
+    /**
+     * Gets the width of the current line
+     * @return - returns int value of current line width
+     */
     public static int getLineWidth() { //returns the width of the current object
         return usingWidth;
     }
 
+    /**
+     * Gets the current number of sides of shape
+     * @return - returns int value of the current shape's sides
+     */
     public static int getUsingSides() { //returns the current number of sides for the object
         return usingSides;
     }
 
-    public static int getSaveTimer() //returns the current time for the auto-save timer
+    /**
+     * Gets the current time for auto-save
+     * @return - returns int value of the current time for auto-save timer
+     */
+    public static int getSaveTimer()
     {
         return currentTime;
     }
