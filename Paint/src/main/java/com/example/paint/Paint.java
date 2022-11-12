@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
+
 
 /**
  * Malachinski Pain(t) Application
@@ -43,7 +45,7 @@ public class Paint extends Application {
 
         //Initialize Layout Items
         Paint.mainStage = stage;
-        Image icon = new Image("C:\\Users\\Charlie\\Documents\\GitHub\\Paint\\Paint\\src\\main\\resources\\images\\icon.png"); //change to relative path instead of hard coded
+        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icon.png"))); //change to relative path instead of hard coded
         VBox topMenu = new VBox(menuBar, toolbar); //add MenuBar and ToolBar to vbox object
 
         //Layout setup

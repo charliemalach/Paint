@@ -11,7 +11,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import static com.example.paint.PaintTabs.logData;
 
-
 /**
  * Malachinski Pain(t) Application - PaintToolBar.java
  * This class file is used to manage the toolbar and its relevant methods. The color, line width, and number of sides (for specific shapes) are managed within this class file.
